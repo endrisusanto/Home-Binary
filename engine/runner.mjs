@@ -95,7 +95,7 @@ async function runMockSimulation(items, delayMs = 1200) {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     emitProgress(item.id, item.index ?? i, 'running', `Processing: ${item.buildFingerprintName}`);
-    emitLog('info', `[${i + 1}/${items.length}] Navigating to form page: https://android.qb.sec.samsung.net/wicket/page?6`);
+    emitLog('info', `[${i + 1}/${items.length}] Navigating to overview portal & triggering Run form...`);
     
     await new Promise((r) => setTimeout(r, Math.max(delayMs / 2, 400)));
     emitLog('info', `Filling inputs for ${item.buildFingerprintName} (PDA: ${item.pdaVersion}, CSC: ${item.cscVersion}, Phone: ${item.basebandVersion})`);
@@ -182,9 +182,20 @@ async function handleSsoLoginIfNeeded(page, context, username, password, timeout
 }
 
 async function findAndClickRunButton(page) {
+  // Selectors matching Samsung QuickBuild "Run the configuration" action button
   const runSelectors = [
+    'button[title="Run the configuration"]',
+    'button[title*="Run the configuration" i]',
+    'button:has(i.fa.fa-play)',
+    'button:has(i.fa-play)',
+    'button.btn-ghost:has(i.fa-play)',
+    'button[onclick*="ILinkListener-run"]',
+    'a[onclick*="ILinkListener-run"]',
+    'button[title*="Run" i]',
+    'a[title*="Run the configuration" i]',
     'a[title*="Run" i]',
-    'a[title*="Trigger" i]',
+    'a:has(i.fa-play)',
+    'a:has(i[class*="play"])',
     'button:has-text("Run")',
     'a:has-text("Run")',
     'button:has-text("Trigger")',
@@ -192,94 +203,92 @@ async function findAndClickRunButton(page) {
     'a.run',
     'a.action.run',
     'a.btn-run',
-    'a:has(i.fa-play)',
-    'a:has(i[class*="play"])',
-    'a[href*="wicket"][title*="Run" i]',
-    'a[href*="overview"][title*="Run" i]',
-    'a.action[href*="wicket"]',
-    'a[href*="wicket/page"]',
   ];
 
   for (const selector of runSelectors) {
     try {
       const loc = page.locator(selector).first();
       if (await loc.count() > 0 && await loc.isVisible()) {
-        emitLog('info', `Found Run/Trigger action button (${selector}). Clicking...`);
+        emitLog('info', `Found Run action button: ${selector}. Triggering click...`);
         await loc.scrollIntoViewIfNeeded().catch(() => null);
-        await loc.click({ timeout: 4000 });
+        
+        // Execute click via Playwright and evaluate onclick handler directly if needed
+        await loc.click({ timeout: 4000 }).catch(async () => {
+          await page.evaluate((sel) => {
+            const el = document.querySelector(sel);
+            if (el) el.click();
+          }, selector);
+        });
+
         return true;
       }
     } catch {}
   }
+
+  // Fallback: evaluate via DOM search for title or fa-play icon
+  try {
+    const clickedViaEval = await page.evaluate(() => {
+      const btn = document.querySelector('button[title*="Run"], a[title*="Run"], button:has(i.fa-play), .btn-ghost:has(i.fa-play)');
+      if (btn) {
+        btn.click();
+        return true;
+      }
+      return false;
+    });
+    if (clickedViaEval) {
+      emitLog('info', 'Clicked Run button via direct DOM evaluation fallback.');
+      return true;
+    }
+  } catch {}
+
   return false;
 }
 
-async function navigateAndLocateForm(page, formUrl, baseUrl, timeoutMs = 30000) {
+async function navigateAndLocateForm(page, baseUrl, timeoutMs = 30000) {
   const selFingerprint = 'input[name="editor:content:basicProperties:0:property:editor:editor:wrapper:input"], input[name*="basicProperties:0"], input[name*="0:property:editor"]';
   const selPda = 'input[name="editor:content:basicProperties:1:property:editor:editor:wrapper:input"], input[name*="basicProperties:1"], input[name*="1:property:editor"]';
   const selCsc = 'input[name="editor:content:basicProperties:2:property:editor:editor:wrapper:input"], input[name*="basicProperties:2"], input[name*="2:property:editor"]';
   const selBaseband = 'input[name="editor:content:basicProperties:3:property:editor:editor:wrapper:input"], input[name*="basicProperties:3"], input[name*="3:property:editor"]';
 
-  // Check if form inputs are already on current page
-  if (await page.locator(selFingerprint).count() > 0 && await page.locator(selFingerprint).first().isVisible()) {
-    emitLog('info', 'Form input fields are already visible on current view.');
-    return { selFingerprint, selPda, selCsc, selBaseband };
-  }
-
-  // Strategy 1: Navigate to Overview page and click the "Run" button
-  emitLog('info', `Navigating to overview portal: ${baseUrl} to trigger run form...`);
-  try {
-    await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
-    await page.waitForTimeout(1000);
-
-    const clicked = await findAndClickRunButton(page);
-    if (clicked) {
-      await page.waitForTimeout(2000);
-      if (await page.locator(selFingerprint).count() > 0) {
-        emitLog('success', 'Form fields opened via Run action button on overview.');
-        return { selFingerprint, selPda, selCsc, selBaseband };
-      }
-    }
-  } catch (err) {
-    emitLog('warn', `Overview Run trigger attempt warning: ${err.message}`);
-  }
-
-  // Strategy 2: Direct navigation to form URL with retry
   const maxAttempts = 3;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    emitLog('info', `Attempting direct navigation to form: ${formUrl} (Attempt ${attempt}/${maxAttempts})...`);
+    emitLog('info', `Navigating to overview portal: ${baseUrl} (Attempt ${attempt}/${maxAttempts})...`);
     try {
-      await page.goto(formUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
+      await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
     } catch (e) {
-      emitLog('warn', `Form navigation attempt ${attempt} warning: ${e.message}`);
+      emitLog('warn', `Overview navigation warning: ${e.message}`);
+    }
+
+    await page.waitForTimeout(1200);
+
+    // Click the QuickBuild "Run the configuration" button to dynamically launch the parameter form
+    emitLog('info', 'Locating "Run the configuration" button on overview...');
+    const clicked = await findAndClickRunButton(page);
+    
+    if (clicked) {
+      emitLog('info', 'Run button clicked. Waiting for Wicket parameter form inputs to load...');
+      try {
+        await page.waitForSelector(selFingerprint, { timeout: 10000 });
+        emitLog('success', 'Wicket parameter form loaded successfully!');
+        return { selFingerprint, selPda, selCsc, selBaseband };
+      } catch {
+        emitLog('warn', `Form fields not immediately detected after clicking Run (Attempt ${attempt}).`);
+      }
+    } else {
+      emitLog('warn', `Could not find Run button on overview (Attempt ${attempt}).`);
     }
 
     await page.waitForTimeout(1500);
-
-    const currentUrl = page.url();
-    if (currentUrl.includes('/dashboard') || currentUrl.includes('/overview')) {
-      emitLog('warn', `Page redirected to ${currentUrl}. Searching for Run / Trigger button...`);
-      await findAndClickRunButton(page);
-      await page.waitForTimeout(2000);
-    }
-
-    try {
-      await page.waitForSelector(selFingerprint, { timeout: 8000 });
-      emitLog('success', 'Form fields detected and ready for input.');
-      return { selFingerprint, selPda, selCsc, selBaseband };
-    } catch {
-      emitLog('warn', `Form fields not yet visible on attempt ${attempt}.`);
-    }
   }
 
-  // Final wait attempt
-  await page.waitForSelector(selFingerprint, { timeout: 15000 });
+  // Final wait attempt for inputs in case already present
+  await page.waitForSelector(selFingerprint, { timeout: 12000 });
   return { selFingerprint, selPda, selCsc, selBaseband };
 }
 
 async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
-  // Give Wicket client-side state 1.2s to process all input onchange events
-  const settleDelay = Math.max(delayMs, 1200);
+  // Give Wicket client-side state adequate time to process all input change events
+  const settleDelay = Math.max(delayMs, 1500);
   emitLog('info', `Waiting ${settleDelay}ms for Wicket form state and AJAX validation to settle...`);
   await page.waitForTimeout(settleDelay);
 
@@ -311,8 +320,15 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
         
         await btn.scrollIntoViewIfNeeded().catch(() => null);
         await btn.hover().catch(() => null);
-        await page.waitForTimeout(300);
-        await btn.click({ timeout: 5000 });
+        await page.waitForTimeout(400);
+        
+        await btn.click({ timeout: 5000 }).catch(async () => {
+          await page.evaluate((sel) => {
+            const b = document.querySelector(sel);
+            if (b) b.click();
+          }, selector);
+        });
+
         submitted = true;
         break;
       }
@@ -327,7 +343,7 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
   }
 
   // Wait for submission request to dispatch and server response
-  const postSubmitWait = Math.max(delayMs * 2, 2500);
+  const postSubmitWait = Math.max(delayMs * 2, 3000);
   emitLog('info', `Waiting ${postSubmitWait}ms for Wicket submission AJAX response...`);
   await page.waitForTimeout(postSubmitWait);
 }
@@ -344,7 +360,6 @@ async function main() {
 
   const { items, portal = {} } = payload;
   const baseUrl = portal.baseUrl || 'https://android.qb.sec.samsung.net/overview/28905';
-  const formUrl = portal.formUrl || 'https://android.qb.sec.samsung.net/wicket/page?6';
   const headless = portal.headless !== false;
   const delayMs = Number(portal.delayMs) || 1000;
   const timeoutMs = Number(portal.timeoutMs) || 30000;
@@ -430,26 +445,26 @@ async function main() {
       emitLog('info', `[${i + 1}/${items.length}] Processing item: ${item.buildFingerprintName}`);
 
       try {
-        // Navigate to Wicket Form with robust overview Run button click and redirect recovery
-        const { selFingerprint, selPda, selCsc, selBaseband } = await navigateAndLocateForm(page, formUrl, baseUrl, timeoutMs);
+        // Always trigger fresh parameter form via Overview "Run the configuration" button
+        const { selFingerprint, selPda, selCsc, selBaseband } = await navigateAndLocateForm(page, baseUrl, timeoutMs);
 
         // Fill all 4 input fields with deliberate entry
         emitLog('info', `Populating form fields for ${item.buildFingerprintName}...`);
         await page.fill(selFingerprint, item.buildFingerprintName || '');
-        await page.waitForTimeout(200);
+        await page.waitForTimeout(250);
 
         await page.fill(selPda, item.pdaVersion || '');
-        await page.waitForTimeout(200);
+        await page.waitForTimeout(250);
 
         await page.fill(selCsc, item.cscVersion || '');
-        await page.waitForTimeout(200);
+        await page.waitForTimeout(250);
 
         await page.fill(selBaseband, item.basebandVersion || '');
-        await page.waitForTimeout(300);
+        await page.waitForTimeout(400);
 
         emitLog('info', `All 4 fields populated (PDA: ${item.pdaVersion}, CSC: ${item.cscVersion}, Phone: ${item.basebandVersion}).`);
 
-        // Trigger Submit with adequate validation settle delay and multi-selector click
+        // Trigger Submit with adequate validation settle delay and robust click
         await triggerFormSubmission(page, selBaseband, delayMs);
 
         // Check for error feedback panels
