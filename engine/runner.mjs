@@ -102,7 +102,6 @@ async function runMockSimulation(items, delayMs = 1200) {
     
     await new Promise((r) => setTimeout(r, Math.max(delayMs / 2, 400)));
     
-    // Simulate high success rate with rare intentional test error if fingerprint contains 'FAIL'
     const shouldFail = item.buildFingerprintName.toUpperCase().includes('FAIL');
     if (shouldFail) {
       failedCount++;
@@ -151,6 +150,8 @@ async function handleSsoLoginIfNeeded(page, context, username, password, timeout
           emitLog('info', `Filled SSO password.`);
         }
 
+        await page.waitForTimeout(500);
+
         const submitBtn = page.locator(submitSelector).first();
         if (await submitBtn.count() > 0 && await submitBtn.isVisible()) {
           emitLog('info', 'Submitting SSO login form...');
@@ -159,7 +160,7 @@ async function handleSsoLoginIfNeeded(page, context, username, password, timeout
           await page.keyboard.press('Enter');
         }
       } catch (err) {
-        emitLog('warn', `Auto SSO login attempt error: ${err.message}`);
+        emitLog('warn', `Auto SSO login attempt warning: ${err.message}`);
       }
     }
 
@@ -170,7 +171,7 @@ async function handleSsoLoginIfNeeded(page, context, username, password, timeout
         { timeout: timeoutMs }
       );
       emitLog('success', 'SSO Login detected! Saving session state...');
-      await page.waitForTimeout(1500);
+      await page.waitForTimeout(2000);
       try {
         await context.storageState({ path: AUTH_FILE });
       } catch {}
@@ -180,50 +181,155 @@ async function handleSsoLoginIfNeeded(page, context, username, password, timeout
   }
 }
 
+async function findAndClickRunButton(page) {
+  const runSelectors = [
+    'a[title*="Run" i]',
+    'a[title*="Trigger" i]',
+    'button:has-text("Run")',
+    'a:has-text("Run")',
+    'button:has-text("Trigger")',
+    'a:has-text("Trigger")',
+    'a.run',
+    'a.action.run',
+    'a.btn-run',
+    'a:has(i.fa-play)',
+    'a:has(i[class*="play"])',
+    'a[href*="wicket"][title*="Run" i]',
+    'a[href*="overview"][title*="Run" i]',
+    'a.action[href*="wicket"]',
+    'a[href*="wicket/page"]',
+  ];
+
+  for (const selector of runSelectors) {
+    try {
+      const loc = page.locator(selector).first();
+      if (await loc.count() > 0 && await loc.isVisible()) {
+        emitLog('info', `Found Run/Trigger action button (${selector}). Clicking...`);
+        await loc.scrollIntoViewIfNeeded().catch(() => null);
+        await loc.click({ timeout: 4000 });
+        return true;
+      }
+    } catch {}
+  }
+  return false;
+}
+
 async function navigateAndLocateForm(page, formUrl, baseUrl, timeoutMs = 30000) {
   const selFingerprint = 'input[name="editor:content:basicProperties:0:property:editor:editor:wrapper:input"], input[name*="basicProperties:0"], input[name*="0:property:editor"]';
   const selPda = 'input[name="editor:content:basicProperties:1:property:editor:editor:wrapper:input"], input[name*="basicProperties:1"], input[name*="1:property:editor"]';
   const selCsc = 'input[name="editor:content:basicProperties:2:property:editor:editor:wrapper:input"], input[name*="basicProperties:2"], input[name*="2:property:editor"]';
   const selBaseband = 'input[name="editor:content:basicProperties:3:property:editor:editor:wrapper:input"], input[name*="basicProperties:3"], input[name*="3:property:editor"]';
 
+  // Check if form inputs are already on current page
+  if (await page.locator(selFingerprint).count() > 0 && await page.locator(selFingerprint).first().isVisible()) {
+    emitLog('info', 'Form input fields are already visible on current view.');
+    return { selFingerprint, selPda, selCsc, selBaseband };
+  }
+
+  // Strategy 1: Navigate to Overview page and click the "Run" button
+  emitLog('info', `Navigating to overview portal: ${baseUrl} to trigger run form...`);
+  try {
+    await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
+    await page.waitForTimeout(1000);
+
+    const clicked = await findAndClickRunButton(page);
+    if (clicked) {
+      await page.waitForTimeout(2000);
+      if (await page.locator(selFingerprint).count() > 0) {
+        emitLog('success', 'Form fields opened via Run action button on overview.');
+        return { selFingerprint, selPda, selCsc, selBaseband };
+      }
+    }
+  } catch (err) {
+    emitLog('warn', `Overview Run trigger attempt warning: ${err.message}`);
+  }
+
+  // Strategy 2: Direct navigation to form URL with retry
   const maxAttempts = 3;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    emitLog('info', `Navigating to form: ${formUrl} (Attempt ${attempt}/${maxAttempts})...`);
+    emitLog('info', `Attempting direct navigation to form: ${formUrl} (Attempt ${attempt}/${maxAttempts})...`);
     try {
       await page.goto(formUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
     } catch (e) {
       emitLog('warn', `Form navigation attempt ${attempt} warning: ${e.message}`);
     }
 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(1500);
 
     const currentUrl = page.url();
-    // If redirected to /dashboard or /overview, handle retry
     if (currentUrl.includes('/dashboard') || currentUrl.includes('/overview')) {
-      emitLog('warn', `Page redirected to ${currentUrl}. Retrying opening form page ${formUrl}...`);
-      
-      // Look for a Run / Trigger button if on overview
-      const triggerBtn = page.locator('a[href*="wicket/page"], button:has-text("Run"), a:has-text("Run"), a:has-text("Trigger"), button:has-text("Trigger"), a.trigger, .action.run').first();
-      if (await triggerBtn.count() > 0 && await triggerBtn.isVisible()) {
-        emitLog('info', 'Found Trigger / Run button on overview page. Clicking...');
-        await triggerBtn.click().catch(() => null);
-        await page.waitForTimeout(1500);
-      }
+      emitLog('warn', `Page redirected to ${currentUrl}. Searching for Run / Trigger button...`);
+      await findAndClickRunButton(page);
+      await page.waitForTimeout(2000);
     }
 
-    // Check if form inputs are visible
     try {
-      await page.waitForSelector(selFingerprint, { timeout: 6000 });
+      await page.waitForSelector(selFingerprint, { timeout: 8000 });
+      emitLog('success', 'Form fields detected and ready for input.');
       return { selFingerprint, selPda, selCsc, selBaseband };
     } catch {
-      emitLog('warn', `Form fields not visible yet on attempt ${attempt}.`);
+      emitLog('warn', `Form fields not yet visible on attempt ${attempt}.`);
     }
   }
 
-  // Final direct attempt
-  await page.goto(formUrl, { waitUntil: 'networkidle', timeout: timeoutMs }).catch(() => null);
-  await page.waitForSelector(selFingerprint, { timeout: 12000 });
+  // Final wait attempt
+  await page.waitForSelector(selFingerprint, { timeout: 15000 });
   return { selFingerprint, selPda, selCsc, selBaseband };
+}
+
+async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
+  // Give Wicket client-side state 1.2s to process all input onchange events
+  const settleDelay = Math.max(delayMs, 1200);
+  emitLog('info', `Waiting ${settleDelay}ms for Wicket form state and AJAX validation to settle...`);
+  await page.waitForTimeout(settleDelay);
+
+  const submitSelectors = [
+    'input[type="submit"][value="Run" i]',
+    'input[type="submit"][value="Submit" i]',
+    'input[type="submit"][value="Save" i]',
+    'button[type="submit"]:has-text("Run")',
+    'button[type="submit"]:has-text("Submit")',
+    'button:has-text("Run")',
+    'button:has-text("Submit")',
+    'button:has-text("Save")',
+    '.modal-footer input[type="submit"]',
+    '.modal-footer button',
+    'form input[type="submit"]',
+    'form button[type="submit"]',
+    'input[type="submit"]',
+    'button[type="submit"]',
+  ];
+
+  let submitted = false;
+
+  for (const selector of submitSelectors) {
+    try {
+      const btn = page.locator(selector).first();
+      if (await btn.count() > 0 && await btn.isVisible()) {
+        const btnText = (await btn.innerText().catch(() => '')) || (await btn.getAttribute('value').catch(() => '')) || selector;
+        emitLog('info', `Clicking submit button: [${btnText.trim()}] (${selector})...`);
+        
+        await btn.scrollIntoViewIfNeeded().catch(() => null);
+        await btn.hover().catch(() => null);
+        await page.waitForTimeout(300);
+        await btn.click({ timeout: 5000 });
+        submitted = true;
+        break;
+      }
+    } catch (err) {
+      emitLog('warn', `Submit click attempt on ${selector} warning: ${err.message}`);
+    }
+  }
+
+  if (!submitted) {
+    emitLog('warn', 'Standard submit button not clickable. Triggering Enter key on last input field as fallback...');
+    await page.press(selBaseband, 'Enter');
+  }
+
+  // Wait for submission request to dispatch and server response
+  const postSubmitWait = Math.max(delayMs * 2, 2500);
+  emitLog('info', `Waiting ${postSubmitWait}ms for Wicket submission AJAX response...`);
+  await page.waitForTimeout(postSubmitWait);
 }
 
 async function main() {
@@ -256,7 +362,7 @@ async function main() {
   try {
     browser = await chromium.launch({
       headless,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--start-maximized']
     });
   } catch (err) {
     emitLog('warn', `Failed to launch standard Chromium: ${err.message}. Falling back to simulation mode.`);
@@ -268,13 +374,13 @@ async function main() {
   try {
     if (fs.existsSync(AUTH_FILE)) {
       emitLog('info', `Loading saved auth session from ${AUTH_FILE}`);
-      context = await browser.newContext({ storageState: AUTH_FILE });
+      context = await browser.newContext({ storageState: AUTH_FILE, viewport: null });
     } else {
-      context = await browser.newContext();
+      context = await browser.newContext({ viewport: null });
     }
   } catch (err) {
     emitLog('warn', `Could not load storage state: ${err.message}. Creating fresh context.`);
-    context = await browser.newContext();
+    context = await browser.newContext({ viewport: null });
   }
 
   const page = await context.newPage();
@@ -311,7 +417,7 @@ async function main() {
       emitLog('warn', `Overview navigation warning: ${e.message}`);
     }
 
-    // Check & Handle SSO
+    // Check & Handle SSO Login if required
     await handleSsoLoginIfNeeded(page, context, username, password, timeoutMs);
 
     // Loop through batch items
@@ -324,30 +430,27 @@ async function main() {
       emitLog('info', `[${i + 1}/${items.length}] Processing item: ${item.buildFingerprintName}`);
 
       try {
-        // Navigate to Wicket Form with auto-retry and dashboard redirect recovery
+        // Navigate to Wicket Form with robust overview Run button click and redirect recovery
         const { selFingerprint, selPda, selCsc, selBaseband } = await navigateAndLocateForm(page, formUrl, baseUrl, timeoutMs);
 
-        // Fill inputs
+        // Fill all 4 input fields with deliberate entry
+        emitLog('info', `Populating form fields for ${item.buildFingerprintName}...`);
         await page.fill(selFingerprint, item.buildFingerprintName || '');
+        await page.waitForTimeout(200);
+
         await page.fill(selPda, item.pdaVersion || '');
+        await page.waitForTimeout(200);
+
         await page.fill(selCsc, item.cscVersion || '');
+        await page.waitForTimeout(200);
+
         await page.fill(selBaseband, item.basebandVersion || '');
+        await page.waitForTimeout(300);
 
-        emitLog('info', `Fields populated. Triggering submit for ${item.buildFingerprintName}...`);
+        emitLog('info', `All 4 fields populated (PDA: ${item.pdaVersion}, CSC: ${item.cscVersion}, Phone: ${item.basebandVersion}).`);
 
-        // Look for submit or save buttons
-        const submitSelector = 'button[type="submit"], input[type="submit"], button:has-text("Submit"), button:has-text("Save"), a:has-text("Submit"), a:has-text("Save")';
-        const submitBtn = page.locator(submitSelector).first();
-
-        if (await submitBtn.count() > 0) {
-          await submitBtn.click();
-        } else {
-          // Fallback: press Enter in the last input field
-          await page.press(selBaseband, 'Enter');
-        }
-
-        // Wait for AJAX or confirmation
-        await page.waitForTimeout(delayMs);
+        // Trigger Submit with adequate validation settle delay and multi-selector click
+        await triggerFormSubmission(page, selBaseband, delayMs);
 
         // Check for error feedback panels
         const errorFeedback = page.locator('.feedbackPanelERROR, .alert-danger, .error-message');
@@ -356,7 +459,7 @@ async function main() {
           throw new Error(`Portal validation error: ${errText.trim()}`);
         }
 
-        // Try to extract Build ID from URL or page confirmation
+        // Extract Build ID from URL or page confirmation
         let buildId = item.buildId;
         const pageUrl = page.url();
         const urlMatch = pageUrl.match(/build\/(\d+)/);
