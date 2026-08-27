@@ -171,15 +171,29 @@ pub async fn execute_batch(
 
     let script_path = resolved_script.unwrap_or_else(|| PathBuf::from("engine/runner.mjs"));
 
+    // Helper to strip Windows UNC \\?\ prefix which causes Node.js realpathSync EISDIR 'C:' errors
+    let clean_str = |p: &std::path::Path| -> PathBuf {
+        let s = p.to_string_lossy();
+        if s.starts_with(r"\\?\") {
+            PathBuf::from(&s[4..])
+        } else {
+            p.to_path_buf()
+        }
+    };
+
     let serialized_payload = serde_json::to_string(&payload)
         .map_err(|e| format!("Failed to serialize batch payload: {}", e))?;
 
     let mut cmd = Command::new("node");
     if let Some(ref wd) = working_dir {
-        cmd.current_dir(wd);
+        let clean_wd = clean_str(wd);
+        cmd.current_dir(&clean_wd);
+        // Running node with runner.mjs directly inside working_dir prevents Windows path/drive resolution crashes
+        cmd.arg("runner.mjs");
+    } else {
+        cmd.arg(clean_str(&script_path));
     }
-    cmd.arg(&script_path)
-        .stdin(std::process::Stdio::piped())
+    cmd.stdin(std::process::Stdio::piped())
         .stdout(std::process::Stdio::piped())
         .stderr(std::process::Stdio::piped());
 
