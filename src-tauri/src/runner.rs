@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 use std::sync::Arc;
-use tauri::{AppHandle, Emitter};
+use tauri::{AppHandle, Emitter, Manager};
 use tokio::io::{AsyncBufReadExt, AsyncWriteExt, BufReader};
 use tokio::process::{Child, Command};
 use tokio::sync::Mutex;
@@ -100,20 +100,84 @@ pub async fn execute_batch(
     app_handle: AppHandle,
     state: RunnerState,
 ) -> Result<(), String> {
-    // Determine path to engine/runner.mjs
-    let current_dir = std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
-    let script_path = if current_dir.join("engine/runner.mjs").exists() {
-        current_dir.join("engine/runner.mjs")
-    } else if current_dir.join("../engine/runner.mjs").exists() {
-        current_dir.join("../engine/runner.mjs")
-    } else {
-        PathBuf::from("engine/runner.mjs")
-    };
+    // 1. Resolve path to engine/runner.mjs across Dev & Production Package environments
+    let mut resolved_script: Option<PathBuf> = None;
+    let mut working_dir: Option<PathBuf> = None;
+
+    // A. Check Tauri Resource Directory (Production Bundle)
+    if let Ok(resource_path) = app_handle.path().resolve("engine/runner.mjs", tauri::path::BaseDirectory::Resource) {
+        if resource_path.exists() {
+            working_dir = resource_path.parent().map(|p| p.to_path_buf());
+            resolved_script = Some(resource_path);
+        }
+    }
+
+    // B. Check relative to resource_dir() directly
+    if resolved_script.is_none() {
+        if let Ok(res_dir) = app_handle.path().resource_dir() {
+            let candidates = [
+                res_dir.join("engine/runner.mjs"),
+                res_dir.join("runner.mjs"),
+                res_dir.join("_up_/engine/runner.mjs"),
+            ];
+            for c in candidates {
+                if c.exists() {
+                    working_dir = c.parent().map(|p| p.to_path_buf());
+                    resolved_script = Some(c);
+                    break;
+                }
+            }
+        }
+    }
+
+    // C. Check relative to current executable location (Windows / Linux install dir)
+    if resolved_script.is_none() {
+        if let Ok(exe_path) = std::env::current_exe() {
+            if let Some(exe_dir) = exe_path.parent() {
+                let candidates = [
+                    exe_dir.join("engine/runner.mjs"),
+                    exe_dir.join("resources/engine/runner.mjs"),
+                    exe_dir.join("../Resources/engine/runner.mjs"),
+                    exe_dir.join("../resources/engine/runner.mjs"),
+                    exe_dir.join("../engine/runner.mjs"),
+                ];
+                for c in candidates {
+                    if c.exists() {
+                        working_dir = c.parent().map(|p| p.to_path_buf());
+                        resolved_script = Some(c);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    // D. Check relative to Current Working Directory (Dev mode)
+    if resolved_script.is_none() {
+        let current_dir = std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
+        let candidates = [
+            current_dir.join("engine/runner.mjs"),
+            current_dir.join("../engine/runner.mjs"),
+            current_dir.join("src-tauri/../engine/runner.mjs"),
+        ];
+        for c in candidates {
+            if c.exists() {
+                working_dir = c.parent().map(|p| p.to_path_buf());
+                resolved_script = Some(c);
+                break;
+            }
+        }
+    }
+
+    let script_path = resolved_script.unwrap_or_else(|| PathBuf::from("engine/runner.mjs"));
 
     let serialized_payload = serde_json::to_string(&payload)
         .map_err(|e| format!("Failed to serialize batch payload: {}", e))?;
 
     let mut cmd = Command::new("node");
+    if let Some(ref wd) = working_dir {
+        cmd.current_dir(wd);
+    }
     cmd.arg(&script_path)
         .stdin(std::process::Stdio::piped())
         .stdout(std::process::Stdio::piped())
@@ -121,7 +185,7 @@ pub async fn execute_batch(
 
     let mut child = cmd
         .spawn()
-        .map_err(|e| format!("Failed to spawn node automation engine: {}. Ensure Node.js is installed.", e))?;
+        .map_err(|e| format!("Failed to spawn node automation engine at {:?}: {}. Ensure Node.js is installed.", script_path, e))?;
 
     // Write payload to stdin
     if let Some(mut stdin) = child.stdin.take() {
