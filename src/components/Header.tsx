@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-3 min-w-max">
           <div className="w-9 h-9 rounded-xl flex items-center justify-center p-0.5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-neutral-900 dark:to-neutral-800 shadow-sm border border-slate-200/60 dark:border-neutral-800">
             <img 
-              src="/Google_Home_Logo_(2025).svg" 
+              src="/logo.svg" 
               alt="Build HomeBinary" 
               className="w-7 h-7 object-contain hover:rotate-6 transition-transform duration-300"
             />

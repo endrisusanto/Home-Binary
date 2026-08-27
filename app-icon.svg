@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="154" height="155" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="512" height="512" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
  <defs>
   <radialGradient id="a" cx="-118.17" cy="280.42" r="1" gradientTransform="matrix(4.2185 35.138 43.765 -5.2543 -11436 6610)" gradientUnits="userSpaceOnUse">
    <stop stop-color="#facd0c" offset="0"/>
@@ -42,7 +42,7 @@
    <stop stop-color="#32b55e" offset="1"/>
   </linearGradient>
  </defs>
- <g transform="translate(-328 -868)">
+ <g transform="translate(41, 39) scale(2.78) translate(-328 -868)">
   <path d="m480.37 934.89-34.021 12.688 0.37696 0.36719v38.18h-4.2774l35.572 29.43c2.468-3.1985 3.9356-7.2083 3.9356-11.561v-60.949c0-2.8217-0.54965-5.5868-1.5859-8.1543z" fill="#18a1ce"/>
   <path d="m363.28 962.93-35.23 2.0723v24.629l35.23-13.566z" fill="#fcc010"/>
   <path d="m391.24 986.13-17.053 36.811h88.832c8.0041 0 14.848-4.9659 17.621-11.984l-37.238-24.826z" fill="#32b55e"/>

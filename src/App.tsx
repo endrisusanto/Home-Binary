@@ -30,28 +30,7 @@ const INITIAL_PORTAL_CONFIG: PortalConfig = {
   mock: false,
 };
 
-const INITIAL_ITEMS: BatchItem[] = [
-  {
-    id: 'item-init-1',
-    index: 0,
-    buildId: '114001506',
-    buildFingerprintName: 'SM-G525F_SEA_14_XSA',
-    pdaVersion: 'G525FXXU4CVI1',
-    cscVersion: 'G525FOLE4CVI1',
-    basebandVersion: 'G525FXXU4CVI1',
-    status: 'pending',
-  },
-  {
-    id: 'item-init-2',
-    index: 1,
-    buildId: '11393947',
-    buildFingerprintName: 'SM-X810_OXM_14_FZHH',
-    pdaVersion: 'X810XXU6FZHH',
-    cscVersion: 'X810OXM6FZHH',
-    basebandVersion: 'X810XXU6FZF1',
-    status: 'pending',
-  }
-];
+const INITIAL_ITEMS: BatchItem[] = [];
 
 export function App() {
   // State
