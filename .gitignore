@@ -1,0 +1,18 @@
+node_modules
+dist
+dist-ssr
+*.local
+.node
+
+# Tauri / Cargo
+src-tauri/target
+target
+engine/auth/auth.json
+engine/node_modules
+
+# Logs & OS files
+*.log
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea

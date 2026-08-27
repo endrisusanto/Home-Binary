@@ -1,0 +1,10 @@
+{
+  "name": "homebinary-engine",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Playwright Automation Engine for Build HomeBinary",
+  "main": "runner.mjs",
+  "dependencies": {
+    "playwright": "^1.50.1"
+  }
+}
