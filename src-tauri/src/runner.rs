@@ -36,6 +36,10 @@ pub struct PortalConfig {
     pub timeout_ms: u64,
     #[serde(default)]
     pub mock: bool,
+    #[serde(default)]
+    pub username: Option<String>,
+    #[serde(default)]
+    pub password: Option<String>,
 }
 
 fn default_base_url() -> String {

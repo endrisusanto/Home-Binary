@@ -2,14 +2,11 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import readline from 'node:readline';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const AUTH_DIR = path.join(__dirname, 'auth');
+const AUTH_DIR = path.resolve('./auth');
 const AUTH_FILE = path.join(AUTH_DIR, 'auth.json');
 
-// Ensure auth dir exists
 if (!fs.existsSync(AUTH_DIR)) {
   fs.mkdirSync(AUTH_DIR, { recursive: true });
 }
@@ -51,55 +48,42 @@ function emitDone(total, successCount, failedCount) {
 }
 
 async function readInputPayload() {
-  // Check CLI arguments first
-  const args = process.argv.slice(2);
-  const dataArgIndex = args.indexOf('--data');
-  if (dataArgIndex !== -1 && args[dataArgIndex + 1]) {
-    try {
-      return JSON.parse(args[dataArgIndex + 1]);
-    } catch (e) {
-      emitLog('error', `Failed to parse --data JSON: ${e.message}`);
-    }
-  }
-
-  const fileArgIndex = args.indexOf('--config');
-  if (fileArgIndex !== -1 && args[fileArgIndex + 1]) {
-    try {
-      const raw = fs.readFileSync(args[fileArgIndex + 1], 'utf-8');
-      return JSON.parse(raw);
-    } catch (e) {
-      emitLog('error', `Failed to read config file: ${e.message}`);
-    }
-  }
-
-  // Otherwise read from STDIN
   return new Promise((resolve) => {
     let inputData = '';
-    
-    // In case stdin is a TTY with no input, set timeout
-    const timeout = setTimeout(() => {
-      if (!inputData.trim()) {
-        resolve(null);
-      }
-    }, 1500);
-
-    process.stdin.setEncoding('utf-8');
-    process.stdin.on('data', (chunk) => {
-      inputData += chunk;
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+      terminal: false
     });
-    process.stdin.on('end', () => {
-      clearTimeout(timeout);
+
+    rl.on('line', (line) => {
+      inputData += line;
+    });
+
+    rl.on('close', () => {
       if (!inputData.trim()) {
         resolve(null);
         return;
       }
       try {
-        resolve(JSON.parse(inputData));
-      } catch (e) {
-        emitLog('error', `Failed to parse STDIN JSON: ${e.message}`);
+        const parsed = JSON.parse(inputData);
+        resolve(parsed);
+      } catch (err) {
+        emitLog('error', `Failed to parse standard input JSON: ${err.message}`);
         resolve(null);
       }
     });
+
+    // Fallback timeout in case stdin never closes
+    setTimeout(() => {
+      if (inputData.trim()) {
+        try {
+          resolve(JSON.parse(inputData));
+        } catch {
+          resolve(null);
+        }
+      }
+    }, 2000);
   });
 }
 
@@ -135,6 +119,113 @@ async function runMockSimulation(items, delayMs = 1200) {
   emitDone(items.length, successCount, failedCount);
 }
 
+async function handleSsoLoginIfNeeded(page, context, username, password, timeoutMs = 120000) {
+  const currentUrl = page.url();
+  if (
+    currentUrl.includes('login') || 
+    currentUrl.includes('sso') || 
+    currentUrl.includes('adfs') || 
+    currentUrl.includes('auth') || 
+    currentUrl.includes('sts.secsso.net')
+  ) {
+    emitLog('warn', `SSO Authentication required at ${currentUrl}`);
+    
+    if (username && password) {
+      emitLog('info', `Attempting auto-fill SSO credentials for user: ${username}...`);
+      try {
+        const userSelector = '#userNameInput, input[name="UserName"], input[name="username"], input[type="text"], input[type="email"], #username, input[name="loginfmt"]';
+        const passSelector = '#passwordInput, input[name="Password"], input[name="password"], input[type="password"], #password';
+        const submitSelector = '#submitButton, input[type="submit"], button[type="submit"], #idSIButton9';
+
+        await page.waitForSelector(userSelector, { timeout: 10000 }).catch(() => null);
+
+        const userField = page.locator(userSelector).first();
+        if (await userField.count() > 0 && await userField.isVisible()) {
+          await userField.fill(username);
+          emitLog('info', `Filled SSO username: ${username}`);
+        }
+
+        const passField = page.locator(passSelector).first();
+        if (await passField.count() > 0 && await passField.isVisible()) {
+          await passField.fill(password);
+          emitLog('info', `Filled SSO password.`);
+        }
+
+        const submitBtn = page.locator(submitSelector).first();
+        if (await submitBtn.count() > 0 && await submitBtn.isVisible()) {
+          emitLog('info', 'Submitting SSO login form...');
+          await submitBtn.click();
+        } else {
+          await page.keyboard.press('Enter');
+        }
+      } catch (err) {
+        emitLog('warn', `Auto SSO login attempt error: ${err.message}`);
+      }
+    }
+
+    emitLog('info', 'Waiting for SSO session to establish and redirect back to QuickBuild portal...');
+    try {
+      await page.waitForURL(
+        (url) => !url.href.includes('sso') && !url.href.includes('login') && !url.href.includes('adfs') && !url.href.includes('sts.secsso.net'),
+        { timeout: timeoutMs }
+      );
+      emitLog('success', 'SSO Login detected! Saving session state...');
+      await page.waitForTimeout(1500);
+      try {
+        await context.storageState({ path: AUTH_FILE });
+      } catch {}
+    } catch (e) {
+      emitLog('warn', `SSO redirect timeout / error: ${e.message}`);
+    }
+  }
+}
+
+async function navigateAndLocateForm(page, formUrl, baseUrl, timeoutMs = 30000) {
+  const selFingerprint = 'input[name="editor:content:basicProperties:0:property:editor:editor:wrapper:input"], input[name*="basicProperties:0"], input[name*="0:property:editor"]';
+  const selPda = 'input[name="editor:content:basicProperties:1:property:editor:editor:wrapper:input"], input[name*="basicProperties:1"], input[name*="1:property:editor"]';
+  const selCsc = 'input[name="editor:content:basicProperties:2:property:editor:editor:wrapper:input"], input[name*="basicProperties:2"], input[name*="2:property:editor"]';
+  const selBaseband = 'input[name="editor:content:basicProperties:3:property:editor:editor:wrapper:input"], input[name*="basicProperties:3"], input[name*="3:property:editor"]';
+
+  const maxAttempts = 3;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    emitLog('info', `Navigating to form: ${formUrl} (Attempt ${attempt}/${maxAttempts})...`);
+    try {
+      await page.goto(formUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
+    } catch (e) {
+      emitLog('warn', `Form navigation attempt ${attempt} warning: ${e.message}`);
+    }
+
+    await page.waitForTimeout(1000);
+
+    const currentUrl = page.url();
+    // If redirected to /dashboard or /overview, handle retry
+    if (currentUrl.includes('/dashboard') || currentUrl.includes('/overview')) {
+      emitLog('warn', `Page redirected to ${currentUrl}. Retrying opening form page ${formUrl}...`);
+      
+      // Look for a Run / Trigger button if on overview
+      const triggerBtn = page.locator('a[href*="wicket/page"], button:has-text("Run"), a:has-text("Run"), a:has-text("Trigger"), button:has-text("Trigger"), a.trigger, .action.run').first();
+      if (await triggerBtn.count() > 0 && await triggerBtn.isVisible()) {
+        emitLog('info', 'Found Trigger / Run button on overview page. Clicking...');
+        await triggerBtn.click().catch(() => null);
+        await page.waitForTimeout(1500);
+      }
+    }
+
+    // Check if form inputs are visible
+    try {
+      await page.waitForSelector(selFingerprint, { timeout: 6000 });
+      return { selFingerprint, selPda, selCsc, selBaseband };
+    } catch {
+      emitLog('warn', `Form fields not visible yet on attempt ${attempt}.`);
+    }
+  }
+
+  // Final direct attempt
+  await page.goto(formUrl, { waitUntil: 'networkidle', timeout: timeoutMs }).catch(() => null);
+  await page.waitForSelector(selFingerprint, { timeout: 12000 });
+  return { selFingerprint, selPda, selCsc, selBaseband };
+}
+
 async function main() {
   const isDryRun = process.argv.includes('--dry-run') || process.argv.includes('--mock');
   const payload = await readInputPayload();
@@ -151,6 +242,8 @@ async function main() {
   const headless = portal.headless !== false;
   const delayMs = Number(portal.delayMs) || 1000;
   const timeoutMs = Number(portal.timeoutMs) || 30000;
+  const username = portal.username || 'endri.s';
+  const password = portal.password || 'sein2016!';
   const useMock = isDryRun || portal.mock === true;
 
   if (useMock) {
@@ -218,19 +311,8 @@ async function main() {
       emitLog('warn', `Overview navigation warning: ${e.message}`);
     }
 
-    // Check if we hit an SSO / Login page
-    const currentUrl = page.url();
-    if (currentUrl.includes('login') || currentUrl.includes('sso') || currentUrl.includes('auth')) {
-      emitLog('warn', `SSO Authentication required at ${currentUrl}`);
-      if (headless) {
-        emitLog('warn', 'Browser is running in headless mode. Please re-run with Headless unchecked in Settings to complete manual SSO login.');
-      } else {
-        emitLog('info', 'Please complete login in the opened browser window. Waiting for session to be established...');
-        await page.waitForURL((url) => !url.href.includes('login') && !url.href.includes('sso'), { timeout: 120000 });
-        emitLog('success', 'SSO Login detected! Saving session state...');
-        await context.storageState({ path: AUTH_FILE });
-      }
-    }
+    // Check & Handle SSO
+    await handleSsoLoginIfNeeded(page, context, username, password, timeoutMs);
 
     // Loop through batch items
     for (let i = 0; i < items.length; i++) {
@@ -242,16 +324,8 @@ async function main() {
       emitLog('info', `[${i + 1}/${items.length}] Processing item: ${item.buildFingerprintName}`);
 
       try {
-        // Navigate to Wicket Form
-        await page.goto(formUrl, { waitUntil: 'domcontentloaded' });
-
-        // Selectors for 4 basic properties
-        const selFingerprint = 'input[name="editor:content:basicProperties:0:property:editor:editor:wrapper:input"]';
-        const selPda = 'input[name="editor:content:basicProperties:1:property:editor:editor:wrapper:input"]';
-        const selCsc = 'input[name="editor:content:basicProperties:2:property:editor:editor:wrapper:input"]';
-        const selBaseband = 'input[name="editor:content:basicProperties:3:property:editor:editor:wrapper:input"]';
-
-        await page.waitForSelector(selFingerprint, { timeout: 10000 });
+        // Navigate to Wicket Form with auto-retry and dashboard redirect recovery
+        const { selFingerprint, selPda, selCsc, selBaseband } = await navigateAndLocateForm(page, formUrl, baseUrl, timeoutMs);
 
         // Fill inputs
         await page.fill(selFingerprint, item.buildFingerprintName || '');
@@ -275,7 +349,7 @@ async function main() {
         // Wait for AJAX or confirmation
         await page.waitForTimeout(delayMs);
 
-        // Check for error feedback panels (e.g. .feedbackPanelERROR or Wicket feedback messages)
+        // Check for error feedback panels
         const errorFeedback = page.locator('.feedbackPanelERROR, .alert-danger, .error-message');
         if (await errorFeedback.count() > 0 && await errorFeedback.first().isVisible()) {
           const errText = await errorFeedback.first().innerText();
@@ -289,7 +363,6 @@ async function main() {
         if (urlMatch && urlMatch[1]) {
           buildId = urlMatch[1];
         } else if (!buildId) {
-          // Check if there's a build link in page
           try {
             const buildLink = await page.locator('a[href*="/build/"]').first().getAttribute('href');
             const linkMatch = buildLink?.match(/build\/(\d+)/);
@@ -316,7 +389,7 @@ async function main() {
       }
     }
 
-    // Save final storageState if changed
+    // Save final storageState
     try {
       await context.storageState({ path: AUTH_FILE });
     } catch {}
@@ -332,6 +405,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  emitLog('error', `Unhandled fatal exception: ${err.message}`);
+  emitLog('error', `Runner unhandled error: ${err.message}`);
   process.exit(1);
 });

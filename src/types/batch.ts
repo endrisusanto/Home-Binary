@@ -22,6 +22,8 @@ export interface PortalConfig {
   delayMs: number;
   timeoutMs: number;
   mock: boolean;
+  username?: string;
+  password?: string;
   ssoToken?: string;
 }
 

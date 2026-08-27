@@ -24,10 +24,12 @@ async function getTauri() {
 const INITIAL_PORTAL_CONFIG: PortalConfig = {
   baseUrl: 'https://android.qb.sec.samsung.net/overview/28905',
   formUrl: 'https://android.qb.sec.samsung.net/wicket/page?6',
-  headless: true,
+  headless: false, // Default to visible for SSO visibility
   delayMs: 1000,
   timeoutMs: 30000,
   mock: false,
+  username: 'endri.s',
+  password: 'sein2016!',
 };
 
 const INITIAL_ITEMS: BatchItem[] = [];
@@ -41,7 +43,16 @@ export function App() {
 
   const [portalConfig, setPortalConfig] = useState<PortalConfig>(() => {
     const saved = localStorage.getItem('hb_portal_config');
-    return saved ? JSON.parse(saved) : INITIAL_PORTAL_CONFIG;
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return {
+        ...INITIAL_PORTAL_CONFIG,
+        ...parsed,
+        username: parsed.username || 'endri.s',
+        password: parsed.password || 'sein2016!',
+      };
+    }
+    return INITIAL_PORTAL_CONFIG;
   });
 
   const [logs, setLogs] = useState<LogEntry[]>([]);

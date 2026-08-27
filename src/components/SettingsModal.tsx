@@ -107,6 +107,42 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             />
           </div>
 
+          {/* SSO Authentication Credentials */}
+          <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#070709] border border-slate-200/80 dark:border-neutral-800/80 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold text-slate-700 dark:text-neutral-200">
+                SSO Auto-Login Credentials
+              </span>
+              <span className="text-[10px] text-slate-400 font-mono">SecSSO / ADFS</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="space-y-1">
+                <label className="text-[11px] font-medium text-slate-500 dark:text-neutral-400">
+                  Username / ID
+                </label>
+                <input
+                  type="text"
+                  value={formData.username || ''}
+                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                  className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#0c0c0e] border border-slate-200 dark:border-neutral-800 rounded-lg outline-none focus:border-blue-500"
+                  placeholder="endri.s"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[11px] font-medium text-slate-500 dark:text-neutral-400">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  value={formData.password || ''}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#0c0c0e] border border-slate-200 dark:border-neutral-800 rounded-lg outline-none focus:border-blue-500"
+                  placeholder="••••••••"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Automation & Browser Toggles */}
           <div className="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-3">
             
