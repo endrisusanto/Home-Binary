@@ -79,6 +79,15 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
 
     // Fallback: Query GitHub Releases API directly
     try {
+      let activeVer = currentVersion;
+      if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
+        try {
+          const { getVersion } = await import('@tauri-apps/api/app');
+          const v = await getVersion();
+          if (v) activeVer = v;
+        } catch {}
+      }
+
       const res = await fetch('https://api.github.com/repos/endrisusanto/Home-Binary/releases/latest', {
         headers: { Accept: 'application/vnd.github.v3+json' },
       });
@@ -86,9 +95,9 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
       if (!res.ok) {
         if (res.status === 404) {
           setReleaseInfo({
-            version: currentVersion,
-            tagName: `v${currentVersion}`,
-            name: `Build HomeBinary v${currentVersion}`,
+            version: activeVer,
+            tagName: `v${activeVer}`,
+            name: `Build HomeBinary v${activeVer}`,
             body: 'No newer public releases published yet.',
             publishedAt: new Date().toLocaleDateString(),
             htmlUrl: 'https://github.com/endrisusanto/Home-Binary/releases',
@@ -102,7 +111,7 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
 
       const data = await res.json();
       const latestTag = data.tag_name || data.name || '0.0.0';
-      const hasUpdate = compareVersions(currentVersion, latestTag) > 0;
+      const hasUpdate = compareVersions(activeVer, latestTag) > 0;
 
       setReleaseInfo({
         version: latestTag.replace(/^v/, ''),

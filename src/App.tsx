@@ -59,7 +59,27 @@ export function App() {
   const [isLogsOpen, setIsLogsOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
-  const APP_VERSION = '0.1.0';
+  // Dynamic App Version (Injected from package.json & dynamic Tauri getVersion)
+  const [appVersion, setAppVersion] = useState<string>(
+    typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.4'
+  );
+
+  useEffect(() => {
+    async function fetchRuntimeVersion() {
+      try {
+        if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
+          const { getVersion } = await import('@tauri-apps/api/app');
+          const runtimeVersion = await getVersion();
+          if (runtimeVersion) {
+            setAppVersion(runtimeVersion);
+          }
+        }
+      } catch (e) {
+        console.warn('Could not query dynamic version from Tauri:', e);
+      }
+    }
+    fetchRuntimeVersion();
+  }, []);
 
   // Sync dark mode class
   useEffect(() => {
@@ -334,7 +354,7 @@ export function App() {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         totalItems={items.length}
-        appVersion={APP_VERSION}
+        appVersion={appVersion}
       />
 
       {/* Main Body Content (Full Width Compact Layout) */}
@@ -371,7 +391,7 @@ export function App() {
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
         config={portalConfig}
-        appVersion={APP_VERSION}
+        appVersion={appVersion}
         onOpenUpdateModal={() => setIsUpdateModalOpen(true)}
         onSaveConfig={(newConfig) => {
           setPortalConfig(newConfig);
@@ -382,7 +402,7 @@ export function App() {
       <UpdateModal
         isOpen={isUpdateModalOpen}
         onClose={() => setIsUpdateModalOpen(false)}
-        currentVersion={APP_VERSION}
+        currentVersion={appVersion}
       />
 
       <TerminalLog
