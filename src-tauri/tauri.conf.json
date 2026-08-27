@@ -41,6 +41,7 @@
   },
   "plugins": {
     "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEU3MjM5QTFGQjE2MTJDRkEKUldUNkxHR3hINW9qNStSdlYzWEZESEF4RGZHQjZwRzdJaUxRSk1sbExsbTdlZHl1eG84SHMxUVYK",
       "endpoints": [
         "https://github.com/endrisusanto/Home-Binary/releases/latest/download/latest.json"
       ]
