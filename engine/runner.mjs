@@ -476,20 +476,28 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
     try {
       emitLog('info', `Inspecting Dashboard build queue (Checking status of active builds)...`);
       await page.goto(dashboardUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForTimeout(1500);
+      
+      // Wait for Wicket AJAX to populate My Builds gadget
+      emitLog('info', 'Waiting for My Builds dashboard gadget to render...');
+      await page.waitForSelector('table.datatable, .summary table, a[href*="/build/"], a[title="More"]', { timeout: 15000 }).catch(() => {});
+      await page.waitForTimeout(1000);
 
-      // Automatically expand "My Builds" gadget by clicking "More" link (up to 3 times)
-      for (let m = 0; m < 3; m++) {
+      // Automatically expand "My Builds" gadget by clicking "More" link (up to 5 times)
+      for (let m = 0; m < 5; m++) {
         try {
-          const moreLink = page.locator('a[title="More"], a:has-text("More"), a[href*="myBuildsContainer-more"]');
-          if (await moreLink.count() > 0 && await moreLink.first().isVisible()) {
-            emitLog('info', `Expanding dashboard build history (clicking "More" - pass ${m + 1}/3)...`);
-            await moreLink.first().click({ timeout: 4000 }).catch(() => {});
-            await page.waitForTimeout(1200);
+          const moreLink = page.locator('a[title="More"], a:text-is("More"), a[href*="myBuildsContainer-more"]');
+          const count = await moreLink.count();
+          if (count > 0 && await moreLink.first().isVisible()) {
+            emitLog('info', `Found "More" button. Expanding My Builds rows (click #${m + 1})...`);
+            await moreLink.first().click({ timeout: 5000 });
+            await page.waitForTimeout(1500); // Give Wicket AJAX time to insert rows
           } else {
             break;
           }
-        } catch {}
+        } catch (clickErr) {
+          emitLog('warn', `Click "More" notice: ${clickErr.message}`);
+          break;
+        }
       }
 
       // Fast native browser DOM evaluation to extract all build entries directly
