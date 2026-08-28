@@ -28,6 +28,8 @@ export interface PortalConfig {
   username?: string;
   password?: string;
   ssoToken?: string;
+  syncServerUrl?: string;
+  syncEnabled?: boolean;
 }
 
 export interface LogEntry {

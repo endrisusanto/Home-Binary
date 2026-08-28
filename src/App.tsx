@@ -170,6 +170,26 @@ export function App() {
     return () => clearTimeout(timer);
   }, [appVersion, addLog]);
 
+  const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
+  const activeSyncUrl = portalConfig.syncServerUrl || (isTauri ? 'https://homebinary.endrisusanto.my.id' : (typeof window !== 'undefined' ? window.location.origin : ''));
+
+  // Push local updates to Central Sync Server
+  const pushStateToServer = useCallback(async (newItems?: BatchItem[], newConfig?: PortalConfig) => {
+    if (!activeSyncUrl) return;
+    try {
+      await fetch(`${activeSyncUrl}/api/state`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: newItems,
+          portalConfig: newConfig,
+        }),
+      });
+    } catch (e) {
+      console.warn('[Sync Push Notice]', e);
+    }
+  }, [activeSyncUrl]);
+
   // Universal status update & finished handlers
   const handleStatusPayload = useCallback((payload: any) => {
     if (!payload) return;
@@ -212,7 +232,7 @@ export function App() {
     );
   }, []);
 
-  // Listen to Tauri events or Web SSE
+  // Listen to Tauri events and Central Server SSE Stream (100% Live Mirroring)
   useEffect(() => {
     let unlistenLog: any;
     let unlistenStatus: any;
@@ -220,41 +240,76 @@ export function App() {
     let eventSource: EventSource | null = null;
 
     async function setupListeners() {
-      const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
+      // 1. Initial State Hydration from Central Server
+      if (activeSyncUrl) {
+        try {
+          const res = await fetch(`${activeSyncUrl}/api/state`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.items && Array.isArray(data.items) && data.items.length > 0) {
+              setItems(data.items);
+            }
+            if (data.isRunning !== undefined) {
+              setIsRunning(data.isRunning);
+            }
+            if (data.logs && Array.isArray(data.logs) && data.logs.length > 0) {
+              setLogs(data.logs.slice(-100));
+            }
+          }
+        } catch (err) {
+          console.warn('[Initial Hydration Notice]', err);
+        }
+      }
+
+      // 2. Connect to Central Server SSE for Realtime Mirroring
+      if (activeSyncUrl) {
+        try {
+          eventSource = new EventSource(`${activeSyncUrl}/api/events`);
+          eventSource.onmessage = (event) => {
+            try {
+              const msg = JSON.parse(event.data);
+              if (msg.type === 'state-sync' && msg.payload) {
+                const p = msg.payload;
+                if (p.items && Array.isArray(p.items)) {
+                  setItems(p.items);
+                }
+                if (p.isRunning !== undefined) {
+                  setIsRunning(p.isRunning);
+                }
+              } else if (msg.type === 'task-log') {
+                const p = msg.payload;
+                if (p) addLog(p.level || 'info', p.message || '', p.index);
+              } else if (msg.type === 'item-status-update') {
+                handleStatusPayload(msg.payload);
+              } else if (msg.type === 'task-finished' || msg.type === 'batch-finished') {
+                handleFinishedPayload();
+              }
+            } catch {}
+          };
+        } catch (e) {
+          console.warn('[SSE Connection Notice]', e);
+        }
+      }
+
+      // 3. Desktop Local Tauri Listeners
       if (isTauri) {
         const tauri = await getTauri();
-        if (!tauri || !tauri.event) return;
-
-        unlistenLog = await tauri.event.listen('task-log', (event: any) => {
-          const payload = event.payload;
-          if (payload) {
-            addLog(payload.level || 'info', payload.message || '', payload.index);
-          }
-        });
-
-        unlistenStatus = await tauri.event.listen('item-status-update', (event: any) => {
-          handleStatusPayload(event.payload);
-        });
-
-        unlistenFinished = await tauri.event.listen('task-finished', () => {
-          handleFinishedPayload();
-        });
-      } else {
-        // Web Browser / Docker SSE Mode
-        eventSource = new EventSource('/api/events');
-        eventSource.onmessage = (event) => {
-          try {
-            const msg = JSON.parse(event.data);
-            if (msg.type === 'task-log') {
-              const p = msg.payload;
-              if (p) addLog(p.level || 'info', p.message || '', p.index);
-            } else if (msg.type === 'item-status-update') {
-              handleStatusPayload(msg.payload);
-            } else if (msg.type === 'task-finished' || msg.type === 'batch-finished') {
-              handleFinishedPayload();
+        if (tauri && tauri.event) {
+          unlistenLog = await tauri.event.listen('task-log', (event: any) => {
+            const payload = event.payload;
+            if (payload) {
+              addLog(payload.level || 'info', payload.message || '', payload.index);
             }
-          } catch {}
-        };
+          });
+
+          unlistenStatus = await tauri.event.listen('item-status-update', (event: any) => {
+            handleStatusPayload(event.payload);
+          });
+
+          unlistenFinished = await tauri.event.listen('task-finished', () => {
+            handleFinishedPayload();
+          });
+        }
       }
     }
 
@@ -266,7 +321,7 @@ export function App() {
       if (unlistenFinished) unlistenFinished();
       if (eventSource) eventSource.close();
     };
-  }, [addLog, handleStatusPayload, handleFinishedPayload]);
+  }, [addLog, activeSyncUrl, isTauri, handleStatusPayload, handleFinishedPayload]);
 
   // Universal dispatch runner across Tauri & Web API
   const dispatchBatchRunner = async (payload: { portal: PortalConfig; items: BatchItem[] }) => {
@@ -334,29 +389,42 @@ export function App() {
         index: startIndex + idx,
         status: 'pending',
       }));
-      return [...prev, ...created];
+      const next = [...prev, ...created];
+      pushStateToServer(next);
+      return next;
     });
     addLog('info', `Added ${newRawItems.length} build(s) to queue.`);
   };
 
   const handleRemoveItem = (id: string) => {
-    setItems((prev) => prev.filter((i) => i.id !== id));
+    setItems((prev) => {
+      const next = prev.filter((i) => i.id !== id);
+      pushStateToServer(next);
+      return next;
+    });
   };
 
   const handleRetryItem = (id: string) => {
-    setItems((prev) =>
-      prev.map((i) => (i.id === id ? { ...i, status: 'pending', error: undefined, message: undefined } : i))
-    );
+    setItems((prev) => {
+      const next: BatchItem[] = prev.map((i) => (i.id === id ? { ...i, status: 'pending' as ItemStatus, error: undefined, message: undefined } : i));
+      pushStateToServer(next);
+      return next;
+    });
   };
 
   const handleClearSection = (status: 'pending' | 'completed' | 'failed') => {
     const targetStatus = status === 'completed' ? 'success' : status;
-    setItems((prev) => prev.filter((i) => i.status !== targetStatus));
+    setItems((prev) => {
+      const next = prev.filter((i) => i.status !== targetStatus);
+      pushStateToServer(next);
+      return next;
+    });
   };
 
   const handleResetQueue = () => {
     if (isRunning) return;
     setItems(INITIAL_ITEMS);
+    pushStateToServer(INITIAL_ITEMS);
     addLog('info', 'Queue reset to sample build specifications.');
   };
 
@@ -479,7 +547,11 @@ export function App() {
   const handleRetryFailedAll = () => {
     const failedCount = items.filter(x => x.status === 'failed').length;
     if (failedCount === 0) return;
-    setItems(prev => prev.map(x => (x.status === 'failed' ? { ...x, status: 'pending', error: undefined, message: undefined } : x)));
+    setItems(prev => {
+      const next: BatchItem[] = prev.map(x => (x.status === 'failed' ? { ...x, status: 'pending' as ItemStatus, error: undefined, message: undefined } : x));
+      pushStateToServer(next);
+      return next;
+    });
     addLog('info', `Reset ${failedCount} failed build(s) back to pending queue.`);
   };
 

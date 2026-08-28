@@ -33,6 +33,48 @@ const MIME_TYPES = {
   '.ttf': 'font/ttf',
 };
 
+const STATE_FILE = path.join(__dirname, 'engine', 'auth', 'app_state.json');
+
+// Centralized Application State
+let appState = {
+  items: [],
+  logs: [],
+  portalConfig: {
+    baseUrl: 'https://android.qb.sec.samsung.net/overview/28905',
+    formUrl: 'https://android.qb.sec.samsung.net/wicket/page?6',
+    headless: true,
+    delayMs: 1000,
+    timeoutMs: 30000,
+    mock: false,
+    trackProgress: true,
+    concurrency: 3,
+  },
+  isRunning: false,
+  lastUpdated: new Date().toISOString(),
+};
+
+// Load persistent state on boot
+try {
+  if (fs.existsSync(STATE_FILE)) {
+    const raw = fs.readFileSync(STATE_FILE, 'utf8');
+    const parsed = JSON.parse(raw);
+    appState = { ...appState, ...parsed, isRunning: false };
+    console.log(`[State] Restored ${appState.items.length} items from ${STATE_FILE}`);
+  }
+} catch (err) {
+  console.warn('[State] Could not load saved state:', err.message);
+}
+
+function saveAppState() {
+  try {
+    const dir = path.dirname(STATE_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(STATE_FILE, JSON.stringify(appState, null, 2), 'utf8');
+  } catch (err) {
+    console.warn('[State] Failed to persist state:', err.message);
+  }
+}
+
 // Broadcast SSE message to all connected web clients
 function broadcastSSE(type, payload) {
   const data = JSON.stringify({ type, payload });
@@ -83,15 +125,67 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ 
       status: 'ok', 
-      version: '0.4.7', 
+      version: '0.4.9', 
       mode: 'web', 
       publicUrl: PUBLIC_URL,
-      clients: sseClients.size 
+      clients: sseClients.size,
+      itemsCount: appState.items.length,
+      isRunning: !!activeChild,
     }));
     return;
   }
 
-  // 2. Server-Sent Events (SSE) Stream with Cloudflare Proxy No-Buffering
+  // 2. Centralized State API (GET current state)
+  if (pathname === '/api/state' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      items: appState.items,
+      logs: appState.logs.slice(-200),
+      portalConfig: appState.portalConfig,
+      isRunning: !!activeChild,
+      lastUpdated: appState.lastUpdated,
+    }));
+    return;
+  }
+
+  // 2b. Centralized State API (POST push state updates & sync to all clients)
+  if (pathname === '/api/state' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const incoming = JSON.parse(body || '{}');
+        if (incoming.items && Array.isArray(incoming.items)) {
+          appState.items = incoming.items;
+        }
+        if (incoming.portalConfig) {
+          appState.portalConfig = { ...appState.portalConfig, ...incoming.portalConfig };
+        }
+        if (incoming.logs && Array.isArray(incoming.logs)) {
+          appState.logs = [...appState.logs.slice(-300), ...incoming.logs].slice(-500);
+        }
+        appState.lastUpdated = new Date().toISOString();
+        saveAppState();
+
+        // Broadcast updated state to all connected desktop and web clients
+        broadcastSSE('state-sync', {
+          items: appState.items,
+          portalConfig: appState.portalConfig,
+          isRunning: !!activeChild,
+          lastUpdated: appState.lastUpdated,
+        });
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ status: 'synchronized', count: appState.items.length }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+    });
+    return;
+  }
+
+  // 3. Server-Sent Events (SSE) Stream with Cloudflare Proxy No-Buffering
   if (pathname === '/api/events' && req.method === 'GET') {
     res.writeHead(200, {
       'Content-Type': 'text/event-stream; charset=utf-8',
@@ -102,13 +196,25 @@ const server = http.createServer(async (req, res) => {
     res.write(': connected\n\n');
     sseClients.add(res);
 
+    // Immediately send current synced state to new client
+    const initialSync = JSON.stringify({
+      type: 'state-sync',
+      payload: {
+        items: appState.items,
+        portalConfig: appState.portalConfig,
+        isRunning: !!activeChild,
+        lastUpdated: appState.lastUpdated,
+      }
+    });
+    res.write(`data: ${initialSync}\n\n`);
+
     req.on('close', () => {
       sseClients.delete(res);
     });
     return;
   }
 
-  // 3. Start Batch Runner
+  // 4. Start Batch Runner
   if (pathname === '/api/batch/start' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => { body += chunk; });
@@ -120,6 +226,20 @@ const server = http.createServer(async (req, res) => {
         if (activeChild && !activeChild.killed) {
           try { activeChild.kill('SIGTERM'); } catch {}
         }
+
+        // Update items in state if provided
+        if (payload.items && Array.isArray(payload.items)) {
+          const map = new Map(payload.items.map(x => [x.id, x]));
+          appState.items = appState.items.map(it => map.get(it.id) || it);
+          // If items were new, append
+          for (const it of payload.items) {
+            if (!appState.items.some(x => x.id === it.id)) {
+              appState.items.push(it);
+            }
+          }
+        }
+        appState.isRunning = true;
+        saveAppState();
 
         // Spawn runner.mjs
         const child = spawn('node', [ENGINE_SCRIPT], {
@@ -146,15 +266,50 @@ const server = http.createServer(async (req, res) => {
             try {
               const event = JSON.parse(trimmed);
               if (event && event.type) {
+                // Update persistent item status
+                if (event.type === 'item-status-update' && event.payload) {
+                  const p = event.payload;
+                  appState.items = appState.items.map(item => {
+                    const isMatch =
+                      (p.id && item.id === p.id) ||
+                      (p.pdaVersion && item.pdaVersion === p.pdaVersion) ||
+                      (p.pda_version && item.pdaVersion === p.pda_version) ||
+                      (p.index !== undefined && p.index !== null && item.index === p.index);
+                    if (!isMatch) return item;
+                    return {
+                      ...item,
+                      status: p.status || item.status,
+                      message: p.message || item.message,
+                      error: p.error || item.error,
+                      buildId: p.buildId || p.build_id || item.buildId,
+                      progressPercent: p.progressPercent ?? item.progressPercent,
+                    };
+                  });
+                  saveAppState();
+                } else if (event.type === 'task-log' && event.payload) {
+                  const logEntry = {
+                    id: Math.random().toString(36).substring(2, 9),
+                    timestamp: event.payload.timestamp || new Date().toLocaleTimeString(),
+                    level: event.payload.level || 'info',
+                    message: event.payload.message || '',
+                    index: event.payload.index,
+                  };
+                  appState.logs.push(logEntry);
+                  if (appState.logs.length > 500) appState.logs.shift();
+                }
+
                 broadcastSSE(event.type, event);
               }
             } catch {
               // Raw non-JSON output -> convert to log
-              broadcastSSE('task-log', {
+              const logEntry = {
+                id: Math.random().toString(36).substring(2, 9),
+                timestamp: new Date().toLocaleTimeString(),
                 level: 'info',
                 message: trimmed,
-                timestamp: new Date().toLocaleTimeString(),
-              });
+              };
+              appState.logs.push(logEntry);
+              broadcastSSE('task-log', logEntry);
             }
           }
         });
@@ -162,11 +317,14 @@ const server = http.createServer(async (req, res) => {
         child.stderr.on('data', data => {
           const text = data.toString().trim();
           if (text) {
-            broadcastSSE('task-log', {
+            const logEntry = {
+              id: Math.random().toString(36).substring(2, 9),
+              timestamp: new Date().toLocaleTimeString(),
               level: 'warn',
               message: text,
-              timestamp: new Date().toLocaleTimeString(),
-            });
+            };
+            appState.logs.push(logEntry);
+            broadcastSSE('task-log', logEntry);
           }
         });
 
@@ -174,10 +332,12 @@ const server = http.createServer(async (req, res) => {
           if (activeChild === child) {
             activeChild = null;
           }
-          broadcastSSE('task-log', {
-            level: code === 0 ? 'success' : 'warn',
-            message: `Automation engine process exited with code ${code}`,
-            timestamp: new Date().toLocaleTimeString(),
+          appState.isRunning = false;
+          saveAppState();
+          broadcastSSE('task-finished', {
+            code,
+            success_count: appState.items.filter(x => x.status === 'success').length,
+            failed_count: appState.items.filter(x => x.status === 'failed').length,
           });
         });
 
