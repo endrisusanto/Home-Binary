@@ -491,9 +491,25 @@ async function pollBuildCompletionOnDashboard(page, item, itemIndex, maxWaitMs =
         const stepStatusText = (await stepStatusCell.innerText().catch(() => '')).trim();
         const configText = (await row.locator('td').last().innerText().catch(() => '')).trim();
 
+        // Parse progress percentage (e.g. 85%, 50%)
+        let progressPercent = null;
+        const pctEl = row.locator('.progress-percentage');
+        if (await pctEl.count() > 0) {
+          const pctText = (await pctEl.innerText().catch(() => '')).replace('%', '').trim();
+          if (pctText && !isNaN(Number(pctText))) progressPercent = Number(pctText);
+        }
+        if (progressPercent === null) {
+          const fillerEl = row.locator('.progress-filler');
+          if (await fillerEl.count() > 0) {
+            const styleAttr = await fillerEl.getAttribute('style').catch(() => '');
+            const match = styleAttr?.match(/width:\s*(\d+)%/);
+            if (match) progressPercent = Number(match[1]);
+          }
+        }
+
         // Matching logic:
         // 1. By exact Build ID if already captured
-        // 2. By PDA and/or CSC contained in build version string (e.g. ALL_BINARY_G525FXXU4CVI1_...)
+        // 2. By PDA and/or CSC contained in build version string (e.g. ALL_BINARY_S931BXXSCCZH5_S931BOXMCCZH5_...)
         // 3. Or by configuration (MAKE_HOME_LEGACY / 28905) on the topmost running row
         const matchesId = buildId && idText === buildId;
         const matchesPda = item.pdaVersion && buildInfoText.includes(item.pdaVersion);
@@ -534,6 +550,7 @@ async function pollBuildCompletionOnDashboard(page, item, itemIndex, maxWaitMs =
             buildInfoText,
             duration: durationText,
             stepStatus: stepStatusText,
+            progressPercent: progressPercent ?? (isSuccessful ? 100 : (isRunning ? 50 : 25)),
             isSuccessful,
             isFailed,
             isRunning
@@ -561,16 +578,17 @@ async function pollBuildCompletionOnDashboard(page, item, itemIndex, maxWaitMs =
         throw new Error(`Build failed on server at step: ${status.stepStatus || 'Failed'}`);
       }
 
-      // Still running
+      // Still running on server with progress percentage
+      const pctDisplay = status.progressPercent ? `${status.progressPercent}%` : 'in progress';
       emitProgress(
         item.id,
         itemIndex,
         'running',
-        `Build #${status.buildId || 'in progress'} running on server (${status.stepStatus || 'MAKE_HOME_BINARY'}, ${status.duration || 'running'}). Re-checking in 1 min...`,
+        `Build #${status.buildId || 'in progress'} running on server (${pctDisplay}, step: ${status.stepStatus || 'MAKE_HOME_BINARY'}, ${status.duration || 'running'}). Re-checking in 1 min...`,
         null,
         status.buildId
       );
-      emitLog('info', `Build #${status.buildId || 'queued'} is currently running (${status.stepStatus || 'executing'}, duration: ${status.duration || '0s'}). Re-checking in 60s...`);
+      emitLog('info', `Build #${status.buildId || 'queued'} is in progress (${pctDisplay}, ${status.stepStatus || 'executing'}, duration: ${status.duration || '0s'}). Re-checking in 60s...`);
     } else {
       emitProgress(
         item.id,

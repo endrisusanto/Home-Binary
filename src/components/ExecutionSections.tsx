@@ -169,7 +169,6 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                   <thead>
                     <tr className="bg-slate-50/50 dark:bg-[#070709] text-slate-400 dark:text-neutral-500 border-b border-slate-100 dark:border-neutral-800/80">
                       <th className="py-2.5 px-4 font-semibold w-12 text-center">#</th>
-                      <th className="py-2.5 px-4 font-semibold w-32">Build ID</th>
                       <th className="py-2.5 px-4 font-semibold">Build Fingerprint</th>
                       <th className="py-2.5 px-4 font-semibold font-mono">PDA</th>
                       <th className="py-2.5 px-4 font-semibold font-mono">CSC</th>
@@ -186,9 +185,6 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                       >
                         <td className="py-2.5 px-4 text-slate-400 font-mono text-center text-[11px]">
                           {idx + 1}
-                        </td>
-                        <td className="py-2.5 px-4">
-                          <BuildIdCell buildId={item.buildId} />
                         </td>
                         <td className="py-2.5 px-4 font-medium text-slate-800 dark:text-neutral-200">
                           {item.buildFingerprintName}
