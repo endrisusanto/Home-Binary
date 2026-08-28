@@ -38,6 +38,8 @@ pub struct PortalConfig {
     pub mock: bool,
     #[serde(default = "default_true")]
     pub track_progress: bool,
+    #[serde(default = "default_concurrency")]
+    pub concurrency: usize,
     #[serde(default)]
     pub username: Option<String>,
     #[serde(default)]
@@ -52,6 +54,9 @@ fn default_form_url() -> String {
 }
 fn default_true() -> bool {
     true
+}
+fn default_concurrency() -> usize {
+    3
 }
 fn default_delay() -> u64 {
     1000

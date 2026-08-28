@@ -206,10 +206,24 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
 
           {/* Delays and Timeouts */}
-          <div className="grid grid-cols-2 gap-3 pt-2">
+          <div className="grid grid-cols-3 gap-2.5 pt-2">
             <div className="space-y-1">
               <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                Delay Between Requests (ms)
+                Parallel Tabs (Concurrency)
+              </label>
+              <input
+                type="number"
+                min="1"
+                max="8"
+                step="1"
+                value={formData.concurrency ?? 3}
+                onChange={(e) => setFormData({ ...formData, concurrency: Math.max(1, Math.min(8, Number(e.target.value) || 1)) })}
+                className="w-full px-3 py-1.5 text-xs font-mono bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg outline-none"
+              />
+            </div>
+            <div className="space-y-1">
+              <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+                Delay / Stagger (ms)
               </label>
               <input
                 type="number"
@@ -222,7 +236,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
             <div className="space-y-1">
               <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                Navigation Timeout (ms)
+                Timeout (ms)
               </label>
               <input
                 type="number"

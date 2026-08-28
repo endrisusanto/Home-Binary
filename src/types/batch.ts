@@ -23,6 +23,7 @@ export interface PortalConfig {
   timeoutMs: number;
   mock: boolean;
   trackProgress?: boolean;
+  concurrency?: number;
   username?: string;
   password?: string;
   ssoToken?: string;

@@ -709,64 +709,84 @@ async function main() {
     await handleSsoLoginIfNeeded(page, context, username, password, timeoutMs);
 
     // =========================================================================
-    // PHASE 1: RAPID FORM SUBMISSION TRIGGER FOR ALL BATCH ITEMS
+    // PHASE 1: CONCURRENT FORM SUBMISSION TRIGGER FOR ALL BATCH ITEMS
     // =========================================================================
-    emitLog('info', `=== [PHASE 1] Triggering form submissions for ${items.length} build(s) ===`);
+    const concurrency = Math.max(1, Math.min(Number(portal.concurrency) || 3, 8));
+    emitLog('info', `=== [PHASE 1] Triggering form submissions for ${items.length} build(s) (Concurrency: ${concurrency} parallel tabs) ===`);
 
-    for (let i = 0; i < items.length; i++) {
-      if (isCancelled) break;
-      const item = items[i];
+    async function submitSingleItem(item, i) {
+      if (isCancelled) return;
       const itemIndex = item.index ?? i;
-
       emitProgress(item.id, itemIndex, 'running', `Triggering submission: ${item.buildFingerprintName}`, null, null, 25);
-      emitLog('info', `[${i + 1}/${items.length}] Populating & submitting form for: ${item.buildFingerprintName}`);
+      emitLog('info', `[Tab #${(i % concurrency) + 1}] Starting parallel submission: ${item.buildFingerprintName}`);
 
+      let itemPage = null;
       try {
-        const { selFingerprint, selPda, selCsc, selBaseband } = await navigateAndLocateForm(page, baseUrl, timeoutMs);
+        itemPage = await context.newPage();
+        itemPage.setDefaultTimeout(timeoutMs);
+
+        const { selFingerprint, selPda, selCsc, selBaseband } = await navigateAndLocateForm(itemPage, baseUrl, timeoutMs);
 
         // Fill all 4 input fields with deliberate entry
-        await page.fill(selFingerprint, item.buildFingerprintName || '');
-        await page.waitForTimeout(200);
+        await itemPage.fill(selFingerprint, item.buildFingerprintName || '');
+        await itemPage.waitForTimeout(150);
 
-        await page.fill(selPda, item.pdaVersion || '');
-        await page.waitForTimeout(200);
+        await itemPage.fill(selPda, item.pdaVersion || '');
+        await itemPage.waitForTimeout(150);
 
-        await page.fill(selCsc, item.cscVersion || '');
-        await page.waitForTimeout(200);
+        await itemPage.fill(selCsc, item.cscVersion || '');
+        await itemPage.waitForTimeout(150);
 
         // Clean Baseband: Empty string if model is Wi-Fi only / dash value
         const rawBaseband = (item.basebandVersion || '').trim();
         const isNoBaseband = !rawBaseband || rawBaseband === '-' || rawBaseband === '—' || rawBaseband.toLowerCase() === 'none' || rawBaseband.toLowerCase() === 'n/a';
         const cleanBaseband = isNoBaseband ? '' : rawBaseband;
 
-        await page.fill(selBaseband, cleanBaseband);
-        await page.waitForTimeout(300);
+        await itemPage.fill(selBaseband, cleanBaseband);
+        await itemPage.waitForTimeout(250);
 
-        emitLog('info', `Populated: Fingerprint=${item.buildFingerprintName}, PDA=${item.pdaVersion}, CSC=${item.cscVersion}, Phone=${cleanBaseband || '[EMPTY - Wi-Fi Only]'}`);
+        emitLog('info', `[Tab #${(i % concurrency) + 1}] Populated: Fingerprint=${item.buildFingerprintName}, PDA=${item.pdaVersion}, CSC=${item.cscVersion}, Phone=${cleanBaseband || '[EMPTY - Wi-Fi Only]'}`);
 
         // Trigger Submit with .submits button:has-text("Ok")
-        await triggerFormSubmission(page, selBaseband, delayMs);
+        await triggerFormSubmission(itemPage, selBaseband, delayMs);
 
         // Check for error feedback panels
-        const errorFeedback = page.locator('.feedbackPanelERROR, .alert-danger, .error-message');
+        const errorFeedback = itemPage.locator('.feedbackPanelERROR, .alert-danger, .error-message');
         if (await errorFeedback.count() > 0 && await errorFeedback.first().isVisible()) {
           const errText = await errorFeedback.first().innerText();
           throw new Error(`Portal validation error: ${errText.trim()}`);
         }
 
-        emitLog('success', `[${i + 1}/${items.length}] Form triggered successfully for ${item.buildFingerprintName}!`);
+        emitLog('success', `[Tab #${(i % concurrency) + 1}] Form triggered successfully for ${item.buildFingerprintName}!`);
         emitProgress(item.id, itemIndex, 'running', `Form submitted. Build running on server...`, null, null, 50);
 
       } catch (itemErr) {
         failedCount++;
         emitProgress(item.id, itemIndex, 'failed', `Error: ${itemErr.message}`, itemErr.message);
-        emitLog('error', `Failed submitting form [${i + 1}] (${item.buildFingerprintName}): ${itemErr.message}`);
-      }
-
-      if (delayMs > 0 && i < items.length - 1) {
-        await page.waitForTimeout(delayMs);
+        emitLog('error', `Failed submitting form for ${item.buildFingerprintName}: ${itemErr.message}`);
+      } finally {
+        if (itemPage) {
+          try {
+            await itemPage.close();
+          } catch {}
+        }
       }
     }
+
+    // Run concurrent worker pool
+    let currentIndex = 0;
+    const workerCount = Math.min(concurrency, items.length);
+    const workerPromises = Array.from({ length: workerCount }, async () => {
+      while (currentIndex < items.length && !isCancelled) {
+        const itemIdx = currentIndex++;
+        await submitSingleItem(items[itemIdx], itemIdx);
+        if (delayMs > 0 && currentIndex < items.length) {
+          await new Promise(r => setTimeout(r, delayMs));
+        }
+      }
+    });
+
+    await Promise.all(workerPromises);
 
     // =========================================================================
     // PHASE 2: BATCH PROGRESS POLLING ON DASHBOARD
