@@ -470,7 +470,7 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
 // --------------------------------------------------------------------------
 // PHASE 2: BATCH PROGRESS POLLING ON DASHBOARD
 // --------------------------------------------------------------------------
-async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
+async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, isFetchOnly = false) {
   const dashboardUrl = 'https://android.qb.sec.samsung.net/dashboard';
   emitLog('info', `Navigating to Dashboard (${dashboardUrl}) to track build progress for all ${items.length} builds...`);
 
@@ -488,22 +488,22 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
       await page.waitForSelector('table.datatable, .summary table, a[href*="/build/"], a[title="More"]', { timeout: 15000 }).catch(() => {});
       await page.waitForTimeout(1000);
 
-      // Automatically expand "My Builds" gadget by clicking "More" link (up to 5 times)
-      for (let m = 0; m < 5; m++) {
-        try {
-          const moreLink = page.locator('a[title="More"], a:text-is("More"), a[href*="myBuildsContainer-more"]');
-          const count = await moreLink.count();
-          if (count > 0 && await moreLink.first().isVisible()) {
-            emitLog('info', `Found "More" button. Expanding My Builds rows (click #${m + 1})...`);
-            await moreLink.first().click({ timeout: 5000 });
-            await page.waitForTimeout(1500); // Give Wicket AJAX time to insert rows
-          } else {
-            break;
-          }
-        } catch (clickErr) {
-          emitLog('warn', `Click "More" notice: ${clickErr.message}`);
-          break;
+      // Expand "My Builds" gadget by clicking "More" link if available
+      try {
+        const moreLink = page.locator('a[title="More"], a:text-is("More"), a[href*="myBuildsContainer-more"]');
+        if (await moreLink.count() > 0 && await moreLink.first().isVisible()) {
+          emitLog('info', 'Found "More" button. Expanding My Builds rows...');
+          try {
+            await Promise.all([
+              page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 10000 }).catch(() => {}),
+              moreLink.first().click({ timeout: 5000 }).catch(() => {}),
+            ]);
+          } catch {}
+          await page.waitForSelector('table.datatable, .summary table, a[href*="/build/"]', { timeout: 10000 }).catch(() => {});
+          await page.waitForTimeout(1500);
         }
+      } catch (clickErr) {
+        emitLog('warn', `Click "More" notice: ${clickErr.message}`);
       }
 
       // Fast native browser DOM evaluation to extract all build entries directly
@@ -643,8 +643,8 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
       emitLog('warn', `Dashboard progress tracking warning: ${err.message}`);
     }
 
-    // Wait 60 seconds before next cycle check (unless fetchOnly)
-    if (portal?.fetchOnly && completedMap.size > 0) {
+    // If in fetchOnly mode, finish after 1 dashboard inspection cycle
+    if (isFetchOnly) {
       break;
     }
 
@@ -765,7 +765,7 @@ async function main() {
     if (portal.fetchOnly === true) {
       emitLog('info', `=== [FETCH BUILD ID ONLY] Querying Dashboard for ${items.length} builds (Headless) ===`);
       try {
-        await trackBatchProgressOnDashboard(page, items, 120000);
+        await trackBatchProgressOnDashboard(page, items, 120000, true);
       } catch (fetchErr) {
         emitLog('error', `Fetch Build ID error: ${fetchErr.message}`);
       } finally {
