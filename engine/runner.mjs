@@ -880,15 +880,7 @@ async function main() {
         await trackBatchProgressOnDashboard(page, validItems, 1800000);
       }
     } else if (!trackProgress) {
-      emitLog('info', `=== [FAST COMPLETE] Progress tracking disabled. Finalizing submitted batch items ===`);
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        if (item.status !== 'failed') {
-          successCount++;
-          const buildId = item.buildId || `11405${Math.floor(1000 + Math.random() * 9000)}`;
-          emitProgress(item.id, item.index ?? i, 'success', `Submitted: ${item.buildFingerprintName}`, null, buildId, 100);
-        }
-      }
+      emitLog('info', `=== [FAST COMPLETE] Progress tracking disabled. All batch submissions complete ===`);
     }
 
     // Save final storageState

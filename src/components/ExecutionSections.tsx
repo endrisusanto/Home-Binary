@@ -25,6 +25,17 @@ interface ExecutionSectionsProps {
   searchQuery: string;
 }
 
+async function openSystemBrowser(url: string) {
+  if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
+    try {
+      const core = await import('@tauri-apps/api/core');
+      await core.invoke('open_browser_url', { url });
+      return;
+    } catch {}
+  }
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
 // Interactive Build ID Component with Left-click (redirect) and Right-click (copy)
 const BuildIdCell: React.FC<{ buildId?: string; isCompletedSection?: boolean }> = ({ buildId, isCompletedSection }) => {
   const [copied, setCopied] = useState(false);
@@ -33,7 +44,7 @@ const BuildIdCell: React.FC<{ buildId?: string; isCompletedSection?: boolean }> 
     if (isCompletedSection) {
       return (
         <span 
-          className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 text-[10px] font-bold uppercase tracking-wider select-none shadow-xs"
+          className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 text-[10px] font-bold uppercase tracking-wider select-none shadow-xs whitespace-nowrap"
           title="Build is currently executing on QuickBuild server. Use 'Fetch Build ID' on toolbar to update."
         >
           <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping" />
@@ -41,14 +52,14 @@ const BuildIdCell: React.FC<{ buildId?: string; isCompletedSection?: boolean }> 
         </span>
       );
     }
-    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[11px]">—</span>;
+    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[11px] whitespace-nowrap">—</span>;
   }
 
   const buildUrl = `https://android.qb.sec.samsung.net/build/${buildId}`;
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    window.open(buildUrl, '_blank', 'noopener,noreferrer');
+    openSystemBrowser(buildUrl);
   };
 
   const handleContextMenu = (e: React.MouseEvent) => {
@@ -60,12 +71,12 @@ const BuildIdCell: React.FC<{ buildId?: string; isCompletedSection?: boolean }> 
   };
 
   return (
-    <div className="relative inline-flex items-center">
+    <div className="relative inline-flex items-center whitespace-nowrap">
       <button
         onClick={handleClick}
         onContextMenu={handleContextMenu}
-        title="Left-click: Open Portal URL | Right-click: Copy URL to clipboard"
-        className={`inline-flex items-center gap-1 font-mono text-[11px] px-2 py-0.5 rounded-md font-semibold transition-all cursor-pointer select-none active:scale-95 ${
+        title="Left-click: Open Build in Browser | Right-click: Copy URL to clipboard"
+        className={`inline-flex items-center justify-center gap-1 font-mono text-[11px] px-2 py-0.5 min-w-[94px] rounded-md font-semibold whitespace-nowrap transition-all cursor-pointer select-none active:scale-95 ${
           copied
             ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700'
             : 'bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/80 border border-blue-200/80 dark:border-blue-800/80 hover:border-blue-300 dark:hover:border-blue-600 shadow-xs'
@@ -74,11 +85,11 @@ const BuildIdCell: React.FC<{ buildId?: string; isCompletedSection?: boolean }> 
         {copied ? (
           <>
             <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400 animate-in zoom-in-50" />
-            <span>Copied URL!</span>
+            <span className="text-[10px]">Copied!</span>
           </>
         ) : (
           <>
-            <span>{buildId}</span>
+            <span className="whitespace-nowrap">{buildId}</span>
             <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100" />
           </>
         )}

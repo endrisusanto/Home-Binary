@@ -16,8 +16,15 @@ export const MetricCards: React.FC<MetricCardsProps> = ({
   const { total, running, success, failed, progressPercent } = summary;
   const targetUrl = portalConfig.baseUrl || 'https://android.qb.sec.samsung.net/overview/28905';
 
-  const handleOpenPortal = (e: React.MouseEvent) => {
+  const handleOpenPortal = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
+      try {
+        const core = await import('@tauri-apps/api/core');
+        await core.invoke('open_browser_url', { url: targetUrl });
+        return;
+      } catch {}
+    }
     window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
