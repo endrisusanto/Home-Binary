@@ -6,7 +6,7 @@ import { InputDrawer } from './components/InputDrawer';
 import { SettingsModal } from './components/SettingsModal';
 import { TerminalLog } from './components/TerminalLog';
 import { UpdateModal } from './components/UpdateModal';
-import { BatchItem, PortalConfig, LogEntry, BatchSummary } from './types/batch';
+import { BatchItem, PortalConfig, LogEntry, BatchSummary, ItemStatus } from './types/batch';
 
 async function getTauri() {
   if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
@@ -146,20 +146,26 @@ export function App() {
         const payload = event.payload;
         if (!payload) return;
 
-        setItems((prev) => {
-          const next = [...prev];
-          const target = next.find((item) => item.id === payload.id || item.index === payload.index);
-          if (target) {
-            target.status = payload.status as any;
-            target.message = payload.message;
-            target.error = payload.error;
-            if (payload.buildId || payload.build_id) {
-              target.buildId = payload.buildId || payload.build_id;
-            }
-            target.progressPercent = payload.status === 'success' ? 100 : 75;
-          }
-          return next;
-        });
+        setItems((prev) =>
+          prev.map((item) => {
+            const isMatch = (payload.id && item.id === payload.id) || 
+                            (payload.index !== undefined && payload.index !== null && item.index === payload.index);
+
+            if (!isMatch) return item;
+
+            const buildIdVal = payload.buildId || payload.build_id || item.buildId;
+            const newStatus = (payload.status || item.status) as ItemStatus;
+
+            return {
+              ...item,
+              status: newStatus,
+              message: payload.message || item.message,
+              error: payload.error || item.error,
+              buildId: buildIdVal,
+              progressPercent: newStatus === 'success' ? 100 : (payload.progressPercent || (newStatus === 'running' ? 50 : 25)),
+            };
+          })
+        );
       });
 
       unlistenFinished = await tauri.event.listen('task-finished', (event: any) => {
@@ -251,6 +257,15 @@ export function App() {
 
     setIsRunning(true);
     addLog('info', `Starting execution for ${queueToRun.length} build(s)...`);
+
+    // Optimistically move queued items to 'running' section immediately
+    setItems((prev) =>
+      prev.map((x) =>
+        queueToRun.some((q) => q.id === x.id)
+          ? { ...x, status: 'running', message: 'Queued for submission...', progressPercent: 20 }
+          : x
+      )
+    );
 
     const tauri = await getTauri();
     if (tauri && tauri.core) {
