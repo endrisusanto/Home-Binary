@@ -1,4 +1,5 @@
 import React from 'react';
+import { ExternalLink } from 'lucide-react';
 import { BatchSummary, PortalConfig } from '../types/batch';
 
 interface MetricCardsProps {
@@ -13,6 +14,12 @@ export const MetricCards: React.FC<MetricCardsProps> = ({
   isRunning,
 }) => {
   const { total, running, success, failed, progressPercent } = summary;
+  const targetUrl = portalConfig.baseUrl || 'https://android.qb.sec.samsung.net/overview/28905';
+
+  const handleOpenPortal = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 mb-3.5">
@@ -115,21 +122,26 @@ export const MetricCards: React.FC<MetricCardsProps> = ({
       </div>
 
       {/* ========================================================================= */}
-      {/* Card 5: PORTAL TARGET (Cyan Ambient - Top-Left Glow) */}
+      {/* Card 5: PORTAL TARGET (Cyan Ambient - Clickable Link) */}
       {/* ========================================================================= */}
-      <div className="relative overflow-hidden bg-white dark:bg-[#0c0c0e] rounded-xl p-3.5 border border-slate-200/90 dark:border-neutral-800/90 shadow-xs hover:border-cyan-500/40 dark:hover:border-cyan-500/40 transition-all flex flex-col justify-between group min-h-[84px]">
+      <div 
+        onClick={handleOpenPortal}
+        className="relative overflow-hidden bg-white dark:bg-[#0c0c0e] rounded-xl p-3.5 border border-slate-200/90 dark:border-neutral-800/90 shadow-xs hover:border-cyan-500/50 dark:hover:border-cyan-500/50 transition-all flex flex-col justify-between group min-h-[84px] cursor-pointer"
+        title={`Click to open QuickBuild portal in browser: ${targetUrl}`}
+      >
         {/* Radial Glow - Top-Left Corner Only */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,0.18),transparent_60%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,0.26),transparent_65%)] pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-cyan-500/40 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
 
-        <div className="relative z-10 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-neutral-400 leading-none">
-          Portal Target
+        <div className="relative z-10 flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-neutral-400 leading-none">
+          <span>Portal Target</span>
+          <ExternalLink className="w-3 h-3 text-cyan-500 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
         </div>
-        <div className="relative z-10 text-xl font-extrabold text-slate-900 dark:text-white tracking-tight truncate leading-tight my-1" title={portalConfig.baseUrl}>
+        <div className="relative z-10 text-xl font-extrabold text-slate-900 dark:text-white tracking-tight truncate leading-tight my-1 group-hover:text-cyan-500 transition-colors" title={targetUrl}>
           {portalConfig.mock ? 'Mock Mode' : 'QuickBuild'}
         </div>
-        <div className="relative z-10 text-[11px] text-slate-500 dark:text-neutral-400 font-mono truncate leading-none" title={portalConfig.formUrl}>
-          /wicket/page?6
+        <div className="relative z-10 text-[11px] text-cyan-600 dark:text-cyan-400 group-hover:underline font-mono truncate leading-none flex items-center gap-1" title={targetUrl}>
+          {targetUrl}
         </div>
       </div>
 
