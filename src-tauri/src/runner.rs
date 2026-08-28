@@ -189,6 +189,11 @@ pub async fn execute_batch(
         .map_err(|e| format!("Failed to serialize batch payload: {}", e))?;
 
     let mut cmd = Command::new("node");
+    #[cfg(windows)]
+    {
+        const CREATE_NO_WINDOW: u32 = 0x08000000;
+        cmd.creation_flags(CREATE_NO_WINDOW);
+    }
     if let Some(ref wd) = working_dir {
         let clean_wd = clean_str(wd);
         cmd.current_dir(&clean_wd);

@@ -40,6 +40,100 @@ console.log(`🌐 CSC Version   : ${TEST_ITEM.cscVersion}`);
 console.log(`📡 Phone/Baseband: ${TEST_ITEM.basebandVersion}`);
 console.log('======================================================\n');
 
+async function injectAiAgentGlowEffect(context) {
+  await context.addInitScript(() => {
+    const attachGlow = () => {
+      if (document.getElementById('hb-ai-agent-glow')) return;
+
+      const style = document.createElement('style');
+      style.id = 'hb-ai-agent-styles';
+      style.textContent = `
+        @keyframes hbPulseGlow {
+          0% {
+            box-shadow: inset 0 0 16px 4px rgba(6, 182, 212, 0.65), 
+                        inset 0 0 36px 8px rgba(59, 130, 246, 0.45), 
+                        0 0 20px 4px rgba(16, 185, 129, 0.5);
+            border-color: rgba(6, 182, 212, 0.9);
+          }
+          50% {
+            box-shadow: inset 0 0 32px 10px rgba(168, 85, 247, 0.85), 
+                        inset 0 0 65px 18px rgba(6, 182, 212, 0.65), 
+                        0 0 35px 10px rgba(139, 92, 246, 0.75);
+            border-color: rgba(168, 85, 247, 1);
+          }
+          100% {
+            box-shadow: inset 0 0 16px 4px rgba(6, 182, 212, 0.65), 
+                        inset 0 0 36px 8px rgba(59, 130, 246, 0.45), 
+                        0 0 20px 4px rgba(16, 185, 129, 0.5);
+            border-color: rgba(6, 182, 212, 0.9);
+          }
+        }
+        @keyframes hbBadgePulse {
+          0%, 100% { transform: scale(1); opacity: 0.95; }
+          50% { transform: scale(1.04); opacity: 1; }
+        }
+        #hb-ai-agent-glow {
+          position: fixed !important;
+          inset: 0 !important;
+          pointer-events: none !important;
+          z-index: 2147483647 !important;
+          border: 3.5px solid rgba(6, 182, 212, 0.9) !important;
+          border-radius: 4px !important;
+          animation: hbPulseGlow 2.4s ease-in-out infinite !important;
+          box-sizing: border-box !important;
+        }
+        #hb-ai-badge {
+          position: fixed !important;
+          top: 14px !important;
+          right: 24px !important;
+          pointer-events: none !important;
+          z-index: 2147483647 !important;
+          display: flex !important;
+          align-items: center !important;
+          gap: 8px !important;
+          padding: 6px 14px !important;
+          background: rgba(9, 9, 11, 0.88) !important;
+          backdrop-filter: blur(12px) !important;
+          -webkit-backdrop-filter: blur(12px) !important;
+          color: #f8fafc !important;
+          border: 1px solid rgba(6, 182, 212, 0.6) !important;
+          border-radius: 9999px !important;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+          font-size: 11px !important;
+          font-weight: 700 !important;
+          letter-spacing: 0.5px !important;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(6, 182, 212, 0.4) !important;
+          animation: hbBadgePulse 2s infinite ease-in-out !important;
+        }
+        #hb-ai-dot {
+          width: 8px !important;
+          height: 8px !important;
+          border-radius: 50% !important;
+          background: #10b981 !important;
+          box-shadow: 0 0 10px #10b981 !important;
+        }
+      `;
+      document.head.appendChild(style);
+
+      const glowDiv = document.createElement('div');
+      glowDiv.id = 'hb-ai-agent-glow';
+
+      const badge = document.createElement('div');
+      badge.id = 'hb-ai-badge';
+      badge.innerHTML = '<div id="hb-ai-dot"></div><span>🤖 HomeBinary AI Agent Active</span>';
+
+      document.body.appendChild(glowDiv);
+      document.body.appendChild(badge);
+    };
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', attachGlow);
+    } else {
+      attachGlow();
+    }
+  });
+}
+
 async function main() {
   console.log('🚀 [1/6] Launching visible Chromium browser...');
   const browser = await chromium.launch({
@@ -60,6 +154,9 @@ async function main() {
     console.log(`⚠️  Could not load auth file: ${e.message}. Creating fresh context.`);
     context = await browser.newContext({ viewport: null });
   }
+
+  // Inject AI Agent Glow outline effect
+  await injectAiAgentGlowEffect(context);
 
   const page = await context.newPage();
   page.setDefaultTimeout(45000);
