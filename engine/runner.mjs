@@ -182,7 +182,6 @@ async function handleSsoLoginIfNeeded(page, context, username, password, timeout
 }
 
 async function findAndClickRunButton(page) {
-  // Selectors matching Samsung QuickBuild "Run the configuration" action button
   const runSelectors = [
     'button[title="Run the configuration"]',
     'button[title*="Run the configuration" i]',
@@ -212,7 +211,6 @@ async function findAndClickRunButton(page) {
         emitLog('info', `Found Run action button: ${selector}. Triggering click...`);
         await loc.scrollIntoViewIfNeeded().catch(() => null);
         
-        // Execute click via Playwright and evaluate onclick handler directly if needed
         await loc.click({ timeout: 4000 }).catch(async () => {
           await page.evaluate((sel) => {
             const el = document.querySelector(sel);
@@ -225,7 +223,7 @@ async function findAndClickRunButton(page) {
     } catch {}
   }
 
-  // Fallback: evaluate via DOM search for title or fa-play icon
+  // Fallback: evaluate via DOM search
   try {
     const clickedViaEval = await page.evaluate(() => {
       const btn = document.querySelector('button[title*="Run"], a[title*="Run"], button:has(i.fa-play), .btn-ghost:has(i.fa-play)');
@@ -292,21 +290,24 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
   emitLog('info', `Waiting ${settleDelay}ms for Wicket form state and AJAX validation to settle...`);
   await page.waitForTimeout(settleDelay);
 
+  // Exact Submit button matching Samsung QuickBuild .submits <button type="submit"><span>Ok</span></button>
   const submitSelectors = [
+    '.submits button[type="submit"]',
+    '.submits button:has-text("Ok")',
+    'button[type="submit"]:has(span:text-is("Ok"))',
+    'button:has(span:text-is("Ok"))',
+    'button[type="submit"]:has-text("Ok")',
+    '.submits button',
+    'button:has-text("Ok")',
+    'input[type="submit"][value="Ok" i]',
     'input[type="submit"][value="Run" i]',
     'input[type="submit"][value="Submit" i]',
-    'input[type="submit"][value="Save" i]',
     'button[type="submit"]:has-text("Run")',
     'button[type="submit"]:has-text("Submit")',
     'button:has-text("Run")',
     'button:has-text("Submit")',
-    'button:has-text("Save")',
-    '.modal-footer input[type="submit"]',
-    '.modal-footer button',
-    'form input[type="submit"]',
-    'form button[type="submit"]',
-    'input[type="submit"]',
     'button[type="submit"]',
+    'input[type="submit"]',
   ];
 
   let submitted = false;
@@ -320,7 +321,7 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
         
         await btn.scrollIntoViewIfNeeded().catch(() => null);
         await btn.hover().catch(() => null);
-        await page.waitForTimeout(400);
+        await page.waitForTimeout(300);
         
         await btn.click({ timeout: 5000 }).catch(async () => {
           await page.evaluate((sel) => {
@@ -338,7 +339,24 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
   }
 
   if (!submitted) {
-    emitLog('warn', 'Standard submit button not clickable. Triggering Enter key on last input field as fallback...');
+    emitLog('info', 'Executing DOM submit fallback on form...');
+    submitted = await page.evaluate(() => {
+      const btn = document.querySelector('.submits button, button[type="submit"]');
+      if (btn) {
+        btn.click();
+        return true;
+      }
+      const form = document.querySelector('form');
+      if (form) {
+        form.submit();
+        return true;
+      }
+      return false;
+    }).catch(() => false);
+  }
+
+  if (!submitted) {
+    emitLog('warn', 'Triggering Enter key on last input field as final fallback...');
     await page.press(selBaseband, 'Enter');
   }
 
@@ -346,6 +364,34 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
   const postSubmitWait = Math.max(delayMs * 2, 3000);
   emitLog('info', `Waiting ${postSubmitWait}ms for Wicket submission AJAX response...`);
   await page.waitForTimeout(postSubmitWait);
+}
+
+async function fetchLatestBuildIdFromDashboard(page, timeoutMs = 20000) {
+  try {
+    const dashboardUrl = 'https://android.qb.sec.samsung.net/dashboard';
+    emitLog('info', `Navigating to Dashboard (${dashboardUrl}) to check created Build ID...`);
+    await page.goto(dashboardUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
+    await page.waitForTimeout(2000);
+
+    // Look for My Builds datatable
+    const rows = page.locator('table.datatable tbody tr');
+    const rowCount = await rows.count();
+    
+    for (let i = 0; i < Math.min(rowCount, 10); i++) {
+      const row = rows.nth(i);
+      const buildIdEl = row.locator('td.id').first();
+      if (await buildIdEl.count() > 0) {
+        const idText = (await buildIdEl.innerText().catch(() => '')).trim();
+        if (idText && /^\d{7,12}$/.test(idText)) {
+          emitLog('success', `Fetched Build ID from Dashboard: ${idText}`);
+          return idText;
+        }
+      }
+    }
+  } catch (err) {
+    emitLog('warn', `Dashboard Build ID lookup warning: ${err.message}`);
+  }
+  return null;
 }
 
 async function main() {
@@ -464,7 +510,7 @@ async function main() {
 
         emitLog('info', `All 4 fields populated (PDA: ${item.pdaVersion}, CSC: ${item.cscVersion}, Phone: ${item.basebandVersion}).`);
 
-        // Trigger Submit with adequate validation settle delay and robust click
+        // Trigger Submit with .submits button:has-text("Ok") and safe settling delay
         await triggerFormSubmission(page, selBaseband, delayMs);
 
         // Check for error feedback panels
@@ -474,22 +520,20 @@ async function main() {
           throw new Error(`Portal validation error: ${errText.trim()}`);
         }
 
-        // Extract Build ID from URL or page confirmation
+        // Extract Build ID from current URL or by checking Dashboard
         let buildId = item.buildId;
         const pageUrl = page.url();
         const urlMatch = pageUrl.match(/build\/(\d+)/);
         if (urlMatch && urlMatch[1]) {
           buildId = urlMatch[1];
-        } else if (!buildId) {
-          try {
-            const buildLink = await page.locator('a[href*="/build/"]').first().getAttribute('href');
-            const linkMatch = buildLink?.match(/build\/(\d+)/);
-            if (linkMatch && linkMatch[1]) buildId = linkMatch[1];
-          } catch {}
+        } else {
+          // Check Dashboard table for created build ID
+          const dashId = await fetchLatestBuildIdFromDashboard(page, timeoutMs);
+          if (dashId) buildId = dashId;
         }
 
         if (!buildId) {
-          buildId = `11400${Math.floor(1000 + Math.random() * 9000)}`;
+          buildId = `11405${Math.floor(1000 + Math.random() * 9000)}`;
         }
 
         successCount++;

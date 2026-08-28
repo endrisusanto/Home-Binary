@@ -180,17 +180,22 @@ async function main() {
     console.log('\n⏳ Waiting 1.5s for Wicket AJAX form state to settle before submission...');
     await page.waitForTimeout(1500);
 
-    console.log('🚀 [6/6] Submitting the form...');
+    console.log('🚀 [6/6] Submitting the form with [Ok] button...');
     const submitSelectors = [
+      '.submits button[type="submit"]',
+      '.submits button:has-text("Ok")',
+      'button[type="submit"]:has(span:text-is("Ok"))',
+      'button:has(span:text-is("Ok"))',
+      'button[type="submit"]:has-text("Ok")',
+      '.submits button',
+      'button:has-text("Ok")',
+      'input[type="submit"][value="Ok" i]',
       'input[type="submit"][value="Run" i]',
       'input[type="submit"][value="Submit" i]',
-      'input[type="submit"][value="Save" i]',
       'button[type="submit"]:has-text("Run")',
       'button[type="submit"]:has-text("Submit")',
-      'button:has-text("Run")',
-      'button:has-text("Submit")',
-      'input[type="submit"]',
       'button[type="submit"]',
+      'input[type="submit"]',
     ];
 
     let submitted = false;
@@ -211,12 +216,29 @@ async function main() {
     }
 
     if (!submitted) {
-      console.log('⚠️  Submit button not clicked directly, triggering Enter on last input...');
+      console.log('⚠️  Submit button not clicked directly, evaluating form submit via DOM...');
+      submitted = await page.evaluate(() => {
+        const btn = document.querySelector('.submits button, button[type="submit"]');
+        if (btn) {
+          btn.click();
+          return true;
+        }
+        const form = document.querySelector('form');
+        if (form) {
+          form.submit();
+          return true;
+        }
+        return false;
+      }).catch(() => false);
+    }
+
+    if (!submitted) {
+      console.log('⚠️  Triggering Enter on last input as fallback...');
       await page.press(selBaseband, 'Enter');
     }
 
-    console.log('⏳ Waiting 4.0s for submission confirmation & AJAX response...');
-    await page.waitForTimeout(4000);
+    console.log('⏳ Waiting 3.5s for Wicket submission AJAX response...');
+    await page.waitForTimeout(3500);
 
     // Check for validation error messages
     const errFeedback = page.locator('.feedbackPanelERROR, .alert-danger, .error-message');
@@ -224,15 +246,43 @@ async function main() {
       const errTxt = await errFeedback.first().innerText();
       console.log(`❌ Portal returned validation error: ${errTxt}`);
     } else {
-      console.log('🎉 Form submitted cleanly!');
+      console.log('🎉 Form submitted successfully!');
     }
 
-    const finalUrl = page.url();
-    console.log(`🔗 Final Page URL: ${finalUrl}`);
-    const match = finalUrl.match(/build\/(\d+)/);
-    if (match) {
-      console.log(`\n🏆 SUCCESS! Generated Build ID: ${match[1]}`);
-      console.log(`🔗 Build Details URL: https://android.qb.sec.samsung.net/build/${match[1]}`);
+    // Check Dashboard to extract generated Build ID
+    console.log('\n📊 [Dashboard] Navigating to https://android.qb.sec.samsung.net/dashboard to verify Build ID...');
+    try {
+      await page.goto('https://android.qb.sec.samsung.net/dashboard', { waitUntil: 'domcontentloaded', timeout: 20000 });
+      await page.waitForTimeout(2000);
+
+      const rows = page.locator('table.datatable tbody tr');
+      const rowCount = await rows.count();
+      console.log(`📊 Found ${rowCount} rows in My Builds datatable.`);
+
+      let capturedBuildId = null;
+      for (let i = 0; i < Math.min(rowCount, 10); i++) {
+        const row = rows.nth(i);
+        const idCell = row.locator('td.id').first();
+        if (await idCell.count() > 0) {
+          const idText = (await idCell.innerText().catch(() => '')).trim();
+          if (idText && /^\d{7,12}$/.test(idText)) {
+            capturedBuildId = idText;
+            const buildName = (await row.locator('td').nth(1).innerText().catch(() => '')).trim();
+            const configName = (await row.locator('td').last().innerText().catch(() => '')).trim();
+            console.log(`\n🏆 SUCCESS! Verified Created Build ID: ${capturedBuildId}`);
+            console.log(`📦 Build Info : ${buildName}`);
+            console.log(`⚙️  Config     : ${configName}`);
+            console.log(`🔗 Portal URL : https://android.qb.sec.samsung.net/build/${capturedBuildId}`);
+            break;
+          }
+        }
+      }
+
+      if (!capturedBuildId) {
+        console.log('ℹ️  Could not locate new Build ID in top rows. Check browser window.');
+      }
+    } catch (dashErr) {
+      console.log(`⚠️  Dashboard verification notice: ${dashErr.message}`);
     }
 
     const shotPath = path.join(SCREENSHOT_DIR, `qb_result_${Date.now()}.png`);
