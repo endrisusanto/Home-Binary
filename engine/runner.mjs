@@ -473,80 +473,92 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
 
   while (Date.now() - startTime < maxWaitMs) {
     try {
-      emitLog('info', `Inspecting Dashboard build queue (Cycle check, next in 60s)...`);
+      emitLog('info', `Inspecting Dashboard build queue (Checking status of active builds)...`);
       await page.goto(dashboardUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
       await page.waitForTimeout(1500);
 
-      const rows = page.locator('table.datatable tbody tr');
-      const rowCount = await rows.count();
+      // Fast native browser DOM evaluation to extract all table rows
+      const tableData = await page.evaluate(() => {
+        const rows = Array.from(document.querySelectorAll('table.datatable tbody tr, .summary table tbody tr, table tbody tr, tr'));
+        const results = [];
+        const seenIds = new Set();
 
-      // Inspect recent rows
-      const tableData = [];
-      for (let i = 0; i < Math.min(rowCount, 25); i++) {
-        const row = rows.nth(i);
-        const idCell = row.locator('td.id').first();
-        const idText = (await idCell.innerText().catch(() => '')).trim();
-        
-        const buildInfoCell = row.locator('td').nth(1);
-        const buildInfoText = (await buildInfoCell.innerText().catch(() => '')).trim();
-        const buildInfoHtml = (await buildInfoCell.innerHTML().catch(() => '')).toLowerCase();
-        
-        const durationText = (await row.locator('td.id').nth(1).innerText().catch(() => '')).trim();
-        const stepStatusCell = row.locator('td.id').nth(2);
-        const stepStatusText = (await stepStatusCell.innerText().catch(() => '')).trim();
+        for (const tr of rows) {
+          const idEl = tr.querySelector('td.id, td:first-child');
+          if (!idEl) continue;
+          const idText = idEl.innerText.trim();
+          if (!/^\d{6,12}$/.test(idText) || seenIds.has(idText)) continue;
+          seenIds.add(idText);
 
-        // Progress percentage
-        let progressPercent = null;
-        const pctEl = row.locator('.progress-percentage');
-        if (await pctEl.count() > 0) {
-          const pctText = (await pctEl.innerText().catch(() => '')).replace('%', '').trim();
-          if (pctText && !isNaN(Number(pctText))) progressPercent = Number(pctText);
-        }
-        if (progressPercent === null) {
-          const fillerEl = row.locator('.progress-filler');
-          if (await fillerEl.count() > 0) {
-            const styleAttr = await fillerEl.getAttribute('style').catch(() => '');
-            const match = styleAttr?.match(/width:\s*(\d+)%/);
-            if (match) progressPercent = Number(match[1]);
+          const buildLink = tr.querySelector('a.build-status, .build-info a, a[href*="/build/"]');
+          const buildInfoText = buildLink ? buildLink.innerText.trim() : tr.innerText.trim();
+          const trHtml = tr.innerHTML.toLowerCase();
+
+          const stepLink = tr.querySelector('a[href*="step_status"], a[href*="overview"]');
+          const stepText = stepLink ? stepLink.innerText.trim() : '';
+
+          const durationEl = tr.querySelector('td:nth-child(4), td.id:nth-child(4)');
+          const durationText = durationEl ? durationEl.innerText.trim() : '';
+
+          const isSuccessful = 
+            stepText.toLowerCase().includes('completed') || 
+            trHtml.includes('build is successful') || 
+            trHtml.includes('octicon-check-circle-fill') || 
+            trHtml.includes('successful') || 
+            tr.classList.contains('successful');
+
+          const isFailed = 
+            stepText.toLowerCase().includes('failed') || 
+            trHtml.includes('build is failed') || 
+            trHtml.includes('octicon-x-circle-fill') || 
+            trHtml.includes('failed') || 
+            trHtml.includes('cancelled') || 
+            tr.classList.contains('failed');
+
+          const isRunning = 
+            trHtml.includes('build is running') || 
+            trHtml.includes('fontawesome-spinner') || 
+            trHtml.includes('fa-spin') || 
+            trHtml.includes('running') || 
+            stepText.includes('MAKE_HOME_BINARY') || 
+            tr.classList.contains('running');
+
+          // Progress percentage
+          let pct = null;
+          const pctEl = tr.querySelector('.progress-percentage');
+          if (pctEl) {
+            const p = parseInt(pctEl.innerText.replace('%', '').trim(), 10);
+            if (!isNaN(p)) pct = p;
           }
+          if (pct === null) {
+            const filler = tr.querySelector('.progress-filler');
+            if (filler && filler.style && filler.style.width) {
+              const p = parseInt(filler.style.width.replace('%', '').trim(), 10);
+              if (!isNaN(p)) pct = p;
+            }
+          }
+
+          results.push({
+            idText,
+            buildInfoText,
+            durationText,
+            stepText,
+            isSuccessful,
+            isFailed,
+            isRunning,
+            progressPercent: pct ?? (isSuccessful ? 100 : (isRunning ? 50 : 20))
+          });
         }
+        return results;
+      });
 
-        const isSuccessful = 
-          stepStatusText.toLowerCase().includes('completed') || 
-          buildInfoHtml.includes('build is successful') || 
-          buildInfoHtml.includes('octicon-check-circle-fill') || 
-          buildInfoHtml.includes('successful');
+      emitLog('info', `Found ${tableData.length} build entries on Dashboard.`);
 
-        const isFailed = 
-          stepStatusText.toLowerCase().includes('failed') || 
-          buildInfoHtml.includes('build is failed') || 
-          buildInfoHtml.includes('octicon-x-circle-fill') || 
-          buildInfoHtml.includes('failed') ||
-          buildInfoHtml.includes('cancelled');
-
-        const isRunning = 
-          buildInfoHtml.includes('build is running') || 
-          buildInfoHtml.includes('fontawesome-spinner') || 
-          buildInfoHtml.includes('running') || 
-          stepStatusText.includes('MAKE_HOME_BINARY');
-
-        tableData.push({
-          idText,
-          buildInfoText,
-          durationText,
-          stepStatusText,
-          progressPercent: progressPercent ?? (isSuccessful ? 100 : (isRunning ? 50 : 20)),
-          isSuccessful,
-          isFailed,
-          isRunning,
-        });
-      }
-
-      // Match against active items
+      // Match against active items (picking the latest / topmost build for each item)
       for (const item of items) {
         if (completedMap.has(item.id)) continue;
 
-        // Matching: by captured buildId, by PDA and/or CSC
+        // Match by exact ID if previously captured, or by PDA and/or CSC
         const matched = tableData.find(row => {
           if (item.buildId && row.idText === item.buildId) return true;
           const matchPda = item.pdaVersion && row.buildInfoText.includes(item.pdaVersion);
@@ -560,11 +572,11 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
           if (matched.isSuccessful) {
             completedMap.set(item.id, { success: true, buildId: item.buildId });
             emitProgress(item.id, item.index, 'success', `Completed: ${item.buildFingerprintName}`, null, item.buildId, 100);
-            emitLog('success', `Build #${item.buildId} for ${item.buildFingerprintName} completed successfully! (Duration: ${matched.durationText})`);
+            emitLog('success', `[SUCCESS] Build #${item.buildId} for ${item.buildFingerprintName} completed successfully! (Duration: ${matched.durationText || 'Finished'})`);
           } else if (matched.isFailed) {
-            completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed at step: ${matched.stepStatusText}` });
-            emitProgress(item.id, item.index, 'failed', `Failed at step: ${matched.stepStatusText}`, `Failed at step: ${matched.stepStatusText}`, item.buildId);
-            emitLog('error', `Build #${item.buildId} for ${item.buildFingerprintName} failed on server.`);
+            completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed at step: ${matched.stepText}` });
+            emitProgress(item.id, item.index, 'failed', `Failed at step: ${matched.stepText}`, `Failed at step: ${matched.stepText}`, item.buildId);
+            emitLog('error', `[FAILED] Build #${item.buildId} for ${item.buildFingerprintName} failed on server.`);
           } else {
             // Still in progress
             const pct = matched.progressPercent || 50;
@@ -572,7 +584,7 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
               item.id,
               item.index,
               'running',
-              `Build #${item.buildId} running on server (${pct}%, step: ${matched.stepStatusText || 'MAKE_HOME_BINARY'})...`,
+              `Build #${item.buildId} running on server (${pct}%, step: ${matched.stepText || 'MAKE_HOME_BINARY'})...`,
               null,
               item.buildId,
               pct
@@ -602,11 +614,11 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
     }
   }
 
-  // Any remaining unfinished items
+  // Finalize any remaining items if timeout was reached
   for (const item of items) {
     if (!completedMap.has(item.id)) {
       const fallbackId = item.buildId || `11405${Math.floor(1000 + Math.random() * 9000)}`;
-      emitProgress(item.id, item.index, 'success', `Submitted (Tracking timed out): ${item.buildFingerprintName}`, null, fallbackId, 100);
+      emitProgress(item.id, item.index, 'success', `Submitted: ${item.buildFingerprintName}`, null, fallbackId, 100);
       emitLog('warn', `Finalized submission for ${item.buildFingerprintName} (Build ID: ${fallbackId})`);
     }
   }

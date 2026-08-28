@@ -74,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
                 Build HomeBinary
               </span>
               <span className="text-[10px] uppercase font-semibold px-1.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/90 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/80">
-                QB 2.0
+                v{appVersion}
               </span>
             </div>
             <span className="text-[11px] text-slate-400 dark:text-neutral-500 font-medium">
