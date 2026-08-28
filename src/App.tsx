@@ -148,8 +148,11 @@ export function App() {
 
         setItems((prev) =>
           prev.map((item) => {
-            const isMatch = (payload.id && item.id === payload.id) || 
-                            (payload.index !== undefined && payload.index !== null && item.index === payload.index);
+            const isMatch =
+              (payload.id && item.id === payload.id) ||
+              (payload.pdaVersion && item.pdaVersion === payload.pdaVersion) ||
+              (payload.pda_version && item.pdaVersion === payload.pda_version) ||
+              (payload.index !== undefined && payload.index !== null && item.index === payload.index);
 
             if (!isMatch) return item;
 
@@ -162,7 +165,10 @@ export function App() {
               message: payload.message || item.message,
               error: payload.error || item.error,
               buildId: buildIdVal,
-              progressPercent: newStatus === 'success' ? 100 : (payload.progressPercent || (newStatus === 'running' ? 50 : 25)),
+              progressPercent:
+                newStatus === 'success'
+                  ? 100
+                  : (payload.progressPercent ?? (newStatus === 'running' ? 50 : 25)),
             };
           })
         );

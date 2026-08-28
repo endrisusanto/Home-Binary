@@ -81,14 +81,20 @@ pub type RunnerState = Arc<Mutex<Option<Child>>>;
 pub struct StatusUpdateEvent {
     #[serde(default)]
     pub id: Option<String>,
-    pub index: usize,
+    #[serde(default)]
+    pub index: Option<usize>,
     #[serde(default, alias = "buildId", alias = "build_id")]
     pub build_id: Option<String>,
+    #[serde(default, alias = "pdaVersion", alias = "pda_version")]
+    pub pda_version: Option<String>,
+    #[serde(default, alias = "cscVersion", alias = "csc_version")]
+    pub csc_version: Option<String>,
     pub status: String,
     pub message: String,
     #[serde(default)]
     pub error: Option<String>,
-    pub timestamp: String,
+    #[serde(default)]
+    pub timestamp: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -253,6 +259,8 @@ pub async fn execute_batch(
                         "progress" => {
                             if let Ok(progress) = serde_json::from_value::<StatusUpdateEvent>(val.clone()) {
                                 let _ = app_stdout.emit("item-status-update", progress);
+                            } else {
+                                let _ = app_stdout.emit("item-status-update", val);
                             }
                         }
                         "log" => {

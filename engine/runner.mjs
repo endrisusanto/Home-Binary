@@ -24,13 +24,15 @@ function emitLog(level, message, index = null) {
   } catch {}
 }
 
-function emitProgress(id, index, status, message, error = null, buildId = null, progressPercent = null) {
+function emitProgress(id, index, status, message, error = null, buildId = null, progressPercent = null, pdaVersion = null, cscVersion = null) {
   const payload = {
     type: 'progress',
-    id,
-    index,
-    buildId,
-    build_id: buildId,
+    id: id || '',
+    index: typeof index === 'number' ? index : 0,
+    buildId: buildId ? String(buildId) : null,
+    build_id: buildId ? String(buildId) : null,
+    pdaVersion: pdaVersion || null,
+    cscVersion: cscVersion || null,
     status,
     progressPercent,
     message,
@@ -608,11 +610,11 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
 
           if (matched.isSuccessful) {
             completedMap.set(item.id, { success: true, buildId: item.buildId });
-            emitProgress(item.id, item.index, 'success', `Completed: ${item.buildFingerprintName}`, null, item.buildId, 100);
+            emitProgress(item.id, item.index, 'success', `Completed: ${item.buildFingerprintName}`, null, item.buildId, 100, item.pdaVersion, item.cscVersion);
             emitLog('success', `[SUCCESS] Matched Build #${item.buildId} for ${item.buildFingerprintName}! (Duration: ${matched.durationText || 'Finished'})`);
           } else if (matched.isFailed) {
             completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed at step: ${matched.stepText}` });
-            emitProgress(item.id, item.index, 'failed', `Failed at step: ${matched.stepText}`, `Failed at step: ${matched.stepText}`, item.buildId);
+            emitProgress(item.id, item.index, 'failed', `Failed at step: ${matched.stepText}`, `Failed at step: ${matched.stepText}`, item.buildId, null, item.pdaVersion, item.cscVersion);
             emitLog('error', `[FAILED] Build #${item.buildId} for ${item.buildFingerprintName} failed on server.`);
           } else {
             // Still in progress
@@ -624,7 +626,9 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
               `Build #${item.buildId} running on server (${pct}%, step: ${matched.stepText || 'MAKE_HOME_BINARY'})...`,
               null,
               item.buildId,
-              pct
+              pct,
+              item.pdaVersion,
+              item.cscVersion
             );
             emitLog('info', `Build #${item.buildId} (${item.buildFingerprintName}) is running (${pct}%, ${matched.durationText || 'running'})...`);
           }
