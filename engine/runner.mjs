@@ -533,31 +533,34 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
           const durationEl = tr ? tr.querySelector('td:nth-child(4), td.id:nth-child(4)') : null;
           const durationText = durationEl ? durationEl.innerText.trim() : '';
 
-          const isSuccessful = 
-            stepText.toLowerCase().includes('completed') || 
-            fullRowText.toLowerCase().includes('completed') ||
+          const isFailed = 
+            trHtml.includes('build is failed') || 
+            trHtml.includes('text-danger') || 
+            trHtml.includes('octicon-x-circle-fill') || 
+            link.classList.contains('failed') || 
+            (tr && tr.classList.contains('failed')) || 
+            stepText.toLowerCase().includes('failed') || 
+            fullRowText.toLowerCase().includes('failed') || 
+            fullRowText.toLowerCase().includes('cancelled');
+
+          const isSuccessful = !isFailed && (
             link.classList.contains('successful') || 
             trHtml.includes('build is successful') || 
+            trHtml.includes('text-success') || 
             trHtml.includes('octicon-check-circle-fill') || 
-            trHtml.includes('successful');
+            (tr && tr.classList.contains('successful')) ||
+            fullRowText.toLowerCase().includes('completed')
+          );
 
-          const isFailed = 
-            stepText.toLowerCase().includes('failed') || 
-            fullRowText.toLowerCase().includes('failed') ||
-            link.classList.contains('failed') || 
-            trHtml.includes('build is failed') || 
-            trHtml.includes('octicon-x-circle-fill') || 
-            trHtml.includes('failed') || 
-            trHtml.includes('cancelled');
-
-          const isRunning = 
+          const isRunning = !isFailed && !isSuccessful && (
             stepText.includes('MAKE_HOME_BINARY') || 
             fullRowText.includes('MAKE_HOME_BINARY') ||
             link.classList.contains('running') || 
             trHtml.includes('build is running') || 
             trHtml.includes('fontawesome-spinner') || 
             trHtml.includes('fa-spin') || 
-            trHtml.includes('running');
+            trHtml.includes('running')
+          );
 
           // Progress percentage
           let pct = null;
@@ -608,14 +611,14 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
         if (matched) {
           item.buildId = matched.idText || item.buildId;
 
-          if (matched.isSuccessful) {
+          if (matched.isFailed) {
+            completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed on QuickBuild (${matched.durationText || 'Failed'})` });
+            emitProgress(item.id, item.index, 'failed', `Build #${item.buildId} failed on QuickBuild`, `Build #${item.buildId} is failed on QuickBuild`, item.buildId, 100, item.pdaVersion, item.cscVersion);
+            emitLog('error', `[FAILED] Build #${item.buildId} for ${item.buildFingerprintName} is marked as FAILED on QuickBuild!`);
+          } else if (matched.isSuccessful) {
             completedMap.set(item.id, { success: true, buildId: item.buildId });
             emitProgress(item.id, item.index, 'success', `Completed: ${item.buildFingerprintName}`, null, item.buildId, 100, item.pdaVersion, item.cscVersion);
             emitLog('success', `[SUCCESS] Matched Build #${item.buildId} for ${item.buildFingerprintName}! (Duration: ${matched.durationText || 'Finished'})`);
-          } else if (matched.isFailed) {
-            completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed at step: ${matched.stepText}` });
-            emitProgress(item.id, item.index, 'failed', `Failed at step: ${matched.stepText}`, `Failed at step: ${matched.stepText}`, item.buildId, null, item.pdaVersion, item.cscVersion);
-            emitLog('error', `[FAILED] Build #${item.buildId} for ${item.buildFingerprintName} failed on server.`);
           } else {
             // Still in progress
             const pct = matched.progressPercent || 50;
