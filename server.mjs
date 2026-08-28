@@ -46,7 +46,9 @@ function broadcastSSE(type, payload) {
   }
 }
 
-// Periodic SSE Keep-Alive Ping
+const PUBLIC_URL = process.env.PUBLIC_URL || 'https://homebinary.endrisusanto.my.id';
+
+// Periodic SSE Keep-Alive Ping (10s interval for Cloudflare Tunnel / Reverse Proxy)
 setInterval(() => {
   for (const client of sseClients) {
     try {
@@ -55,16 +57,16 @@ setInterval(() => {
       sseClients.delete(client);
     }
   }
-}, 15000);
+}, 10000);
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   const pathname = url.pathname;
 
-  // CORS headers
+  // Cloudflare / Reverse Proxy CORS & Security headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
 
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
@@ -79,16 +81,23 @@ const server = http.createServer(async (req, res) => {
   // 1. Healthcheck
   if (pathname === '/api/health' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok', version: '0.4.5', mode: 'web', clients: sseClients.size }));
+    res.end(JSON.stringify({ 
+      status: 'ok', 
+      version: '0.4.7', 
+      mode: 'web', 
+      publicUrl: PUBLIC_URL,
+      clients: sseClients.size 
+    }));
     return;
   }
 
-  // 2. Server-Sent Events (SSE) Stream
+  // 2. Server-Sent Events (SSE) Stream with Cloudflare Proxy No-Buffering
   if (pathname === '/api/events' && req.method === 'GET') {
     res.writeHead(200, {
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
+      'Content-Type': 'text/event-stream; charset=utf-8',
+      'Cache-Control': 'no-cache, no-transform',
       'Connection': 'keep-alive',
+      'X-Accel-Buffering': 'no', // Disable proxy buffering (Nginx / Cloudflare)
     });
     res.write(': connected\n\n');
     sseClients.add(res);
@@ -251,7 +260,8 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log(`====================================================`);
   console.log(` Build HomeBinary Web App Server`);
-  console.log(` Listening on: http://localhost:${PORT}`);
-  console.log(` Mode: Docker / Web Browser Edition`);
+  console.log(` Local Port:      http://localhost:${PORT}`);
+  console.log(` Cloudflare URL:  ${PUBLIC_URL}`);
+  console.log(` Mode:            Docker / Cloudflare Tunnel Web App`);
   console.log(`====================================================`);
 });
