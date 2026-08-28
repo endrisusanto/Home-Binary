@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 14300;
 const DIST_DIR = path.join(__dirname, 'dist');
 const ENGINE_SCRIPT = path.join(__dirname, 'engine', 'runner.mjs');
 

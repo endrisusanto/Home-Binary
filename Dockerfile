@@ -17,9 +17,9 @@ COPY . .
 RUN npm run build
 
 # Expose HTTP port
-EXPOSE 3000
+EXPOSE 14300
 
-ENV PORT=3000
+ENV PORT=14300
 ENV NODE_ENV=production
 
 # Run Web App Server

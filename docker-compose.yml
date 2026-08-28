@@ -6,9 +6,9 @@ services:
     container_name: build-homebinary-web
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "14300:14300"
     volumes:
       - ./engine/auth:/app/engine/auth
     environment:
-      - PORT=3000
+      - PORT=14300
       - NODE_ENV=production
