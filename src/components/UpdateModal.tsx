@@ -146,8 +146,48 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
     setError(null);
     setDownloadProgress(25);
 
+    const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
+
+    if (!isTauri) {
+      // Web / Docker Container Remote Update Mode
+      try {
+        setDownloadProgress(35);
+        const res = await fetch('/api/system/update', { method: 'POST' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        
+        setDownloadProgress(65);
+        // Wait for server to pull, rebuild, and restart container
+        await new Promise(r => setTimeout(r, 3500));
+        setDownloadProgress(85);
+
+        let attempts = 0;
+        const pollInterval = setInterval(async () => {
+          attempts++;
+          try {
+            const hRes = await fetch('/api/health');
+            if (hRes.ok) {
+              clearInterval(pollInterval);
+              setDownloadProgress(100);
+              setTimeout(() => {
+                window.location.reload();
+              }, 800);
+            }
+          } catch {}
+          if (attempts > 20) {
+            clearInterval(pollInterval);
+            setIsInstalling(false);
+            window.location.reload();
+          }
+        }, 1500);
+
+        return;
+      } catch (err: any) {
+        setError(`Remote server update error: ${err.message}`);
+      }
+    }
+
     try {
-      if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
+      if (isTauri) {
         const { check } = await import('@tauri-apps/plugin-updater');
         const { relaunch } = await import('@tauri-apps/plugin-process');
 

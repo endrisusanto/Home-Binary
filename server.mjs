@@ -213,6 +213,85 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // 5. Remote System Update & Container Auto-Restart
+  if (pathname === '/api/system/update' && req.method === 'POST') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'updating', message: 'Remote update initiated.' }));
+
+    (async () => {
+      try {
+        broadcastSSE('task-log', {
+          level: 'info',
+          message: '📥 [Remote Update] Pulling latest updates from GitHub repository...',
+          timestamp: new Date().toLocaleTimeString(),
+        });
+
+        const runCmd = (cmd, args, cwd = __dirname) =>
+          new Promise((resolve, reject) => {
+            const proc = spawn(cmd, args, { cwd, stdio: ['ignore', 'pipe', 'pipe'] });
+            let output = '';
+            proc.stdout.on('data', d => { output += d.toString(); });
+            proc.stderr.on('data', d => { output += d.toString(); });
+            proc.on('close', code => {
+              if (code === 0) resolve(output);
+              else reject(new Error(`${cmd} exited with code ${code}: ${output}`));
+            });
+          });
+
+        // Try git pull if git repo exists
+        try {
+          const gitOut = await runCmd('git', ['pull', 'origin', 'main']);
+          broadcastSSE('task-log', {
+            level: 'info',
+            message: `📦 [Git Pull] ${gitOut.trim().split('\n')[0] || 'Code up to date'}`,
+            timestamp: new Date().toLocaleTimeString(),
+          });
+        } catch (gitErr) {
+          console.warn('Git pull notice (container mode):', gitErr.message);
+        }
+
+        broadcastSSE('task-log', {
+          level: 'info',
+          message: '🔨 [Remote Update] Rebuilding frontend assets with Vite...',
+          timestamp: new Date().toLocaleTimeString(),
+        });
+
+        try {
+          await runCmd('npm', ['run', 'build']);
+          broadcastSSE('task-log', {
+            level: 'success',
+            message: '✅ [Remote Update] Frontend rebuilt successfully!',
+            timestamp: new Date().toLocaleTimeString(),
+          });
+        } catch (buildErr) {
+          broadcastSSE('task-log', {
+            level: 'warn',
+            message: `Build notice: ${buildErr.message}`,
+            timestamp: new Date().toLocaleTimeString(),
+          });
+        }
+
+        broadcastSSE('task-log', {
+          level: 'success',
+          message: '🚀 [Remote Update] Restarting server container with new version...',
+          timestamp: new Date().toLocaleTimeString(),
+        });
+
+        setTimeout(() => {
+          process.exit(0); // Graceful exit -> Docker restart policy triggers instant restart
+        }, 1500);
+
+      } catch (err) {
+        broadcastSSE('task-log', {
+          level: 'error',
+          message: `❌ [Remote Update Error] ${err.message}`,
+          timestamp: new Date().toLocaleTimeString(),
+        });
+      }
+    })();
+    return;
+  }
+
   // =========================================================================
   // STATIC ASSETS SERVING (dist/)
   // =========================================================================
