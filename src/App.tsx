@@ -6,6 +6,7 @@ import { InputDrawer } from './components/InputDrawer';
 import { SettingsModal } from './components/SettingsModal';
 import { TerminalLog } from './components/TerminalLog';
 import { UpdateModal } from './components/UpdateModal';
+import { MobileMenuModal } from './components/MobileMenuModal';
 import { BatchItem, PortalConfig, LogEntry, BatchSummary, ItemStatus } from './types/batch';
 
 async function getTauri() {
@@ -69,6 +70,7 @@ export function App() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isLogsOpen, setIsLogsOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Dynamic App Version (Injected from package.json & dynamic Tauri getVersion)
   const [appVersion, setAppVersion] = useState<string>(
@@ -566,6 +568,7 @@ export function App() {
         onOpenInputDrawer={() => setIsInputDrawerOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
         onOpenUpdateModal={() => setIsUpdateModalOpen(true)}
+        onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
         onResetQueue={handleResetQueue}
         onFetchBuildIds={handleFetchBuildIds}
         completedBuildingCount={missingBuildIdCount}
@@ -628,6 +631,29 @@ export function App() {
         isOpen={isUpdateModalOpen}
         onClose={() => setIsUpdateModalOpen(false)}
         currentVersion={appVersion}
+      />
+
+      {/* Mobile Toolbar Actions Grid Menu Modal */}
+      <MobileMenuModal
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        onOpenInputDrawer={() => setIsInputDrawerOpen(true)}
+        onOpenSettings={() => setIsSettingsOpen(true)}
+        onOpenUpdateModal={() => setIsUpdateModalOpen(true)}
+        isRunning={isRunning}
+        onStartBatch={handleStartBatch}
+        onCancelBatch={handleCancelBatch}
+        onResetQueue={handleResetQueue}
+        onFetchBuildIds={handleFetchBuildIds}
+        completedBuildingCount={missingBuildIdCount}
+        isDarkMode={isDarkMode}
+        onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        totalItems={items.length}
+        trackProgress={portalConfig.trackProgress ?? true}
+        onToggleTrackProgress={(checked) => setPortalConfig(prev => ({ ...prev, trackProgress: checked }))}
+        appVersion={appVersion}
       />
 
       {/* Collapsible Persistent Bottom Footer Log Bar */}

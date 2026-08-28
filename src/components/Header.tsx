@@ -16,6 +16,7 @@ interface HeaderProps {
   onOpenInputDrawer: () => void;
   onOpenSettings: () => void;
   onOpenUpdateModal: () => void;
+  onOpenMobileMenu: () => void;
   isRunning: boolean;
   onStartBatch: () => void;
   onCancelBatch: () => void;
@@ -37,6 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenInputDrawer,
   onOpenSettings,
   onOpenUpdateModal,
+  onOpenMobileMenu,
   isRunning,
   onStartBatch,
   onCancelBatch,
@@ -148,11 +150,11 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           )}
 
-          {/* Fetch Build ID button for building completed items */}
+          {/* Fetch Build ID button for building completed items (Desktop) */}
           <button
             onClick={onFetchBuildIds}
             disabled={isRunning || completedBuildingCount === 0}
-            className={`flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold rounded-md sm:rounded-lg transition-all ${
+            className={`hidden md:flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold rounded-md sm:rounded-lg transition-all ${
               completedBuildingCount > 0 && !isRunning
                 ? 'text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-xs shadow-indigo-500/20'
                 : 'text-slate-400 bg-slate-100 dark:bg-neutral-800/80 cursor-not-allowed border border-slate-200 dark:border-neutral-800'
@@ -172,49 +174,59 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
 
-          <div className="h-4 sm:h-5 w-px bg-slate-200 dark:bg-slate-800 mx-0.5 sm:mx-1" />
+          {/* Desktop Toolbar Icons */}
+          <div className="hidden sm:flex items-center gap-1">
+            <div className="h-4 sm:h-5 w-px bg-slate-200 dark:bg-slate-800 mx-0.5 sm:mx-1" />
 
-          {/* Quick Refresh */}
-          <button
-            onClick={onResetQueue}
-            className="p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-            title="Reset queue"
-          >
-            <RotateCcw className="w-4 h-4" />
-          </button>
+            <button
+              onClick={onResetQueue}
+              className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              title="Reset queue"
+            >
+              <RotateCcw className="w-4 h-4" />
+            </button>
 
-          {/* Check Updates Modal Toggle */}
-          <button
-            onClick={onOpenUpdateModal}
-            className="p-2 text-slate-500 hover:text-blue-600 dark:text-neutral-400 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
-            title={`Check for Updates (v${appVersion})`}
-          >
-            <ArrowUpCircle className="w-4 h-4" />
-          </button>
+            <button
+              onClick={onOpenUpdateModal}
+              className="p-1.5 sm:p-2 text-slate-500 hover:text-blue-600 dark:text-neutral-400 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
+              title={`Check for Updates (v${appVersion})`}
+            >
+              <ArrowUpCircle className="w-4 h-4" />
+            </button>
 
-          {/* Settings Modal Toggle */}
-          <button
-            onClick={onOpenSettings}
-            className="p-2 text-slate-500 hover:text-slate-700 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
-            title="Portal & SSO Configuration"
-          >
-            <Settings className="w-4 h-4" />
-          </button>
+            <button
+              onClick={onOpenSettings}
+              className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-700 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
+              title="Portal & SSO Configuration"
+            >
+              <Settings className="w-4 h-4" />
+            </button>
 
-          {/* Dark / Light Toggle */}
-          <button
-            onClick={onToggleDarkMode}
-            className="p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          >
-            {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4" />}
-          </button>
-
-          {/* Online status badge */}
-          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/80">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>{isRunning ? 'Running' : onlineStatus}</span>
+            <button
+              onClick={onToggleDarkMode}
+              className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4" />}
+            </button>
           </div>
+
+          {/* Mobile Grid Menu Trigger Button */}
+          <button
+            onClick={onOpenMobileMenu}
+            className="sm:hidden p-1.5 text-slate-700 dark:text-neutral-200 bg-slate-100 dark:bg-neutral-800 hover:bg-slate-200 dark:hover:bg-neutral-700 rounded-md transition-colors flex items-center justify-center relative"
+            title="Open Quick Actions Menu"
+          >
+            <div className="grid grid-cols-2 gap-0.5 w-3.5 h-3.5">
+              <span className="w-1.5 h-1.5 bg-current rounded-xs" />
+              <span className="w-1.5 h-1.5 bg-current rounded-xs" />
+              <span className="w-1.5 h-1.5 bg-current rounded-xs" />
+              <span className="w-1.5 h-1.5 bg-current rounded-xs" />
+            </div>
+            {completedBuildingCount > 0 && (
+              <span className="w-2 h-2 rounded-full bg-indigo-500 absolute -top-0.5 -right-0.5" />
+            )}
+          </button>
 
         </div>
 
