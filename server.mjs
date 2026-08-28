@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
+import { WebSocketServer, WebSocket } from 'ws';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,6 +15,7 @@ const ENGINE_SCRIPT = path.join(__dirname, 'engine', 'runner.mjs');
 // Global runner process state
 let activeChild = null;
 const sseClients = new Set();
+const wsClients = new Map(); // WebSocket -> { clientType: 'desktop' | 'web', version: string, id: string }
 
 // MIME Types Map
 const MIME_TYPES = {
@@ -75,6 +77,29 @@ function saveAppState() {
   }
 }
 
+function hasConnectedDesktop() {
+  for (const [ws, meta] of wsClients.entries()) {
+    if (meta.clientType === 'desktop' && ws.readyState === WebSocket.OPEN) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Broadcast WebSocket message to all (or excluding sender)
+function broadcastWS(msgObj, excludeWs = null) {
+  const json = JSON.stringify(msgObj);
+  for (const [ws] of wsClients.entries()) {
+    if (ws !== excludeWs && ws.readyState === WebSocket.OPEN) {
+      try {
+        ws.send(json);
+      } catch {
+        wsClients.delete(ws);
+      }
+    }
+  }
+}
+
 // Broadcast SSE message to all connected web clients
 function broadcastSSE(type, payload) {
   const data = JSON.stringify({ type, payload });
@@ -88,24 +113,142 @@ function broadcastSSE(type, payload) {
   }
 }
 
+// Unified Broadcast across WebSocket & SSE
+function broadcastAll(type, payload, excludeWs = null) {
+  broadcastWS({ type, payload }, excludeWs);
+  broadcastSSE(type, payload);
+}
+
 const PUBLIC_URL = process.env.PUBLIC_URL || 'https://homebinary.endrisusanto.my.id';
 
-// Periodic SSE Keep-Alive Ping (10s interval for Cloudflare Tunnel / Reverse Proxy)
+// Periodic SSE & WebSocket Ping
 setInterval(() => {
   for (const client of sseClients) {
-    try {
-      client.write(': ping\n\n');
-    } catch {
-      sseClients.delete(client);
+    try { client.write(': ping\n\n'); } catch { sseClients.delete(client); }
+  }
+  for (const [ws] of wsClients.entries()) {
+    if (ws.readyState === WebSocket.OPEN) {
+      try { ws.ping(); } catch { wsClients.delete(ws); }
     }
   }
 }, 10000);
+
+// Helper to spawn server-side runner
+function startServerRunner(payload) {
+  if (activeChild && !activeChild.killed) {
+    try { activeChild.kill('SIGTERM'); } catch {}
+  }
+
+  if (payload.items && Array.isArray(payload.items)) {
+    const map = new Map(payload.items.map(x => [x.id, x]));
+    appState.items = appState.items.map(it => map.get(it.id) || it);
+    for (const it of payload.items) {
+      if (!appState.items.some(x => x.id === it.id)) {
+        appState.items.push(it);
+      }
+    }
+  }
+  appState.isRunning = true;
+  saveAppState();
+
+  broadcastAll('batch-started', { isRunning: true });
+
+  const child = spawn('node', [ENGINE_SCRIPT], {
+    cwd: path.join(__dirname, 'engine'),
+    stdio: ['pipe', 'pipe', 'pipe'],
+  });
+
+  activeChild = child;
+
+  child.stdin.write(JSON.stringify(payload));
+  child.stdin.end();
+
+  let buffer = '';
+  child.stdout.on('data', data => {
+    buffer += data.toString();
+    const lines = buffer.split('\n');
+    buffer = lines.pop();
+
+    for (const line of lines) {
+      if (!line.trim()) continue;
+      try {
+        const parsed = JSON.parse(line);
+        if (parsed.type === 'item-status-update') {
+          const update = parsed.payload;
+          appState.items = appState.items.map(it => {
+            if ((update.id && it.id === update.id) || (update.pdaVersion && it.pdaVersion === update.pdaVersion) || (update.index !== undefined && it.index === update.index)) {
+              return {
+                ...it,
+                status: update.status || it.status,
+                buildId: update.buildId || update.build_id || it.buildId,
+                message: update.message || it.message,
+                error: update.error || it.error,
+                progressPercent: update.progressPercent ?? (update.status === 'success' ? 100 : it.progressPercent),
+              };
+            }
+            return it;
+          });
+          saveAppState();
+          broadcastAll('item-status-update', update);
+        } else if (parsed.type === 'task-log') {
+          const logEntry = {
+            id: Math.random().toString(36).substring(2, 9),
+            timestamp: new Date().toLocaleTimeString(),
+            level: parsed.payload?.level || 'info',
+            message: parsed.payload?.message || '',
+            index: parsed.payload?.index,
+          };
+          appState.logs.push(logEntry);
+          broadcastAll('task-log', logEntry);
+        } else if (parsed.type === 'task-finished' || parsed.type === 'batch-finished') {
+          appState.isRunning = false;
+          saveAppState();
+          broadcastAll('task-finished', parsed.payload);
+        }
+      } catch {
+        const logEntry = {
+          id: Math.random().toString(36).substring(2, 9),
+          timestamp: new Date().toLocaleTimeString(),
+          level: 'info',
+          message: line,
+        };
+        appState.logs.push(logEntry);
+        broadcastAll('task-log', logEntry);
+      }
+    }
+  });
+
+  child.stderr.on('data', data => {
+    const text = data.toString().trim();
+    if (text) {
+      const logEntry = {
+        id: Math.random().toString(36).substring(2, 9),
+        timestamp: new Date().toLocaleTimeString(),
+        level: 'warn',
+        message: text,
+      };
+      appState.logs.push(logEntry);
+      broadcastAll('task-log', logEntry);
+    }
+  });
+
+  child.on('close', code => {
+    if (activeChild === child) activeChild = null;
+    appState.isRunning = false;
+    saveAppState();
+    broadcastAll('task-finished', {
+      code,
+      success_count: appState.items.filter(x => x.status === 'success').length,
+      failed_count: appState.items.filter(x => x.status === 'failed').length,
+    });
+  });
+}
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   const pathname = url.pathname;
 
-  // Cloudflare / Reverse Proxy CORS & Security headers
+  // CORS & Security headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
@@ -116,21 +259,18 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // =========================================================================
-  // API ENDPOINTS
-  // =========================================================================
-
   // 1. Healthcheck
   if (pathname === '/api/health' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ 
       status: 'ok', 
-      version: '0.4.9', 
-      mode: 'web', 
+      version: '0.5.4', 
+      mode: 'web-socket-synced', 
       publicUrl: PUBLIC_URL,
-      clients: sseClients.size,
+      wsClients: wsClients.size,
+      desktopConnected: hasConnectedDesktop(),
       itemsCount: appState.items.length,
-      isRunning: !!activeChild,
+      isRunning: appState.isRunning || !!activeChild,
     }));
     return;
   }
@@ -142,7 +282,8 @@ const server = http.createServer(async (req, res) => {
       items: appState.items,
       logs: appState.logs.slice(-200),
       portalConfig: appState.portalConfig,
-      isRunning: !!activeChild,
+      isRunning: appState.isRunning || !!activeChild,
+      desktopConnected: hasConnectedDesktop(),
       lastUpdated: appState.lastUpdated,
     }));
     return;
@@ -167,11 +308,11 @@ const server = http.createServer(async (req, res) => {
         appState.lastUpdated = new Date().toISOString();
         saveAppState();
 
-        // Broadcast updated state to all connected desktop and web clients
-        broadcastSSE('state-sync', {
+        broadcastAll('state-sync', {
           items: appState.items,
           portalConfig: appState.portalConfig,
-          isRunning: !!activeChild,
+          isRunning: appState.isRunning || !!activeChild,
+          desktopConnected: hasConnectedDesktop(),
           lastUpdated: appState.lastUpdated,
         });
 
@@ -185,164 +326,59 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 3. Server-Sent Events (SSE) Stream with Cloudflare Proxy No-Buffering
+  // 3. Server-Sent Events (SSE) Stream
   if (pathname === '/api/events' && req.method === 'GET') {
     res.writeHead(200, {
       'Content-Type': 'text/event-stream; charset=utf-8',
       'Cache-Control': 'no-cache, no-transform',
       'Connection': 'keep-alive',
-      'X-Accel-Buffering': 'no', // Disable proxy buffering (Nginx / Cloudflare)
+      'X-Accel-Buffering': 'no',
     });
     res.write(': connected\n\n');
     sseClients.add(res);
 
-    // Immediately send current synced state to new client
     const initialSync = JSON.stringify({
       type: 'state-sync',
       payload: {
         items: appState.items,
         portalConfig: appState.portalConfig,
-        isRunning: !!activeChild,
+        isRunning: appState.isRunning || !!activeChild,
+        desktopConnected: hasConnectedDesktop(),
         lastUpdated: appState.lastUpdated,
       }
     });
     res.write(`data: ${initialSync}\n\n`);
 
-    req.on('close', () => {
-      sseClients.delete(res);
-    });
+    req.on('close', () => { sseClients.delete(res); });
     return;
   }
 
-  // 4. Start Batch Runner
+  // 4. Start Batch Runner HTTP Endpoint
   if (pathname === '/api/batch/start' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => { body += chunk; });
     req.on('end', () => {
       try {
         const payload = JSON.parse(body || '{}');
-
-        // Cancel existing process if running
-        if (activeChild && !activeChild.killed) {
-          try { activeChild.kill('SIGTERM'); } catch {}
-        }
-
-        // Update items in state if provided
-        if (payload.items && Array.isArray(payload.items)) {
-          const map = new Map(payload.items.map(x => [x.id, x]));
-          appState.items = appState.items.map(it => map.get(it.id) || it);
-          // If items were new, append
-          for (const it of payload.items) {
-            if (!appState.items.some(x => x.id === it.id)) {
-              appState.items.push(it);
-            }
+        
+        // If desktop is connected, route execution to Windows Desktop!
+        const desktopEntries = Array.from(wsClients.entries()).filter(([w, m]) => m.clientType === 'desktop' && w.readyState === WebSocket.OPEN);
+        if (desktopEntries.length > 0) {
+          for (const [dWs] of desktopEntries) {
+            dWs.send(JSON.stringify({ type: 'execute-batch-local', payload }));
           }
-        }
-        appState.isRunning = true;
-        saveAppState();
-
-        // Spawn runner.mjs
-        const child = spawn('node', [ENGINE_SCRIPT], {
-          cwd: path.join(__dirname, 'engine'),
-          stdio: ['pipe', 'pipe', 'pipe'],
-        });
-
-        activeChild = child;
-
-        // Feed JSON payload to stdin
-        child.stdin.write(JSON.stringify(payload));
-        child.stdin.end();
-
-        // Stream stdout line by line
-        let buffer = '';
-        child.stdout.on('data', data => {
-          buffer += data.toString();
-          const lines = buffer.split('\n');
-          buffer = lines.pop(); // Keep incomplete trailing fragment
-
-          for (const line of lines) {
-            const trimmed = line.trim();
-            if (!trimmed) continue;
-            try {
-              const event = JSON.parse(trimmed);
-              if (event && event.type) {
-                // Update persistent item status
-                if (event.type === 'item-status-update' && event.payload) {
-                  const p = event.payload;
-                  appState.items = appState.items.map(item => {
-                    const isMatch =
-                      (p.id && item.id === p.id) ||
-                      (p.pdaVersion && item.pdaVersion === p.pdaVersion) ||
-                      (p.pda_version && item.pdaVersion === p.pda_version) ||
-                      (p.index !== undefined && p.index !== null && item.index === p.index);
-                    if (!isMatch) return item;
-                    return {
-                      ...item,
-                      status: p.status || item.status,
-                      message: p.message || item.message,
-                      error: p.error || item.error,
-                      buildId: p.buildId || p.build_id || item.buildId,
-                      progressPercent: p.progressPercent ?? item.progressPercent,
-                    };
-                  });
-                  saveAppState();
-                } else if (event.type === 'task-log' && event.payload) {
-                  const logEntry = {
-                    id: Math.random().toString(36).substring(2, 9),
-                    timestamp: event.payload.timestamp || new Date().toLocaleTimeString(),
-                    level: event.payload.level || 'info',
-                    message: event.payload.message || '',
-                    index: event.payload.index,
-                  };
-                  appState.logs.push(logEntry);
-                  if (appState.logs.length > 500) appState.logs.shift();
-                }
-
-                broadcastSSE(event.type, event);
-              }
-            } catch {
-              // Raw non-JSON output -> convert to log
-              const logEntry = {
-                id: Math.random().toString(36).substring(2, 9),
-                timestamp: new Date().toLocaleTimeString(),
-                level: 'info',
-                message: trimmed,
-              };
-              appState.logs.push(logEntry);
-              broadcastSSE('task-log', logEntry);
-            }
-          }
-        });
-
-        child.stderr.on('data', data => {
-          const text = data.toString().trim();
-          if (text) {
-            const logEntry = {
-              id: Math.random().toString(36).substring(2, 9),
-              timestamp: new Date().toLocaleTimeString(),
-              level: 'warn',
-              message: text,
-            };
-            appState.logs.push(logEntry);
-            broadcastSSE('task-log', logEntry);
-          }
-        });
-
-        child.on('close', code => {
-          if (activeChild === child) {
-            activeChild = null;
-          }
-          appState.isRunning = false;
-          saveAppState();
-          broadcastSSE('task-finished', {
-            code,
-            success_count: appState.items.filter(x => x.status === 'success').length,
-            failed_count: appState.items.filter(x => x.status === 'failed').length,
+          broadcastAll('task-log', {
+            level: 'info',
+            message: '⚡ [Sync] Dispatched batch execution command to connected Windows Desktop app.',
+            timestamp: new Date().toLocaleTimeString(),
           });
-        });
-
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ status: 'started' }));
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ status: 'dispatched-to-desktop' }));
+        } else {
+          startServerRunner(payload);
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ status: 'started-on-server' }));
+        }
       } catch (err) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: err.message }));
@@ -351,23 +387,16 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 4. Cancel Batch Runner
+  // 4b. Cancel Batch Runner
   if (pathname === '/api/batch/cancel' && req.method === 'POST') {
+    broadcastWS({ type: 'cancel-batch' });
     if (activeChild && !activeChild.killed) {
-      try {
-        activeChild.kill('SIGTERM');
-        setTimeout(() => {
-          try { activeChild?.kill('SIGKILL'); } catch {}
-          activeChild = null;
-        }, 1000);
-      } catch {}
-      broadcastSSE('task-log', {
-        level: 'warn',
-        message: 'Batch runner cancellation requested by user.',
-        timestamp: new Date().toLocaleTimeString(),
-      });
+      try { activeChild.kill('SIGTERM'); } catch {}
+      activeChild = null;
     }
-    activeChild = null;
+    appState.isRunning = false;
+    saveAppState();
+    broadcastAll('task-finished', { cancelled: true });
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'cancelled' }));
     return;
@@ -380,14 +409,13 @@ const server = http.createServer(async (req, res) => {
 
     (async () => {
       try {
-        broadcastSSE('task-log', {
+        broadcastAll('task-log', {
           level: 'info',
           message: '📥 [Remote Update] Pulling latest updates from GitHub repository...',
           timestamp: new Date().toLocaleTimeString(),
         });
 
-        // Broadcast remote update trigger to all connected desktop clients
-        broadcastSSE('remote-desktop-update', {
+        broadcastAll('remote-desktop-update', {
           action: 'auto-update',
           timestamp: new Date().toISOString(),
           message: 'Remote update trigger broadcasted to desktop clients.'
@@ -405,10 +433,9 @@ const server = http.createServer(async (req, res) => {
             });
           });
 
-        // Try git pull if git repo exists
         try {
           const gitOut = await runCmd('git', ['pull', 'origin', 'main']);
-          broadcastSSE('task-log', {
+          broadcastAll('task-log', {
             level: 'info',
             message: `📦 [Git Pull] ${gitOut.trim().split('\n')[0] || 'Code up to date'}`,
             timestamp: new Date().toLocaleTimeString(),
@@ -417,7 +444,7 @@ const server = http.createServer(async (req, res) => {
           console.warn('Git pull notice (container mode):', gitErr.message);
         }
 
-        broadcastSSE('task-log', {
+        broadcastAll('task-log', {
           level: 'info',
           message: '🔨 [Remote Update] Rebuilding frontend assets with Vite...',
           timestamp: new Date().toLocaleTimeString(),
@@ -425,31 +452,28 @@ const server = http.createServer(async (req, res) => {
 
         try {
           await runCmd('npm', ['run', 'build']);
-          broadcastSSE('task-log', {
+          broadcastAll('task-log', {
             level: 'success',
             message: '✅ [Remote Update] Frontend rebuilt successfully!',
             timestamp: new Date().toLocaleTimeString(),
           });
         } catch (buildErr) {
-          broadcastSSE('task-log', {
+          broadcastAll('task-log', {
             level: 'warn',
             message: `Build notice: ${buildErr.message}`,
             timestamp: new Date().toLocaleTimeString(),
           });
         }
 
-        broadcastSSE('task-log', {
+        broadcastAll('task-log', {
           level: 'success',
           message: '🚀 [Remote Update] Restarting server container with new version...',
           timestamp: new Date().toLocaleTimeString(),
         });
 
-        setTimeout(() => {
-          process.exit(0); // Graceful exit -> Docker restart policy triggers instant restart
-        }, 1500);
-
+        setTimeout(() => { process.exit(0); }, 1500);
       } catch (err) {
-        broadcastSSE('task-log', {
+        broadcastAll('task-log', {
           level: 'error',
           message: `❌ [Remote Update Error] ${err.message}`,
           timestamp: new Date().toLocaleTimeString(),
@@ -466,13 +490,13 @@ const server = http.createServer(async (req, res) => {
     req.on('end', () => {
       try {
         const payload = JSON.parse(body || '{}');
-        broadcastSSE('remote-desktop-update', {
+        broadcastAll('remote-desktop-update', {
           action: 'auto-update',
           targetVersion: payload.version || 'latest',
           timestamp: new Date().toISOString(),
           message: 'Remote update trigger broadcasted to desktop clients.'
         });
-        broadcastSSE('task-log', {
+        broadcastAll('task-log', {
           level: 'warn',
           message: '📡 [Remote Trigger] Broadcasted auto-update command to all connected Windows Desktop apps.',
           timestamp: new Date().toLocaleTimeString(),
@@ -493,49 +517,200 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET') {
     let filePath = path.join(DIST_DIR, pathname);
 
-    // If root or directory, serve index.html
-    if (pathname === '/' || !path.extname(pathname)) {
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+      filePath = path.join(filePath, 'index.html');
+    }
+
+    if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
       filePath = path.join(DIST_DIR, 'index.html');
     }
 
-    fs.stat(filePath, (err, stats) => {
-      if (err || !stats.isFile()) {
-        // Fallback to index.html for SPA client-side routing
-        const fallbackPath = path.join(DIST_DIR, 'index.html');
-        fs.readFile(fallbackPath, (fallbackErr, content) => {
-          if (fallbackErr) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('404 Not Found - Frontend build not generated. Run `npm run build` first.');
-          } else {
-            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-            res.end(content);
-          }
-        });
-        return;
-      }
-
+    if (fs.existsSync(filePath)) {
       const ext = path.extname(filePath).toLowerCase();
       const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+      const fileStream = fs.createReadStream(filePath);
+      res.writeHead(200, { 'Content-Type': contentType });
+      fileStream.pipe(res);
+      return;
+    }
 
-      res.writeHead(200, {
-        'Content-Type': contentType,
-        'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=31536000',
-      });
-
-      fs.createReadStream(filePath).pipe(res);
-    });
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('404 Not Found');
     return;
   }
 
-  res.writeHead(404, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ error: 'Endpoint not found' }));
+  res.writeHead(405, { 'Content-Type': 'text/plain' });
+  res.end('Method Not Allowed');
 });
 
-server.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(` Build HomeBinary Web App Server`);
-  console.log(` Local Port:      http://localhost:${PORT}`);
-  console.log(` Cloudflare URL:  ${PUBLIC_URL}`);
-  console.log(` Mode:            Docker / Cloudflare Tunnel Web App`);
-  console.log(`====================================================`);
+// ===========================================================================
+// WEBSOCKET SERVER ATTACHMENT (/ws)
+// ===========================================================================
+const wss = new WebSocketServer({ server, path: '/ws' });
+
+wss.on('connection', (ws, req) => {
+  const meta = {
+    clientType: 'web',
+    version: '0.5.4',
+    id: Math.random().toString(36).substring(2, 9),
+    ip: req.socket.remoteAddress,
+  };
+  wsClients.set(ws, meta);
+  console.log(`[WebSocket] New client connected (${meta.id}) from ${meta.ip}. Total clients: ${wsClients.size}`);
+
+  // Send initial full state
+  ws.send(JSON.stringify({
+    type: 'state-sync',
+    payload: {
+      items: appState.items,
+      portalConfig: appState.portalConfig,
+      logs: appState.logs.slice(-100),
+      isRunning: appState.isRunning || !!activeChild,
+      desktopConnected: hasConnectedDesktop(),
+      lastUpdated: appState.lastUpdated,
+    }
+  }));
+
+  ws.on('message', (raw) => {
+    try {
+      const msg = JSON.parse(raw.toString());
+      const { type, payload } = msg;
+
+      switch (type) {
+        case 'register':
+          if (payload?.clientType) {
+            meta.clientType = payload.clientType;
+            meta.version = payload.version || meta.version;
+            console.log(`[WebSocket] Client ${meta.id} registered as ${meta.clientType} (v${meta.version})`);
+            broadcastAll('desktop-status', { online: hasConnectedDesktop() });
+          }
+          break;
+
+        case 'state-push':
+          if (payload?.items && Array.isArray(payload.items)) {
+            appState.items = payload.items;
+          }
+          if (payload?.portalConfig) {
+            appState.portalConfig = { ...appState.portalConfig, ...payload.portalConfig };
+          }
+          appState.lastUpdated = new Date().toISOString();
+          saveAppState();
+          broadcastAll('state-sync', {
+            items: appState.items,
+            portalConfig: appState.portalConfig,
+            isRunning: appState.isRunning || !!activeChild,
+            desktopConnected: hasConnectedDesktop(),
+            lastUpdated: appState.lastUpdated,
+          }, ws);
+          break;
+
+        case 'item-status-update':
+          if (payload) {
+            appState.items = appState.items.map(it => {
+              if ((payload.id && it.id === payload.id) || (payload.pdaVersion && it.pdaVersion === payload.pdaVersion) || (payload.index !== undefined && it.index === payload.index)) {
+                return {
+                  ...it,
+                  status: payload.status || it.status,
+                  buildId: payload.buildId || payload.build_id || it.buildId,
+                  message: payload.message || it.message,
+                  error: payload.error || it.error,
+                  progressPercent: payload.progressPercent ?? (payload.status === 'success' ? 100 : it.progressPercent),
+                };
+              }
+              return it;
+            });
+            saveAppState();
+            broadcastAll('item-status-update', payload, ws);
+          }
+          break;
+
+        case 'task-log':
+          if (payload) {
+            const logEntry = {
+              id: Math.random().toString(36).substring(2, 9),
+              timestamp: payload.timestamp || new Date().toLocaleTimeString(),
+              level: payload.level || 'info',
+              message: payload.message || '',
+              index: payload.index,
+            };
+            appState.logs.push(logEntry);
+            broadcastAll('task-log', logEntry, ws);
+          }
+          break;
+
+        case 'batch-started':
+          appState.isRunning = true;
+          saveAppState();
+          broadcastAll('batch-started', payload, ws);
+          break;
+
+        case 'task-finished':
+        case 'batch-finished':
+          appState.isRunning = false;
+          saveAppState();
+          broadcastAll('task-finished', payload, ws);
+          break;
+
+        case 'trigger-batch':
+        case 'trigger-batch-runner':
+          {
+            const desktopEntries = Array.from(wsClients.entries()).filter(([w, m]) => m.clientType === 'desktop' && w.readyState === WebSocket.OPEN);
+            if (desktopEntries.length > 0) {
+              for (const [dWs] of desktopEntries) {
+                dWs.send(JSON.stringify({ type: 'execute-batch-local', payload }));
+              }
+              broadcastAll('task-log', {
+                level: 'info',
+                message: '⚡ [Sync] Dispatched batch execution command to connected Windows Desktop app.',
+                timestamp: new Date().toLocaleTimeString(),
+              });
+            } else {
+              startServerRunner(payload);
+            }
+          }
+          break;
+
+        case 'cancel-batch':
+          broadcastWS({ type: 'cancel-batch' }, ws);
+          if (activeChild && !activeChild.killed) {
+            try { activeChild.kill('SIGTERM'); } catch {}
+            activeChild = null;
+          }
+          appState.isRunning = false;
+          saveAppState();
+          broadcastAll('task-finished', { cancelled: true });
+          break;
+
+        case 'trigger-fetch-ids':
+          {
+            const desktopEntries = Array.from(wsClients.entries()).filter(([w, m]) => m.clientType === 'desktop' && w.readyState === WebSocket.OPEN);
+            if (desktopEntries.length > 0) {
+              for (const [dWs] of desktopEntries) {
+                dWs.send(JSON.stringify({ type: 'execute-fetch-ids', payload }));
+              }
+            } else {
+              startServerRunner({ ...payload, portal: { ...payload.portal, fetchOnly: true } });
+            }
+          }
+          break;
+      }
+    } catch (err) {
+      console.warn('[WebSocket Message Error]', err);
+    }
+  });
+
+  ws.on('close', () => {
+    wsClients.delete(ws);
+    console.log(`[WebSocket] Client disconnected (${meta.id}). Total clients: ${wsClients.size}`);
+    broadcastAll('desktop-status', { online: hasConnectedDesktop() });
+  });
+});
+
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n=============================================================`);
+  console.log(`🚀 HomeBinary Realtime Server running at:`);
+  console.log(`   - Local:    http://localhost:${PORT}`);
+  console.log(`   - Public:   ${PUBLIC_URL}`);
+  console.log(`   - WS:       ws://localhost:${PORT}/ws & wss://${new URL(PUBLIC_URL).host}/ws`);
+  console.log(`=============================================================\n`);
 });

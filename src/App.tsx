@@ -7,6 +7,7 @@ import { SettingsModal } from './components/SettingsModal';
 import { TerminalLog } from './components/TerminalLog';
 import { UpdateModal } from './components/UpdateModal';
 import { MobileMenuModal } from './components/MobileMenuModal';
+import { wsService } from './services/websocket';
 import { BatchItem, PortalConfig, LogEntry, BatchSummary, ItemStatus } from './types/batch';
 
 async function getTauri() {
@@ -174,9 +175,17 @@ export function App() {
 
   const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
   const activeSyncUrl = portalConfig.syncServerUrl || (isTauri ? 'https://homebinary.endrisusanto.my.id' : (typeof window !== 'undefined' ? window.location.origin : ''));
+  const [, setIsDesktopConnected] = useState(false);
 
-  // Push local updates to Central Sync Server
-  const pushStateToServer = useCallback(async (newItems?: BatchItem[], newConfig?: PortalConfig) => {
+  // Push local updates to Central Sync Server (via WebSocket & HTTP fallback)
+  const pushStateToServer = useCallback(async (newItems?: BatchItem[], newConfig = portalConfig) => {
+    // 1. Send via WebSocket for instant 0ms latency relay
+    wsService.send('state-push', {
+      items: newItems,
+      portalConfig: newConfig,
+    });
+
+    // 2. Also send via HTTP POST for persistence fallback
     if (!activeSyncUrl) return;
     try {
       await fetch(`${activeSyncUrl}/api/state`, {
@@ -190,7 +199,7 @@ export function App() {
     } catch (e) {
       console.warn('[Sync Push Notice]', e);
     }
-  }, [activeSyncUrl]);
+  }, [activeSyncUrl, portalConfig]);
 
   // Universal status update & finished handlers
   const handleStatusPayload = useCallback((payload: any) => {
@@ -234,145 +243,209 @@ export function App() {
     );
   }, []);
 
-  // Listen to Tauri events and Central Server SSE Stream (100% Live Mirroring)
+  // Listen to WebSocket & local Tauri events for 100% full-duplex sync
   useEffect(() => {
     let unlistenLog: any;
     let unlistenStatus: any;
     let unlistenFinished: any;
-    let eventSource: EventSource | null = null;
 
-    async function setupListeners() {
-      // 1. Initial State Hydration from Central Server
-      if (activeSyncUrl) {
-        try {
-          const res = await fetch(`${activeSyncUrl}/api/state`);
-          if (res.ok) {
-            const data = await res.json();
-            if (data.items && Array.isArray(data.items) && data.items.length > 0) {
-              setItems(data.items);
-            }
-            if (data.isRunning !== undefined) {
-              setIsRunning(data.isRunning);
-            }
-            if (data.logs && Array.isArray(data.logs) && data.logs.length > 0) {
-              setLogs(data.logs.slice(-100));
-            }
-          }
-        } catch (err) {
-          console.warn('[Initial Hydration Notice]', err);
-        }
-      }
+    // 1. Connect to Central WebSocket Server
+    if (activeSyncUrl) {
+      wsService.init(activeSyncUrl, isTauri ? 'desktop' : 'web', appVersion);
 
-      // 2. Connect to Central Server SSE for Realtime Mirroring
-      if (activeSyncUrl) {
-        try {
-          eventSource = new EventSource(`${activeSyncUrl}/api/events`);
-          eventSource.onmessage = async (event) => {
-            try {
-              const msg = JSON.parse(event.data);
-              if (msg.type === 'state-sync' && msg.payload) {
-                const p = msg.payload;
-                if (p.items && Array.isArray(p.items)) {
-                  setItems(p.items);
-                }
-                if (p.isRunning !== undefined) {
-                  setIsRunning(p.isRunning);
-                }
-              } else if (msg.type === 'task-log') {
-                const p = msg.payload;
-                if (p) addLog(p.level || 'info', p.message || '', p.index);
-              } else if (msg.type === 'item-status-update') {
-                handleStatusPayload(msg.payload);
-              } else if (msg.type === 'task-finished' || msg.type === 'batch-finished') {
-                handleFinishedPayload();
-              } else if (msg.type === 'remote-desktop-update') {
-                if (isTauri) {
-                  addLog('warn', '⚡ [Remote Trigger] Received remote command to check and install Desktop App update...');
-                  try {
-                    const { check } = await import('@tauri-apps/plugin-updater');
-                    const { relaunch } = await import('@tauri-apps/plugin-process');
-                    const update = await check();
-                    if (update) {
-                      addLog('info', `[Remote Updater] Found update v${update.version}. Downloading & installing...`);
-                      await update.downloadAndInstall();
-                      addLog('success', `[Remote Updater] Update v${update.version} installed! Relaunching Windows Desktop App...`);
-                      await relaunch();
-                    } else {
-                      addLog('info', '[Remote Updater] Desktop application is already at the latest version.');
-                    }
-                  } catch (err: any) {
-                    addLog('error', `[Remote Updater] Failed auto-installing update: ${err.message || err}`);
-                  }
-                }
-              }
-            } catch {}
-          };
-        } catch (e) {
-          console.warn('[SSE Connection Notice]', e);
-        }
-      }
+      const unsubscribe = wsService.subscribe(async (type, payload) => {
+        switch (type) {
+          case 'state-sync':
+            if (payload?.items && Array.isArray(payload.items)) {
+              setItems(payload.items);
+            }
+            if (payload?.portalConfig) {
+              setPortalConfig((prev) => ({ ...prev, ...payload.portalConfig }));
+            }
+            if (payload?.logs && Array.isArray(payload.logs)) {
+              setLogs(payload.logs.slice(-100));
+            }
+            if (payload?.isRunning !== undefined) {
+              setIsRunning(payload.isRunning);
+            }
+            if (payload?.desktopConnected !== undefined) {
+              setIsDesktopConnected(payload.desktopConnected);
+            }
+            break;
 
-      // 3. Desktop Local Tauri Listeners
-      if (isTauri) {
-        const tauri = await getTauri();
-        if (tauri && tauri.event) {
-          unlistenLog = await tauri.event.listen('task-log', (event: any) => {
-            const payload = event.payload;
+          case 'desktop-status':
+            if (payload?.online !== undefined) {
+              setIsDesktopConnected(payload.online);
+            }
+            break;
+
+          case 'item-status-update':
+            handleStatusPayload(payload);
+            break;
+
+          case 'task-log':
             if (payload) {
               addLog(payload.level || 'info', payload.message || '', payload.index);
             }
-          });
+            break;
 
-          unlistenStatus = await tauri.event.listen('item-status-update', (event: any) => {
-            handleStatusPayload(event.payload);
-          });
+          case 'batch-started':
+            setIsRunning(true);
+            break;
 
-          unlistenFinished = await tauri.event.listen('task-finished', () => {
+          case 'task-finished':
+          case 'batch-finished':
             handleFinishedPayload();
+            break;
+
+          case 'execute-batch-local':
+            // Remote execution command received from Web App!
+            if (isTauri) {
+              addLog('info', '⚡ [Remote Sync] Starting batch execution locally on Windows Desktop (Browser session)...');
+              const tauri = await getTauri();
+              if (tauri && tauri.core) {
+                try {
+                  setIsRunning(true);
+                  wsService.send('batch-started', { isRunning: true });
+                  await tauri.core.invoke('start_batch_runner', { payload });
+                } catch (err: any) {
+                  addLog('error', `Local batch run error: ${err?.message || err}`);
+                  setIsRunning(false);
+                  wsService.send('task-finished', { error: err?.message || String(err) });
+                }
+              }
+            }
+            break;
+
+          case 'cancel-batch':
+            if (isTauri) {
+              const tauri = await getTauri();
+              if (tauri && tauri.core) {
+                try {
+                  await tauri.core.invoke('cancel_batch_runner');
+                } catch {}
+              }
+            }
+            setIsRunning(false);
+            break;
+
+          case 'execute-fetch-ids':
+            if (isTauri) {
+              addLog('info', '⚡ [Remote Sync] Fetching Build IDs from Dashboard locally...');
+              const tauri = await getTauri();
+              if (tauri && tauri.core) {
+                try {
+                  setIsRunning(true);
+                  wsService.send('batch-started', { isRunning: true });
+                  await tauri.core.invoke('start_batch_runner', { payload });
+                } catch (err: any) {
+                  addLog('error', `Local fetch build IDs error: ${err?.message || err}`);
+                  setIsRunning(false);
+                }
+              }
+            }
+            break;
+
+          case 'remote-desktop-update':
+            if (isTauri) {
+              addLog('warn', '⚡ [Remote Trigger] Received remote command to check and install Desktop App update...');
+              try {
+                const { check } = await import('@tauri-apps/plugin-updater');
+                const { relaunch } = await import('@tauri-apps/plugin-process');
+                const update = await check();
+                if (update) {
+                  addLog('info', `[Remote Updater] Found update v${update.version}. Downloading & installing...`);
+                  await update.downloadAndInstall();
+                  addLog('success', `[Remote Updater] Update v${update.version} installed! Relaunching Windows Desktop App...`);
+                  await relaunch();
+                } else {
+                  addLog('info', '[Remote Updater] Desktop application is already at the latest version.');
+                }
+              } catch (err: any) {
+                addLog('error', `[Remote Updater] Failed auto-installing update: ${err.message || err}`);
+              }
+            }
+            break;
+        }
+      });
+
+      // Cleanup WS subscription on unmount / URL change
+      unlistenLog = unsubscribe;
+    }
+
+    // 2. Desktop Local Tauri Listeners (Emit to local UI & Forward to WebSocket for Web clients)
+    async function setupTauriListeners() {
+      if (isTauri) {
+        const tauri = await getTauri();
+        if (tauri && tauri.event) {
+          unlistenStatus = await tauri.event.listen('task-log', (event: any) => {
+            const payload = event.payload;
+            if (payload) {
+              addLog(payload.level || 'info', payload.message || '', payload.index);
+              // Forward in real-time to WebSocket server!
+              wsService.send('task-log', payload);
+            }
           });
+
+          unlistenFinished = await tauri.event.listen('item-status-update', (event: any) => {
+            handleStatusPayload(event.payload);
+            // Forward in real-time to WebSocket server!
+            wsService.send('item-status-update', event.payload);
+          });
+
+          const unlistenDone = await tauri.event.listen('task-finished', (event: any) => {
+            handleFinishedPayload();
+            // Forward in real-time to WebSocket server!
+            wsService.send('task-finished', event.payload || { status: 'finished' });
+          });
+
+          return () => {
+            if (unlistenStatus) unlistenStatus();
+            if (unlistenFinished) unlistenFinished();
+            if (unlistenDone) unlistenDone();
+          };
         }
       }
     }
 
-    setupListeners();
+    const tauriCleanupPromise = setupTauriListeners();
 
     return () => {
       if (unlistenLog) unlistenLog();
-      if (unlistenStatus) unlistenStatus();
-      if (unlistenFinished) unlistenFinished();
-      if (eventSource) eventSource.close();
+      tauriCleanupPromise.then((cleanup) => cleanup && cleanup());
     };
-  }, [addLog, activeSyncUrl, isTauri, handleStatusPayload, handleFinishedPayload]);
+  }, [addLog, activeSyncUrl, isTauri, appVersion, handleStatusPayload, handleFinishedPayload]);
 
   // Universal dispatch runner across Tauri & Web API
   const dispatchBatchRunner = async (payload: { portal: PortalConfig; items: BatchItem[] }) => {
     setIsRunning(true);
-    const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
+    
+    // Broadcast run event over WebSocket
+    wsService.send('trigger-batch', payload);
+
     if (isTauri) {
       const tauri = await getTauri();
       if (tauri && tauri.core) {
         try {
+          wsService.send('batch-started', { isRunning: true });
           await tauri.core.invoke('start_batch_runner', { payload });
         } catch (err: any) {
           addLog('error', `Tauri execution error: ${err?.message || err}`);
           setIsRunning(false);
+          wsService.send('task-finished', { error: err?.message || String(err) });
         }
       }
     } else {
-      // Web mode / Docker HTTP API
+      // In Web mode: WebSocket server automatically routes to connected Windows Desktop!
+      // Also send HTTP POST as fallback
       try {
-        const res = await fetch('/api/batch/start', {
+        await fetch('/api/batch/start', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || `HTTP ${res.status}`);
-        }
       } catch (err: any) {
-        addLog('error', `Web server runner error: ${err?.message || err}`);
-        setIsRunning(false);
+        console.warn('HTTP fallback start notice:', err);
       }
     }
   };
@@ -514,6 +587,8 @@ export function App() {
   // Cancel Batch Execution
   const handleCancelBatch = async () => {
     addLog('warn', 'Sending cancellation request to automation runner...');
+    wsService.send('cancel-batch');
+
     const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
     if (isTauri) {
       const tauri = await getTauri();

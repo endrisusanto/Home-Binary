@@ -1,0 +1,665 @@
+{
+  "items": [
+    {
+      "buildFingerprintName": "SM-A155F_SEA_B4_THL",
+      "pdaVersion": "A155FXXSCEZHU",
+      "cscVersion": "A155FOLECEZHU",
+      "basebandVersion": "A155FXXSCEZHU",
+      "id": "build-1787919032314-0",
+      "index": 0,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F776BE_SEA_DX",
+      "pdaVersion": "F776BXXS2AZH8",
+      "cscVersion": "F776BOXM2AZH7",
+      "basebandVersion": "F776BXXS2AZH7",
+      "id": "build-1787919032314-1",
+      "index": 1,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F971BE_SEA_DX",
+      "pdaVersion": "F971BXXU2AZHK",
+      "cscVersion": "F971BOXM2AZHK",
+      "basebandVersion": "F971BXXU2AZHK",
+      "id": "build-1787919032314-2",
+      "index": 2,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F976BE_SEA_DX",
+      "pdaVersion": "F976BXXU2AZHK",
+      "cscVersion": "F976BOXM2AZHK",
+      "basebandVersion": "F976BXXU2AZHK",
+      "id": "build-1787919032314-3",
+      "index": 3,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A185G_SEA_XME",
+      "pdaVersion": "A185GXXU0AZHB",
+      "cscVersion": "A185GOLM0AZHB",
+      "basebandVersion": "A185GXXU0AZHB",
+      "id": "build-1787919032314-4",
+      "index": 4,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
+      "pdaVersion": "S931BXXSCCZH5",
+      "cscVersion": "S931BOXMCCZH5",
+      "basebandVersion": "S931BXXSCCZH1",
+      "id": "build-1787919032314-5",
+      "index": 5,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F776BE_SEA_DX",
+      "pdaVersion": "F776BXXU2AZHJ",
+      "cscVersion": "F776BOXM2AZHJ",
+      "basebandVersion": "F776BXXU2AZHJ",
+      "id": "build-1787919032314-6",
+      "index": 6,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
+      "pdaVersion": "A566BXXSDCZHD",
+      "cscVersion": "A566BOLMDCZHD",
+      "basebandVersion": "A566BXXSDCZHD",
+      "id": "build-1787919032314-7",
+      "index": 7,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A276BE_SEA_XXV",
+      "pdaVersion": "A276BXXS3AZHA",
+      "cscVersion": "A276BOLM3AZHA",
+      "basebandVersion": "A276BXXS3AZHA",
+      "id": "build-1787919032314-8",
+      "index": 8,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X910_EUR_C2_XX",
+      "pdaVersion": "X910XXU6FZHH",
+      "cscVersion": "X910OLE6FZHH",
+      "basebandVersion": "",
+      "id": "build-1787919032314-9",
+      "index": 9,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-G525F_SEA_14_XSA",
+      "pdaVersion": "G525FXXUKEZH2",
+      "cscVersion": "G525FOLEKEZH2",
+      "basebandVersion": "G525FXXUKEZH1",
+      "id": "build-1787919032314-10",
+      "index": 10,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A075F_SEA_B4_XME",
+      "pdaVersion": "A075FXXS7CZH5",
+      "cscVersion": "A075FOLM7CZH5",
+      "basebandVersion": "A075FXXS7CZH5",
+      "id": "build-1787919032314-11",
+      "index": 11,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-G990E_SEA_16_XME",
+      "pdaVersion": "G990EXXSOHZH4",
+      "cscVersion": "G990EOLEOHZH4",
+      "basebandVersion": "G990EXXSOHZH1",
+      "id": "build-1787919032314-12",
+      "index": 12,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A155F_SEA_B4_THL",
+      "pdaVersion": "A155FXXSCEZH3",
+      "cscVersion": "A155FOLECEZH3",
+      "basebandVersion": "A155FXXSCEZH3",
+      "id": "build-1787919032314-13",
+      "index": 13,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
+      "pdaVersion": "A245FXXSEFZH6",
+      "cscVersion": "A245FOLEEFZH6",
+      "basebandVersion": "A245FXXSEFZH6",
+      "id": "build-1787919032314-14",
+      "index": 14,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X930_EUR_XX",
+      "pdaVersion": "X930XXS8BZH4",
+      "cscVersion": "X930OLM8BZH4",
+      "basebandVersion": "",
+      "id": "build-1787919032314-15",
+      "index": 15,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X730_EUR_XX",
+      "pdaVersion": "X730XXS8BZH4",
+      "cscVersion": "X730OXM8BZH4",
+      "basebandVersion": "",
+      "id": "build-1787919032314-16",
+      "index": 16,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X736B_SEA_DX",
+      "pdaVersion": "X736BXXS8BZH4",
+      "cscVersion": "X736BOXM8BZH4",
+      "basebandVersion": "X736BXXS8BZH4",
+      "id": "build-1787919032314-17",
+      "index": 17,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X700_EUR_16_XX",
+      "pdaVersion": "X700XXSBEZH3",
+      "cscVersion": "X700OLEBEZH3",
+      "basebandVersion": "",
+      "id": "build-1787919032314-18",
+      "index": 18,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A165F_SEA_XXV",
+      "pdaVersion": "A165FXXSBDZH6",
+      "cscVersion": "A165FOLEBDZH6",
+      "basebandVersion": "A165FXXSBDZH3",
+      "id": "build-1787919032314-19",
+      "index": 19,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X620_EUR_XX",
+      "pdaVersion": "X620XXU9DZH1",
+      "cscVersion": "X620OLM9DZH1",
+      "basebandVersion": "",
+      "id": "build-1787919032314-20",
+      "index": 20,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X626B_SEA_DX",
+      "pdaVersion": "X626BXXU9DZH1",
+      "cscVersion": "X626BOLM9DZH1",
+      "basebandVersion": "X626BXXU9DZH1",
+      "id": "build-1787919032314-21",
+      "index": 21,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X930_EUR_C2_XX",
+      "pdaVersion": "X930XXU7CZZ7",
+      "cscVersion": "X930OLM7CZZ7",
+      "basebandVersion": "",
+      "id": "build-1787919032314-22",
+      "index": 22,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X730_EUR_XX",
+      "pdaVersion": "X730XXU8CZZ7",
+      "cscVersion": "X730OXM8CZZ7",
+      "basebandVersion": "",
+      "id": "build-1787919032314-23",
+      "index": 23,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X610_EUR_B4_XX",
+      "pdaVersion": "X610XXSFEZH7",
+      "cscVersion": "X610OLEFEZH7",
+      "basebandVersion": "",
+      "id": "build-1787919032314-24",
+      "index": 24,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X520_EUR_XX",
+      "pdaVersion": "X520XXU9DZH1",
+      "cscVersion": "X520OLM9DZH1",
+      "basebandVersion": "",
+      "id": "build-1787919032314-25",
+      "index": 25,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A175F_SEA_PHL",
+      "pdaVersion": "A175FXXS7CZH6",
+      "cscVersion": "A175FOXM7CZH6",
+      "basebandVersion": "A175FXXS7CZH6",
+      "id": "build-1787919032314-26",
+      "index": 26,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X936B_SEA_B4_DX",
+      "pdaVersion": "X936BXXS8BZH4",
+      "cscVersion": "X936BOXM8BZH4",
+      "basebandVersion": "X936BXXS8BZH4",
+      "id": "build-1787919032314-27",
+      "index": 27,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-G990E_SEA_16_XME",
+      "pdaVersion": "G990EXXSOHZH3",
+      "cscVersion": "G990EOLEOHZH3",
+      "basebandVersion": "G990EXXSOHZH1",
+      "id": "build-1787919032314-28",
+      "index": 28,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X810_EUR_C2_XX",
+      "pdaVersion": "X810XXU6FZHH",
+      "cscVersion": "X810OLE6FZHH",
+      "basebandVersion": "",
+      "id": "build-1787919032314-29",
+      "index": 29,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-P625_SEA_B4_DX",
+      "pdaVersion": "P625XXSCCZH4",
+      "cscVersion": "P625OXMCCZH4",
+      "basebandVersion": "P625XXSCCZH4",
+      "id": "build-1787919032314-30",
+      "index": 30,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S928BE_SEA_DX",
+      "pdaVersion": "S928BXXU6EZHD",
+      "cscVersion": "S928BOLE6EZHD",
+      "basebandVersion": "S928BXXU6EZHC",
+      "id": "build-1787919032314-31",
+      "index": 31,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F966B_EUR_C2_XX",
+      "pdaVersion": "F966BXXUCCZHC",
+      "cscVersion": "F966BOXMCCZHC",
+      "basebandVersion": "F966BXXUCZZHC",
+      "id": "build-1787919032314-32",
+      "index": 32,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S921BE_SEA_DX",
+      "pdaVersion": "S921BXXUHEZHD",
+      "cscVersion": "S921BOLEHEZHD",
+      "basebandVersion": "S921BXXUHEZHC",
+      "id": "build-1787919032314-33",
+      "index": 33,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S731B_EUR_C2_XX",
+      "pdaVersion": "S731BXXU9CZH6",
+      "cscVersion": "S731BOXM9ZZH6",
+      "basebandVersion": "S731BXXU9CZH4",
+      "id": "build-1787919032314-34",
+      "index": 34,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-M556B_SEA_B4_XME",
+      "pdaVersion": "M556BXXS5DZH1",
+      "cscVersion": "M556BOLM5DZH1",
+      "basebandVersion": "M556BXXS5DZH1",
+      "id": "build-1787919032314-35",
+      "index": 35,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X710_EUR_B4_XX",
+      "pdaVersion": "X710XXU6FZHH",
+      "cscVersion": "X710OLE6FZHH",
+      "basebandVersion": "",
+      "id": "build-1787919032314-36",
+      "index": 36,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-G525F_SEA_14_XSA",
+      "pdaVersion": "G525FXXUKEZH1",
+      "cscVersion": "G525FOLEKEZH1",
+      "basebandVersion": "G525FXXUKEZH1",
+      "id": "build-1787919032314-37",
+      "index": 37,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A576BE_SEA_XME",
+      "pdaVersion": "A576BXXU4BZZ5",
+      "cscVersion": "A576BOLM4BZZ5",
+      "basebandVersion": "A576BXXU4BZG6",
+      "id": "build-1787919032314-38",
+      "index": 38,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S916BE_SEA_B4_DX",
+      "pdaVersion": "S916BXXSAFZH3",
+      "cscVersion": "S916BOLEAFZH3",
+      "basebandVersion": "S916BXXSAFZE1",
+      "id": "build-1787919032314-39",
+      "index": 39,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S918BE_SEA_B4_DX",
+      "pdaVersion": "S918BXXSAFZH3",
+      "cscVersion": "S918BOLEAFZH3",
+      "basebandVersion": "S918BXXSAFZE1",
+      "id": "build-1787919032314-40",
+      "index": 40,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A336E_SEA_16_XXV",
+      "pdaVersion": "A336EDXUJGZH1",
+      "cscVersion": "A336EOLEJGZH1",
+      "basebandVersion": "A336EDXUJGZH1",
+      "id": "build-1787919032314-41",
+      "index": 41,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X216B_SEA_16_DX",
+      "pdaVersion": "X216BXXUDEZGF",
+      "cscVersion": "X216BOLEDEZGF",
+      "basebandVersion": "X216BXXUDEZGF",
+      "id": "build-1787919032314-42",
+      "index": 42,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
+      "pdaVersion": "S931BXXSCCZH3",
+      "cscVersion": "S931BOXMCCZH3",
+      "basebandVersion": "S931BXXSCCZH1",
+      "id": "build-1787919032314-43",
+      "index": 43,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X810_EUR_B4_XX",
+      "pdaVersion": "X810XXS6EZH3",
+      "cscVersion": "X810OLE6EZH3",
+      "basebandVersion": "",
+      "id": "build-1787919032314-44",
+      "index": 44,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X400_EUR_B4_XX",
+      "pdaVersion": "X400XXS7CZH6",
+      "cscVersion": "X400OXM7CZH6",
+      "basebandVersion": "",
+      "id": "build-1787919032314-45",
+      "index": 45,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X920_EUR_B4_XX",
+      "pdaVersion": "X920XXSADZH1",
+      "cscVersion": "X920OLEADZH1",
+      "basebandVersion": "",
+      "id": "build-1787919032314-46",
+      "index": 46,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X520_EUR_B4_XX",
+      "pdaVersion": "X520XXSACZH6",
+      "cscVersion": "X520OLMACZH6",
+      "basebandVersion": "",
+      "id": "build-1787919032314-47",
+      "index": 47,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X620_EUR_B4_XX",
+      "pdaVersion": "X620XXSACZH6",
+      "cscVersion": "X620OLMACZH6",
+      "basebandVersion": "",
+      "id": "build-1787919032314-48",
+      "index": 48,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X510_EUR_B4_XX",
+      "pdaVersion": "X510XXSFEZH5",
+      "cscVersion": "X510OLEFEZH5",
+      "basebandVersion": "",
+      "id": "build-1787919032314-49",
+      "index": 49,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A276BE_SEA_XXV",
+      "pdaVersion": "A276BXXU2AZH7",
+      "cscVersion": "A276BOLM2AZH7",
+      "basebandVersion": "A276BXXU2AZH7",
+      "id": "build-1787919032314-50",
+      "index": 50,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F776BE_SEA_DX",
+      "pdaVersion": "F776BXXS2AZH9",
+      "cscVersion": "F776BOXM2AZH9",
+      "basebandVersion": "F776BXXS2AZH9",
+      "id": "build-1787919032314-51",
+      "index": 51,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-M546B_SEA_B4_XME",
+      "pdaVersion": "M546BXXSFFZH3",
+      "cscVersion": "M546BOLMFFZH3",
+      "basebandVersion": "M546BXXSFFZH3",
+      "id": "build-1787919032314-52",
+      "index": 52,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
+      "pdaVersion": "A566BXXSDCZHB",
+      "cscVersion": "A566BOLMDCZHB",
+      "basebandVersion": "A566BXXSDCZHB",
+      "id": "build-1787919032314-53",
+      "index": 53,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A556E_SEA_B4_PHL",
+      "pdaVersion": "A556EXXSHDZH6",
+      "cscVersion": "A556EOLEHDZH6",
+      "basebandVersion": "A556EXXSHDZH6",
+      "id": "build-1787919032314-54",
+      "index": 54,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X616B_SEA_B4_DX",
+      "pdaVersion": "X616BXXSFEZH5",
+      "cscVersion": "X616BOLEFEZH5",
+      "basebandVersion": "X616BXXSFEZH5",
+      "id": "build-1787919032314-55",
+      "index": 55,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X236B_SEA_B4_DX",
+      "pdaVersion": "X236BXXS7BZH2",
+      "cscVersion": "X236BOXM7BZH2",
+      "basebandVersion": "X236BXXS7BZH2",
+      "id": "build-1787919032314-56",
+      "index": 56,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X926B_SEA_B4_DX",
+      "pdaVersion": "X926BXXSADZH1",
+      "cscVersion": "X926BOXMADZH1",
+      "basebandVersion": "X926BXXSADZH1",
+      "id": "build-1787919032314-57",
+      "index": 57,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X826B_SEA_B4_DX",
+      "pdaVersion": "X826BXXSADZH1",
+      "cscVersion": "X826BOXMADZH1",
+      "basebandVersion": "X826BXXSADZH1",
+      "id": "build-1787919032314-58",
+      "index": 58,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X406B_SEA_B4_DX",
+      "pdaVersion": "X406BXXS7CZH6",
+      "cscVersion": "X406BOXM7CZH6",
+      "basebandVersion": "X406BXXS7CZH4",
+      "id": "build-1787919032314-59",
+      "index": 59,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A546E_SEA_B4_TSE",
+      "pdaVersion": "A546EXXSMFZH5",
+      "cscVersion": "A546EOLEMFZH5",
+      "basebandVersion": "A546EXXSMFZH1",
+      "id": "build-1787919032314-60",
+      "index": 60,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X626B_SEA_B4_DX",
+      "pdaVersion": "X626BXXSACZH6",
+      "cscVersion": "X626BOLMACZH6",
+      "basebandVersion": "X626BXXSACZH6",
+      "id": "build-1787919032314-61",
+      "index": 61,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F976BE_SEA_DX",
+      "pdaVersion": "F976BXXU2AZHD",
+      "cscVersion": "F976BOXM2AZHD",
+      "basebandVersion": "F976BXXU2AZHD",
+      "id": "build-1787919032314-62",
+      "index": 62,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X115_SEA_16_DX",
+      "pdaVersion": "X115XXUBDZH5",
+      "cscVersion": "X115OLEBDZH5",
+      "basebandVersion": "X115XXUBDZH5",
+      "id": "build-1787919032314-63",
+      "index": 63,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
+      "pdaVersion": "A245FXXSEFZH3",
+      "cscVersion": "A245FOLEEFZH3",
+      "basebandVersion": "A245FXXSEFZH3",
+      "id": "build-1787919032314-64",
+      "index": 64,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A336E_SEA_16_XXV",
+      "pdaVersion": "A336EDXSKGZH2",
+      "cscVersion": "A336EOLEKGZH2",
+      "basebandVersion": "A336EDXSKGZH2",
+      "id": "build-1787919032314-65",
+      "index": 65,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F926B_SEA_15_DX",
+      "pdaVersion": "F926BXXSJJZH4",
+      "cscVersion": "F926BOXMJJZH4",
+      "basebandVersion": "F926BXXSJJZH4",
+      "id": "build-1787919032314-66",
+      "index": 66,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S901E_SEA_16_DX",
+      "pdaVersion": "S901EXXSEGZH3",
+      "cscVersion": "S901EOXMEGZH3",
+      "basebandVersion": "S901EXXSEGZH3",
+      "id": "build-1787919032314-67",
+      "index": 67,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S906E_SEA_16_DX",
+      "pdaVersion": "S906EXXSEGZH4",
+      "cscVersion": "S906EOXMEGZH4",
+      "basebandVersion": "S906EXXSEGZH4",
+      "id": "build-1787919032314-68",
+      "index": 68,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F926B_SEA_15_DX",
+      "pdaVersion": "F926BXXSJJZH3",
+      "cscVersion": "F926BOLEJJZH3",
+      "basebandVersion": "F926BXXSJJZH3",
+      "id": "build-1787919032314-69",
+      "index": 69,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A256E_SEA_B4_PHL",
+      "pdaVersion": "A256EXXSEEZH9",
+      "cscVersion": "A256EOLEEEZH9",
+      "basebandVersion": "A256EXXSEEZH9",
+      "id": "build-1787919032314-70",
+      "index": 70,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A376BE_SEA_XME",
+      "pdaVersion": "A376BXXU4BZH1",
+      "cscVersion": "A376BOLM4BZH1",
+      "basebandVersion": "A376BXXU4BZH1",
+      "id": "build-1787919032314-71",
+      "index": 71,
+      "status": "pending"
+    }
+  ],
+  "logs": [],
+  "portalConfig": {
+    "baseUrl": "https://android.qb.sec.samsung.net/overview/28905",
+    "formUrl": "https://android.qb.sec.samsung.net/wicket/page?6",
+    "headless": true,
+    "delayMs": 1000,
+    "timeoutMs": 30000,
+    "mock": false,
+    "trackProgress": true,
+    "concurrency": 3
+  },
+  "isRunning": false,
+  "lastUpdated": "2026-08-28T12:10:33.374Z"
+}
