@@ -55,27 +55,27 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header className="sticky top-0 z-30 bg-white/90 dark:bg-[#09090b]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-neutral-800 transition-colors duration-150">
-      <div className="w-full px-3 h-13 flex items-center justify-between gap-3">
+      <div className="w-full px-2 sm:px-3 h-11 sm:h-13 flex items-center justify-between gap-1.5 sm:gap-3">
         
         {/* Left Branding */}
-        <div className="flex items-center gap-3 min-w-max">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center p-0.5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-neutral-900 dark:to-neutral-800 shadow-sm border border-slate-200/60 dark:border-neutral-800">
+        <div className="flex items-center gap-1.5 sm:gap-3 min-w-max">
+          <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl flex items-center justify-center p-0.5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-neutral-900 dark:to-neutral-800 shadow-xs border border-slate-200/60 dark:border-neutral-800">
             <img 
               src="/logo.svg" 
               alt="Build HomeBinary" 
-              className="w-7 h-7 object-contain hover:rotate-6 transition-transform duration-300"
+              className="w-5 h-5 sm:w-7 sm:h-7 object-contain hover:rotate-6 transition-transform duration-300"
             />
           </div>
           <div className="flex flex-col">
-            <div className="flex items-center gap-1.5">
-              <span className="font-bold text-[17px] tracking-tight bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 dark:from-white dark:via-neutral-100 dark:to-neutral-300 bg-clip-text text-transparent">
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <span className="font-bold text-xs sm:text-[17px] tracking-tight bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 dark:from-white dark:via-neutral-100 dark:to-neutral-300 bg-clip-text text-transparent">
                 Build HomeBinary
               </span>
-              <span className="text-[10px] uppercase font-semibold px-1.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/90 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/80">
+              <span className="text-[8px] sm:text-[10px] uppercase font-semibold px-1 py-0.2 sm:px-1.5 sm:py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/90 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/80">
                 v{appVersion}
               </span>
             </div>
-            <span className="text-[11px] text-slate-400 dark:text-neutral-500 font-medium">
+            <span className="text-[8px] sm:text-[11px] text-slate-400 dark:text-neutral-500 font-medium hidden xs:inline">
               Samsung QuickBuild Submitter
             </span>
           </div>
@@ -96,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Right Action Icons & Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           
           {/* Track Build Progress Checkbox Toggle */}
           <label 
@@ -115,35 +115,36 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Main Action Buttons */}
           <button
             onClick={onOpenInputDrawer}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 rounded-lg shadow-sm shadow-blue-500/20 transition-all"
+            className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 rounded-md sm:rounded-lg shadow-xs shadow-blue-500/20 transition-all"
             title="Paste & Parse raw build specs"
           >
-            <Plus className="w-3.5 h-3.5" />
-            <span>New Batch</span>
+            <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            <span className="hidden xs:inline">New Batch</span>
+            <span className="xs:hidden">+ New</span>
           </button>
 
           {isRunning ? (
             <button
               onClick={onCancelBatch}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-rose-600 hover:bg-rose-700 active:scale-95 rounded-lg shadow-sm shadow-rose-500/20 transition-all animate-pulse"
+              className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-white bg-rose-600 hover:bg-rose-700 active:scale-95 rounded-md sm:rounded-lg shadow-xs shadow-rose-500/20 transition-all animate-pulse"
               title="Stop current execution"
             >
-              <Square className="w-3.5 h-3.5 fill-current" />
+              <Square className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
               <span>Cancel</span>
             </button>
           ) : (
             <button
               onClick={onStartBatch}
               disabled={totalItems === 0}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold rounded-md sm:rounded-lg transition-all ${
                 totalItems > 0
-                  ? 'text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 shadow-sm shadow-emerald-500/20'
+                  ? 'text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 shadow-xs shadow-emerald-500/20'
                   : 'text-slate-400 bg-slate-100 dark:bg-slate-800 cursor-not-allowed border border-slate-200 dark:border-slate-700'
               }`}
               title={totalItems > 0 ? "Execute batch submission" : "Add items to queue first"}
             >
-              <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Run Batch</span>
+              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
+              <span>Run</span>
             </button>
           )}
 
@@ -151,9 +152,9 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onFetchBuildIds}
             disabled={isRunning || completedBuildingCount === 0}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+            className={`flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold rounded-md sm:rounded-lg transition-all ${
               completedBuildingCount > 0 && !isRunning
-                ? 'text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-sm shadow-indigo-500/20'
+                ? 'text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-xs shadow-indigo-500/20'
                 : 'text-slate-400 bg-slate-100 dark:bg-neutral-800/80 cursor-not-allowed border border-slate-200 dark:border-neutral-800'
             }`}
             title={
@@ -162,16 +163,16 @@ export const Header: React.FC<HeaderProps> = ({
                 : "No completed builds currently missing Build IDs"
             }
           >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>Fetch Build ID</span>
+            <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            <span className="hidden xs:inline">Fetch ID</span>
             {completedBuildingCount > 0 && (
-              <span className="ml-0.5 px-1.5 py-0.2 text-[9px] font-bold rounded-full bg-indigo-400 dark:bg-indigo-500 text-white">
+              <span className="px-1 py-0.2 text-[8px] sm:text-[9px] font-bold rounded-full bg-indigo-400 dark:bg-indigo-500 text-white">
                 {completedBuildingCount}
               </span>
             )}
           </button>
 
-          <div className="h-5 w-px bg-slate-200 dark:bg-slate-800 mx-1 hidden sm:block" />
+          <div className="h-4 sm:h-5 w-px bg-slate-200 dark:bg-slate-800 mx-0.5 sm:mx-1" />
 
           {/* Quick Refresh */}
           <button
