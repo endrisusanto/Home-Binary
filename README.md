@@ -4,13 +4,17 @@
 
 ![Build HomeBinary Logo](Google_Home_Logo_(2025).svg)
 
-**High-Performance Desktop Automation & Batch Submission Orchestrator for Samsung QuickBuild Portal**
+**High-Performance Desktop Automation, Web Hub & Batch Submission Orchestrator for Samsung QuickBuild Portal**
 
 [![Release](https://img.shields.io/github/v/release/endrisusanto/Home-Binary?style=flat-square&color=blue)](https://github.com/endrisusanto/Home-Binary/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/endrisusanto/Home-Binary/release.yml?branch=main&style=flat-square)](https://github.com/endrisusanto/Home-Binary/actions)
 [![Tauri v2](https://img.shields.io/badge/Tauri-v2.0-24C8D5?style=flat-square&logo=tauri&logoColor=white)](https://tauri.app)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com/)
+[![WebSocket](https://img.shields.io/badge/WebSocket-Full--Duplex%20Sync-010101?style=flat-square&logo=socketdotio&logoColor=white)](https://homebinary.endrisusanto.my.id/)
 [![Playwright](https://img.shields.io/badge/Playwright-Automation-2EAD33?style=flat-square&logo=playwright&logoColor=white)](https://playwright.dev)
+
+**Public Web Portal**: 👉 **[https://homebinary.endrisusanto.my.id/](https://homebinary.endrisusanto.my.id/)**
 
 </div>
 
@@ -18,32 +22,45 @@
 
 ## 📖 Overview
 
-**Build HomeBinary** is a desktop application engineered with **Tauri v2 (Rust)**, **React 19**, and **Tailwind CSS v4** to orchestrate high-throughput batch form submissions to the Samsung QuickBuild (QB) portal.
+**Build HomeBinary** is a unified automation platform engineered with **Tauri v2 (Rust)**, **React 19**, **Tailwind CSS v4**, and **Node.js Playwright** to orchestrate high-throughput batch form submissions to the Samsung QuickBuild (QB) portal.
 
-Powered by a headless **Playwright** browser automation engine, it eliminates repetitive manual entries by parsing multi-line build configurations, maintaining SSO session states, and streaming real-time telemetry back to an interactive dashboard.
+It operates seamlessly as a **native Windows / Linux Desktop application** and as a **centralized Docker Web Application**, linked by a **100% full-duplex WebSocket mirroring engine**.
 
 ---
 
 ## ✨ Key Features
 
-- **⚡ Multi-Format Batch Input Parser**:
-  - Automatically parses raw text pasted in TSV, CSV, pipe-delimited, whitespace, or Key-Value block format.
-  - Recognizes `Build ID`, `Build Fingerprint`, `PDA Version`, `CSC Version`, and `Baseband/Phone Version`.
-- **📊 QuickBuild-Style Metric Cards & Progress Tables**:
-  - 5 ambient metric cards with customized top-left radial glow and sleek OLED Obsidian Dark mode.
-  - Sectioned accordion tables: *Fetched builds*, *In-progress submissions*, *Submissions completed*, and *Submissions failed*.
-- **🔗 Interactive Build ID Column**:
-  - **Left-Click**: Instantly redirects to the build page (`https://android.qb.sec.samsung.net/build/<id>`).
-  - **Right-Click**: Automatically copies the portal URL to the clipboard with an instant visual indicator.
-- **🤖 Resilient Automation Engine**:
-  - Headless & Headful browser execution modes.
-  - Persistent SSO cookies & authentication (`auth.json`).
-  - Real-time line-by-line JSON IPC streaming between Node.js, Rust Tauri backend, and the React UI.
-  - Live simulation / mock mode for local testing without intranet connectivity.
-- **🔄 Built-in Software Auto-Updater**:
-  - One-click update check and automatic background downloading & relaunching.
-- **🚀 Automated CI/CD GitHub Releases**:
-  - Multi-platform GitHub Actions building Linux (`.AppImage`, `.deb`) and Windows (`.msi`, `.exe`) binaries.
+### 🔄 Real-time Bidirectional WebSocket Synchronization (100% Mirroring)
+- **Full-Duplex TCP WebSocket Relay (`/ws`)**:
+  - Live state mirroring between Desktop (Tauri) and Web (Browser/Mobile) with sub-millisecond latency.
+  - Every queue addition, status transition, retry, deletion, and process log streams instantly across all connected devices.
+- **Cross-Device Remote Execution Dispatching**:
+  - Clicking **"Run Batch"** on your smartphone or web browser automatically dispatches the execution command to your active **Windows Desktop client**.
+  - Desktop executes the batch using its local browser & Windows SSO session, streaming real-time progress and logs directly back to your mobile web interface.
+
+### 📱 Mobile-First Responsive Design & Grid Menu Modal
+- **Ultra-Compact Typography (`text-[8px]` – `text-[10px]`)** optimized for narrow smartphone screens.
+- **Interactive Mobile Grid Menu Modal**: Access quick batch actions, update triggers, search, and settings from a clean touch grid.
+- **Micro-Grid Metric Cards & Responsive Tables**: High-density display maximizing visibility on mobile viewports.
+
+### ⚡ Multi-Format Batch Input Parser
+- Automatically parses multi-line text pasted in **TSV, CSV, Pipe-delimited, Whitespace, or Key-Value Block** format.
+- Extracts `Build ID`, `Build Fingerprint`, `PDA Version`, `CSC Version`, and `Baseband / Phone Version`.
+
+### 📊 QuickBuild Dashboard & Interactive Tables
+- 5 ambient metric cards with customized radial glow and OLED Dark Mode.
+- Sectioned accordion tables: *Fetched builds*, *In-progress submissions*, *Submissions completed*, and *Submissions failed*.
+- **Interactive Build ID Cell**:
+  - **Left-Click**: Direct navigation to Samsung QB Build page (`https://android.qb.sec.samsung.net/build/<id>`).
+  - **Right-Click**: Instant clipboard copy with visual checkmark indicator.
+- **Failed Submissions Recovery**: Per-row re-check buttons, batch re-check all, retry all, and automatic 4-day build expiry detection.
+
+### 🚀 Remote 1-Click Auto-Updater
+- **Web-to-Desktop Remote Trigger**: Trigger background auto-updates and app relaunches on all running Windows Desktop instances directly from the Web App.
+- **Server 1-Click Update**: Pulls latest git commits, rebuilds Vite frontend, and performs a graceful Docker container restart automatically.
+
+### 🛡️ System Tray & Background Daemon
+- Closing the desktop window minimizes the app to the **System Tray**, keeping background sync and automation active without desktop clutter.
 
 ---
 
@@ -52,55 +69,52 @@ Powered by a headless **Playwright** browser automation engine, it eliminates re
 | Layer | Technologies |
 |---|---|
 | **Frontend GUI** | React 19, TypeScript, Vite 8, Tailwind CSS v4, Lucide Icons |
-| **Desktop Runtime** | Tauri v2, Rust (tokio, serde, tauri-plugin-updater, process) |
+| **Desktop Runtime** | Tauri v2, Rust (tokio, serde, tauri-plugin-updater, tauri-plugin-process) |
+| **Central Server & Web App** | Node.js, WebSocket Server (`ws`), Server-Sent Events (SSE), Cloudflare Tunnel |
 | **Automation Engine** | Node.js, Playwright, Chromium |
-| **CI / CD** | GitHub Actions, Multi-platform Matrix Build |
+| **Containerization** | Docker, Docker Compose (`mcr.microsoft.com/playwright:v1.51.0-noble`) |
+| **CI / CD** | GitHub Actions (Multi-Platform Matrix: Windows `.msi`/`.exe`, Linux `.AppImage`/`.deb`) |
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v20+ recommended)
-- [Rust & Cargo](https://rustup.rs/) (v1.77.2+)
-- Linux system dependencies (for Ubuntu/Debian):
-  ```bash
-  sudo apt-get update
-  sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libsoup-3.0-dev libjavascriptcoregtk-4.1-dev
-  ```
-
-### Installation
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/endrisusanto/Home-Binary.git
-   cd "Home Binary"
-   ```
-
-2. **Install Root & Engine Dependencies**:
-   ```bash
-   npm install
-   cd engine && npm install && cd ..
-   ```
-
-3. **Install Playwright Browsers**:
-   ```bash
-   npx playwright install chromium
-   ```
-
-### Development
-
-Run the desktop application in live development mode (Hot Module Replacement):
+### 🖥️ Running Desktop App (Development)
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/endrisusanto/Home-Binary.git
+cd "Home Binary"
+
+# 2. Install dependencies
+npm install
+cd engine && npm install && cd ..
+
+# 3. Install Playwright browser binaries
+npx playwright install chromium
+
+# 4. Start Tauri Desktop in Dev Mode
 npm run tauri dev
 ```
 
-Or run standalone web preview (Mock mode):
+---
+
+### 🐳 Running Web App via Docker (Server Deployment)
+
+The web application runs on port `14300` and integrates with Cloudflare Tunnel:
+
 ```bash
-npm run dev
+# Build and run container in background
+docker compose build --no-cache && docker compose up -d
+
+# Check live logs
+docker compose logs -f
 ```
+
+The Web App will be accessible at:
+- **Local**: `http://localhost:14300`
+- **Public**: `https://homebinary.endrisusanto.my.id`
+- **WebSocket Endpoint**: `wss://homebinary.endrisusanto.my.id/ws`
 
 ---
 
@@ -123,20 +137,20 @@ The automation engine automatically maps and fills the following Wicket form sel
 
 ## 📦 Releasing New Versions
 
-To publish a new version and automatically trigger multi-platform binary builds on GitHub:
+To publish a new version and automatically trigger multi-platform binary builds on GitHub Actions:
 
 ```bash
-# Bump patch version (e.g. 0.1.0 -> 0.1.1)
+# Bump patch version (e.g. 0.5.3 -> 0.5.4)
 ./release.sh patch
 
-# Bump minor version (e.g. 0.1.0 -> 0.2.0)
+# Bump minor version (e.g. 0.5.0 -> 0.6.0)
 ./release.sh minor
 
 # Release an explicit version
 ./release.sh 1.0.0
 ```
 
-The script automatically synchronizes `package.json`, `tauri.conf.json`, and `Cargo.toml`, creates a git tag, and pushes to remote. GitHub Actions will then compile the installers and publish the release.
+The script synchronizes `package.json`, `tauri.conf.json`, and `Cargo.toml`, creates a git tag, and pushes to GitHub.
 
 ---
 
