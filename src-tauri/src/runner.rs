@@ -36,6 +36,8 @@ pub struct PortalConfig {
     pub timeout_ms: u64,
     #[serde(default)]
     pub mock: bool,
+    #[serde(default = "default_true")]
+    pub track_progress: bool,
     #[serde(default)]
     pub username: Option<String>,
     #[serde(default)]

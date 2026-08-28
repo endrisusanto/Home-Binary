@@ -28,6 +28,8 @@ interface HeaderProps {
   searchQuery: string;
   onSearchChange: (q: string) => void;
   totalItems: number;
+  trackProgress: boolean;
+  onToggleTrackProgress: (checked: boolean) => void;
   onlineStatus?: string;
   appVersion?: string;
 }
@@ -48,6 +50,8 @@ export const Header: React.FC<HeaderProps> = ({
   searchQuery,
   onSearchChange,
   totalItems,
+  trackProgress,
+  onToggleTrackProgress,
   onlineStatus = 'Online',
   appVersion = '0.1.0',
 }) => {
@@ -96,6 +100,20 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Right Action Icons & Controls */}
         <div className="flex items-center gap-2">
           
+          {/* Track Build Progress Checkbox Toggle */}
+          <label 
+            className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg cursor-pointer bg-slate-100 hover:bg-slate-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 border border-slate-200 dark:border-neutral-800 text-slate-700 dark:text-neutral-300 select-none transition-colors"
+            title="When checked: Submits all build forms first, then monitors Samsung QuickBuild Dashboard for progress (>50% & completion). When unchecked: Submits triggers immediately without waiting for dashboard polling."
+          >
+            <input 
+              type="checkbox"
+              checked={trackProgress}
+              onChange={(e) => onToggleTrackProgress(e.target.checked)}
+              className="w-3.5 h-3.5 rounded text-blue-600 focus:ring-blue-500 cursor-pointer accent-blue-600"
+            />
+            <span className="text-[11px] font-semibold">Track Progress</span>
+          </label>
+
           {/* Main Action Buttons */}
           <button
             onClick={onOpenInputDrawer}

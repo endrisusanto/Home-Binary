@@ -185,6 +185,24 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               />
             </label>
 
+            {/* Track Progress Toggle */}
+            <label className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-[#070709] border border-slate-200/80 dark:border-neutral-800/80 cursor-pointer">
+              <div className="flex flex-col">
+                <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+                  Track Build Progress (Dashboard Polling)
+                </span>
+                <span className="text-[10px] text-slate-400">
+                  Submits all forms first, then polls Dashboard every 60s to track & fetch completed Build IDs
+                </span>
+              </div>
+              <input
+                type="checkbox"
+                checked={formData.trackProgress ?? true}
+                onChange={(e) => setFormData({ ...formData, trackProgress: e.target.checked })}
+                className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+              />
+            </label>
+
           </div>
 
           {/* Delays and Timeouts */}

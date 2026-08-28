@@ -365,6 +365,8 @@ export function App() {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         totalItems={items.length}
+        trackProgress={portalConfig.trackProgress ?? true}
+        onToggleTrackProgress={(checked) => setPortalConfig(prev => ({ ...prev, trackProgress: checked }))}
         appVersion={appVersion}
       />
 
