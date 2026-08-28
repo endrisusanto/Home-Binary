@@ -26,10 +26,21 @@ interface ExecutionSectionsProps {
 }
 
 // Interactive Build ID Component with Left-click (redirect) and Right-click (copy)
-const BuildIdCell: React.FC<{ buildId?: string }> = ({ buildId }) => {
+const BuildIdCell: React.FC<{ buildId?: string; isCompletedSection?: boolean }> = ({ buildId, isCompletedSection }) => {
   const [copied, setCopied] = useState(false);
 
   if (!buildId) {
+    if (isCompletedSection) {
+      return (
+        <span 
+          className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 text-[10px] font-bold uppercase tracking-wider select-none shadow-xs"
+          title="Build is currently executing on QuickBuild server. Use 'Fetch Build ID' on toolbar to update."
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping" />
+          Building
+        </span>
+      );
+    }
     return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[11px]">—</span>;
   }
 
@@ -412,7 +423,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                           {idx + 1}
                         </td>
                         <td className="py-2.5 px-4">
-                          <BuildIdCell buildId={item.buildId} />
+                          <BuildIdCell buildId={item.buildId} isCompletedSection={true} />
                         </td>
                         <td className="py-2.5 px-4 font-medium text-slate-800 dark:text-neutral-200">
                           {item.buildFingerprintName}

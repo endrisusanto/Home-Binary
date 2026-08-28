@@ -721,6 +721,24 @@ async function main() {
     await handleSsoLoginIfNeeded(page, context, username, password, timeoutMs);
 
     // =========================================================================
+    // SPECIAL: FETCH BUILD ID ONLY (HEADLESS DASHBOARD SCRAPE)
+    // =========================================================================
+    if (portal.fetchOnly === true) {
+      emitLog('info', `=== [FETCH BUILD ID ONLY] Querying Dashboard for ${items.length} builds (Headless) ===`);
+      try {
+        await trackBatchProgressOnDashboard(page, items, 120000);
+      } catch (fetchErr) {
+        emitLog('error', `Fetch Build ID error: ${fetchErr.message}`);
+      } finally {
+        try {
+          await browser.close();
+        } catch {}
+        emitDone(items.length, items.length, 0);
+        process.exit(0);
+      }
+    }
+
+    // =========================================================================
     // PHASE 1: CONCURRENT FORM SUBMISSION TRIGGER FOR ALL BATCH ITEMS
     // =========================================================================
     const concurrency = Math.max(1, Math.min(Number(portal.concurrency) || 3, 8));

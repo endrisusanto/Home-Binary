@@ -38,6 +38,8 @@ pub struct PortalConfig {
     pub mock: bool,
     #[serde(default = "default_true")]
     pub track_progress: bool,
+    #[serde(default)]
+    pub fetch_only: bool,
     #[serde(default = "default_concurrency")]
     pub concurrency: usize,
     #[serde(default)]

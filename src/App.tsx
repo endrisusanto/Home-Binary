@@ -302,7 +302,6 @@ export function App() {
     if (isRunning) return;
     setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, status: 'pending' } : x)));
     setIsRunning(true);
-    setIsLogsOpen(true);
     addLog('info', `Starting single submission: ${item.buildFingerprintName}`);
 
     const tauri = await getTauri();
@@ -323,6 +322,47 @@ export function App() {
       await new Promise((r) => setTimeout(r, 1200));
       setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, status: 'success' } : x)));
       addLog('success', `Submitted build: ${item.buildFingerprintName}`);
+      setIsRunning(false);
+    }
+  };
+
+  // Fetch Build IDs for completed items still building
+  const completedBuildingCount = items.filter((i) => i.status === 'success' && !i.buildId).length;
+
+  const handleFetchBuildIds = async () => {
+    const targets = items.filter((i) => i.status === 'success' && !i.buildId);
+    if (targets.length === 0) {
+      addLog('info', 'All completed builds already have Build IDs.');
+      return;
+    }
+
+    setIsRunning(true);
+    addLog('info', `Fetching Build IDs for ${targets.length} completed build(s) from Dashboard (Headless)...`);
+
+    const tauri = await getTauri();
+    if (tauri && tauri.core) {
+      try {
+        await tauri.core.invoke('start_batch_runner', {
+          payload: {
+            portal: {
+              ...portalConfig,
+              headless: true, // Always headless as requested
+              fetchOnly: true,
+            },
+            items: targets,
+          },
+        });
+      } catch (err: any) {
+        addLog('error', `Fetch Build ID error: ${err?.message || err}`);
+        setIsRunning(false);
+      }
+    } else {
+      // Browser preview simulation
+      for (const item of targets) {
+        const id = `11405${Math.floor(1000 + Math.random() * 9000)}`;
+        setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, buildId: id } : x)));
+        addLog('success', `[Mock] Fetched Build ID: ${id} for ${item.buildFingerprintName}`);
+      }
       setIsRunning(false);
     }
   };
@@ -356,6 +396,8 @@ export function App() {
         onStartBatch={handleStartBatch}
         onCancelBatch={handleCancelBatch}
         onResetQueue={handleResetQueue}
+        onFetchBuildIds={handleFetchBuildIds}
+        completedBuildingCount={completedBuildingCount}
         isDarkMode={isDarkMode}
         onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
         searchQuery={searchQuery}

@@ -20,6 +20,8 @@ interface HeaderProps {
   onStartBatch: () => void;
   onCancelBatch: () => void;
   onResetQueue: () => void;
+  onFetchBuildIds?: () => void;
+  completedBuildingCount?: number;
   isDarkMode: boolean;
   onToggleDarkMode: () => void;
   searchQuery: string;
@@ -39,6 +41,8 @@ export const Header: React.FC<HeaderProps> = ({
   onStartBatch,
   onCancelBatch,
   onResetQueue,
+  onFetchBuildIds,
+  completedBuildingCount = 0,
   isDarkMode,
   onToggleDarkMode,
   searchQuery,
@@ -142,6 +146,30 @@ export const Header: React.FC<HeaderProps> = ({
               <span>Run Batch</span>
             </button>
           )}
+
+          {/* Fetch Build ID button for building completed items */}
+          <button
+            onClick={onFetchBuildIds}
+            disabled={isRunning || completedBuildingCount === 0}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+              completedBuildingCount > 0 && !isRunning
+                ? 'text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-sm shadow-indigo-500/20'
+                : 'text-slate-400 bg-slate-100 dark:bg-neutral-800/80 cursor-not-allowed border border-slate-200 dark:border-neutral-800'
+            }`}
+            title={
+              completedBuildingCount > 0
+                ? `Fetch Build IDs from Dashboard for ${completedBuildingCount} submitted build(s) currently marked as Building (runs Headless)`
+                : "No completed builds currently missing Build IDs"
+            }
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Fetch Build ID</span>
+            {completedBuildingCount > 0 && (
+              <span className="ml-0.5 px-1.5 py-0.2 text-[9px] font-bold rounded-full bg-indigo-400 dark:bg-indigo-500 text-white">
+                {completedBuildingCount}
+              </span>
+            )}
+          </button>
 
           <div className="h-5 w-px bg-slate-200 dark:bg-slate-800 mx-1 hidden sm:block" />
 
