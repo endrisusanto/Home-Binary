@@ -19,7 +19,9 @@ function emitLog(level, message, index = null) {
     index,
     timestamp: new Date().toLocaleTimeString()
   };
-  console.log(JSON.stringify(payload));
+  try {
+    process.stdout.write(JSON.stringify(payload) + '\n');
+  } catch {}
 }
 
 function emitProgress(id, index, status, message, error = null, buildId = null, progressPercent = null) {
@@ -35,7 +37,9 @@ function emitProgress(id, index, status, message, error = null, buildId = null, 
     error,
     timestamp: new Date().toLocaleTimeString()
   };
-  console.log(JSON.stringify(payload));
+  try {
+    process.stdout.write(JSON.stringify(payload) + '\n');
+  } catch {}
 }
 
 function emitDone(total, successCount, failedCount) {
@@ -46,7 +50,9 @@ function emitDone(total, successCount, failedCount) {
     failedCount,
     timestamp: new Date().toLocaleTimeString()
   };
-  console.log(JSON.stringify(payload));
+  try {
+    process.stdout.write(JSON.stringify(payload) + '\n');
+  } catch {}
 }
 
 async function readInputPayload() {
@@ -791,6 +797,7 @@ async function main() {
         const { selFingerprint, selPda, selCsc, selBaseband } = await navigateAndLocateForm(itemPage, baseUrl, timeoutMs);
 
         // Fill all 4 input fields with deliberate entry
+        emitProgress(item.id, itemIndex, 'running', `Populating form fields...`, null, null, 40);
         await itemPage.fill(selFingerprint, item.buildFingerprintName || '');
         await itemPage.waitForTimeout(150);
 
@@ -806,11 +813,12 @@ async function main() {
         const cleanBaseband = isNoBaseband ? '' : rawBaseband;
 
         await itemPage.fill(selBaseband, cleanBaseband);
-        await itemPage.waitForTimeout(250);
+        await itemPage.waitForTimeout(200);
 
         emitLog('info', `[Tab #${(i % concurrency) + 1}] Populated: Fingerprint=${item.buildFingerprintName}, PDA=${item.pdaVersion}, CSC=${item.cscVersion}, Phone=${cleanBaseband || '[EMPTY - Wi-Fi Only]'}`);
 
         // Trigger Submit with .submits button:has-text("Ok")
+        emitProgress(item.id, itemIndex, 'running', `Submitting form...`, null, null, 75);
         await triggerFormSubmission(itemPage, selBaseband, delayMs);
 
         // Check for error feedback panels
@@ -837,10 +845,13 @@ async function main() {
       }
     }
 
-    // Run concurrent worker pool
+    // Run concurrent worker pool with staggered start for smooth streaming UI
     let currentIndex = 0;
     const workerCount = Math.min(concurrency, items.length);
-    const workerPromises = Array.from({ length: workerCount }, async () => {
+    const workerPromises = Array.from({ length: workerCount }, async (_, workerIdx) => {
+      if (workerIdx > 0) {
+        await new Promise(r => setTimeout(r, workerIdx * 300));
+      }
       while (currentIndex < items.length && !isCancelled) {
         const itemIdx = currentIndex++;
         await submitSingleItem(items[itemIdx], itemIdx);
