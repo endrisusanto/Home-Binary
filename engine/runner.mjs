@@ -637,7 +637,11 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
       emitLog('warn', `Dashboard progress tracking warning: ${err.message}`);
     }
 
-    // Wait 60 seconds before next cycle check
+    // Wait 60 seconds before next cycle check (unless fetchOnly)
+    if (portal?.fetchOnly && completedMap.size > 0) {
+      break;
+    }
+
     const sleepInterval = 5000;
     const totalIterations = pollIntervalMs / sleepInterval;
     for (let s = 0; s < totalIterations; s++) {
@@ -645,12 +649,10 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
     }
   }
 
-  // Finalize any remaining items if timeout was reached
+  // Any items that were not yet found on dashboard
   for (const item of items) {
     if (!completedMap.has(item.id)) {
-      const fallbackId = item.buildId || `11405${Math.floor(1000 + Math.random() * 9000)}`;
-      emitProgress(item.id, item.index, 'success', `Submitted: ${item.buildFingerprintName}`, null, fallbackId, 100);
-      emitLog('warn', `Finalized submission for ${item.buildFingerprintName} (Build ID: ${fallbackId})`);
+      emitLog('info', `Build ID for ${item.buildFingerprintName} is not yet available on Dashboard.`);
     }
   }
 }
