@@ -170,71 +170,92 @@ export function App() {
     return () => clearTimeout(timer);
   }, [appVersion, addLog]);
 
-  // Listen to Tauri events
+  // Universal status update & finished handlers
+  const handleStatusPayload = useCallback((payload: any) => {
+    if (!payload) return;
+    setItems((prev) =>
+      prev.map((item) => {
+        const isMatch =
+          (payload.id && item.id === payload.id) ||
+          (payload.pdaVersion && item.pdaVersion === payload.pdaVersion) ||
+          (payload.pda_version && item.pdaVersion === payload.pda_version) ||
+          (payload.index !== undefined && payload.index !== null && item.index === payload.index);
+
+        if (!isMatch) return item;
+
+        const buildIdVal = payload.buildId || payload.build_id || item.buildId;
+        const newStatus = (payload.status || item.status) as ItemStatus;
+
+        return {
+          ...item,
+          status: newStatus,
+          message: payload.message || item.message,
+          error: payload.error || item.error,
+          buildId: buildIdVal,
+          progressPercent:
+            newStatus === 'success'
+              ? 100
+              : (payload.progressPercent ?? (newStatus === 'running' ? 50 : 25)),
+        };
+      })
+    );
+  }, []);
+
+  const handleFinishedPayload = useCallback(() => {
+    setIsRunning(false);
+    setItems((prev) =>
+      prev.map((item) =>
+        item.status === 'running'
+          ? { ...item, status: 'success', progressPercent: 100, message: item.message || 'Submission complete' }
+          : item
+      )
+    );
+  }, []);
+
+  // Listen to Tauri events or Web SSE
   useEffect(() => {
     let unlistenLog: any;
     let unlistenStatus: any;
     let unlistenFinished: any;
+    let eventSource: EventSource | null = null;
 
     async function setupListeners() {
-      const tauri = await getTauri();
-      if (!tauri || !tauri.event) return;
+      const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
+      if (isTauri) {
+        const tauri = await getTauri();
+        if (!tauri || !tauri.event) return;
 
-      unlistenLog = await tauri.event.listen('task-log', (event: any) => {
-        const payload = event.payload;
-        if (payload) {
-          addLog(payload.level || 'info', payload.message || '', payload.index);
-        }
-      });
+        unlistenLog = await tauri.event.listen('task-log', (event: any) => {
+          const payload = event.payload;
+          if (payload) {
+            addLog(payload.level || 'info', payload.message || '', payload.index);
+          }
+        });
 
-      unlistenStatus = await tauri.event.listen('item-status-update', (event: any) => {
-        const payload = event.payload;
-        if (!payload) return;
+        unlistenStatus = await tauri.event.listen('item-status-update', (event: any) => {
+          handleStatusPayload(event.payload);
+        });
 
-        setItems((prev) =>
-          prev.map((item) => {
-            const isMatch =
-              (payload.id && item.id === payload.id) ||
-              (payload.pdaVersion && item.pdaVersion === payload.pdaVersion) ||
-              (payload.pda_version && item.pdaVersion === payload.pda_version) ||
-              (payload.index !== undefined && payload.index !== null && item.index === payload.index);
-
-            if (!isMatch) return item;
-
-            const buildIdVal = payload.buildId || payload.build_id || item.buildId;
-            const newStatus = (payload.status || item.status) as ItemStatus;
-
-            return {
-              ...item,
-              status: newStatus,
-              message: payload.message || item.message,
-              error: payload.error || item.error,
-              buildId: buildIdVal,
-              progressPercent:
-                newStatus === 'success'
-                  ? 100
-                  : (payload.progressPercent ?? (newStatus === 'running' ? 50 : 25)),
-            };
-          })
-        );
-      });
-
-      unlistenFinished = await tauri.event.listen('task-finished', (event: any) => {
-        const payload = event.payload;
-        setIsRunning(false);
-        setItems((prev) =>
-          prev.map((item) =>
-            item.status === 'running'
-              ? { ...item, status: 'success', progressPercent: 100, message: item.message || 'Submission complete' }
-              : item
-          )
-        );
-        if (payload?.cancelled) {
-          addLog('warn', 'Batch execution was halted.');
-        } else {
-          addLog('success', `Batch complete. Success: ${payload?.success_count ?? 0}, Failed: ${payload?.failed_count ?? 0}`);
-        }
-      });
+        unlistenFinished = await tauri.event.listen('task-finished', () => {
+          handleFinishedPayload();
+        });
+      } else {
+        // Web Browser / Docker SSE Mode
+        eventSource = new EventSource('/api/events');
+        eventSource.onmessage = (event) => {
+          try {
+            const msg = JSON.parse(event.data);
+            if (msg.type === 'task-log') {
+              const p = msg.payload;
+              if (p) addLog(p.level || 'info', p.message || '', p.index);
+            } else if (msg.type === 'item-status-update') {
+              handleStatusPayload(msg.payload);
+            } else if (msg.type === 'task-finished' || msg.type === 'batch-finished') {
+              handleFinishedPayload();
+            }
+          } catch {}
+        };
+      }
     }
 
     setupListeners();
@@ -243,8 +264,42 @@ export function App() {
       if (unlistenLog) unlistenLog();
       if (unlistenStatus) unlistenStatus();
       if (unlistenFinished) unlistenFinished();
+      if (eventSource) eventSource.close();
     };
-  }, [addLog]);
+  }, [addLog, handleStatusPayload, handleFinishedPayload]);
+
+  // Universal dispatch runner across Tauri & Web API
+  const dispatchBatchRunner = async (payload: { portal: PortalConfig; items: BatchItem[] }) => {
+    setIsRunning(true);
+    const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
+    if (isTauri) {
+      const tauri = await getTauri();
+      if (tauri && tauri.core) {
+        try {
+          await tauri.core.invoke('start_batch_runner', { payload });
+        } catch (err: any) {
+          addLog('error', `Tauri execution error: ${err?.message || err}`);
+          setIsRunning(false);
+        }
+      }
+    } else {
+      // Web mode / Docker HTTP API
+      try {
+        const res = await fetch('/api/batch/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || `HTTP ${res.status}`);
+        }
+      } catch (err: any) {
+        addLog('error', `Web server runner error: ${err?.message || err}`);
+        setIsRunning(false);
+      }
+    }
+  };
 
   // Summary calculation
   const summary: BatchSummary = useMemo(() => {
@@ -307,96 +362,43 @@ export function App() {
 
   // Start Batch Execution
   const handleStartBatch = async () => {
-    const queueToRun = items.filter((i) => i.status === 'pending' || i.status === 'failed');
+    if (isRunning) return;
+
+    const queueToRun = items.filter((x) => x.status === 'pending');
     if (queueToRun.length === 0) {
-      addLog('warn', 'No pending or failed builds to run.');
+      addLog('warn', 'No pending builds in queue. Add items or click Retry.');
       return;
     }
 
-    setIsRunning(true);
-    addLog('info', `Starting execution for ${queueToRun.length} build(s)...`);
-
-    // Optimistically move queued items to 'running' section immediately
     setItems((prev) =>
       prev.map((x) =>
-        queueToRun.some((q) => q.id === x.id)
-          ? { ...x, status: 'running', message: 'Queued for submission...', progressPercent: 20 }
+        x.status === 'pending'
+          ? { ...x, status: 'running', message: 'Initializing browser session...' }
           : x
       )
     );
 
-    const tauri = await getTauri();
-    if (tauri && tauri.core) {
-      try {
-        await tauri.core.invoke('start_batch_runner', {
-          payload: {
-            portal: portalConfig,
-            items: queueToRun,
-          },
-        });
-      } catch (err: any) {
-        addLog('error', `Tauri invoke error: ${err?.message || err}`);
-        setIsRunning(false);
-      }
-    } else {
-      // Browser fallback simulation
-      addLog('info', '[Browser Preview Mode] Simulating Playwright submission steps...');
-      for (let i = 0; i < queueToRun.length; i++) {
-        const item = queueToRun[i];
-        setItems((prev) =>
-          prev.map((x) => (x.id === item.id ? { ...x, status: 'running', message: 'Populating Wicket form fields...' } : x))
-        );
-        addLog('info', `[${i + 1}/${queueToRun.length}] Navigating to ${portalConfig.formUrl}`);
-        await new Promise((r) => setTimeout(r, portalConfig.delayMs || 1000));
+    addLog(
+      'info',
+      `Starting batch execution for ${queueToRun.length} items (Headless: ${portalConfig.headless}, Track: ${portalConfig.trackProgress ?? true})...`
+    );
 
-        const generatedBuildId = item.buildId || `11400${1500 + i}`;
-        setItems((prev) =>
-          prev.map((x) =>
-            x.id === item.id
-              ? {
-                  ...x,
-                  status: 'success',
-                  buildId: generatedBuildId,
-                  progressPercent: 100,
-                  message: 'Form submitted & Wicket AJAX confirmed',
-                }
-              : x
-          )
-        );
-        addLog('success', `Submitted build: ${item.buildFingerprintName} -> Build ID: ${generatedBuildId}`);
-      }
-      setIsRunning(false);
-      addLog('success', `All ${queueToRun.length} simulated builds completed!`);
-    }
+    await dispatchBatchRunner({
+      portal: portalConfig,
+      items: queueToRun,
+    });
   };
 
   // Run Single Item
   const handleRunSingleItem = async (item: BatchItem) => {
     if (isRunning) return;
-    setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, status: 'pending' } : x)));
-    setIsRunning(true);
+    setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, status: 'running', message: 'Initializing...' } : x)));
     addLog('info', `Starting single submission: ${item.buildFingerprintName}`);
 
-    const tauri = await getTauri();
-    if (tauri && tauri.core) {
-      try {
-        await tauri.core.invoke('start_batch_runner', {
-          payload: {
-            portal: portalConfig,
-            items: [item],
-          },
-        });
-      } catch (err: any) {
-        addLog('error', `Tauri invoke error: ${err?.message || err}`);
-        setIsRunning(false);
-      }
-    } else {
-      setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, status: 'running' } : x)));
-      await new Promise((r) => setTimeout(r, 1200));
-      setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, status: 'success' } : x)));
-      addLog('success', `Submitted build: ${item.buildFingerprintName}`);
-      setIsRunning(false);
-    }
+    await dispatchBatchRunner({
+      portal: portalConfig,
+      items: [{ ...item, status: 'pending' }],
+    });
   };
 
   // Fetch Build IDs for items missing Build ID
@@ -409,49 +411,36 @@ export function App() {
       return;
     }
 
-    setIsRunning(true);
     addLog('info', `Fetching Build IDs for ${targets.length} build(s) from Dashboard (Headless: ${portalConfig.headless})...`);
 
-    const tauri = await getTauri();
-    if (tauri && tauri.core) {
-      try {
-        await tauri.core.invoke('start_batch_runner', {
-          payload: {
-            portal: {
-              ...portalConfig,
-              fetchOnly: true,
-            },
-            items: targets,
-          },
-        });
-      } catch (err: any) {
-        addLog('error', `Fetch Build ID error: ${err?.message || err}`);
-        setIsRunning(false);
-      }
-    } else {
-      // Browser preview simulation
-      for (const item of targets) {
-        const id = `11406${Math.floor(1000 + Math.random() * 9000)}`;
-        setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, buildId: id, status: 'success' } : x)));
-        addLog('success', `[Mock] Fetched Build ID: ${id} for ${item.buildFingerprintName}`);
-      }
-      setIsRunning(false);
-    }
+    await dispatchBatchRunner({
+      portal: {
+        ...portalConfig,
+        fetchOnly: true,
+      },
+      items: targets,
+    });
   };
 
   // Cancel Batch Execution
   const handleCancelBatch = async () => {
     addLog('warn', 'Sending cancellation request to automation runner...');
-    const tauri = await getTauri();
-    if (tauri && tauri.core) {
-      try {
-        await tauri.core.invoke('cancel_batch_runner');
-      } catch (err: any) {
-        addLog('error', `Cancellation failed: ${err?.message || err}`);
+    const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
+    if (isTauri) {
+      const tauri = await getTauri();
+      if (tauri && tauri.core) {
+        try {
+          await tauri.core.invoke('cancel_batch_runner');
+        } catch (err: any) {
+          addLog('error', `Cancellation failed: ${err?.message || err}`);
+        }
       }
     } else {
-      setIsRunning(false);
-      addLog('info', 'Mock execution cancelled.');
+      try {
+        await fetch('/api/batch/cancel', { method: 'POST' });
+      } catch (err: any) {
+        addLog('error', `Cancellation error: ${err?.message || err}`);
+      }
     }
     setIsRunning(false);
     setItems((prev) =>
@@ -461,28 +450,14 @@ export function App() {
 
   // Re-check a single failed item
   const handleRecheckSingleItem = async (item: BatchItem) => {
-    setIsRunning(true);
     addLog('info', `Re-checking Build ID for ${item.buildFingerprintName}...`);
-
-    const tauri = await getTauri();
-    if (tauri && tauri.core) {
-      try {
-        await tauri.core.invoke('start_batch_runner', {
-          payload: {
-            portal: {
-              ...portalConfig,
-              fetchOnly: true,
-            },
-            items: [item],
-          },
-        });
-      } catch (err: any) {
-        addLog('error', `Re-check error: ${err?.message || err}`);
-        setIsRunning(false);
-      }
-    } else {
-      setIsRunning(false);
-    }
+    await dispatchBatchRunner({
+      portal: {
+        ...portalConfig,
+        fetchOnly: true,
+      },
+      items: [item],
+    });
   };
 
   // Re-check all failed items
@@ -490,28 +465,14 @@ export function App() {
     const failedList = items.filter(x => x.status === 'failed');
     if (failedList.length === 0) return;
 
-    setIsRunning(true);
     addLog('info', `Re-checking Build IDs for ${failedList.length} failed build(s)...`);
-
-    const tauri = await getTauri();
-    if (tauri && tauri.core) {
-      try {
-        await tauri.core.invoke('start_batch_runner', {
-          payload: {
-            portal: {
-              ...portalConfig,
-              fetchOnly: true,
-            },
-            items: failedList,
-          },
-        });
-      } catch (err: any) {
-        addLog('error', `Re-check all error: ${err?.message || err}`);
-        setIsRunning(false);
-      }
-    } else {
-      setIsRunning(false);
-    }
+    await dispatchBatchRunner({
+      portal: {
+        ...portalConfig,
+        fetchOnly: true,
+      },
+      items: failedList,
+    });
   };
 
   // Retry all failed items
