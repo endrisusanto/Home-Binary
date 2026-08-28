@@ -28,6 +28,7 @@ function emitProgress(id, index, status, message, error = null, buildId = null, 
     id,
     index,
     buildId,
+    build_id: buildId,
     status,
     progressPercent,
     message,
@@ -477,6 +478,16 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
       await page.goto(dashboardUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
       await page.waitForTimeout(1500);
 
+      // Automatically click "More" link in "My Builds" gadget to expand more rows
+      try {
+        const moreLink = page.locator('a[title="More"], a:text-is("More"), a[href*="myBuildsContainer-more"]');
+        if (await moreLink.count() > 0 && await moreLink.first().isVisible()) {
+          emitLog('info', 'Expanding dashboard build history (clicking "More")...');
+          await moreLink.first().click({ timeout: 5000 }).catch(() => {});
+          await page.waitForTimeout(1500);
+        }
+      } catch {}
+
       // Fast native browser DOM evaluation to extract all table rows
       const tableData = await page.evaluate(() => {
         const rows = Array.from(document.querySelectorAll('table.datatable tbody tr, .summary table tbody tr, table tbody tr, tr'));
@@ -484,15 +495,31 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
         const seenIds = new Set();
 
         for (const tr of rows) {
-          const idEl = tr.querySelector('td.id, td:first-child');
-          if (!idEl) continue;
-          const idText = idEl.innerText.trim();
-          if (!/^\d{6,12}$/.test(idText) || seenIds.has(idText)) continue;
+          const buildLink = tr.querySelector('a.build-status, .build-info a, a[href*="/build/"]');
+          let idText = '';
+
+          // 1. Try to extract from build link href (e.g. href="/build/114064016")
+          if (buildLink) {
+            const href = buildLink.getAttribute('href') || '';
+            const m = href.match(/\/build\/(\d+)/);
+            if (m) idText = m[1];
+          }
+
+          // 2. Fallback to td.id cell text
+          if (!idText) {
+            const idEl = tr.querySelector('td.id, td:first-child');
+            if (idEl) {
+              const txt = idEl.innerText.trim();
+              if (/^\d{6,12}$/.test(txt)) idText = txt;
+            }
+          }
+
+          if (!idText || seenIds.has(idText)) continue;
           seenIds.add(idText);
 
-          const buildLink = tr.querySelector('a.build-status, .build-info a, a[href*="/build/"]');
           const buildInfoText = buildLink ? buildLink.innerText.trim() : tr.innerText.trim();
           const trHtml = tr.innerHTML.toLowerCase();
+          const fullRowText = tr.innerText.trim();
 
           const stepLink = tr.querySelector('a[href*="step_status"], a[href*="overview"]');
           const stepText = stepLink ? stepLink.innerText.trim() : '';
@@ -541,6 +568,7 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
           results.push({
             idText,
             buildInfoText,
+            fullRowText,
             durationText,
             stepText,
             isSuccessful,
@@ -558,11 +586,11 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
       for (const item of items) {
         if (completedMap.has(item.id)) continue;
 
-        // Match by exact ID if previously captured, or by PDA and/or CSC
+        // Match by exact ID if previously captured, or by PDA / CSC in row text
         const matched = tableData.find(row => {
           if (item.buildId && row.idText === item.buildId) return true;
-          const matchPda = item.pdaVersion && row.buildInfoText.includes(item.pdaVersion);
-          const matchCsc = item.cscVersion && row.buildInfoText.includes(item.cscVersion);
+          const matchPda = item.pdaVersion && (row.buildInfoText.includes(item.pdaVersion) || row.fullRowText.includes(item.pdaVersion));
+          const matchCsc = item.cscVersion && (row.buildInfoText.includes(item.cscVersion) || row.fullRowText.includes(item.cscVersion));
           return matchPda || matchCsc;
         });
 
@@ -572,7 +600,7 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
           if (matched.isSuccessful) {
             completedMap.set(item.id, { success: true, buildId: item.buildId });
             emitProgress(item.id, item.index, 'success', `Completed: ${item.buildFingerprintName}`, null, item.buildId, 100);
-            emitLog('success', `[SUCCESS] Build #${item.buildId} for ${item.buildFingerprintName} completed successfully! (Duration: ${matched.durationText || 'Finished'})`);
+            emitLog('success', `[SUCCESS] Matched Build #${item.buildId} for ${item.buildFingerprintName}! (Duration: ${matched.durationText || 'Finished'})`);
           } else if (matched.isFailed) {
             completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed at step: ${matched.stepText}` });
             emitProgress(item.id, item.index, 'failed', `Failed at step: ${matched.stepText}`, `Failed at step: ${matched.stepText}`, item.buildId);

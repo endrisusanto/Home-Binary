@@ -77,11 +77,12 @@ pub struct BatchPayload {
 pub type RunnerState = Arc<Mutex<Option<Child>>>;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct StatusUpdateEvent {
     #[serde(default)]
     pub id: Option<String>,
     pub index: usize,
-    #[serde(default)]
+    #[serde(default, alias = "buildId", alias = "build_id")]
     pub build_id: Option<String>,
     pub status: String,
     pub message: String,

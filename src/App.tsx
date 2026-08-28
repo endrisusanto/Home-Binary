@@ -337,7 +337,7 @@ export function App() {
     }
 
     setIsRunning(true);
-    addLog('info', `Fetching Build IDs for ${targets.length} completed build(s) from Dashboard (Headless)...`);
+    addLog('info', `Fetching Build IDs for ${targets.length} completed build(s) from Dashboard (Headless: ${portalConfig.headless})...`);
 
     const tauri = await getTauri();
     if (tauri && tauri.core) {
@@ -346,7 +346,6 @@ export function App() {
           payload: {
             portal: {
               ...portalConfig,
-              headless: true, // Always headless as requested
               fetchOnly: true,
             },
             items: targets,
