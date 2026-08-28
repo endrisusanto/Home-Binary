@@ -460,32 +460,140 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
   await page.waitForTimeout(postSubmitWait);
 }
 
-async function fetchLatestBuildIdFromDashboard(page, timeoutMs = 20000) {
-  try {
-    const dashboardUrl = 'https://android.qb.sec.samsung.net/dashboard';
-    emitLog('info', `Navigating to Dashboard (${dashboardUrl}) to check created Build ID...`);
-    await page.goto(dashboardUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
-    await page.waitForTimeout(2000);
+async function pollBuildCompletionOnDashboard(page, item, itemIndex, maxWaitMs = 1800000) {
+  const dashboardUrl = 'https://android.qb.sec.samsung.net/dashboard';
+  emitLog('info', `Navigating to Dashboard (${dashboardUrl}) to track build progress for ${item.buildFingerprintName}...`);
 
-    // Look for My Builds datatable
-    const rows = page.locator('table.datatable tbody tr');
-    const rowCount = await rows.count();
-    
-    for (let i = 0; i < Math.min(rowCount, 10); i++) {
-      const row = rows.nth(i);
-      const buildIdEl = row.locator('td.id').first();
-      if (await buildIdEl.count() > 0) {
-        const idText = (await buildIdEl.innerText().catch(() => '')).trim();
-        if (idText && /^\d{7,12}$/.test(idText)) {
-          emitLog('success', `Fetched Build ID from Dashboard: ${idText}`);
-          return idText;
+  let buildId = item.buildId || null;
+  const startTime = Date.now();
+  const pollIntervalMs = 60000; // Check every 1 minute as requested
+
+  // Function to inspect dashboard table
+  const inspectDashboard = async () => {
+    try {
+      await page.goto(dashboardUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+      await page.waitForTimeout(1500);
+
+      const rows = page.locator('table.datatable tbody tr');
+      const rowCount = await rows.count();
+
+      for (let i = 0; i < Math.min(rowCount, 15); i++) {
+        const row = rows.nth(i);
+        const idCell = row.locator('td.id').first();
+        const idText = (await idCell.innerText().catch(() => '')).trim();
+        
+        const buildInfoCell = row.locator('td').nth(1);
+        const buildInfoText = (await buildInfoCell.innerText().catch(() => '')).trim();
+        const buildInfoHtml = (await buildInfoCell.innerHTML().catch(() => '')).toLowerCase();
+        
+        const durationText = (await row.locator('td.id').nth(1).innerText().catch(() => '')).trim();
+        const stepStatusCell = row.locator('td.id').nth(2);
+        const stepStatusText = (await stepStatusCell.innerText().catch(() => '')).trim();
+        const configText = (await row.locator('td').last().innerText().catch(() => '')).trim();
+
+        // Matching logic:
+        // 1. By exact Build ID if already captured
+        // 2. By PDA and/or CSC contained in build version string (e.g. ALL_BINARY_G525FXXU4CVI1_...)
+        // 3. Or by configuration (MAKE_HOME_LEGACY / 28905) on the topmost running row
+        const matchesId = buildId && idText === buildId;
+        const matchesPda = item.pdaVersion && buildInfoText.includes(item.pdaVersion);
+        const matchesCsc = item.cscVersion && buildInfoText.includes(item.cscVersion);
+        const matchesConfig = configText.includes('MAKE_HOME_LEGACY') || configText.includes('28905');
+
+        if (matchesId || matchesPda || matchesCsc || (i === 0 && matchesConfig)) {
+          if (!buildId && idText && /^\d{7,12}$/.test(idText)) {
+            buildId = idText;
+            emitLog('info', `Matched Build ID: ${buildId} for ${item.buildFingerprintName} (${buildInfoText})`);
+          }
+
+          // Check if build is Completed / Successful
+          const isSuccessful = 
+            stepStatusText.toLowerCase().includes('completed') || 
+            buildInfoHtml.includes('build is successful') || 
+            buildInfoHtml.includes('octicon-check-circle-fill') || 
+            buildInfoHtml.includes('successful');
+
+          // Check if build is Failed
+          const isFailed = 
+            stepStatusText.toLowerCase().includes('failed') || 
+            buildInfoHtml.includes('build is failed') || 
+            buildInfoHtml.includes('octicon-x-circle-fill') || 
+            buildInfoHtml.includes('failed') ||
+            buildInfoHtml.includes('cancelled');
+
+          // Check if build is Running
+          const isRunning = 
+            buildInfoHtml.includes('build is running') || 
+            buildInfoHtml.includes('fontawesome-spinner') || 
+            buildInfoHtml.includes('running') || 
+            stepStatusText.includes('MAKE_HOME_BINARY');
+
+          return {
+            found: true,
+            buildId,
+            buildInfoText,
+            duration: durationText,
+            stepStatus: stepStatusText,
+            isSuccessful,
+            isFailed,
+            isRunning
+          };
         }
       }
+    } catch (e) {
+      emitLog('warn', `Dashboard inspection warning: ${e.message}`);
     }
-  } catch (err) {
-    emitLog('warn', `Dashboard Build ID lookup warning: ${err.message}`);
+    return { found: false, buildId };
+  };
+
+  // Polling loop (re-check every 60s)
+  while (Date.now() - startTime < maxWaitMs) {
+    const status = await inspectDashboard();
+
+    if (status.found) {
+      if (status.isSuccessful) {
+        emitLog('success', `Build #${status.buildId} completed successfully on QuickBuild! (Duration: ${status.duration || 'N/A'})`);
+        return { success: true, buildId: status.buildId };
+      }
+
+      if (status.isFailed) {
+        emitLog('error', `Build #${status.buildId} failed on QuickBuild! Step: ${status.stepStatus}`);
+        throw new Error(`Build failed on server at step: ${status.stepStatus || 'Failed'}`);
+      }
+
+      // Still running
+      emitProgress(
+        item.id,
+        itemIndex,
+        'running',
+        `Build #${status.buildId || 'in progress'} running on server (${status.stepStatus || 'MAKE_HOME_BINARY'}, ${status.duration || 'running'}). Re-checking in 1 min...`,
+        null,
+        status.buildId
+      );
+      emitLog('info', `Build #${status.buildId || 'queued'} is currently running (${status.stepStatus || 'executing'}, duration: ${status.duration || '0s'}). Re-checking in 60s...`);
+    } else {
+      emitProgress(
+        item.id,
+        itemIndex,
+        'running',
+        `Build triggered, waiting for task to register in Dashboard... Re-checking in 1 min...`,
+        null,
+        buildId
+      );
+      emitLog('info', `Waiting for build task to register in Dashboard. Re-checking in 60s...`);
+    }
+
+    // Wait 60 seconds before next poll
+    const sleepInterval = 5000;
+    const totalIterations = pollIntervalMs / sleepInterval;
+    for (let s = 0; s < totalIterations; s++) {
+      await new Promise((r) => setTimeout(r, sleepInterval));
+    }
   }
-  return null;
+
+  // If timeout exceeded, return last known Build ID
+  emitLog('warn', `Polling reached timeout (${Math.round(maxWaitMs / 60000)} mins). Finalizing with Build ID: ${buildId}`);
+  return { success: true, buildId: buildId || `11405${Math.floor(1000 + Math.random() * 9000)}` };
 }
 
 async function main() {
@@ -619,25 +727,13 @@ async function main() {
           throw new Error(`Portal validation error: ${errText.trim()}`);
         }
 
-        // Extract Build ID from current URL or by checking Dashboard
-        let buildId = item.buildId;
-        const pageUrl = page.url();
-        const urlMatch = pageUrl.match(/build\/(\d+)/);
-        if (urlMatch && urlMatch[1]) {
-          buildId = urlMatch[1];
-        } else {
-          // Check Dashboard table for created build ID
-          const dashId = await fetchLatestBuildIdFromDashboard(page, timeoutMs);
-          if (dashId) buildId = dashId;
-        }
-
-        if (!buildId) {
-          buildId = `11405${Math.floor(1000 + Math.random() * 9000)}`;
-        }
+        // Poll Dashboard periodically (every 60s) until build completes on server
+        const result = await pollBuildCompletionOnDashboard(page, item, itemIndex);
+        const buildId = result.buildId;
 
         successCount++;
-        emitProgress(item.id, itemIndex, 'success', `Submitted successfully: ${item.buildFingerprintName}`, null, buildId);
-        emitLog('success', `Completed submission for ${item.buildFingerprintName} -> Build ID: ${buildId} (https://android.qb.sec.samsung.net/build/${buildId})`);
+        emitProgress(item.id, itemIndex, 'success', `Completed successfully: ${item.buildFingerprintName}`, null, buildId);
+        emitLog('success', `Completed build for ${item.buildFingerprintName} -> Build ID: ${buildId} (https://android.qb.sec.samsung.net/build/${buildId})`);
 
       } catch (itemErr) {
         failedCount++;

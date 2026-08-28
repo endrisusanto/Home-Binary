@@ -292,15 +292,16 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                         </div>
                         <div className="flex flex-col">
                           <div className="flex items-center gap-2 flex-wrap">
-                            {item.buildId && (
-                              <BuildIdCell buildId={item.buildId} />
+                            {item.buildId ? (
+                              <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-700 font-bold uppercase tracking-wider">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                                Build In Progress
+                              </span>
+                            ) : (
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-200 font-semibold uppercase animate-pulse border border-amber-300 dark:border-amber-800">
+                                Submitting Form...
+                              </span>
                             )}
-                            <span className="font-bold text-sm text-slate-900 dark:text-emerald-100 tracking-tight">
-                              {item.buildFingerprintName}
-                            </span>
-                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-semibold uppercase animate-pulse">
-                              Submitting Form...
-                            </span>
                           </div>
                           <span className="text-[11px] text-emerald-800/80 dark:text-emerald-300/80 font-mono mt-0.5">
                             PDA: {item.pdaVersion} &bull; CSC: {item.cscVersion} &bull; Baseband: {item.basebandVersion}
