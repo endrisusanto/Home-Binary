@@ -326,18 +326,18 @@ export function App() {
     }
   };
 
-  // Fetch Build IDs for completed items still building
-  const completedBuildingCount = items.filter((i) => i.status === 'success' && !i.buildId).length;
+  // Fetch Build IDs for items missing Build ID
+  const missingBuildIdCount = items.filter((i) => !i.buildId).length;
 
   const handleFetchBuildIds = async () => {
-    const targets = items.filter((i) => i.status === 'success' && !i.buildId);
+    const targets = items.filter((i) => !i.buildId);
     if (targets.length === 0) {
-      addLog('info', 'All completed builds already have Build IDs.');
+      addLog('info', 'All builds in the list already have Build IDs.');
       return;
     }
 
     setIsRunning(true);
-    addLog('info', `Fetching Build IDs for ${targets.length} completed build(s) from Dashboard (Headless: ${portalConfig.headless})...`);
+    addLog('info', `Fetching Build IDs for ${targets.length} build(s) from Dashboard (Headless: ${portalConfig.headless})...`);
 
     const tauri = await getTauri();
     if (tauri && tauri.core) {
@@ -358,8 +358,8 @@ export function App() {
     } else {
       // Browser preview simulation
       for (const item of targets) {
-        const id = `11405${Math.floor(1000 + Math.random() * 9000)}`;
-        setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, buildId: id } : x)));
+        const id = `11406${Math.floor(1000 + Math.random() * 9000)}`;
+        setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, buildId: id, status: 'success' } : x)));
         addLog('success', `[Mock] Fetched Build ID: ${id} for ${item.buildFingerprintName}`);
       }
       setIsRunning(false);
@@ -396,7 +396,7 @@ export function App() {
         onCancelBatch={handleCancelBatch}
         onResetQueue={handleResetQueue}
         onFetchBuildIds={handleFetchBuildIds}
-        completedBuildingCount={completedBuildingCount}
+        completedBuildingCount={missingBuildIdCount}
         isDarkMode={isDarkMode}
         onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
         searchQuery={searchQuery}

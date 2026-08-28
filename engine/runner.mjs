@@ -478,90 +478,85 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000) {
       await page.goto(dashboardUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
       await page.waitForTimeout(1500);
 
-      // Automatically click "More" link in "My Builds" gadget to expand more rows
-      try {
-        const moreLink = page.locator('a[title="More"], a:text-is("More"), a[href*="myBuildsContainer-more"]');
-        if (await moreLink.count() > 0 && await moreLink.first().isVisible()) {
-          emitLog('info', 'Expanding dashboard build history (clicking "More")...');
-          await moreLink.first().click({ timeout: 5000 }).catch(() => {});
-          await page.waitForTimeout(1500);
-        }
-      } catch {}
+      // Automatically expand "My Builds" gadget by clicking "More" link (up to 3 times)
+      for (let m = 0; m < 3; m++) {
+        try {
+          const moreLink = page.locator('a[title="More"], a:has-text("More"), a[href*="myBuildsContainer-more"]');
+          if (await moreLink.count() > 0 && await moreLink.first().isVisible()) {
+            emitLog('info', `Expanding dashboard build history (clicking "More" - pass ${m + 1}/3)...`);
+            await moreLink.first().click({ timeout: 4000 }).catch(() => {});
+            await page.waitForTimeout(1200);
+          } else {
+            break;
+          }
+        } catch {}
+      }
 
-      // Fast native browser DOM evaluation to extract all table rows
+      // Fast native browser DOM evaluation to extract all build entries directly
       const tableData = await page.evaluate(() => {
-        const rows = Array.from(document.querySelectorAll('table.datatable tbody tr, .summary table tbody tr, table tbody tr, tr'));
+        const buildLinks = Array.from(document.querySelectorAll('a[href*="/build/"]'));
         const results = [];
         const seenIds = new Set();
 
-        for (const tr of rows) {
-          const buildLink = tr.querySelector('a.build-status, .build-info a, a[href*="/build/"]');
-          let idText = '';
-
-          // 1. Try to extract from build link href (e.g. href="/build/114064016")
-          if (buildLink) {
-            const href = buildLink.getAttribute('href') || '';
-            const m = href.match(/\/build\/(\d+)/);
-            if (m) idText = m[1];
-          }
-
-          // 2. Fallback to td.id cell text
-          if (!idText) {
-            const idEl = tr.querySelector('td.id, td:first-child');
-            if (idEl) {
-              const txt = idEl.innerText.trim();
-              if (/^\d{6,12}$/.test(txt)) idText = txt;
-            }
-          }
-
-          if (!idText || seenIds.has(idText)) continue;
+        for (const link of buildLinks) {
+          const href = link.getAttribute('href') || '';
+          const m = href.match(/\/build\/(\d+)/);
+          if (!m) continue;
+          const idText = m[1];
+          if (seenIds.has(idText)) continue;
           seenIds.add(idText);
 
-          const buildInfoText = buildLink ? buildLink.innerText.trim() : tr.innerText.trim();
-          const trHtml = tr.innerHTML.toLowerCase();
-          const fullRowText = tr.innerText.trim();
+          const tr = link.closest('tr');
+          const fullRowText = tr ? tr.innerText.trim() : link.innerText.trim();
+          const trHtml = tr ? tr.innerHTML.toLowerCase() : '';
+          const buildInfoText = link.innerText.trim();
 
-          const stepLink = tr.querySelector('a[href*="step_status"], a[href*="overview"]');
+          const stepLink = tr ? tr.querySelector('a[href*="step_status"], a[href*="overview"]') : null;
           const stepText = stepLink ? stepLink.innerText.trim() : '';
 
-          const durationEl = tr.querySelector('td:nth-child(4), td.id:nth-child(4)');
+          const durationEl = tr ? tr.querySelector('td:nth-child(4), td.id:nth-child(4)') : null;
           const durationText = durationEl ? durationEl.innerText.trim() : '';
 
           const isSuccessful = 
             stepText.toLowerCase().includes('completed') || 
+            fullRowText.toLowerCase().includes('completed') ||
+            link.classList.contains('successful') || 
             trHtml.includes('build is successful') || 
             trHtml.includes('octicon-check-circle-fill') || 
-            trHtml.includes('successful') || 
-            tr.classList.contains('successful');
+            trHtml.includes('successful');
 
           const isFailed = 
             stepText.toLowerCase().includes('failed') || 
+            fullRowText.toLowerCase().includes('failed') ||
+            link.classList.contains('failed') || 
             trHtml.includes('build is failed') || 
             trHtml.includes('octicon-x-circle-fill') || 
             trHtml.includes('failed') || 
-            trHtml.includes('cancelled') || 
-            tr.classList.contains('failed');
+            trHtml.includes('cancelled');
 
           const isRunning = 
+            stepText.includes('MAKE_HOME_BINARY') || 
+            fullRowText.includes('MAKE_HOME_BINARY') ||
+            link.classList.contains('running') || 
             trHtml.includes('build is running') || 
             trHtml.includes('fontawesome-spinner') || 
             trHtml.includes('fa-spin') || 
-            trHtml.includes('running') || 
-            stepText.includes('MAKE_HOME_BINARY') || 
-            tr.classList.contains('running');
+            trHtml.includes('running');
 
           // Progress percentage
           let pct = null;
-          const pctEl = tr.querySelector('.progress-percentage');
-          if (pctEl) {
-            const p = parseInt(pctEl.innerText.replace('%', '').trim(), 10);
-            if (!isNaN(p)) pct = p;
-          }
-          if (pct === null) {
-            const filler = tr.querySelector('.progress-filler');
-            if (filler && filler.style && filler.style.width) {
-              const p = parseInt(filler.style.width.replace('%', '').trim(), 10);
+          if (tr) {
+            const pctEl = tr.querySelector('.progress-percentage');
+            if (pctEl) {
+              const p = parseInt(pctEl.innerText.replace('%', '').trim(), 10);
               if (!isNaN(p)) pct = p;
+            }
+            if (pct === null) {
+              const filler = tr.querySelector('.progress-filler');
+              if (filler && filler.style && filler.style.width) {
+                const p = parseInt(filler.style.width.replace('%', '').trim(), 10);
+                if (!isNaN(p)) pct = p;
+              }
             }
           }
 
