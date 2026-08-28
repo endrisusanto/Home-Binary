@@ -533,7 +533,21 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
           const durationEl = tr ? tr.querySelector('td:nth-child(4), td.id:nth-child(4)') : null;
           const durationText = durationEl ? durationEl.innerText.trim() : '';
 
+          const dateMatch = fullRowText.match(/\b(20\d{2}-\d{2}-\d{2}(?:\s+\d{2}:\d{2}:\d{2})?)\b/);
+          const dateStr = dateMatch ? dateMatch[1] : '';
+          let isExpired = false;
+          if (dateStr) {
+            const buildTimestamp = Date.parse(dateStr.replace(' ', 'T'));
+            if (!isNaN(buildTimestamp)) {
+              const diffDays = (Date.now() - buildTimestamp) / (1000 * 60 * 60 * 24);
+              if (diffDays > 4) {
+                isExpired = true;
+              }
+            }
+          }
+
           const isFailed = 
+            isExpired ||
             trHtml.includes('build is failed') || 
             trHtml.includes('text-danger') || 
             trHtml.includes('octicon-x-circle-fill') || 
@@ -581,6 +595,8 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
 
           results.push({
             idText,
+            dateStr,
+            isExpired,
             buildInfoText,
             fullRowText,
             durationText,
@@ -611,7 +627,11 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
         if (matched) {
           item.buildId = matched.idText || item.buildId;
 
-          if (matched.isFailed) {
+          if (matched.isExpired) {
+            completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build expired (${matched.dateStr})` });
+            emitProgress(item.id, item.index, 'failed', `Build expired (${matched.dateStr})`, `Build expired`, item.buildId, 100, item.pdaVersion, item.cscVersion);
+            emitLog('error', `[EXPIRED] Build #${item.buildId} for ${item.buildFingerprintName} was built ${matched.dateStr} (> 4 days ago) -> Marked as Build expired!`);
+          } else if (matched.isFailed) {
             completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed on QuickBuild (${matched.durationText || 'Failed'})` });
             emitProgress(item.id, item.index, 'failed', `Build #${item.buildId} failed on QuickBuild`, `Build #${item.buildId} is failed on QuickBuild`, item.buildId, 100, item.pdaVersion, item.cscVersion);
             emitLog('error', `[FAILED] Build #${item.buildId} for ${item.buildFingerprintName} is marked as FAILED on QuickBuild!`);

@@ -8,6 +8,7 @@ import {
   CheckCircle, 
   AlertTriangle, 
   RotateCcw,
+  RotateCw,
   ExternalLink,
   Copy,
   Check
@@ -22,6 +23,9 @@ interface ExecutionSectionsProps {
   onClearSection: (status: 'pending' | 'completed' | 'failed') => void;
   onRunItem: (item: BatchItem) => void;
   onSelectAllPending?: () => void;
+  onRecheckItem?: (item: BatchItem) => void;
+  onRecheckFailedAll?: () => void;
+  onRetryFailedAll?: () => void;
   searchQuery: string;
 }
 
@@ -105,6 +109,9 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
   onRetryItem,
   onClearSection,
   onRunItem,
+  onRecheckItem,
+  onRecheckFailedAll,
+  onRetryFailedAll,
   searchQuery,
 }) => {
   // Collapsible section state
@@ -489,14 +496,38 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
 
           <div className="flex items-center gap-2" onClick={e => e.stopPropagation()}>
             {failedItems.length > 0 && (
-              <button
-                onClick={() => onClearSection('failed')}
-                className="flex items-center gap-1 px-2 py-1 text-[11px] font-medium text-slate-500 hover:text-rose-600 dark:text-neutral-400 dark:hover:text-rose-400 rounded-md hover:bg-slate-100 dark:hover:bg-neutral-800 transition-colors"
-                title="Clear failed submissions"
-              >
-                <Trash2 className="w-3 h-3" />
-                <span>Clear all</span>
-              </button>
+              <div className="flex items-center gap-1.5">
+                {onRecheckFailedAll && (
+                  <button
+                    onClick={onRecheckFailedAll}
+                    disabled={isRunning}
+                    className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/60 rounded-md border border-blue-200/80 dark:border-blue-900/80 transition-colors disabled:opacity-40"
+                    title="Fetch and re-check Build IDs for all failed submissions from Dashboard"
+                  >
+                    <RotateCw className="w-3 h-3" />
+                    <span>Re-check all</span>
+                  </button>
+                )}
+                {onRetryFailedAll && (
+                  <button
+                    onClick={onRetryFailedAll}
+                    disabled={isRunning}
+                    className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/60 rounded-md border border-amber-200/80 dark:border-amber-900/80 transition-colors disabled:opacity-40"
+                    title="Move all failed items back to queue and retry submission"
+                  >
+                    <RotateCcw className="w-3 h-3" />
+                    <span>Retry all</span>
+                  </button>
+                )}
+                <button
+                  onClick={() => onClearSection('failed')}
+                  className="flex items-center gap-1 px-2 py-1 text-[11px] font-medium text-slate-500 hover:text-rose-600 dark:text-neutral-400 dark:hover:text-rose-400 rounded-md hover:bg-slate-100 dark:hover:bg-neutral-800 transition-colors"
+                  title="Clear failed submissions"
+                >
+                  <Trash2 className="w-3 h-3" />
+                  <span>Clear all</span>
+                </button>
+              </div>
             )}
             <span className={`w-5 h-5 flex items-center justify-center text-[10px] font-bold rounded-full ${
               failedItems.length > 0
@@ -520,13 +551,13 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                 <table className="w-full text-left text-xs border-collapse">
                   <thead>
                     <tr className="bg-slate-50/50 dark:bg-[#070709] text-slate-400 dark:text-neutral-500 border-b border-slate-100 dark:border-neutral-800/80">
-                      <th className="py-2.5 px-4 font-semibold w-12 text-center">#</th>
-                      <th className="py-2.5 px-4 font-semibold w-32">Build ID</th>
-                      <th className="py-2.5 px-4 font-semibold">Build Fingerprint</th>
-                      <th className="py-2.5 px-4 font-mono">PDA</th>
-                      <th className="py-2.5 px-4 font-mono">CSC</th>
-                      <th className="py-2.5 px-4 font-mono">Baseband</th>
-                      <th className="py-2.5 px-4 text-right w-36">Actions</th>
+                      <th className="py-2.5 px-4 font-semibold w-12 text-center whitespace-nowrap">#</th>
+                      <th className="py-2.5 px-4 font-semibold w-32 whitespace-nowrap">Build ID</th>
+                      <th className="py-2.5 px-4 font-semibold whitespace-nowrap">Build Fingerprint</th>
+                      <th className="py-2.5 px-4 font-mono whitespace-nowrap">PDA</th>
+                      <th className="py-2.5 px-4 font-mono whitespace-nowrap">CSC</th>
+                      <th className="py-2.5 px-4 font-mono whitespace-nowrap">Baseband</th>
+                      <th className="py-2.5 px-4 text-right w-44 whitespace-nowrap">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-neutral-800/60 font-sans">
@@ -535,40 +566,48 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                         key={item.id}
                         className="hover:bg-rose-50/40 dark:hover:bg-rose-950/20 transition-colors"
                       >
-                        <td className="py-2.5 px-4 font-mono text-slate-400 w-12 text-center text-[11px]">
+                        <td className="py-2.5 px-4 font-mono text-slate-400 w-12 text-center text-[11px] whitespace-nowrap">
                           {idx + 1}
                         </td>
-                        <td className="py-2.5 px-4">
+                        <td className="py-2.5 px-4 whitespace-nowrap">
                           <BuildIdCell buildId={item.buildId} />
                         </td>
                         <td className="py-2.5 px-4 font-medium text-slate-800 dark:text-neutral-200">
                           <div className="flex flex-col">
                             <span>{item.buildFingerprintName}</span>
                             {item.error && (
-                              <span className="text-[11px] text-rose-500 font-mono mt-0.5">
+                              <span className="text-[11px] text-rose-500 font-mono mt-0.5 whitespace-normal">
                                 &rarr; {item.error}
                               </span>
                             )}
                           </div>
                         </td>
-                        <td className="py-2.5 px-4 font-mono text-slate-500 text-[11px]">
+                        <td className="py-2.5 px-4 font-mono text-slate-500 text-[11px] whitespace-nowrap">
                           {item.pdaVersion}
                         </td>
-                        <td className="py-2.5 px-4 font-mono text-slate-500 text-[11px]">
+                        <td className="py-2.5 px-4 font-mono text-slate-500 text-[11px] whitespace-nowrap">
                           {item.cscVersion}
                         </td>
-                        <td className="py-2.5 px-4 font-mono text-slate-500 text-[11px]">
+                        <td className="py-2.5 px-4 font-mono text-slate-500 text-[11px] whitespace-nowrap">
                           {item.basebandVersion}
                         </td>
-                        <td className="py-2.5 px-4 text-right">
+                        <td className="py-2.5 px-4 text-right whitespace-nowrap">
                           <div className="flex items-center justify-end gap-1.5">
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
-                              <AlertTriangle className="w-3 h-3" />
-                              Failed
-                            </span>
+                            {onRecheckItem && (
+                              <button
+                                onClick={() => onRecheckItem(item)}
+                                disabled={isRunning}
+                                className="px-2 py-1 text-[11px] font-semibold text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50 rounded-md border border-blue-200/60 dark:border-blue-900/60 transition-colors flex items-center gap-1 disabled:opacity-40"
+                                title="Re-check Build ID for this item from Dashboard"
+                              >
+                                <RotateCw className="w-3 h-3" />
+                                <span>Re-check</span>
+                              </button>
+                            )}
                             <button
                               onClick={() => onRetryItem(item.id)}
-                              className="px-2 py-1 text-[11px] font-semibold text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50 rounded-md transition-colors flex items-center gap-1"
+                              disabled={isRunning}
+                              className="px-2 py-1 text-[11px] font-semibold text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/50 rounded-md border border-amber-200/60 dark:border-amber-900/60 transition-colors flex items-center gap-1 disabled:opacity-40"
                               title="Retry submission"
                             >
                               <RotateCcw className="w-3 h-3" />

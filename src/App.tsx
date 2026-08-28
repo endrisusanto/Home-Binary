@@ -449,6 +449,9 @@ export function App() {
       } catch (err: any) {
         addLog('error', `Cancellation failed: ${err?.message || err}`);
       }
+    } else {
+      setIsRunning(false);
+      addLog('info', 'Mock execution cancelled.');
     }
     setIsRunning(false);
     setItems((prev) =>
@@ -456,17 +459,80 @@ export function App() {
     );
   };
 
+  // Re-check a single failed item
+  const handleRecheckSingleItem = async (item: BatchItem) => {
+    setIsRunning(true);
+    addLog('info', `Re-checking Build ID for ${item.buildFingerprintName}...`);
+
+    const tauri = await getTauri();
+    if (tauri && tauri.core) {
+      try {
+        await tauri.core.invoke('start_batch_runner', {
+          payload: {
+            portal: {
+              ...portalConfig,
+              fetchOnly: true,
+            },
+            items: [item],
+          },
+        });
+      } catch (err: any) {
+        addLog('error', `Re-check error: ${err?.message || err}`);
+        setIsRunning(false);
+      }
+    } else {
+      setIsRunning(false);
+    }
+  };
+
+  // Re-check all failed items
+  const handleRecheckFailedAll = async () => {
+    const failedList = items.filter(x => x.status === 'failed');
+    if (failedList.length === 0) return;
+
+    setIsRunning(true);
+    addLog('info', `Re-checking Build IDs for ${failedList.length} failed build(s)...`);
+
+    const tauri = await getTauri();
+    if (tauri && tauri.core) {
+      try {
+        await tauri.core.invoke('start_batch_runner', {
+          payload: {
+            portal: {
+              ...portalConfig,
+              fetchOnly: true,
+            },
+            items: failedList,
+          },
+        });
+      } catch (err: any) {
+        addLog('error', `Re-check all error: ${err?.message || err}`);
+        setIsRunning(false);
+      }
+    } else {
+      setIsRunning(false);
+    }
+  };
+
+  // Retry all failed items
+  const handleRetryFailedAll = () => {
+    const failedCount = items.filter(x => x.status === 'failed').length;
+    if (failedCount === 0) return;
+    setItems(prev => prev.map(x => (x.status === 'failed' ? { ...x, status: 'pending', error: undefined, message: undefined } : x)));
+    addLog('info', `Reset ${failedCount} failed build(s) back to pending queue.`);
+  };
+
   return (
-    <div className="min-h-screen bg-[#f4f7fb] dark:bg-[#000000] text-slate-800 dark:text-neutral-100 flex flex-col font-sans transition-colors duration-150">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#070709] text-slate-900 dark:text-neutral-100 flex flex-col font-sans selection:bg-blue-500/20">
       
-      {/* Top Navigation Bar */}
+      {/* Top Header Navbar */}
       <Header
+        onStartBatch={handleStartBatch}
+        onCancelBatch={handleCancelBatch}
+        isRunning={isRunning}
         onOpenInputDrawer={() => setIsInputDrawerOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
         onOpenUpdateModal={() => setIsUpdateModalOpen(true)}
-        isRunning={isRunning}
-        onStartBatch={handleStartBatch}
-        onCancelBatch={handleCancelBatch}
         onResetQueue={handleResetQueue}
         onFetchBuildIds={handleFetchBuildIds}
         completedBuildingCount={missingBuildIdCount}
@@ -498,6 +564,9 @@ export function App() {
           onRetryItem={handleRetryItem}
           onClearSection={handleClearSection}
           onRunItem={handleRunSingleItem}
+          onRecheckItem={handleRecheckSingleItem}
+          onRecheckFailedAll={handleRecheckFailedAll}
+          onRetryFailedAll={handleRetryFailedAll}
           searchQuery={searchQuery}
         />
 
