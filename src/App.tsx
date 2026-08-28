@@ -125,6 +125,51 @@ export function App() {
     setLogs((prev) => [...prev.slice(-499), newEntry]);
   }, []);
 
+  // Automatic check for app updates on launch
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      try {
+        if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
+          const { check } = await import('@tauri-apps/plugin-updater');
+          const update = await check();
+          if (update) {
+            addLog('info', `New update found: v${update.version}. Opening Update modal...`);
+            setIsUpdateModalOpen(true);
+            return;
+          }
+        }
+        // GitHub API fallback check
+        const res = await fetch('https://api.github.com/repos/endrisusanto/Home-Binary/releases/latest', {
+          headers: { Accept: 'application/vnd.github.v3+json' },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const latestTag = (data.tag_name || data.name || '').replace(/^v/, '');
+          const cur = appVersion.replace(/^v/, '');
+          if (latestTag && cur && latestTag !== cur) {
+            const cParts = cur.split('.').map(Number);
+            const lParts = latestTag.split('.').map(Number);
+            let hasNewer = false;
+            for (let i = 0; i < Math.max(cParts.length, lParts.length); i++) {
+              const c = cParts[i] || 0;
+              const l = lParts[i] || 0;
+              if (l > c) { hasNewer = true; break; }
+              if (c > l) { break; }
+            }
+            if (hasNewer) {
+              addLog('info', `New release available: v${latestTag}. Opening Update modal...`);
+              setIsUpdateModalOpen(true);
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('Startup update check notice:', err);
+      }
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [appVersion, addLog]);
+
   // Listen to Tauri events
   useEffect(() => {
     let unlistenLog: any;

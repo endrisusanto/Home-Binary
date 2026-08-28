@@ -37,6 +37,12 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
   const [releaseInfo, setReleaseInfo] = useState<ReleaseInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (isOpen) {
+      checkForUpdates();
+    }
+  }, [isOpen]);
+
   const compareVersions = (v1: string, v2: string): number => {
     // Return 1 if v2 > v1, -1 if v1 > v2, 0 if equal
     const clean1 = v1.replace(/^v/, '').split('.').map(Number);
