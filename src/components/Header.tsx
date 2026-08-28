@@ -16,9 +16,6 @@ interface HeaderProps {
   onOpenInputDrawer: () => void;
   onOpenSettings: () => void;
   onOpenUpdateModal: () => void;
-  onToggleLogs: () => void;
-  isLogsOpen: boolean;
-  logsCount: number;
   isRunning: boolean;
   onStartBatch: () => void;
   onCancelBatch: () => void;
@@ -38,9 +35,6 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenInputDrawer,
   onOpenSettings,
   onOpenUpdateModal,
-  onToggleLogs,
-  isLogsOpen,
-  logsCount,
   isRunning,
   onStartBatch,
   onCancelBatch,
@@ -158,24 +152,6 @@ export const Header: React.FC<HeaderProps> = ({
             title="Reset queue"
           >
             <RotateCcw className="w-4 h-4" />
-          </button>
-
-          {/* Logs Console Toggle */}
-          <button
-            onClick={onToggleLogs}
-            className={`relative p-2 rounded-lg transition-colors ${
-              isLogsOpen 
-                ? 'text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800' 
-                : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
-            }`}
-            title="Toggle Live Console Logs"
-          >
-            <Terminal className="w-4 h-4" />
-            {logsCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 text-[9px] font-bold bg-blue-600 text-white rounded-full flex items-center justify-center">
-                {logsCount > 99 ? '99+' : logsCount}
-              </span>
-            )}
           </button>
 
           {/* Check Updates Modal Toggle */}

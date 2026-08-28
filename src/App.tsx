@@ -250,7 +250,6 @@ export function App() {
     }
 
     setIsRunning(true);
-    setIsLogsOpen(true);
     addLog('info', `Starting execution for ${queueToRun.length} build(s)...`);
 
     const tauri = await getTauri();
@@ -353,9 +352,6 @@ export function App() {
         onOpenInputDrawer={() => setIsInputDrawerOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
         onOpenUpdateModal={() => setIsUpdateModalOpen(true)}
-        onToggleLogs={() => setIsLogsOpen(!isLogsOpen)}
-        isLogsOpen={isLogsOpen}
-        logsCount={logs.length}
         isRunning={isRunning}
         onStartBatch={handleStartBatch}
         onCancelBatch={handleCancelBatch}
@@ -370,8 +366,8 @@ export function App() {
         appVersion={appVersion}
       />
 
-      {/* Main Body Content (Full Width Compact Layout) */}
-      <main className="flex-1 w-full px-3 py-3">
+      {/* Main Body Content (Full Width Compact Layout with Footer Offset) */}
+      <main className="flex-1 w-full px-3 py-3 pb-14">
         
         {/* Top 5 Metric Cards */}
         <MetricCards
@@ -418,9 +414,10 @@ export function App() {
         currentVersion={appVersion}
       />
 
+      {/* Collapsible Persistent Bottom Footer Log Bar */}
       <TerminalLog
         isOpen={isLogsOpen}
-        onClose={() => setIsLogsOpen(false)}
+        onToggle={() => setIsLogsOpen(!isLogsOpen)}
         logs={logs}
         onClearLogs={() => setLogs([])}
         isRunning={isRunning}
