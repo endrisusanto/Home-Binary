@@ -171,6 +171,13 @@ export function App() {
       unlistenFinished = await tauri.event.listen('task-finished', (event: any) => {
         const payload = event.payload;
         setIsRunning(false);
+        setItems((prev) =>
+          prev.map((item) =>
+            item.status === 'running'
+              ? { ...item, status: 'success', progressPercent: 100, message: item.message || 'Submission complete' }
+              : item
+          )
+        );
         if (payload?.cancelled) {
           addLog('warn', 'Batch execution was halted.');
         } else {

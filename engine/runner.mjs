@@ -821,7 +821,8 @@ async function main() {
         }
 
         emitLog('success', `[Tab #${(i % concurrency) + 1}] Form triggered successfully for ${item.buildFingerprintName}!`);
-        emitProgress(item.id, itemIndex, 'running', `Form submitted. Build running on server...`, null, null, 50);
+        successCount++;
+        emitProgress(item.id, itemIndex, 'success', `Form submitted: ${item.buildFingerprintName}`, null, item.buildId || null, 100);
 
       } catch (itemErr) {
         failedCount++;
