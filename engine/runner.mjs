@@ -727,13 +727,14 @@ async function main() {
         await page.fill(selPda, item.pdaVersion || '');
         await page.waitForTimeout(250);
 
-        await page.fill(selCsc, item.cscVersion || '');
-        await page.waitForTimeout(250);
+        const rawBaseband = (item.basebandVersion || '').trim();
+        const isNoBaseband = !rawBaseband || rawBaseband === '-' || rawBaseband === '—' || rawBaseband.toLowerCase() === 'none' || rawBaseband.toLowerCase() === 'n/a';
+        const cleanBaseband = isNoBaseband ? '' : rawBaseband;
 
-        await page.fill(selBaseband, item.basebandVersion || '');
+        await page.fill(selBaseband, cleanBaseband);
         await page.waitForTimeout(400);
 
-        emitLog('info', `All 4 fields populated (PDA: ${item.pdaVersion}, CSC: ${item.cscVersion}, Phone: ${item.basebandVersion}).`);
+        emitLog('info', `All 4 fields populated (PDA: ${item.pdaVersion}, CSC: ${item.cscVersion}, Phone: ${cleanBaseband || '[EMPTY - Wi-Fi Only]'}).`);
 
         // Trigger Submit with .submits button:has-text("Ok") and safe settling delay
         await triggerFormSubmission(page, selBaseband, delayMs);

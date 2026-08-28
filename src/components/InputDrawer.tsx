@@ -91,6 +91,24 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
       return results;
     }
 
+    const cleanBasebandToken = (val?: string): string => {
+      if (!val) return '';
+      const t = val.trim();
+      if (
+        t === '-' ||
+        t === '—' ||
+        t === '.' ||
+        t.toLowerCase() === 'none' ||
+        t.toLowerCase() === 'n/a' ||
+        t.toLowerCase() === 'null' ||
+        t.toLowerCase() === 'empty' ||
+        t.toLowerCase() === 'no'
+      ) {
+        return '';
+      }
+      return t;
+    };
+
     // Line by line parser for TSV / CSV / Space delimited
     const lines = trimmed.split('\n');
     for (const rawLine of lines) {
@@ -121,14 +139,15 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
             buildFingerprintName: parts[1] || '',
             pdaVersion: parts[2] || parts[1] || '',
             cscVersion: parts[3] || '',
-            basebandVersion: parts[4] || parts[2] || '',
+            basebandVersion: cleanBasebandToken(parts[4]),
           });
         } else {
+          // Standard: [0] Fingerprint, [1] PDA, [2] CSC, [3] Baseband (optional / can be -)
           results.push({
             buildFingerprintName: parts[0] || '',
             pdaVersion: parts[1] || parts[0] || '',
             cscVersion: parts[2] || '',
-            basebandVersion: parts[3] || parts[1] || '',
+            basebandVersion: cleanBasebandToken(parts[3]),
           });
         }
       }

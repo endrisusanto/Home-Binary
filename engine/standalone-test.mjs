@@ -267,11 +267,12 @@ async function main() {
     await page.waitForTimeout(300);
 
     console.log(`📝 Filling [3] CSC Version       : ${TEST_ITEM.cscVersion}`);
-    await page.fill(selCsc, TEST_ITEM.cscVersion);
-    await page.waitForTimeout(300);
+    const rawBaseband = (TEST_ITEM.basebandVersion || '').trim();
+    const isNoBaseband = !rawBaseband || rawBaseband === '-' || rawBaseband === '—' || rawBaseband.toLowerCase() === 'none' || rawBaseband.toLowerCase() === 'n/a';
+    const cleanBaseband = isNoBaseband ? '' : rawBaseband;
 
-    console.log(`📝 Filling [4] Phone / Baseband  : ${TEST_ITEM.basebandVersion}`);
-    await page.fill(selBaseband, TEST_ITEM.basebandVersion);
+    console.log(`📝 Filling [4] Phone / Baseband  : ${cleanBaseband || '[EMPTY - Wi-Fi Only]'}`);
+    await page.fill(selBaseband, cleanBaseband);
     await page.waitForTimeout(400);
 
     console.log('\n⏳ Waiting 1.5s for Wicket AJAX form state to settle before submission...');
