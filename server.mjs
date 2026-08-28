@@ -386,6 +386,13 @@ const server = http.createServer(async (req, res) => {
           timestamp: new Date().toLocaleTimeString(),
         });
 
+        // Broadcast remote update trigger to all connected desktop clients
+        broadcastSSE('remote-desktop-update', {
+          action: 'auto-update',
+          timestamp: new Date().toISOString(),
+          message: 'Remote update trigger broadcasted to desktop clients.'
+        });
+
         const runCmd = (cmd, args, cwd = __dirname) =>
           new Promise((resolve, reject) => {
             const proc = spawn(cmd, args, { cwd, stdio: ['ignore', 'pipe', 'pipe'] });
@@ -449,6 +456,34 @@ const server = http.createServer(async (req, res) => {
         });
       }
     })();
+    return;
+  }
+
+  // 6. Dedicated Remote Trigger for Windows Desktop Clients
+  if (pathname === '/api/system/trigger-desktop-update' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        broadcastSSE('remote-desktop-update', {
+          action: 'auto-update',
+          targetVersion: payload.version || 'latest',
+          timestamp: new Date().toISOString(),
+          message: 'Remote update trigger broadcasted to desktop clients.'
+        });
+        broadcastSSE('task-log', {
+          level: 'warn',
+          message: '📡 [Remote Trigger] Broadcasted auto-update command to all connected Windows Desktop apps.',
+          timestamp: new Date().toLocaleTimeString(),
+        });
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ status: 'broadcasted', targetVersion: payload.version || 'latest' }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+    });
     return;
   }
 

@@ -267,7 +267,7 @@ export function App() {
       if (activeSyncUrl) {
         try {
           eventSource = new EventSource(`${activeSyncUrl}/api/events`);
-          eventSource.onmessage = (event) => {
+          eventSource.onmessage = async (event) => {
             try {
               const msg = JSON.parse(event.data);
               if (msg.type === 'state-sync' && msg.payload) {
@@ -285,6 +285,25 @@ export function App() {
                 handleStatusPayload(msg.payload);
               } else if (msg.type === 'task-finished' || msg.type === 'batch-finished') {
                 handleFinishedPayload();
+              } else if (msg.type === 'remote-desktop-update') {
+                if (isTauri) {
+                  addLog('warn', '⚡ [Remote Trigger] Received remote command to check and install Desktop App update...');
+                  try {
+                    const { check } = await import('@tauri-apps/plugin-updater');
+                    const { relaunch } = await import('@tauri-apps/plugin-process');
+                    const update = await check();
+                    if (update) {
+                      addLog('info', `[Remote Updater] Found update v${update.version}. Downloading & installing...`);
+                      await update.downloadAndInstall();
+                      addLog('success', `[Remote Updater] Update v${update.version} installed! Relaunching Windows Desktop App...`);
+                      await relaunch();
+                    } else {
+                      addLog('info', '[Remote Updater] Desktop application is already at the latest version.');
+                    }
+                  } catch (err: any) {
+                    addLog('error', `[Remote Updater] Failed auto-installing update: ${err.message || err}`);
+                  }
+                }
               }
             } catch {}
           };

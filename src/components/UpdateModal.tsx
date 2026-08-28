@@ -230,7 +230,32 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
     setIsInstalling(false);
   };
 
+  const [isTriggeringDesktop, setIsTriggeringDesktop] = useState(false);
+  const [desktopTriggerSuccess, setDesktopTriggerSuccess] = useState(false);
+
+  const handleTriggerDesktopUpdate = async () => {
+    setIsTriggeringDesktop(true);
+    setDesktopTriggerSuccess(false);
+    setError(null);
+    try {
+      const res = await fetch('/api/system/trigger-desktop-update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ version: releaseInfo?.version || 'latest' }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setDesktopTriggerSuccess(true);
+      setTimeout(() => setDesktopTriggerSuccess(false), 4000);
+    } catch (e: any) {
+      setError(`Failed to trigger desktop update: ${e.message}`);
+    } finally {
+      setIsTriggeringDesktop(false);
+    }
+  };
+
   if (!isOpen) return null;
+
+  const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs flex items-center justify-center p-4">
@@ -299,6 +324,41 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
             </div>
           </div>
 
+          {/* Desktop Remote Update Trigger Box (Shown in Web mode) */}
+          {!isTauri && (
+            <div className="p-3.5 rounded-xl bg-indigo-50/60 dark:bg-indigo-950/30 border border-indigo-200/70 dark:border-indigo-900/50 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-indigo-900 dark:text-indigo-200">
+                  Remote Desktop Trigger
+                </span>
+                <span className="text-[10px] text-indigo-600 dark:text-indigo-400 font-mono">
+                  Windows App
+                </span>
+              </div>
+              <p className="text-[11px] text-indigo-700/80 dark:text-indigo-300/80 leading-relaxed">
+                Send an immediate remote command to all running Windows Desktop Tauri apps to auto-download and install the update.
+              </p>
+              <div className="pt-1 flex items-center justify-between gap-2">
+                <button
+                  type="button"
+                  onClick={handleTriggerDesktopUpdate}
+                  disabled={isTriggeringDesktop}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white transition-all shadow-xs shadow-indigo-500/20 disabled:opacity-50"
+                >
+                  <RotateCw className={`w-3 h-3 ${isTriggeringDesktop ? 'animate-spin' : ''}`} />
+                  <span>{isTriggeringDesktop ? 'Broadcasting...' : 'Trigger Desktop Auto-Update'}</span>
+                </button>
+
+                {desktopTriggerSuccess && (
+                  <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    Signal sent!
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* Changelog / Release Notes */}
           {releaseInfo?.hasUpdate && releaseInfo.body && (
             <div className="space-y-1.5">
@@ -315,7 +375,7 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
           {isInstalling && (
             <div className="space-y-1.5">
               <div className="flex items-center justify-between text-xs font-medium text-blue-600 dark:text-blue-400">
-                <span>Downloading update package...</span>
+                <span>{isTauri ? 'Downloading & installing...' : 'Updating container & rebuilding...'}</span>
                 <span>{downloadProgress}%</span>
               </div>
               <div className="w-full bg-slate-200 dark:bg-neutral-800 h-2 rounded-full overflow-hidden">
@@ -354,7 +414,7 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
                   className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 rounded-lg shadow-sm shadow-emerald-500/20 transition-all disabled:opacity-50"
                 >
                   <Download className="w-3.5 h-3.5" />
-                  <span>{isInstalling ? 'Installing...' : 'Update Now'}</span>
+                  <span>{isInstalling ? 'Installing...' : 'Update Server & Desktop'}</span>
                 </button>
               ) : (
                 <a
