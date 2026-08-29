@@ -24,7 +24,7 @@ function emitLog(level, message, index = null) {
   } catch {}
 }
 
-function emitProgress(id, index, status, message, error = null, buildId = null, progressPercent = null, pdaVersion = null, cscVersion = null) {
+function emitProgress(id, index, status, message, error = null, buildId = null, progressPercent = null, pdaVersion = null, cscVersion = null, buildDate = null) {
   const payload = {
     type: 'progress',
     id: id || '',
@@ -33,6 +33,7 @@ function emitProgress(id, index, status, message, error = null, buildId = null, 
     build_id: buildId ? String(buildId) : null,
     pdaVersion: pdaVersion || null,
     cscVersion: cscVersion || null,
+    buildDate: buildDate || null,
     status,
     progressPercent,
     message,
@@ -648,16 +649,16 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
 
           if (selectedCandidate.isExpired) {
             completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build expired (${selectedCandidate.dateStr})` });
-            emitProgress(item.id, item.index, 'failed', `Build expired (${selectedCandidate.dateStr})`, `Build expired`, item.buildId, 100, item.pdaVersion, item.cscVersion);
+            emitProgress(item.id, item.index, 'failed', `Build expired (${selectedCandidate.dateStr})`, `Build expired`, item.buildId, 100, item.pdaVersion, item.cscVersion, selectedCandidate.dateStr);
             emitLog('error', `[EXPIRED] Build #${item.buildId} for ${item.buildFingerprintName} was built ${selectedCandidate.dateStr} (> 4 days ago) -> Marked as Build expired!`);
           } else if (selectedCandidate.isFailed) {
             const numChecked = candidatesToCheck.length;
             completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed on QuickBuild (${selectedCandidate.durationText || 'Failed'})` });
-            emitProgress(item.id, item.index, 'failed', `Build #${item.buildId} failed on QuickBuild`, `Build #${item.buildId} is failed on QuickBuild`, item.buildId, 100, item.pdaVersion, item.cscVersion);
+            emitProgress(item.id, item.index, 'failed', `Build #${item.buildId} failed on QuickBuild`, `Build #${item.buildId} is failed on QuickBuild`, item.buildId, 100, item.pdaVersion, item.cscVersion, selectedCandidate.dateStr);
             emitLog('error', `[FAILED] Build #${item.buildId} for ${item.buildFingerprintName} is marked as FAILED on QuickBuild (Checked ${numChecked} candidate build(s), no successful match found)!`);
           } else if (selectedCandidate.isSuccessful) {
             completedMap.set(item.id, { success: true, buildId: item.buildId });
-            emitProgress(item.id, item.index, 'success', `Completed: ${item.buildFingerprintName}`, null, item.buildId, 100, item.pdaVersion, item.cscVersion);
+            emitProgress(item.id, item.index, 'success', `Completed: ${item.buildFingerprintName}`, null, item.buildId, 100, item.pdaVersion, item.cscVersion, selectedCandidate.dateStr);
             emitLog('success', `[SUCCESS] Matched Build #${item.buildId} for ${item.buildFingerprintName}! (Duration: ${selectedCandidate.durationText || 'Finished'})`);
           } else {
             // Still in progress
@@ -671,7 +672,8 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
               item.buildId,
               pct,
               item.pdaVersion,
-              item.cscVersion
+              item.cscVersion,
+              selectedCandidate.dateStr
             );
             emitLog('info', `Build #${item.buildId} (${item.buildFingerprintName}) is running (${pct}%, ${selectedCandidate.durationText || 'running'})...`);
           }

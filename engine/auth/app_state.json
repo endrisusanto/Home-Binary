@@ -7,11 +7,10 @@
       "basebandVersion": "A155FXXSCEZHU",
       "id": "build-1787919032314-0",
       "index": 0,
-      "status": "failed",
+      "status": "success",
       "buildId": "114082572",
-      "message": "Build #114082572 failed on QuickBuild",
-      "error": "Build #114082572 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
@@ -92,10 +91,8 @@
       "basebandVersion": "A566BXXSDCZHD",
       "id": "build-1787919032314-7",
       "index": 7,
-      "status": "failed",
-      "buildId": "114083228",
-      "message": "Build #114083228 failed on QuickBuild",
-      "error": "Build #114083228 is failed on QuickBuild",
+      "status": "pending",
+      "buildId": "114089980",
       "progressPercent": 100
     },
     {
@@ -117,11 +114,10 @@
       "basebandVersion": "",
       "id": "build-1787919032314-9",
       "index": 9,
-      "status": "failed",
+      "status": "success",
       "buildId": "114083428",
-      "message": "Build #114083428 failed on QuickBuild",
-      "error": "Build #114083428 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-G525F_SEA_14_XSA",
@@ -190,11 +186,10 @@
       "basebandVersion": "",
       "id": "build-1787919032314-15",
       "index": 15,
-      "status": "failed",
+      "status": "success",
       "buildId": "114083845",
-      "message": "Build #114083845 failed on QuickBuild",
-      "error": "Build #114083845 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-X730_EUR_XX",
@@ -203,11 +198,10 @@
       "basebandVersion": "",
       "id": "build-1787919032314-16",
       "index": 16,
-      "status": "failed",
+      "status": "success",
       "buildId": "114083850",
-      "message": "Build #114083850 failed on QuickBuild",
-      "error": "Build #114083850 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-X736B_SEA_DX",
@@ -216,11 +210,10 @@
       "basebandVersion": "X736BXXS8BZH4",
       "id": "build-1787919032314-17",
       "index": 17,
-      "status": "failed",
+      "status": "success",
       "buildId": "114083852",
-      "message": "Build #114083852 failed on QuickBuild",
-      "error": "Build #114083852 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-X700_EUR_16_XX",
@@ -241,11 +234,10 @@
       "basebandVersion": "",
       "id": "build-1787919032314-20",
       "index": 20,
-      "status": "failed",
+      "status": "success",
       "buildId": "114083932",
-      "message": "Build #114083932 failed on QuickBuild",
-      "error": "Build #114083932 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-X626B_SEA_DX",
@@ -254,11 +246,10 @@
       "basebandVersion": "X626BXXU9DZH1",
       "id": "build-1787919032314-21",
       "index": 21,
-      "status": "failed",
+      "status": "success",
       "buildId": "114083934",
-      "message": "Build #114083934 failed on QuickBuild",
-      "error": "Build #114083934 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-X930_EUR_C2_XX",
@@ -267,11 +258,10 @@
       "basebandVersion": "",
       "id": "build-1787919032314-22",
       "index": 22,
-      "status": "failed",
+      "status": "success",
       "buildId": "114083939",
-      "message": "Build #114083939 failed on QuickBuild",
-      "error": "Build #114083939 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-X730_EUR_XX",
@@ -280,11 +270,10 @@
       "basebandVersion": "",
       "id": "build-1787919032314-23",
       "index": 23,
-      "status": "failed",
+      "status": "success",
       "buildId": "114083936",
-      "message": "Build #114083936 failed on QuickBuild",
-      "error": "Build #114083936 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-X610_EUR_B4_XX",
@@ -305,11 +294,10 @@
       "basebandVersion": "",
       "id": "build-1787919032314-25",
       "index": 25,
-      "status": "failed",
+      "status": "success",
       "buildId": "114084017",
-      "message": "Build #114084017 failed on QuickBuild",
-      "error": "Build #114084017 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-A175F_SEA_PHL",
@@ -318,11 +306,10 @@
       "basebandVersion": "A175FXXS7CZH6",
       "id": "build-1787919032314-26",
       "index": 26,
-      "status": "failed",
+      "status": "success",
       "buildId": "114084020",
-      "message": "Build #114084020 failed on QuickBuild",
-      "error": "Build #114084020 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-X936B_SEA_B4_DX",
@@ -355,11 +342,10 @@
       "basebandVersion": "",
       "id": "build-1787919032314-29",
       "index": 29,
-      "status": "failed",
+      "status": "success",
       "buildId": "114084346",
-      "message": "Build #114084346 failed on QuickBuild",
-      "error": "Build #114084346 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-P625_SEA_B4_DX",
@@ -380,11 +366,10 @@
       "basebandVersion": "S928BXXU6EZHC",
       "id": "build-1787919032314-31",
       "index": 31,
-      "status": "failed",
+      "status": "success",
       "buildId": "114084347",
-      "message": "Build #114084347 failed on QuickBuild",
-      "error": "Build #114084347 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-F966B_EUR_C2_XX",
@@ -393,11 +378,10 @@
       "basebandVersion": "F966BXXUCZZHC",
       "id": "build-1787919032314-32",
       "index": 32,
-      "status": "failed",
+      "status": "success",
       "buildId": "114084383",
-      "message": "Build #114084383 failed on QuickBuild",
-      "error": "Build #114084383 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-S921BE_SEA_DX",
@@ -406,11 +390,10 @@
       "basebandVersion": "S921BXXUHEZHC",
       "id": "build-1787919032314-33",
       "index": 33,
-      "status": "failed",
+      "status": "success",
       "buildId": "114084387",
-      "message": "Build #114084387 failed on QuickBuild",
-      "error": "Build #114084387 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-S731B_EUR_C2_XX",
@@ -419,11 +402,10 @@
       "basebandVersion": "S731BXXU9CZH4",
       "id": "build-1787919032314-34",
       "index": 34,
-      "status": "failed",
+      "status": "success",
       "buildId": "114102406",
       "progressPercent": 100,
-      "message": "Build #114102406 failed on QuickBuild",
-      "error": "Build #114102406 is failed on QuickBuild"
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-M556B_SEA_B4_XME",
@@ -444,11 +426,10 @@
       "basebandVersion": "",
       "id": "build-1787919032314-36",
       "index": 36,
-      "status": "failed",
+      "status": "success",
       "buildId": "114084390",
-      "message": "Build #114084390 failed on QuickBuild",
-      "error": "Build #114084390 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-G525F_SEA_14_XSA",
@@ -469,11 +450,10 @@
       "basebandVersion": "A576BXXU4BZG6",
       "id": "build-1787919032314-38",
       "index": 38,
-      "status": "failed",
+      "status": "success",
       "buildId": "114084486",
-      "message": "Build #114084486 failed on QuickBuild",
-      "error": "Build #114084486 is failed on QuickBuild",
-      "progressPercent": 100
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-S916BE_SEA_B4_DX",
@@ -866,11 +846,10 @@
       "basebandVersion": "A376BXXU4BZH1",
       "id": "build-1787919032314-71",
       "index": 71,
-      "status": "failed",
-      "message": "Build #114088951 failed on QuickBuild",
+      "status": "success",
       "progressPercent": 100,
       "buildId": "114088951",
-      "error": "Build #114088951 is failed on QuickBuild"
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
@@ -1095,11 +1074,10 @@
       "basebandVersion": "A376BXXU4BZH1",
       "id": "build-1787952698882-18",
       "index": 90,
-      "status": "failed",
-      "buildId": "114102845",
-      "message": "Build #114102845 failed on QuickBuild",
-      "error": "Build #114102845 is failed on QuickBuild",
-      "progressPercent": 100
+      "status": "success",
+      "buildId": "114107329",
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-A165F_SEA_XXV",
@@ -1108,11 +1086,10 @@
       "basebandVersion": "A165FXXSBDZH3",
       "id": "build-1787981197722-0",
       "index": 90,
-      "status": "failed",
-      "buildId": "114102845",
-      "message": "Build #114102845 failed on QuickBuild",
-      "error": "Build #114102845 is failed on QuickBuild",
-      "progressPercent": 100
+      "status": "success",
+      "buildId": "114107329",
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
     },
     {
       "buildFingerprintName": "SM-A165F_SEA_XXV",
@@ -1121,11 +1098,21 @@
       "basebandVersion": "A165FXXSBDZH3",
       "id": "build-1787981275290-0",
       "index": 91,
-      "status": "failed",
-      "buildId": "114102845",
-      "message": "Build #114102845 failed on QuickBuild",
-      "error": "Build #114102845 is failed on QuickBuild",
-      "progressPercent": 100
+      "status": "success",
+      "buildId": "114107329",
+      "progressPercent": 100,
+      "message": "Initializing browser session..."
+    },
+    {
+      "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
+      "pdaVersion": "A566BXXSDCZHD",
+      "cscVersion": "A566BOLMDCZHD",
+      "basebandVersion": "A566BXXSDCZHD",
+      "id": "build-1788003873428-0",
+      "index": 92,
+      "status": "pending",
+      "progressPercent": 100,
+      "buildId": "114089980"
     }
   ],
   "logs": [
@@ -16325,6 +16312,776 @@
       "level": "success",
       "message": "All 2 builds finished processing on QuickBuild!",
       "index": null
+    },
+    {
+      "id": "kjmyg35",
+      "timestamp": "4:25:29 PM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: true)...",
+      "index": null
+    },
+    {
+      "id": "xjx578d",
+      "timestamp": "4:25:29 PM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: true)...",
+      "index": null
+    },
+    {
+      "id": "kzv3ney",
+      "timestamp": "4:25:38 PM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "3vss82k",
+      "timestamp": "4:25:40 PM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "2j3x3mm",
+      "timestamp": "4:26:01 PM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "lyv6y6h",
+      "timestamp": "4:26:07 PM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "62ts72q",
+      "timestamp": "4:26:11 PM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 1 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "4ih2t7n",
+      "timestamp": "4:26:11 PM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 1 builds...",
+      "index": null
+    },
+    {
+      "id": "3dggcy9",
+      "timestamp": "4:26:11 PM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "eyj2991",
+      "timestamp": "4:26:11 PM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "ols34v8",
+      "timestamp": "4:26:13 PM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 1 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "cw2sa26",
+      "timestamp": "4:26:13 PM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 1 builds...",
+      "index": null
+    },
+    {
+      "id": "glfcz7n",
+      "timestamp": "4:26:13 PM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "05cl1yn",
+      "timestamp": "4:26:14 PM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "oe0k6vf",
+      "timestamp": "4:26:17 PM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "27th78v",
+      "timestamp": "4:26:20 PM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "g431hla",
+      "timestamp": "4:26:23 PM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "3tqdeo9",
+      "timestamp": "4:26:23 PM",
+      "level": "error",
+      "message": "[FAILED] Build #114102845 for SM-A165F_SEA_XXV is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "6ljzwaw",
+      "timestamp": "4:26:23 PM",
+      "level": "success",
+      "message": "All 1 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "vqkead7",
+      "timestamp": "4:26:25 PM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "jfom79n",
+      "timestamp": "4:26:25 PM",
+      "level": "error",
+      "message": "[FAILED] Build #114102845 for SM-A165F_SEA_XXV is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "dlwvbtw",
+      "timestamp": "4:26:25 PM",
+      "level": "success",
+      "message": "All 1 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "xmeu3jh",
+      "timestamp": "4:27:08 PM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: true)...",
+      "index": null
+    },
+    {
+      "id": "y2vs9mw",
+      "timestamp": "4:27:08 PM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: true)...",
+      "index": null
+    },
+    {
+      "id": "i8a9169",
+      "timestamp": "4:27:17 PM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "o16d81a",
+      "timestamp": "4:27:20 PM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "ew7fn1x",
+      "timestamp": "4:27:41 PM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "i7b74zs",
+      "timestamp": "4:27:45 PM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "spep6vi",
+      "timestamp": "4:27:47 PM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 2 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "3r90rnq",
+      "timestamp": "4:27:47 PM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A165F_SEA_XXV",
+      "index": null
+    },
+    {
+      "id": "dtvsb6x",
+      "timestamp": "4:27:47 PM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A165F_SEA_XXV",
+      "index": null
+    },
+    {
+      "id": "s0ur7y3",
+      "timestamp": "4:27:51 PM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 2 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "qry7usg",
+      "timestamp": "4:27:51 PM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A165F_SEA_XXV",
+      "index": null
+    },
+    {
+      "id": "ty512zw",
+      "timestamp": "4:27:51 PM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A165F_SEA_XXV",
+      "index": null
+    },
+    {
+      "id": "otkpjdq",
+      "timestamp": "4:27:57 PM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "wqgmro9",
+      "timestamp": "4:27:59 PM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "aduco5d",
+      "timestamp": "4:27:59 PM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "qa64grd",
+      "timestamp": "4:28:00 PM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "c76si5g",
+      "timestamp": "4:28:00 PM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "gejlc1f",
+      "timestamp": "4:28:01 PM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "382739l",
+      "timestamp": "4:28:02 PM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "kqeq1a7",
+      "timestamp": "4:28:02 PM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "079jbmu",
+      "timestamp": "4:28:02 PM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A165F_SEA_XXV, PDA=A165FXXSBDZH6, CSC=A165FOLMBDZH6, Phone=A165FXXSBDZH3",
+      "index": null
+    },
+    {
+      "id": "w705fx6",
+      "timestamp": "4:28:02 PM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "0v6ejur",
+      "timestamp": "4:28:03 PM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "czczpbr",
+      "timestamp": "4:28:04 PM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "0ifs0sh",
+      "timestamp": "4:28:04 PM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "z1ofd0o",
+      "timestamp": "4:28:04 PM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ohkcvio",
+      "timestamp": "4:28:05 PM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-A165F_SEA_XXV, PDA=A165FXXSBDZH6, CSC=A165FOLEBDZH6, Phone=A165FXXSBDZH3",
+      "index": null
+    },
+    {
+      "id": "7ekdiwe",
+      "timestamp": "4:28:05 PM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "ibwp856",
+      "timestamp": "4:28:06 PM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "d2i9qj7",
+      "timestamp": "4:28:07 PM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "yxzwa3h",
+      "timestamp": "4:28:07 PM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "efnz5ua",
+      "timestamp": "4:28:07 PM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "pah1asf",
+      "timestamp": "4:28:07 PM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "14ts1ug",
+      "timestamp": "4:28:08 PM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "u5kri59",
+      "timestamp": "4:28:08 PM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A165F_SEA_XXV!",
+      "index": null
+    },
+    {
+      "id": "wu2bwf4",
+      "timestamp": "4:28:09 PM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A165F_SEA_XXV, PDA=A165FXXSBDZH6, CSC=A165FOLMBDZH6, Phone=A165FXXSBDZH3",
+      "index": null
+    },
+    {
+      "id": "x1bf1wj",
+      "timestamp": "4:28:09 PM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "p3ix8t2",
+      "timestamp": "4:28:09 PM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-A165F_SEA_XXV!",
+      "index": null
+    },
+    {
+      "id": "7hklq6g",
+      "timestamp": "4:28:09 PM",
+      "level": "info",
+      "message": "=== [PHASE 2] All forms triggered! Starting Dashboard progress tracking (every 60s) ===",
+      "index": null
+    },
+    {
+      "id": "3v1wdnp",
+      "timestamp": "4:28:09 PM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 2 builds...",
+      "index": null
+    },
+    {
+      "id": "9gjwhbb",
+      "timestamp": "4:28:09 PM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "yxyjbiw",
+      "timestamp": "4:28:10 PM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "5qhj55y",
+      "timestamp": "4:28:10 PM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "6rmp3hu",
+      "timestamp": "4:28:10 PM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "09hohqx",
+      "timestamp": "4:28:10 PM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "df2stc7",
+      "timestamp": "4:28:11 PM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "oxv0tfe",
+      "timestamp": "4:28:11 PM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "4q3k00k",
+      "timestamp": "4:28:12 PM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-A165F_SEA_XXV, PDA=A165FXXSBDZH6, CSC=A165FOLEBDZH6, Phone=A165FXXSBDZH3",
+      "index": null
+    },
+    {
+      "id": "ukg5m4o",
+      "timestamp": "4:28:12 PM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "upabutr",
+      "timestamp": "4:28:13 PM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "dohtyyo",
+      "timestamp": "4:28:13 PM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A165F_SEA_XXV!",
+      "index": null
+    },
+    {
+      "id": "v980ukt",
+      "timestamp": "4:28:16 PM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "5grpy02",
+      "timestamp": "4:28:16 PM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-A165F_SEA_XXV!",
+      "index": null
+    },
+    {
+      "id": "t41zm5s",
+      "timestamp": "4:28:16 PM",
+      "level": "info",
+      "message": "=== [PHASE 2] All forms triggered! Starting Dashboard progress tracking (every 60s) ===",
+      "index": null
+    },
+    {
+      "id": "kgldslh",
+      "timestamp": "4:28:16 PM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 2 builds...",
+      "index": null
+    },
+    {
+      "id": "zp1m43w",
+      "timestamp": "4:28:16 PM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "92dl3y2",
+      "timestamp": "4:28:17 PM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "arh365s",
+      "timestamp": "4:28:22 PM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "9gwkrtb",
+      "timestamp": "4:28:22 PM",
+      "level": "error",
+      "message": "[FAILED] Build #114107329 for SM-A165F_SEA_XXV is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "7ob5c1g",
+      "timestamp": "4:28:22 PM",
+      "level": "error",
+      "message": "[FAILED] Build #114107329 for SM-A165F_SEA_XXV is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "wzwqq4d",
+      "timestamp": "4:28:22 PM",
+      "level": "success",
+      "message": "All 2 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "02ldri8",
+      "timestamp": "4:28:23 PM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "sh2jstd",
+      "timestamp": "4:28:28 PM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "2n73irm",
+      "timestamp": "4:28:28 PM",
+      "level": "error",
+      "message": "[FAILED] Build #114107329 for SM-A165F_SEA_XXV is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "7853u9w",
+      "timestamp": "4:28:28 PM",
+      "level": "error",
+      "message": "[FAILED] Build #114107329 for SM-A165F_SEA_XXV is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "faa0tfw",
+      "timestamp": "4:28:28 PM",
+      "level": "success",
+      "message": "All 2 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "jojhnmv",
+      "timestamp": "6:53:50 PM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "kx3bkwp",
+      "timestamp": "6:53:50 PM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "gn8j053",
+      "timestamp": "6:54:00 PM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "3eeibdb",
+      "timestamp": "6:54:02 PM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "52rc98p",
+      "timestamp": "6:54:25 PM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "q4133sn",
+      "timestamp": "6:54:28 PM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "woqsklz",
+      "timestamp": "6:54:30 PM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 1 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "r7j0im7",
+      "timestamp": "6:54:30 PM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 1 builds...",
+      "index": null
+    },
+    {
+      "id": "w3e4twc",
+      "timestamp": "6:54:30 PM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "jvwh6ow",
+      "timestamp": "6:54:31 PM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 1 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "4ezk37n",
+      "timestamp": "6:54:31 PM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 1 builds...",
+      "index": null
+    },
+    {
+      "id": "ghobz1t",
+      "timestamp": "6:54:31 PM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "awiks6j",
+      "timestamp": "6:54:31 PM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "qrm0n64",
+      "timestamp": "6:54:31 PM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "mnant0v",
+      "timestamp": "6:54:37 PM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "pmdm75o",
+      "timestamp": "6:54:37 PM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "wbiyy7g",
+      "timestamp": "6:54:44 PM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "wy1qtq6",
+      "timestamp": "6:54:44 PM",
+      "level": "error",
+      "message": "[FAILED] Build #114089980 for SM-A566BE_SEA_B4_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "g8rc98b",
+      "timestamp": "6:54:44 PM",
+      "level": "success",
+      "message": "All 1 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "ok11nj3",
+      "timestamp": "6:54:44 PM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "37uzil4",
+      "timestamp": "6:54:44 PM",
+      "level": "error",
+      "message": "[FAILED] Build #114089980 for SM-A566BE_SEA_B4_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "4cu26hn",
+      "timestamp": "6:54:44 PM",
+      "level": "success",
+      "message": "All 1 builds finished processing on QuickBuild!",
+      "index": null
     }
   ],
   "portalConfig": {
@@ -16334,11 +17091,11 @@
     "delayMs": 1000,
     "timeoutMs": 30000,
     "mock": false,
-    "trackProgress": true,
+    "trackProgress": false,
     "concurrency": 3,
     "username": "endri.s",
     "password": "sein2016!"
   },
   "isRunning": false,
-  "lastUpdated": "2026-08-29T05:27:55.943Z"
+  "lastUpdated": "2026-08-29T11:56:49.090Z"
 }

@@ -19,6 +19,8 @@ pub struct BatchItem {
     pub baseband_version: String,
     #[serde(default)]
     pub status: Option<String>,
+    #[serde(default, alias = "buildDate", alias = "build_date")]
+    pub build_date: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -89,6 +91,8 @@ pub struct StatusUpdateEvent {
     pub pda_version: Option<String>,
     #[serde(default, alias = "cscVersion", alias = "csc_version")]
     pub csc_version: Option<String>,
+    #[serde(default, alias = "buildDate", alias = "build_date")]
+    pub build_date: Option<String>,
     pub status: String,
     pub message: String,
     #[serde(default)]

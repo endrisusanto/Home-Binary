@@ -10,8 +10,8 @@ import {
   RotateCcw,
   RotateCw,
   ExternalLink,
-  Copy,
-  Check
+  Check,
+  Timer
 } from 'lucide-react';
 import { BatchItem } from '../types/batch';
 
@@ -99,6 +99,91 @@ const BuildIdCell: React.FC<{ buildId?: string; isCompletedSection?: boolean }> 
         )}
       </button>
     </div>
+  );
+};
+
+// Interactive Expired Remaining Component (4-Day QuickBuild Retention Calculator)
+const ExpiredRemainingCell: React.FC<{ item: BatchItem }> = ({ item }) => {
+  const dateStr = item.buildDate;
+
+  if (item.status === 'pending') {
+    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[8px] sm:text-[10px] whitespace-nowrap">—</span>;
+  }
+
+  if (item.status === 'running') {
+    return (
+      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] sm:text-[10px] font-mono text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 border border-blue-200/50 dark:border-blue-900/40 whitespace-nowrap">
+        <Clock className="w-2.5 h-2.5 animate-spin" />
+        <span>Active</span>
+      </span>
+    );
+  }
+
+  if (!dateStr) {
+    if (item.status === 'failed' && (item.message?.includes('Build expired') || item.error?.includes('Build expired'))) {
+      return (
+        <span 
+          className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] sm:text-[10px] font-bold font-mono text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-950/80 border border-rose-200 dark:border-rose-900/60 whitespace-nowrap"
+          title="Build has exceeded the 4-day QuickBuild retention window."
+        >
+          <AlertTriangle className="w-2.5 h-2.5" />
+          <span>Expired</span>
+        </span>
+      );
+    }
+    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[8px] sm:text-[10px] whitespace-nowrap">—</span>;
+  }
+
+  const buildTimestamp = Date.parse(dateStr.replace(' ', 'T'));
+  if (isNaN(buildTimestamp)) {
+    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[8px] sm:text-[10px] whitespace-nowrap">—</span>;
+  }
+
+  const FOUR_DAYS_MS = 4 * 24 * 60 * 60 * 1000;
+  const expiryTimestamp = buildTimestamp + FOUR_DAYS_MS;
+  const remainingMs = expiryTimestamp - Date.now();
+
+  if (remainingMs <= 0 || item.message?.includes('Build expired') || item.error?.includes('Build expired')) {
+    return (
+      <span 
+        className="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded text-[8px] sm:text-[10px] font-bold font-mono text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-950/80 border border-rose-200 dark:border-rose-900/60 whitespace-nowrap"
+        title={`Built on ${dateStr} (> 4 days ago) -> Retention period ended.`}
+      >
+        <AlertTriangle className="w-2.5 h-2.5" />
+        <span>Expired</span>
+      </span>
+    );
+  }
+
+  const totalHours = Math.floor(remainingMs / (1000 * 60 * 60));
+  const days = Math.floor(totalHours / 24);
+  const hours = totalHours % 24;
+  const minutes = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60));
+
+  let timeText = '';
+  if (days > 0) {
+    timeText = `${days}d ${hours}h`;
+  } else if (hours > 0) {
+    timeText = `${hours}h ${minutes}m`;
+  } else {
+    timeText = `${minutes}m`;
+  }
+
+  let badgeStyle = 'text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800/80';
+  if (days < 1) {
+    badgeStyle = 'text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/60 border-rose-200 dark:border-rose-800/80';
+  } else if (days < 2) {
+    badgeStyle = 'text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800/80';
+  }
+
+  return (
+    <span 
+      className={`inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded-md text-[8px] sm:text-[10px] font-semibold font-mono border whitespace-nowrap shadow-2xs ${badgeStyle}`}
+      title={`Built on: ${dateStr} | Expires in: ${timeText} (4-day retention limit)`}
+    >
+      <Timer className="w-2.5 h-2.5 opacity-75" />
+      <span>{timeText}</span>
+    </span>
   );
 };
 
@@ -195,6 +280,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold font-mono">PDA</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold font-mono">CSC</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold font-mono">Baseband</th>
+                      <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold text-center w-24 sm:w-32 whitespace-nowrap">Expired Remaining</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold text-center w-16 sm:w-24">Status</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold text-right w-16 sm:w-24">Actions</th>
                     </tr>
@@ -219,6 +305,9 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap">
                           {item.basebandVersion || '—'}
+                        </td>
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-center whitespace-nowrap">
+                          <ExpiredRemainingCell item={item} />
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-center">
                           <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 py-0.2 sm:px-2 sm:py-0.5 rounded-full text-[8px] sm:text-[10px] font-semibold bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-400 border border-slate-200 dark:border-neutral-700 whitespace-nowrap">
@@ -404,6 +493,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold font-mono whitespace-nowrap">PDA</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold font-mono whitespace-nowrap">CSC</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold font-mono whitespace-nowrap">Baseband</th>
+                      <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold text-center w-24 sm:w-32 whitespace-nowrap">Expired Remaining</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold text-right w-20 sm:w-28 whitespace-nowrap">Status</th>
                     </tr>
                   </thead>
@@ -430,6 +520,9 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap">
                           {item.basebandVersion}
+                        </td>
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-center whitespace-nowrap">
+                          <ExpiredRemainingCell item={item} />
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-right whitespace-nowrap">
                           <span className="inline-flex items-center gap-1 text-[8px] sm:text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/80 px-1.5 sm:px-2 py-0.5 rounded-full border border-emerald-200/80 dark:border-emerald-800/80">
@@ -526,6 +619,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono whitespace-nowrap">PDA</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono whitespace-nowrap">CSC</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono whitespace-nowrap">Baseband</th>
+                      <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold text-center w-24 sm:w-32 whitespace-nowrap">Expired Remaining</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-right w-28 sm:w-44 whitespace-nowrap">Actions</th>
                     </tr>
                   </thead>
@@ -559,6 +653,9 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap">
                           {item.basebandVersion}
+                        </td>
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-center whitespace-nowrap">
+                          <ExpiredRemainingCell item={item} />
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-right whitespace-nowrap">
                           <div className="flex items-center justify-end gap-1 sm:gap-1.5">

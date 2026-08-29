@@ -215,6 +215,7 @@ export function App() {
         if (!isMatch) return item;
 
         const buildIdVal = payload.buildId || payload.build_id || item.buildId;
+        const buildDateVal = payload.buildDate || payload.build_date || item.buildDate;
         const newStatus = (payload.status || item.status) as ItemStatus;
 
         return {
@@ -223,6 +224,7 @@ export function App() {
           message: payload.message || item.message,
           error: payload.error || item.error,
           buildId: buildIdVal,
+          buildDate: buildDateVal,
           progressPercent:
             newStatus === 'success'
               ? 100

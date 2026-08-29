@@ -13,6 +13,7 @@ export interface BatchItem {
   message?: string;
   error?: string;
   timestamp?: string;
+  buildDate?: string;
 }
 
 export interface PortalConfig {
