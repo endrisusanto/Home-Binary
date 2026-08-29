@@ -50,3 +50,12 @@ export interface BatchSummary {
   progressPercent: number;
   activeBuildName?: string;
 }
+
+export interface ConnectedClient {
+  id: string;
+  clientType: 'desktop' | 'web';
+  version: string;
+  ip: string;
+  connectedAt: string;
+  isDesktop: boolean;
+}

@@ -1,6 +1,21 @@
-import React, { useState } from 'react';
-import { X, Settings, Globe, RotateCcw, Check, ArrowUpCircle } from 'lucide-react';
-import { PortalConfig } from '../types/batch';
+import React, { useState, useEffect } from 'react';
+import { 
+  X, 
+  Settings, 
+  Globe, 
+  RotateCcw, 
+  Check, 
+  ArrowUpCircle, 
+  Monitor, 
+  Cpu, 
+  RefreshCw, 
+  Radio, 
+  CheckCircle2, 
+  AlertCircle,
+  Wifi,
+  WifiOff
+} from 'lucide-react';
+import { PortalConfig, ConnectedClient } from '../types/batch';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -9,6 +24,8 @@ interface SettingsModalProps {
   onSaveConfig: (newConfig: PortalConfig) => void;
   onOpenUpdateModal?: () => void;
   appVersion?: string;
+  connectedClients?: ConnectedClient[];
+  isDesktopConnected?: boolean;
 }
 
 const DEFAULT_CONFIG: PortalConfig = {
@@ -27,9 +44,43 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onSaveConfig,
   onOpenUpdateModal,
   appVersion,
+  connectedClients = [],
+  isDesktopConnected = false,
 }) => {
   const [formData, setFormData] = useState<PortalConfig>(config);
   const [savedNotice, setSavedNotice] = useState(false);
+  const [clientsList, setClientsList] = useState<ConnectedClient[]>(connectedClients);
+  const [isRefreshingClients, setIsRefreshingClients] = useState(false);
+
+  // Sync internal client list when prop updates
+  useEffect(() => {
+    if (connectedClients && connectedClients.length > 0) {
+      setClientsList(connectedClients);
+    }
+  }, [connectedClients]);
+
+  // Fetch latest clients list from API when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      fetchClientsList();
+    }
+  }, [isOpen]);
+
+  const fetchClientsList = async () => {
+    setIsRefreshingClients(true);
+    try {
+      const res = await fetch('/api/clients');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.clients && Array.isArray(data.clients)) {
+          setClientsList(data.clients);
+        }
+      }
+    } catch {}
+    finally {
+      setIsRefreshingClients(false);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -47,37 +98,132 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     setFormData(DEFAULT_CONFIG);
   };
 
+  const desktopClients = clientsList.filter((c) => c.isDesktop || c.clientType === 'desktop');
+  const webClients = clientsList.filter((c) => !c.isDesktop && c.clientType !== 'desktop');
+
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-[#09090b] w-full max-w-lg rounded-2xl shadow-2xl border border-slate-200 dark:border-neutral-800 overflow-hidden animate-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 dark:bg-black/80 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-white dark:bg-[#09090b] w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 dark:border-neutral-800 overflow-hidden animate-in zoom-in-95 duration-150 max-h-[92vh] flex flex-col">
         
         {/* Modal Header */}
-        <div className="px-6 py-4 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between">
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-neutral-800 text-slate-700 dark:text-neutral-200 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-200 dark:border-blue-800">
               <Settings className="w-4 h-4" />
             </div>
             <div>
               <h2 className="text-sm font-bold text-slate-900 dark:text-white">
-                Portal & Engine Configuration
+                Settings & Tauri Desktop Entities
               </h2>
-              <p className="text-[11px] text-slate-400 dark:text-neutral-500">
-                Samsung QB endpoints & browser execution settings
+              <p className="text-[10px] sm:text-[11px] text-slate-400 dark:text-neutral-500">
+                Connected desktop nodes, version telemetry & portal engine config
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Modal Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        {/* Modal Scrollable Body */}
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 overflow-y-auto">
           
-          {/* Target Base URL */}
+          {/* 1. TAURI DESKTOP CONNECTED ENTITIES & VERSIONS SECTION */}
+          <div className="p-3 sm:p-4 rounded-xl bg-slate-50/80 dark:bg-[#0c0c0f] border border-slate-200 dark:border-neutral-800 space-y-3">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <div className="flex items-center gap-2">
+                <Monitor className="w-4 h-4 text-emerald-500" />
+                <span className="text-xs font-bold text-slate-800 dark:text-neutral-200 uppercase tracking-wider">
+                  Online Tauri Desktop Entities
+                </span>
+                <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold font-mono ${
+                  desktopClients.length > 0
+                    ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700'
+                    : 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-700'
+                }`}>
+                  <span className={`w-1.5 h-1.5 rounded-full ${desktopClients.length > 0 ? 'bg-emerald-500 animate-ping' : 'bg-amber-500'}`} />
+                  {desktopClients.length > 0 ? `${desktopClients.length} Desktop Active` : '0 Desktop Connected'}
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={fetchClientsList}
+                disabled={isRefreshingClients}
+                className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold text-slate-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 bg-white dark:bg-neutral-800/80 rounded-md border border-slate-200 dark:border-neutral-700 transition-all disabled:opacity-50"
+                title="Refresh connected entities"
+              >
+                <RefreshCw className={`w-2.5 h-2.5 ${isRefreshingClients ? 'animate-spin' : ''}`} />
+                <span>Refresh</span>
+              </button>
+            </div>
+
+            {/* Desktop Entities Table */}
+            {desktopClients.length === 0 ? (
+              <div className="p-3 rounded-lg bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-900/60 flex items-start gap-2.5">
+                <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                <div className="text-[10px] sm:text-[11px] text-amber-800 dark:text-amber-300/90 leading-relaxed">
+                  <p className="font-semibold">No Windows Desktop (Tauri) app currently connected.</p>
+                  <p className="text-amber-700/80 dark:text-amber-400/80 mt-0.5">
+                    When you run a batch from this Web interface, the server container will automatically execute it in headless mode. Open the Tauri Desktop App on Windows to enable execution with your local browser SSO session.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-neutral-800 bg-white dark:bg-[#070709]">
+                <table className="w-full text-left text-[10px] sm:text-[11px] border-collapse">
+                  <thead>
+                    <tr className="bg-slate-100/70 dark:bg-[#121215] text-slate-500 dark:text-neutral-400 border-b border-slate-200 dark:border-neutral-800 font-semibold">
+                      <th className="py-1.5 px-2.5">Entity / Node</th>
+                      <th className="py-1.5 px-2.5">Actual Version</th>
+                      <th className="py-1.5 px-2.5 font-mono">IP Address</th>
+                      <th className="py-1.5 px-2.5">Connected</th>
+                      <th className="py-1.5 px-2.5 text-right">Execution Role</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 dark:divide-neutral-800/60 font-sans">
+                    {desktopClients.map((client, idx) => (
+                      <tr key={client.id || idx} className="hover:bg-slate-50/80 dark:hover:bg-neutral-900/40 transition-colors">
+                        <td className="py-2 px-2.5 font-medium text-slate-800 dark:text-neutral-200 flex items-center gap-1.5 whitespace-nowrap">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                          <span>Windows Desktop #{idx + 1}</span>
+                          <span className="text-[9px] font-mono text-slate-400">({client.id})</span>
+                        </td>
+                        <td className="py-2 px-2.5 whitespace-nowrap">
+                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-bold font-mono bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                            v{client.version || appVersion || '0.5.6'}
+                          </span>
+                        </td>
+                        <td className="py-2 px-2.5 font-mono text-slate-600 dark:text-neutral-400 whitespace-nowrap text-[9px] sm:text-[10px]">
+                          {client.ip || '127.0.0.1'}
+                        </td>
+                        <td className="py-2 px-2.5 text-slate-500 dark:text-neutral-400 whitespace-nowrap text-[9px] sm:text-[10px]">
+                          {client.connectedAt ? new Date(client.connectedAt).toLocaleTimeString() : 'Active'}
+                        </td>
+                        <td className="py-2 px-2.5 text-right whitespace-nowrap">
+                          <span className="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+                            <Cpu className="w-2.5 h-2.5" />
+                            Primary Runner
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Total Connected Summary Footer */}
+            <div className="flex items-center justify-between text-[9px] sm:text-[10px] text-slate-400 dark:text-neutral-500 pt-1">
+              <span>WebSocket Relay: <strong className="font-mono text-slate-600 dark:text-neutral-300">wss://homebinary.endrisusanto.my.id/ws</strong></span>
+              <span>Total Active Web Sessions: <strong className="text-blue-500 font-mono">{webClients.length}</strong></span>
+            </div>
+          </div>
+
+          {/* 2. TARGET BASE URL */}
           <div className="space-y-1">
             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
               <Globe className="w-3.5 h-3.5 text-blue-500" />
@@ -92,7 +238,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             />
           </div>
 
-          {/* SSO Authentication Credentials */}
+          {/* 3. SSO AUTHENTICATION CREDENTIALS */}
           <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#070709] border border-slate-200/80 dark:border-neutral-800/80 space-y-2.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-slate-700 dark:text-neutral-200">
@@ -128,7 +274,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          {/* Automation & Browser Toggles */}
+          {/* 4. AUTOMATION & BROWSER TOGGLES */}
           <div className="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-3">
             
             {/* Headless Toggle */}
@@ -137,7 +283,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Headless Browser Mode
                 </span>
-                <span className="text-[11px] text-slate-400">
+                <span className="text-[10px] sm:text-[11px] text-slate-400">
                   Run Chromium invisibly without opening a GUI window (disable for manual SSO)
                 </span>
               </div>
@@ -158,7 +304,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     TESTING
                   </span>
                 </span>
-                <span className="text-[11px] text-slate-400">
+                <span className="text-[10px] sm:text-[11px] text-slate-400">
                   Simulate form submission without connecting to external Samsung intranet
                 </span>
               </div>
@@ -190,11 +336,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
           </div>
 
-          {/* Delays and Timeouts */}
+          {/* 5. DELAYS AND TIMEOUTS */}
           <div className="grid grid-cols-3 gap-2.5 pt-2">
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                Parallel Tabs (Concurrency)
+              <label className="text-[10px] sm:text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+                Parallel Tabs
               </label>
               <input
                 type="number"
@@ -207,7 +353,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+              <label className="text-[10px] sm:text-[11px] font-semibold text-slate-600 dark:text-slate-400">
                 Delay / Stagger (ms)
               </label>
               <input
@@ -220,7 +366,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+              <label className="text-[10px] sm:text-[11px] font-semibold text-slate-600 dark:text-slate-400">
                 Timeout (ms)
               </label>
               <input
@@ -234,14 +380,14 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          {/* App Version & Updater Section */}
+          {/* 6. APP VERSION & UPDATER SECTION */}
           <div className="pt-3 border-t border-slate-100 dark:border-neutral-800 flex items-center justify-between">
             <div className="flex flex-col">
               <span className="text-xs font-semibold text-slate-700 dark:text-neutral-300">
-                Application Version
+                Web App Version
               </span>
               <span className="text-[11px] text-slate-400 font-mono">
-                Build HomeBinary v{appVersion || '0.1.0'}
+                Build HomeBinary v{appVersion || '0.5.6'}
               </span>
             </div>
             {onOpenUpdateModal && (
@@ -251,7 +397,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   onClose();
                   onOpenUpdateModal();
                 }}
-                className="flex items-center gap-1 px-3 py-1 text-xs font-medium text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/60 rounded-lg border border-blue-200/80 dark:border-blue-800/80 transition-colors"
+                className="flex items-center gap-1 px-3 py-1 text-xs font-medium text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/60 rounded-lg border border-blue-200/80 dark:border-blue-800/80 transition-colors cursor-pointer"
               >
                 <ArrowUpCircle className="w-3.5 h-3.5" />
                 <span>Check Updates</span>
@@ -260,11 +406,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
 
           {/* Footer Actions */}
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
             <button
               type="button"
               onClick={handleResetDefaults}
-              className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
+              className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer"
             >
               <RotateCcw className="w-3 h-3" />
               <span>Reset Defaults</span>
@@ -273,13 +419,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="px-3.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                className="px-3.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="flex items-center gap-1 px-4 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm"
+                className="flex items-center gap-1 px-4 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition-colors cursor-pointer"
               >
                 {savedNotice ? <Check className="w-3.5 h-3.5" /> : null}
                 <span>Save Configuration</span>

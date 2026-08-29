@@ -77,6 +77,7 @@ function saveAppState() {
   }
 }
 
+// Check if any desktop (Tauri) client is currently connected
 function hasConnectedDesktop() {
   for (const [ws, meta] of wsClients.entries()) {
     if (meta.clientType === 'desktop' && ws.readyState === WebSocket.OPEN) {
@@ -86,7 +87,25 @@ function hasConnectedDesktop() {
   return false;
 }
 
-// Broadcast WebSocket message to all (or excluding sender)
+// Return list of all active connected clients with versions
+function getConnectedClients() {
+  const list = [];
+  for (const [ws, meta] of wsClients.entries()) {
+    if (ws.readyState === WebSocket.OPEN) {
+      list.push({
+        id: meta.id,
+        clientType: meta.clientType || 'web',
+        version: meta.version || '0.5.6',
+        ip: meta.ip || '127.0.0.1',
+        connectedAt: meta.connectedAt || new Date().toISOString(),
+        isDesktop: meta.clientType === 'desktop',
+      });
+    }
+  }
+  return list;
+}
+
+// Broadcast WebSocket message to clients (or excluding sender)
 function broadcastWS(msgObj, excludeWs = null) {
   const json = JSON.stringify(msgObj);
   for (const [ws] of wsClients.entries()) {
@@ -278,6 +297,7 @@ const server = http.createServer(async (req, res) => {
 
   // 2. Centralized State API (GET current state)
   if (pathname === '/api/state' && req.method === 'GET') {
+    const clients = getConnectedClients();
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
       items: appState.items,
@@ -285,7 +305,21 @@ const server = http.createServer(async (req, res) => {
       portalConfig: appState.portalConfig,
       isRunning: appState.isRunning || !!activeChild,
       desktopConnected: hasConnectedDesktop(),
+      clients,
       lastUpdated: appState.lastUpdated,
+    }));
+    return;
+  }
+
+  // 2a. Connected Clients API
+  if (pathname === '/api/clients' && req.method === 'GET') {
+    const clients = getConnectedClients();
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      clients,
+      desktopCount: clients.filter(c => c.isDesktop).length,
+      webCount: clients.filter(c => !c.isDesktop).length,
+      total: clients.length,
     }));
     return;
   }
@@ -552,14 +586,15 @@ const wss = new WebSocketServer({ server, path: '/ws' });
 wss.on('connection', (ws, req) => {
   const meta = {
     clientType: 'web',
-    version: '0.5.4',
+    version: '0.5.6',
     id: Math.random().toString(36).substring(2, 9),
-    ip: req.socket.remoteAddress,
+    ip: req.socket.remoteAddress?.replace(/^.*:/, '') || '127.0.0.1',
+    connectedAt: new Date().toISOString(),
   };
   wsClients.set(ws, meta);
   console.log(`[WebSocket] New client connected (${meta.id}) from ${meta.ip}. Total clients: ${wsClients.size}`);
 
-  // Send initial full state
+  // Send initial full state with clients list
   ws.send(JSON.stringify({
     type: 'state-sync',
     payload: {
@@ -568,6 +603,7 @@ wss.on('connection', (ws, req) => {
       logs: appState.logs.slice(-100),
       isRunning: appState.isRunning || !!activeChild,
       desktopConnected: hasConnectedDesktop(),
+      clients: getConnectedClients(),
       lastUpdated: appState.lastUpdated,
     }
   }));
@@ -583,7 +619,10 @@ wss.on('connection', (ws, req) => {
             meta.clientType = payload.clientType;
             meta.version = payload.version || meta.version;
             console.log(`[WebSocket] Client ${meta.id} registered as ${meta.clientType} (v${meta.version})`);
-            broadcastAll('desktop-status', { online: hasConnectedDesktop() });
+            broadcastAll('desktop-status', { 
+              online: hasConnectedDesktop(),
+              clients: getConnectedClients(),
+            });
           }
           break;
 
@@ -601,6 +640,7 @@ wss.on('connection', (ws, req) => {
             portalConfig: appState.portalConfig,
             isRunning: appState.isRunning || !!activeChild,
             desktopConnected: hasConnectedDesktop(),
+            clients: getConnectedClients(),
             lastUpdated: appState.lastUpdated,
           }, ws);
           break;
@@ -704,7 +744,10 @@ wss.on('connection', (ws, req) => {
   ws.on('close', () => {
     wsClients.delete(ws);
     console.log(`[WebSocket] Client disconnected (${meta.id}). Total clients: ${wsClients.size}`);
-    broadcastAll('desktop-status', { online: hasConnectedDesktop() });
+    broadcastAll('desktop-status', { 
+      online: hasConnectedDesktop(),
+      clients: getConnectedClients(),
+    });
   });
 });
 

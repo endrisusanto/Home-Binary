@@ -8,7 +8,7 @@ import { TerminalLog } from './components/TerminalLog';
 import { UpdateModal } from './components/UpdateModal';
 import { MobileMenuModal } from './components/MobileMenuModal';
 import { wsService } from './services/websocket';
-import { BatchItem, PortalConfig, LogEntry, BatchSummary, ItemStatus } from './types/batch';
+import { BatchItem, PortalConfig, LogEntry, BatchSummary, ItemStatus, ConnectedClient } from './types/batch';
 
 async function getTauri() {
   if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
@@ -175,7 +175,8 @@ export function App() {
 
   const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
   const activeSyncUrl = portalConfig.syncServerUrl || (isTauri ? 'https://homebinary.endrisusanto.my.id' : (typeof window !== 'undefined' ? window.location.origin : ''));
-  const [, setIsDesktopConnected] = useState(false);
+  const [isDesktopConnected, setIsDesktopConnected] = useState(false);
+  const [connectedClients, setConnectedClients] = useState<ConnectedClient[]>([]);
 
   // Push local updates to Central Sync Server (via WebSocket & HTTP fallback)
   const pushStateToServer = useCallback(async (newItems?: BatchItem[], newConfig = portalConfig) => {
@@ -273,11 +274,17 @@ export function App() {
             if (payload?.desktopConnected !== undefined) {
               setIsDesktopConnected(payload.desktopConnected);
             }
+            if (payload?.clients && Array.isArray(payload.clients)) {
+              setConnectedClients(payload.clients);
+            }
             break;
 
           case 'desktop-status':
             if (payload?.online !== undefined) {
               setIsDesktopConnected(payload.online);
+            }
+            if (payload?.clients && Array.isArray(payload.clients)) {
+              setConnectedClients(payload.clients);
             }
             break;
 
@@ -716,6 +723,8 @@ export function App() {
         onClose={() => setIsSettingsOpen(false)}
         config={portalConfig}
         appVersion={appVersion}
+        connectedClients={connectedClients}
+        isDesktopConnected={isDesktopConnected}
         onOpenUpdateModal={() => setIsUpdateModalOpen(true)}
         onSaveConfig={(newConfig) => {
           setPortalConfig(newConfig);
