@@ -612,48 +612,68 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
 
       emitLog('info', `Found ${tableData.length} build entries on Dashboard.`);
 
-      // Match against active items (picking the latest / topmost build for each item)
+      // Match against active items with Smart Alternative Fallback (Up to 3 Candidates evaluated)
       for (const item of items) {
         if (completedMap.has(item.id)) continue;
 
-        // Match by exact ID if previously captured, or by PDA / CSC in row text
-        const matched = tableData.find(row => {
+        // 1. Gather all candidate rows matching this item on Dashboard (by PDA / CSC or exact ID)
+        const matchingCandidates = tableData.filter(row => {
           if (item.buildId && row.idText === item.buildId) return true;
           const matchPda = item.pdaVersion && (row.buildInfoText.includes(item.pdaVersion) || row.fullRowText.includes(item.pdaVersion));
           const matchCsc = item.cscVersion && (row.buildInfoText.includes(item.cscVersion) || row.fullRowText.includes(item.cscVersion));
           return matchPda || matchCsc;
         });
 
-        if (matched) {
-          item.buildId = matched.idText || item.buildId;
+        if (matchingCandidates.length > 0) {
+          // Look up to 3 matching candidates on Dashboard table
+          const candidatesToCheck = matchingCandidates.slice(0, 3);
 
-          if (matched.isExpired) {
-            completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build expired (${matched.dateStr})` });
-            emitProgress(item.id, item.index, 'failed', `Build expired (${matched.dateStr})`, `Build expired`, item.buildId, 100, item.pdaVersion, item.cscVersion);
-            emitLog('error', `[EXPIRED] Build #${item.buildId} for ${item.buildFingerprintName} was built ${matched.dateStr} (> 4 days ago) -> Marked as Build expired!`);
-          } else if (matched.isFailed) {
-            completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed on QuickBuild (${matched.durationText || 'Failed'})` });
+          // Priority 1: Check for any matching candidate that is SUCCESSFUL and not expired
+          const successfulCandidate = candidatesToCheck.find(c => c.isSuccessful && !c.isExpired);
+
+          // Priority 2: Check for any matching candidate that is actively RUNNING
+          const runningCandidate = candidatesToCheck.find(c => c.isRunning && !c.isFailed && !c.isExpired);
+
+          // Priority 3: Fallback to the latest candidate if all are failed / expired
+          const selectedCandidate = successfulCandidate || runningCandidate || candidatesToCheck[0];
+
+          // If an alternative non-failed candidate was chosen over an initial failed one, log the smart recovery
+          if (successfulCandidate && candidatesToCheck[0].isFailed && candidatesToCheck[0].idText !== successfulCandidate.idText) {
+            emitLog('info', `🔄 [Alternative Match] Latest Build #${candidatesToCheck[0].idText} is FAILED, but found alternative SUCCESSFUL Build #${successfulCandidate.idText} (${successfulCandidate.durationText || 'Finished'}) for ${item.buildFingerprintName}!`);
+          } else if (runningCandidate && candidatesToCheck[0].isFailed && candidatesToCheck[0].idText !== runningCandidate.idText) {
+            emitLog('info', `🔄 [Alternative Match] Latest Build #${candidatesToCheck[0].idText} is FAILED, but found alternative RUNNING Build #${runningCandidate.idText} (${runningCandidate.progressPercent}%) for ${item.buildFingerprintName}!`);
+          }
+
+          item.buildId = selectedCandidate.idText || item.buildId;
+
+          if (selectedCandidate.isExpired) {
+            completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build expired (${selectedCandidate.dateStr})` });
+            emitProgress(item.id, item.index, 'failed', `Build expired (${selectedCandidate.dateStr})`, `Build expired`, item.buildId, 100, item.pdaVersion, item.cscVersion);
+            emitLog('error', `[EXPIRED] Build #${item.buildId} for ${item.buildFingerprintName} was built ${selectedCandidate.dateStr} (> 4 days ago) -> Marked as Build expired!`);
+          } else if (selectedCandidate.isFailed) {
+            const numChecked = candidatesToCheck.length;
+            completedMap.set(item.id, { success: false, buildId: item.buildId, error: `Build failed on QuickBuild (${selectedCandidate.durationText || 'Failed'})` });
             emitProgress(item.id, item.index, 'failed', `Build #${item.buildId} failed on QuickBuild`, `Build #${item.buildId} is failed on QuickBuild`, item.buildId, 100, item.pdaVersion, item.cscVersion);
-            emitLog('error', `[FAILED] Build #${item.buildId} for ${item.buildFingerprintName} is marked as FAILED on QuickBuild!`);
-          } else if (matched.isSuccessful) {
+            emitLog('error', `[FAILED] Build #${item.buildId} for ${item.buildFingerprintName} is marked as FAILED on QuickBuild (Checked ${numChecked} candidate build(s), no successful match found)!`);
+          } else if (selectedCandidate.isSuccessful) {
             completedMap.set(item.id, { success: true, buildId: item.buildId });
             emitProgress(item.id, item.index, 'success', `Completed: ${item.buildFingerprintName}`, null, item.buildId, 100, item.pdaVersion, item.cscVersion);
-            emitLog('success', `[SUCCESS] Matched Build #${item.buildId} for ${item.buildFingerprintName}! (Duration: ${matched.durationText || 'Finished'})`);
+            emitLog('success', `[SUCCESS] Matched Build #${item.buildId} for ${item.buildFingerprintName}! (Duration: ${selectedCandidate.durationText || 'Finished'})`);
           } else {
             // Still in progress
-            const pct = matched.progressPercent || 50;
+            const pct = selectedCandidate.progressPercent || 50;
             emitProgress(
               item.id,
               item.index,
               'running',
-              `Build #${item.buildId} running on server (${pct}%, step: ${matched.stepText || 'MAKE_HOME_BINARY'})...`,
+              `Build #${item.buildId} running on server (${pct}%, step: ${selectedCandidate.stepText || 'MAKE_HOME_BINARY'})...`,
               null,
               item.buildId,
               pct,
               item.pdaVersion,
               item.cscVersion
             );
-            emitLog('info', `Build #${item.buildId} (${item.buildFingerprintName}) is running (${pct}%, ${matched.durationText || 'running'})...`);
+            emitLog('info', `Build #${item.buildId} (${item.buildFingerprintName}) is running (${pct}%, ${selectedCandidate.durationText || 'running'})...`);
           }
         } else {
           emitProgress(item.id, item.index, 'running', `Build triggered, waiting for Dashboard task...`, null, item.buildId, 25);
