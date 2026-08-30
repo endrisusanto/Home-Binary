@@ -422,16 +422,40 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+// Helper to forcefully terminate server-side runner and child processes
+function terminateServerRunner() {
+  if (activeChild && !activeChild.killed) {
+    try {
+      if (process.platform === 'win32') {
+        spawn('taskkill', ['/F', '/T', '/PID', String(activeChild.pid)]);
+      } else {
+        try {
+          spawn('pkill', ['-P', String(activeChild.pid)]);
+        } catch {}
+        activeChild.kill('SIGKILL');
+      }
+    } catch {}
+    activeChild = null;
+  }
+  appState.isRunning = false;
+  appState.items = appState.items.map(it => it.status === 'running' ? { ...it, status: 'pending', message: 'Cancelled' } : it);
+  appState.lastUpdated = new Date().toISOString();
+  saveAppState();
+}
+
   // 4b. Cancel Batch Runner
   if (pathname === '/api/batch/cancel' && req.method === 'POST') {
     broadcastWS({ type: 'cancel-batch' });
-    if (activeChild && !activeChild.killed) {
-      try { activeChild.kill('SIGTERM'); } catch {}
-      activeChild = null;
-    }
-    appState.isRunning = false;
-    saveAppState();
+    terminateServerRunner();
     broadcastAll('task-finished', { cancelled: true });
+    broadcastAll('state-sync', {
+      items: appState.items,
+      portalConfig: appState.portalConfig,
+      isRunning: false,
+      desktopConnected: hasConnectedDesktop(),
+      clients: getConnectedClients(),
+      lastUpdated: appState.lastUpdated,
+    });
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'cancelled' }));
     return;
@@ -714,13 +738,16 @@ wss.on('connection', (ws, req) => {
 
         case 'cancel-batch':
           broadcastWS({ type: 'cancel-batch' }, ws);
-          if (activeChild && !activeChild.killed) {
-            try { activeChild.kill('SIGTERM'); } catch {}
-            activeChild = null;
-          }
-          appState.isRunning = false;
-          saveAppState();
+          terminateServerRunner();
           broadcastAll('task-finished', { cancelled: true });
+          broadcastAll('state-sync', {
+            items: appState.items,
+            portalConfig: appState.portalConfig,
+            isRunning: false,
+            desktopConnected: hasConnectedDesktop(),
+            clients: getConnectedClients(),
+            lastUpdated: appState.lastUpdated,
+          });
           break;
 
         case 'trigger-fetch-ids':

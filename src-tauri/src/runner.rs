@@ -350,12 +350,31 @@ pub async fn execute_batch(
 pub async fn cancel_batch(state: RunnerState, app_handle: AppHandle) -> Result<(), String> {
     let mut lock = state.lock().await;
     if let Some(mut child) = lock.take() {
+        #[cfg(windows)]
+        {
+            if let Some(pid) = child.id() {
+                use std::os::windows::process::CommandExt;
+                const CREATE_NO_WINDOW: u32 = 0x08000000;
+                let _ = std::process::Command::new("taskkill")
+                    .args(&["/F", "/T", "/PID", &pid.to_string()])
+                    .creation_flags(CREATE_NO_WINDOW)
+                    .output();
+            }
+        }
+        #[cfg(not(windows))]
+        {
+            if let Some(pid) = child.id() {
+                let _ = std::process::Command::new("pkill")
+                    .args(&["-P", &pid.to_string()])
+                    .output();
+            }
+        }
         let _ = child.kill().await;
         let _ = app_handle.emit(
             "task-log",
             LogStreamEvent {
                 level: "warn".to_string(),
-                message: "Batch execution cancelled by user.".to_string(),
+                message: "Batch execution cancelled by user. All browser processes terminated.".to_string(),
                 index: None,
                 timestamp: chrono_now(),
             },

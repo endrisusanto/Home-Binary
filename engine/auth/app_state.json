@@ -5,1114 +5,699 @@
       "pdaVersion": "A155FXXSCEZHU",
       "cscVersion": "A155FOLECEZHU",
       "basebandVersion": "A155FXXSCEZHU",
-      "id": "build-1787919032314-0",
+      "id": "build-1788009919068-0",
       "index": 0,
-      "status": "success",
-      "buildId": "114082572",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
       "pdaVersion": "F776BXXS2AZH8",
       "cscVersion": "F776BOXM2AZH7",
       "basebandVersion": "F776BXXS2AZH7",
-      "id": "build-1787919032314-1",
+      "id": "build-1788009919068-1",
       "index": 1,
-      "status": "success",
-      "buildId": "114082265",
-      "message": "Completed: SM-F776BE_SEA_DX",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-F971BE_SEA_DX",
       "pdaVersion": "F971BXXU2AZHK",
       "cscVersion": "F971BOXM2AZHK",
       "basebandVersion": "F971BXXU2AZHK",
-      "id": "build-1787919032314-2",
+      "id": "build-1788009919068-2",
       "index": 2,
-      "status": "success",
-      "buildId": "114082576",
-      "message": "Completed: SM-F971BE_SEA_DX",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-F976BE_SEA_DX",
       "pdaVersion": "F976BXXU2AZHK",
       "cscVersion": "F976BOXM2AZHK",
       "basebandVersion": "F976BXXU2AZHK",
-      "id": "build-1787919032314-3",
+      "id": "build-1788009919068-3",
       "index": 3,
-      "status": "success",
-      "buildId": "114082410",
-      "message": "Completed: SM-F976BE_SEA_DX",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-A185G_SEA_XME",
       "pdaVersion": "A185GXXU0AZHB",
       "cscVersion": "A185GOLM0AZHB",
       "basebandVersion": "A185GXXU0AZHB",
-      "id": "build-1787919032314-4",
+      "id": "build-1788009919068-4",
       "index": 4,
-      "status": "success",
-      "buildId": "114082820",
-      "message": "Completed: SM-A185G_SEA_XME",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
       "pdaVersion": "S931BXXSCCZH5",
       "cscVersion": "S931BOXMCCZH5",
       "basebandVersion": "S931BXXSCCZH1",
-      "id": "build-1787919032314-5",
+      "id": "build-1788009919068-5",
       "index": 5,
-      "status": "success",
-      "buildId": "114082992",
-      "message": "Completed: SM-S931BE_SEA_B4_DX",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
       "pdaVersion": "F776BXXU2AZHJ",
       "cscVersion": "F776BOXM2AZHJ",
       "basebandVersion": "F776BXXU2AZHJ",
-      "id": "build-1787919032314-6",
+      "id": "build-1788009919068-6",
       "index": 6,
-      "status": "success",
-      "buildId": "114082878",
-      "message": "Completed: SM-F776BE_SEA_DX",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
       "pdaVersion": "A566BXXSDCZHD",
       "cscVersion": "A566BOLMDCZHD",
       "basebandVersion": "A566BXXSDCZHD",
-      "id": "build-1787919032314-7",
+      "id": "build-1788009919068-7",
       "index": 7,
-      "status": "pending",
-      "buildId": "114089980",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: browserContext.newPage: Target page, context or browser has been closed",
+      "error": "browserContext.newPage: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-A276BE_SEA_XXV",
       "pdaVersion": "A276BXXS3AZHA",
       "cscVersion": "A276BOLM3AZHA",
       "basebandVersion": "A276BXXS3AZHA",
-      "id": "build-1787919032314-8",
+      "id": "build-1788009919068-8",
       "index": 8,
-      "status": "success",
-      "buildId": "114083230",
-      "message": "Completed: SM-A276BE_SEA_XXV",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: browserContext.newPage: Target page, context or browser has been closed",
+      "error": "browserContext.newPage: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-X910_EUR_C2_XX",
       "pdaVersion": "X910XXU6FZHH",
       "cscVersion": "X910OLE6FZHH",
       "basebandVersion": "",
-      "id": "build-1787919032314-9",
+      "id": "build-1788009919068-9",
       "index": 9,
-      "status": "success",
-      "buildId": "114083428",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-G525F_SEA_14_XSA",
       "pdaVersion": "G525FXXUKEZH2",
       "cscVersion": "G525FOLEKEZH2",
       "basebandVersion": "G525FXXUKEZH1",
-      "id": "build-1787919032314-10",
+      "id": "build-1788009919068-10",
       "index": 10,
-      "status": "success",
-      "buildId": "114083294",
-      "message": "Completed: SM-G525F_SEA_14_XSA",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: browserContext.newPage: Target page, context or browser has been closed",
+      "error": "browserContext.newPage: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-A075F_SEA_B4_XME",
       "pdaVersion": "A075FXXS7CZH5",
       "cscVersion": "A075FOLM7CZH5",
       "basebandVersion": "A075FXXS7CZH5",
-      "id": "build-1787919032314-11",
+      "id": "build-1788009919068-11",
       "index": 11,
-      "status": "success",
-      "buildId": "114083432",
-      "message": "Completed: SM-A075F_SEA_B4_XME",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: browserContext.newPage: Target page, context or browser has been closed",
+      "error": "browserContext.newPage: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-G990E_SEA_16_XME",
       "pdaVersion": "G990EXXSOHZH4",
       "cscVersion": "G990EOLEOHZH4",
       "basebandVersion": "G990EXXSOHZH1",
-      "id": "build-1787919032314-12",
+      "id": "build-1788009919068-12",
       "index": 12,
-      "status": "success",
-      "buildId": "114083561",
-      "message": "Completed: SM-G990E_SEA_16_XME",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: page.fill: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"editor:content:basicProperties:1:property:editor:editor:wrapper:input\"], input[name*=\"basicProperties:1\"], input[name*=\"1:property:editor\"]')\u001b[22m\n",
+      "error": "page.fill: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"editor:content:basicProperties:1:property:editor:editor:wrapper:input\"], input[name*=\"basicProperties:1\"], input[name*=\"1:property:editor\"]')\u001b[22m\n",
+      "progressPercent": 40
     },
     {
       "buildFingerprintName": "SM-A155F_SEA_B4_THL",
       "pdaVersion": "A155FXXSCEZH3",
       "cscVersion": "A155FOLECEZH3",
       "basebandVersion": "A155FXXSCEZH3",
-      "id": "build-1787919032314-13",
+      "id": "build-1788009919068-13",
       "index": 13,
-      "status": "success",
-      "buildId": "114083804",
-      "message": "Completed: SM-A155F_SEA_B4_THL",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
       "pdaVersion": "A245FXXSEFZH6",
       "cscVersion": "A245FOLEEFZH6",
       "basebandVersion": "A245FXXSEFZH6",
-      "id": "build-1787919032314-14",
+      "id": "build-1788009919068-14",
       "index": 14,
-      "status": "success",
-      "buildId": "114083712",
-      "message": "Completed: SM-A245F_SEA_B4_XXV",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed",
+      "progressPercent": 75
     },
     {
       "buildFingerprintName": "SM-X930_EUR_XX",
       "pdaVersion": "X930XXS8BZH4",
       "cscVersion": "X930OLM8BZH4",
       "basebandVersion": "",
-      "id": "build-1787919032314-15",
+      "id": "build-1788009919068-15",
       "index": 15,
-      "status": "success",
-      "buildId": "114083845",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
+      "status": "running",
+      "message": "Triggering submission: SM-X930_EUR_XX",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-X730_EUR_XX",
       "pdaVersion": "X730XXS8BZH4",
       "cscVersion": "X730OXM8BZH4",
       "basebandVersion": "",
-      "id": "build-1787919032314-16",
+      "id": "build-1788009919068-16",
       "index": 16,
-      "status": "success",
-      "buildId": "114083850",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
+      "status": "running",
+      "message": "Triggering submission: SM-X730_EUR_XX",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-X736B_SEA_DX",
       "pdaVersion": "X736BXXS8BZH4",
       "cscVersion": "X736BOXM8BZH4",
       "basebandVersion": "X736BXXS8BZH4",
-      "id": "build-1787919032314-17",
+      "id": "build-1788009919068-17",
       "index": 17,
-      "status": "success",
-      "buildId": "114083852",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
+      "status": "running",
+      "message": "Triggering submission: SM-X736B_SEA_DX",
+      "progressPercent": 25
     },
     {
       "buildFingerprintName": "SM-X700_EUR_16_XX",
       "pdaVersion": "X700XXSBEZH3",
       "cscVersion": "X700OLEBEZH3",
       "basebandVersion": "",
-      "id": "build-1787919032314-18",
+      "id": "build-1788009919068-18",
       "index": 18,
-      "status": "success",
-      "buildId": "114083857",
-      "message": "Completed: SM-X700_EUR_16_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X620_EUR_XX",
-      "pdaVersion": "X620XXU9DZH1",
-      "cscVersion": "X620OLM9DZH1",
-      "basebandVersion": "",
-      "id": "build-1787919032314-20",
-      "index": 20,
-      "status": "success",
-      "buildId": "114083932",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-X626B_SEA_DX",
-      "pdaVersion": "X626BXXU9DZH1",
-      "cscVersion": "X626BOLM9DZH1",
-      "basebandVersion": "X626BXXU9DZH1",
-      "id": "build-1787919032314-21",
-      "index": 21,
-      "status": "success",
-      "buildId": "114083934",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-X930_EUR_C2_XX",
-      "pdaVersion": "X930XXU7CZZ7",
-      "cscVersion": "X930OLM7CZZ7",
-      "basebandVersion": "",
-      "id": "build-1787919032314-22",
-      "index": 22,
-      "status": "success",
-      "buildId": "114083939",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-X730_EUR_XX",
-      "pdaVersion": "X730XXU8CZZ7",
-      "cscVersion": "X730OXM8CZZ7",
-      "basebandVersion": "",
-      "id": "build-1787919032314-23",
-      "index": 23,
-      "status": "success",
-      "buildId": "114083936",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-X610_EUR_B4_XX",
-      "pdaVersion": "X610XXSFEZH7",
-      "cscVersion": "X610OLEFEZH7",
-      "basebandVersion": "",
-      "id": "build-1787919032314-24",
-      "index": 24,
-      "status": "success",
-      "buildId": "114083941",
-      "message": "Completed: SM-X610_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X520_EUR_XX",
-      "pdaVersion": "X520XXU9DZH1",
-      "cscVersion": "X520OLM9DZH1",
-      "basebandVersion": "",
-      "id": "build-1787919032314-25",
-      "index": 25,
-      "status": "success",
-      "buildId": "114084017",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-A175F_SEA_PHL",
-      "pdaVersion": "A175FXXS7CZH6",
-      "cscVersion": "A175FOXM7CZH6",
-      "basebandVersion": "A175FXXS7CZH6",
-      "id": "build-1787919032314-26",
-      "index": 26,
-      "status": "success",
-      "buildId": "114084020",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-X936B_SEA_B4_DX",
-      "pdaVersion": "X936BXXS8BZH4",
-      "cscVersion": "X936BOXM8BZH4",
-      "basebandVersion": "X936BXXS8BZH4",
-      "id": "build-1787919032314-27",
-      "index": 27,
-      "status": "success",
-      "buildId": "114084023",
-      "message": "Completed: SM-X936B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-G990E_SEA_16_XME",
-      "pdaVersion": "G990EXXSOHZH3",
-      "cscVersion": "G990EOLEOHZH3",
-      "basebandVersion": "G990EXXSOHZH1",
-      "id": "build-1787919032314-28",
-      "index": 28,
-      "status": "success",
-      "buildId": "114084276",
-      "message": "Completed: SM-G990E_SEA_16_XME",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X810_EUR_C2_XX",
-      "pdaVersion": "X810XXU6FZHH",
-      "cscVersion": "X810OLE6FZHH",
-      "basebandVersion": "",
-      "id": "build-1787919032314-29",
-      "index": 29,
-      "status": "success",
-      "buildId": "114084346",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-P625_SEA_B4_DX",
-      "pdaVersion": "P625XXSCCZH4",
-      "cscVersion": "P625OXMCCZH4",
-      "basebandVersion": "P625XXSCCZH4",
-      "id": "build-1787919032314-30",
-      "index": 30,
-      "status": "success",
-      "buildId": "114084348",
-      "message": "Completed: SM-P625_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S928BE_SEA_DX",
-      "pdaVersion": "S928BXXU6EZHD",
-      "cscVersion": "S928BOLE6EZHD",
-      "basebandVersion": "S928BXXU6EZHC",
-      "id": "build-1787919032314-31",
-      "index": 31,
-      "status": "success",
-      "buildId": "114084347",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-F966B_EUR_C2_XX",
-      "pdaVersion": "F966BXXUCCZHC",
-      "cscVersion": "F966BOXMCCZHC",
-      "basebandVersion": "F966BXXUCZZHC",
-      "id": "build-1787919032314-32",
-      "index": 32,
-      "status": "success",
-      "buildId": "114084383",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-S921BE_SEA_DX",
-      "pdaVersion": "S921BXXUHEZHD",
-      "cscVersion": "S921BOLEHEZHD",
-      "basebandVersion": "S921BXXUHEZHC",
-      "id": "build-1787919032314-33",
-      "index": 33,
-      "status": "success",
-      "buildId": "114084387",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-S731B_EUR_C2_XX",
-      "pdaVersion": "S731BXXU9CZH6",
-      "cscVersion": "S731BOXM9ZZH6",
-      "basebandVersion": "S731BXXU9CZH4",
-      "id": "build-1787919032314-34",
-      "index": 34,
-      "status": "success",
-      "buildId": "114102406",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-M556B_SEA_B4_XME",
-      "pdaVersion": "M556BXXS5DZH1",
-      "cscVersion": "M556BOLM5DZH1",
-      "basebandVersion": "M556BXXS5DZH1",
-      "id": "build-1787919032314-35",
-      "index": 35,
-      "status": "success",
-      "buildId": "114084391",
-      "message": "Completed: SM-M556B_SEA_B4_XME",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X710_EUR_B4_XX",
-      "pdaVersion": "X710XXU6FZHH",
-      "cscVersion": "X710OLE6FZHH",
-      "basebandVersion": "",
-      "id": "build-1787919032314-36",
-      "index": 36,
-      "status": "success",
-      "buildId": "114084390",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-G525F_SEA_14_XSA",
-      "pdaVersion": "G525FXXUKEZH1",
-      "cscVersion": "G525FOLEKEZH1",
-      "basebandVersion": "G525FXXUKEZH1",
-      "id": "build-1787919032314-37",
-      "index": 37,
-      "status": "success",
-      "buildId": "114084452",
-      "message": "Completed: SM-G525F_SEA_14_XSA",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A576BE_SEA_XME",
-      "pdaVersion": "A576BXXU4BZZ5",
-      "cscVersion": "A576BOLM4BZZ5",
-      "basebandVersion": "A576BXXU4BZG6",
-      "id": "build-1787919032314-38",
-      "index": 38,
-      "status": "success",
-      "buildId": "114084486",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-S916BE_SEA_B4_DX",
-      "pdaVersion": "S916BXXSAFZH3",
-      "cscVersion": "S916BOLEAFZH3",
-      "basebandVersion": "S916BXXSAFZE1",
-      "id": "build-1787919032314-39",
-      "index": 39,
-      "status": "success",
-      "buildId": "114084487",
-      "message": "Completed: SM-S916BE_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S918BE_SEA_B4_DX",
-      "pdaVersion": "S918BXXSAFZH3",
-      "cscVersion": "S918BOLEAFZH3",
-      "basebandVersion": "S918BXXSAFZE1",
-      "id": "build-1787919032314-40",
-      "index": 40,
-      "status": "success",
-      "buildId": "114084581",
-      "message": "Completed: SM-S918BE_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A336E_SEA_16_XXV",
-      "pdaVersion": "A336EDXUJGZH1",
-      "cscVersion": "A336EOLEJGZH1",
-      "basebandVersion": "A336EDXUJGZH1",
-      "id": "build-1787919032314-41",
-      "index": 41,
-      "status": "success",
-      "buildId": "114084664",
-      "message": "Completed: SM-A336E_SEA_16_XXV",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X216B_SEA_16_DX",
-      "pdaVersion": "X216BXXUDEZGF",
-      "cscVersion": "X216BOLEDEZGF",
-      "basebandVersion": "X216BXXUDEZGF",
-      "id": "build-1787919032314-42",
-      "index": 42,
-      "status": "success",
-      "buildId": "114085074",
-      "message": "Completed: SM-X216B_SEA_16_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
-      "pdaVersion": "S931BXXSCCZH3",
-      "cscVersion": "S931BOXMCCZH3",
-      "basebandVersion": "S931BXXSCCZH1",
-      "id": "build-1787919032314-43",
-      "index": 43,
-      "status": "success",
-      "buildId": "114084698",
-      "message": "Completed: SM-S931BE_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X810_EUR_B4_XX",
-      "pdaVersion": "X810XXS6EZH3",
-      "cscVersion": "X810OLE6EZH3",
-      "basebandVersion": "",
-      "id": "build-1787919032314-44",
-      "index": 44,
-      "status": "success",
-      "buildId": "114085139",
-      "message": "Completed: SM-X810_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X400_EUR_B4_XX",
-      "pdaVersion": "X400XXS7CZH6",
-      "cscVersion": "X400OXM7CZH6",
-      "basebandVersion": "",
-      "id": "build-1787919032314-45",
-      "index": 45,
-      "status": "success",
-      "buildId": "114085296",
-      "message": "Completed: SM-X400_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X920_EUR_B4_XX",
-      "pdaVersion": "X920XXSADZH1",
-      "cscVersion": "X920OLEADZH1",
-      "basebandVersion": "",
-      "id": "build-1787919032314-46",
-      "index": 46,
-      "status": "success",
-      "buildId": "114081591",
-      "message": "Completed: SM-X920_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X520_EUR_B4_XX",
-      "pdaVersion": "X520XXSACZH6",
-      "cscVersion": "X520OLMACZH6",
-      "basebandVersion": "",
-      "id": "build-1787919032314-47",
-      "index": 47,
-      "status": "success",
-      "buildId": "114081507",
-      "message": "Completed: SM-X520_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X620_EUR_B4_XX",
-      "pdaVersion": "X620XXSACZH6",
-      "cscVersion": "X620OLMACZH6",
-      "basebandVersion": "",
-      "id": "build-1787919032314-48",
-      "index": 48,
-      "status": "success",
-      "buildId": "114082160",
-      "message": "Completed: SM-X620_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X510_EUR_B4_XX",
-      "pdaVersion": "X510XXSFEZH5",
-      "cscVersion": "X510OLEFEZH5",
-      "basebandVersion": "",
-      "id": "build-1787919032314-49",
-      "index": 49,
-      "status": "success",
-      "buildId": "114086301",
-      "message": "Completed: SM-X510_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A276BE_SEA_XXV",
-      "pdaVersion": "A276BXXU2AZH7",
-      "cscVersion": "A276BOLM2AZH7",
-      "basebandVersion": "A276BXXU2AZH7",
-      "id": "build-1787919032314-50",
-      "index": 50,
-      "status": "success",
-      "buildId": "114086434",
-      "message": "Completed: SM-A276BE_SEA_XXV",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-F776BE_SEA_DX",
-      "pdaVersion": "F776BXXS2AZH9",
-      "cscVersion": "F776BOXM2AZH9",
-      "basebandVersion": "F776BXXS2AZH9",
-      "id": "build-1787919032314-51",
-      "index": 51,
-      "status": "success",
-      "buildId": "114086676",
-      "message": "Build #114086676 running on server (44%, step: MAKE_HOME_BINARY)...",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-M546B_SEA_B4_XME",
-      "pdaVersion": "M546BXXSFFZH3",
-      "cscVersion": "M546BOLMFFZH3",
-      "basebandVersion": "M546BXXSFFZH3",
-      "id": "build-1787919032314-52",
-      "index": 52,
-      "status": "success",
-      "buildId": "114086573",
-      "message": "Completed: SM-M546B_SEA_B4_XME",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
-      "pdaVersion": "A566BXXSDCZHB",
-      "cscVersion": "A566BOLMDCZHB",
-      "basebandVersion": "A566BXXSDCZHB",
-      "id": "build-1787919032314-53",
-      "index": 53,
-      "status": "success",
-      "message": "Completed: SM-A566BE_SEA_B4_XME",
-      "progressPercent": 100,
-      "buildId": "114086799"
-    },
-    {
-      "buildFingerprintName": "SM-A556E_SEA_B4_PHL",
-      "pdaVersion": "A556EXXSHDZH6",
-      "cscVersion": "A556EOLEHDZH6",
-      "basebandVersion": "A556EXXSHDZH6",
-      "id": "build-1787919032314-54",
-      "index": 54,
-      "status": "success",
-      "message": "Completed: SM-A556E_SEA_B4_PHL",
-      "progressPercent": 100,
-      "buildId": "114086860"
-    },
-    {
-      "buildFingerprintName": "SM-X616B_SEA_B4_DX",
-      "pdaVersion": "X616BXXSFEZH5",
-      "cscVersion": "X616BOLEFEZH5",
-      "basebandVersion": "X616BXXSFEZH5",
-      "id": "build-1787919032314-55",
-      "index": 55,
-      "status": "success",
-      "message": "Completed: SM-X616B_SEA_B4_DX",
-      "progressPercent": 100,
-      "buildId": "114086918"
-    },
-    {
-      "buildFingerprintName": "SM-X236B_SEA_B4_DX",
-      "pdaVersion": "X236BXXS7BZH2",
-      "cscVersion": "X236BOXM7BZH2",
-      "basebandVersion": "X236BXXS7BZH2",
-      "id": "build-1787919032314-56",
-      "index": 56,
-      "status": "success",
-      "message": "Completed: SM-X236B_SEA_B4_DX",
-      "progressPercent": 100,
-      "buildId": "114087077"
-    },
-    {
-      "buildFingerprintName": "SM-X926B_SEA_B4_DX",
-      "pdaVersion": "X926BXXSADZH1",
-      "cscVersion": "X926BOXMADZH1",
-      "basebandVersion": "X926BXXSADZH1",
-      "id": "build-1787919032314-57",
-      "index": 57,
-      "status": "success",
-      "message": "Completed: SM-X926B_SEA_B4_DX",
-      "progressPercent": 100,
-      "buildId": "114087197"
-    },
-    {
-      "buildFingerprintName": "SM-X826B_SEA_B4_DX",
-      "pdaVersion": "X826BXXSADZH1",
-      "cscVersion": "X826BOXMADZH1",
-      "basebandVersion": "X826BXXSADZH1",
-      "id": "build-1787919032314-58",
-      "index": 58,
-      "status": "success",
-      "message": "Completed: SM-X826B_SEA_B4_DX",
-      "progressPercent": 100,
-      "buildId": "114087527"
-    },
-    {
-      "buildFingerprintName": "SM-X406B_SEA_B4_DX",
-      "pdaVersion": "X406BXXS7CZH6",
-      "cscVersion": "X406BOXM7CZH6",
-      "basebandVersion": "X406BXXS7CZH4",
-      "id": "build-1787919032314-59",
-      "index": 59,
-      "status": "success",
-      "message": "Completed: SM-X406B_SEA_B4_DX",
-      "progressPercent": 100,
-      "buildId": "114087859"
-    },
-    {
-      "buildFingerprintName": "SM-A546E_SEA_B4_TSE",
-      "pdaVersion": "A546EXXSMFZH5",
-      "cscVersion": "A546EOLEMFZH5",
-      "basebandVersion": "A546EXXSMFZH1",
-      "id": "build-1787919032314-60",
-      "index": 60,
-      "status": "success",
-      "message": "Completed: SM-A546E_SEA_B4_TSE",
-      "progressPercent": 100,
-      "buildId": "114087980"
-    },
-    {
-      "buildFingerprintName": "SM-X626B_SEA_B4_DX",
-      "pdaVersion": "X626BXXSACZH6",
-      "cscVersion": "X626BOLMACZH6",
-      "basebandVersion": "X626BXXSACZH6",
-      "id": "build-1787919032314-61",
-      "index": 61,
-      "status": "success",
-      "message": "Completed: SM-X626B_SEA_B4_DX",
-      "progressPercent": 100,
-      "buildId": "114088044"
-    },
-    {
-      "buildFingerprintName": "SM-F976BE_SEA_DX",
-      "pdaVersion": "F976BXXU2AZHD",
-      "cscVersion": "F976BOXM2AZHD",
-      "basebandVersion": "F976BXXU2AZHD",
-      "id": "build-1787919032314-62",
-      "index": 62,
-      "status": "success",
-      "message": "Completed: SM-F976BE_SEA_DX",
-      "progressPercent": 100,
-      "buildId": "114088126"
-    },
-    {
-      "buildFingerprintName": "SM-X115_SEA_16_DX",
-      "pdaVersion": "X115XXUBDZH5",
-      "cscVersion": "X115OLEBDZH5",
-      "basebandVersion": "X115XXUBDZH5",
-      "id": "build-1787919032314-63",
-      "index": 63,
-      "status": "success",
-      "message": "Completed: SM-X115_SEA_16_DX",
-      "progressPercent": 100,
-      "buildId": "114088363"
-    },
-    {
-      "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
-      "pdaVersion": "A245FXXSEFZH3",
-      "cscVersion": "A245FOLEEFZH3",
-      "basebandVersion": "A245FXXSEFZH3",
-      "id": "build-1787919032314-64",
-      "index": 64,
-      "status": "success",
-      "message": "Completed: SM-A245F_SEA_B4_XXV",
-      "progressPercent": 100,
-      "buildId": "114088312"
-    },
-    {
-      "buildFingerprintName": "SM-A336E_SEA_16_XXV",
-      "pdaVersion": "A336EDXSKGZH2",
-      "cscVersion": "A336EOLEKGZH2",
-      "basebandVersion": "A336EDXSKGZH2",
-      "id": "build-1787919032314-65",
-      "index": 65,
-      "status": "success",
-      "message": "Completed: SM-A336E_SEA_16_XXV",
-      "progressPercent": 100,
-      "buildId": "114088407"
-    },
-    {
-      "buildFingerprintName": "SM-F926B_SEA_15_DX",
-      "pdaVersion": "F926BXXSJJZH4",
-      "cscVersion": "F926BOXMJJZH4",
-      "basebandVersion": "F926BXXSJJZH4",
-      "id": "build-1787919032314-66",
-      "index": 66,
-      "status": "success",
-      "message": "Completed: SM-F926B_SEA_15_DX",
-      "progressPercent": 100,
-      "buildId": "114088516"
-    },
-    {
-      "buildFingerprintName": "SM-S901E_SEA_16_DX",
-      "pdaVersion": "S901EXXSEGZH3",
-      "cscVersion": "S901EOXMEGZH3",
-      "basebandVersion": "S901EXXSEGZH3",
-      "id": "build-1787919032314-67",
-      "index": 67,
-      "status": "success",
-      "message": "Completed: SM-S901E_SEA_16_DX",
-      "progressPercent": 100,
-      "buildId": "114088631"
-    },
-    {
-      "buildFingerprintName": "SM-S906E_SEA_16_DX",
-      "pdaVersion": "S906EXXSEGZH4",
-      "cscVersion": "S906EOXMEGZH4",
-      "basebandVersion": "S906EXXSEGZH4",
-      "id": "build-1787919032314-68",
-      "index": 68,
-      "status": "success",
-      "message": "Completed: SM-S906E_SEA_16_DX",
-      "progressPercent": 100,
-      "buildId": "114088719"
-    },
-    {
-      "buildFingerprintName": "SM-F926B_SEA_15_DX",
-      "pdaVersion": "F926BXXSJJZH3",
-      "cscVersion": "F926BOLEJJZH3",
-      "basebandVersion": "F926BXXSJJZH3",
-      "id": "build-1787919032314-69",
-      "index": 69,
-      "status": "success",
-      "message": "Completed: SM-F926B_SEA_15_DX",
-      "progressPercent": 100,
-      "buildId": "114088794"
-    },
-    {
-      "buildFingerprintName": "SM-A256E_SEA_B4_PHL",
-      "pdaVersion": "A256EXXSEEZH9",
-      "cscVersion": "A256EOLEEEZH9",
-      "basebandVersion": "A256EXXSEEZH9",
-      "id": "build-1787919032314-70",
-      "index": 70,
-      "status": "success",
-      "message": "Completed: SM-A256E_SEA_B4_PHL",
-      "progressPercent": 100,
-      "buildId": "114088886"
-    },
-    {
-      "buildFingerprintName": "SM-A376BE_SEA_XME",
-      "pdaVersion": "A376BXXU4BZH1",
-      "cscVersion": "A376BOLM4BZH1",
-      "basebandVersion": "A376BXXU4BZH1",
-      "id": "build-1787919032314-71",
-      "index": 71,
-      "status": "success",
-      "progressPercent": 100,
-      "buildId": "114088951",
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
-      "pdaVersion": "A566BXXSDCZHB",
-      "cscVersion": "A566BOLMDCZHB",
-      "basebandVersion": "A566BXXSDCZHB",
-      "id": "build-1787952698882-0",
-      "index": 72,
-      "status": "success",
-      "buildId": "114086799",
-      "message": "Completed: SM-A566BE_SEA_B4_XME",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A556E_SEA_B4_PHL",
-      "pdaVersion": "A556EXXSHDZH6",
-      "cscVersion": "A556EOLEHDZH6",
-      "basebandVersion": "A556EXXSHDZH6",
-      "id": "build-1787952698882-1",
-      "index": 73,
-      "status": "success",
-      "buildId": "114086860",
-      "message": "Completed: SM-A556E_SEA_B4_PHL",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X616B_SEA_B4_DX",
-      "pdaVersion": "X616BXXSFEZH5",
-      "cscVersion": "X616BOLEFEZH5",
-      "basebandVersion": "X616BXXSFEZH5",
-      "id": "build-1787952698882-2",
-      "index": 74,
-      "status": "success",
-      "buildId": "114086918",
-      "message": "Completed: SM-X616B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X236B_SEA_B4_DX",
-      "pdaVersion": "X236BXXS7BZH2",
-      "cscVersion": "X236BOXM7BZH2",
-      "basebandVersion": "X236BXXS7BZH2",
-      "id": "build-1787952698882-3",
-      "index": 75,
-      "status": "success",
-      "buildId": "114087077",
-      "message": "Completed: SM-X236B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X926B_SEA_B4_DX",
-      "pdaVersion": "X926BXXSADZH1",
-      "cscVersion": "X926BOXMADZH1",
-      "basebandVersion": "X926BXXSADZH1",
-      "id": "build-1787952698882-4",
-      "index": 76,
-      "status": "success",
-      "buildId": "114087197",
-      "message": "Completed: SM-X926B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X826B_SEA_B4_DX",
-      "pdaVersion": "X826BXXSADZH1",
-      "cscVersion": "X826BOXMADZH1",
-      "basebandVersion": "X826BXXSADZH1",
-      "id": "build-1787952698882-5",
-      "index": 77,
-      "status": "success",
-      "buildId": "114087527",
-      "message": "Completed: SM-X826B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X406B_SEA_B4_DX",
-      "pdaVersion": "X406BXXS7CZH6",
-      "cscVersion": "X406BOXM7CZH6",
-      "basebandVersion": "X406BXXS7CZH4",
-      "id": "build-1787952698882-6",
-      "index": 78,
-      "status": "success",
-      "buildId": "114087859",
-      "message": "Completed: SM-X406B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A546E_SEA_B4_TSE",
-      "pdaVersion": "A546EXXSMFZH5",
-      "cscVersion": "A546EOLEMFZH5",
-      "basebandVersion": "A546EXXSMFZH1",
-      "id": "build-1787952698882-7",
-      "index": 79,
-      "status": "success",
-      "buildId": "114087980",
-      "message": "Completed: SM-A546E_SEA_B4_TSE",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X626B_SEA_B4_DX",
-      "pdaVersion": "X626BXXSACZH6",
-      "cscVersion": "X626BOLMACZH6",
-      "basebandVersion": "X626BXXSACZH6",
-      "id": "build-1787952698882-8",
-      "index": 80,
-      "status": "success",
-      "buildId": "114088044",
-      "message": "Completed: SM-X626B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-F976BE_SEA_DX",
-      "pdaVersion": "F976BXXU2AZHD",
-      "cscVersion": "F976BOXM2AZHD",
-      "basebandVersion": "F976BXXU2AZHD",
-      "id": "build-1787952698882-9",
-      "index": 81,
-      "status": "success",
-      "buildId": "114088126",
-      "message": "Completed: SM-F976BE_SEA_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X115_SEA_16_DX",
-      "pdaVersion": "X115XXUBDZH5",
-      "cscVersion": "X115OLEBDZH5",
-      "basebandVersion": "X115XXUBDZH5",
-      "id": "build-1787952698882-10",
-      "index": 82,
-      "status": "success",
-      "buildId": "114088363",
-      "message": "Completed: SM-X115_SEA_16_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
-      "pdaVersion": "A245FXXSEFZH3",
-      "cscVersion": "A245FOLEEFZH3",
-      "basebandVersion": "A245FXXSEFZH3",
-      "id": "build-1787952698882-11",
-      "index": 83,
-      "status": "success",
-      "buildId": "114088312",
-      "message": "Completed: SM-A245F_SEA_B4_XXV",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A336E_SEA_16_XXV",
-      "pdaVersion": "A336EDXSKGZH2",
-      "cscVersion": "A336EOLEKGZH2",
-      "basebandVersion": "A336EDXSKGZH2",
-      "id": "build-1787952698882-12",
-      "index": 84,
-      "status": "success",
-      "buildId": "114088407",
-      "message": "Completed: SM-A336E_SEA_16_XXV",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-F926B_SEA_15_DX",
-      "pdaVersion": "F926BXXSJJZH4",
-      "cscVersion": "F926BOXMJJZH4",
-      "basebandVersion": "F926BXXSJJZH4",
-      "id": "build-1787952698882-13",
-      "index": 85,
-      "status": "success",
-      "buildId": "114088516",
-      "message": "Completed: SM-F926B_SEA_15_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S901E_SEA_16_DX",
-      "pdaVersion": "S901EXXSEGZH3",
-      "cscVersion": "S901EOXMEGZH3",
-      "basebandVersion": "S901EXXSEGZH3",
-      "id": "build-1787952698882-14",
-      "index": 86,
-      "status": "success",
-      "buildId": "114088631",
-      "message": "Completed: SM-S901E_SEA_16_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S906E_SEA_16_DX",
-      "pdaVersion": "S906EXXSEGZH4",
-      "cscVersion": "S906EOXMEGZH4",
-      "basebandVersion": "S906EXXSEGZH4",
-      "id": "build-1787952698882-15",
-      "index": 87,
-      "status": "success",
-      "buildId": "114088719",
-      "message": "Completed: SM-S906E_SEA_16_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-F926B_SEA_15_DX",
-      "pdaVersion": "F926BXXSJJZH3",
-      "cscVersion": "F926BOLEJJZH3",
-      "basebandVersion": "F926BXXSJJZH3",
-      "id": "build-1787952698882-16",
-      "index": 88,
-      "status": "success",
-      "buildId": "114088794",
-      "message": "Completed: SM-F926B_SEA_15_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A256E_SEA_B4_PHL",
-      "pdaVersion": "A256EXXSEEZH9",
-      "cscVersion": "A256EOLEEEZH9",
-      "basebandVersion": "A256EXXSEEZH9",
-      "id": "build-1787952698882-17",
-      "index": 89,
-      "status": "success",
-      "buildId": "114088886",
-      "message": "Completed: SM-A256E_SEA_B4_PHL",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A376BE_SEA_XME",
-      "pdaVersion": "A376BXXU4BZH1",
-      "cscVersion": "A376BOLM4BZH1",
-      "basebandVersion": "A376BXXU4BZH1",
-      "id": "build-1787952698882-18",
-      "index": 90,
-      "status": "success",
-      "buildId": "114107329",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
-    },
-    {
-      "buildFingerprintName": "SM-A165F_SEA_XXV",
-      "pdaVersion": "A165FXXSBDZH6",
-      "cscVersion": "A165FOLMBDZH6",
-      "basebandVersion": "A165FXXSBDZH3",
-      "id": "build-1787981197722-0",
-      "index": 90,
-      "status": "success",
-      "buildId": "114107329",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
+      "status": "pending"
     },
     {
       "buildFingerprintName": "SM-A165F_SEA_XXV",
       "pdaVersion": "A165FXXSBDZH6",
       "cscVersion": "A165FOLEBDZH6",
       "basebandVersion": "A165FXXSBDZH3",
-      "id": "build-1787981275290-0",
-      "index": 91,
-      "status": "success",
-      "buildId": "114107329",
-      "progressPercent": 100,
-      "message": "Initializing browser session..."
+      "id": "build-1788009919068-19",
+      "index": 19,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X620_EUR_XX",
+      "pdaVersion": "X620XXU9DZH1",
+      "cscVersion": "X620OLM9DZH1",
+      "basebandVersion": "",
+      "id": "build-1788009919068-20",
+      "index": 20,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X626B_SEA_DX",
+      "pdaVersion": "X626BXXU9DZH1",
+      "cscVersion": "X626BOLM9DZH1",
+      "basebandVersion": "X626BXXU9DZH1",
+      "id": "build-1788009919068-21",
+      "index": 21,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X930_EUR_C2_XX",
+      "pdaVersion": "X930XXU7CZZ7",
+      "cscVersion": "X930OLM7CZZ7",
+      "basebandVersion": "",
+      "id": "build-1788009919068-22",
+      "index": 22,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X730_EUR_XX",
+      "pdaVersion": "X730XXU8CZZ7",
+      "cscVersion": "X730OXM8CZZ7",
+      "basebandVersion": "",
+      "id": "build-1788009919068-23",
+      "index": 23,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X610_EUR_B4_XX",
+      "pdaVersion": "X610XXSFEZH7",
+      "cscVersion": "X610OLEFEZH7",
+      "basebandVersion": "",
+      "id": "build-1788009919068-24",
+      "index": 24,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X520_EUR_XX",
+      "pdaVersion": "X520XXU9DZH1",
+      "cscVersion": "X520OLM9DZH1",
+      "basebandVersion": "",
+      "id": "build-1788009919068-25",
+      "index": 25,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A175F_SEA_PHL",
+      "pdaVersion": "A175FXXS7CZH6",
+      "cscVersion": "A175FOXM7CZH6",
+      "basebandVersion": "A175FXXS7CZH6",
+      "id": "build-1788009919068-26",
+      "index": 26,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X936B_SEA_B4_DX",
+      "pdaVersion": "X936BXXS8BZH4",
+      "cscVersion": "X936BOXM8BZH4",
+      "basebandVersion": "X936BXXS8BZH4",
+      "id": "build-1788009919068-27",
+      "index": 27,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-G990E_SEA_16_XME",
+      "pdaVersion": "G990EXXSOHZH3",
+      "cscVersion": "G990EOLEOHZH3",
+      "basebandVersion": "G990EXXSOHZH1",
+      "id": "build-1788009919068-28",
+      "index": 28,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X810_EUR_C2_XX",
+      "pdaVersion": "X810XXU6FZHH",
+      "cscVersion": "X810OLE6FZHH",
+      "basebandVersion": "",
+      "id": "build-1788009919068-29",
+      "index": 29,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-P625_SEA_B4_DX",
+      "pdaVersion": "P625XXSCCZH4",
+      "cscVersion": "P625OXMCCZH4",
+      "basebandVersion": "P625XXSCCZH4",
+      "id": "build-1788009919068-30",
+      "index": 30,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S928BE_SEA_DX",
+      "pdaVersion": "S928BXXU6EZHD",
+      "cscVersion": "S928BOLE6EZHD",
+      "basebandVersion": "S928BXXU6EZHC",
+      "id": "build-1788009919068-31",
+      "index": 31,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F966B_EUR_C2_XX",
+      "pdaVersion": "F966BXXUCCZHC",
+      "cscVersion": "F966BOXMCCZHC",
+      "basebandVersion": "F966BXXUCZZHC",
+      "id": "build-1788009919068-32",
+      "index": 32,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S921BE_SEA_DX",
+      "pdaVersion": "S921BXXUHEZHD",
+      "cscVersion": "S921BOLEHEZHD",
+      "basebandVersion": "S921BXXUHEZHC",
+      "id": "build-1788009919068-33",
+      "index": 33,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S731B_EUR_C2_XX",
+      "pdaVersion": "S731BXXU9CZH6",
+      "cscVersion": "S731BOXM9ZZH6",
+      "basebandVersion": "S731BXXU9CZH4",
+      "id": "build-1788009919068-34",
+      "index": 34,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-M556B_SEA_B4_XME",
+      "pdaVersion": "M556BXXS5DZH1",
+      "cscVersion": "M556BOLM5DZH1",
+      "basebandVersion": "M556BXXS5DZH1",
+      "id": "build-1788009919068-35",
+      "index": 35,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X710_EUR_B4_XX",
+      "pdaVersion": "X710XXU6FZHH",
+      "cscVersion": "X710OLE6FZHH",
+      "basebandVersion": "",
+      "id": "build-1788009919068-36",
+      "index": 36,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-G525F_SEA_14_XSA",
+      "pdaVersion": "G525FXXUKEZH1",
+      "cscVersion": "G525FOLEKEZH1",
+      "basebandVersion": "G525FXXUKEZH1",
+      "id": "build-1788009919068-37",
+      "index": 37,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A576BE_SEA_XME",
+      "pdaVersion": "A576BXXU4BZZ5",
+      "cscVersion": "A576BOLM4BZZ5",
+      "basebandVersion": "A576BXXU4BZG6",
+      "id": "build-1788009919068-38",
+      "index": 38,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S916BE_SEA_B4_DX",
+      "pdaVersion": "S916BXXSAFZH3",
+      "cscVersion": "S916BOLEAFZH3",
+      "basebandVersion": "S916BXXSAFZE1",
+      "id": "build-1788009919068-39",
+      "index": 39,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S918BE_SEA_B4_DX",
+      "pdaVersion": "S918BXXSAFZH3",
+      "cscVersion": "S918BOLEAFZH3",
+      "basebandVersion": "S918BXXSAFZE1",
+      "id": "build-1788009919068-40",
+      "index": 40,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A336E_SEA_16_XXV",
+      "pdaVersion": "A336EDXUJGZH1",
+      "cscVersion": "A336EOLEJGZH1",
+      "basebandVersion": "A336EDXUJGZH1",
+      "id": "build-1788009919068-41",
+      "index": 41,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X216B_SEA_16_DX",
+      "pdaVersion": "X216BXXUDEZGF",
+      "cscVersion": "X216BOLEDEZGF",
+      "basebandVersion": "X216BXXUDEZGF",
+      "id": "build-1788009919068-42",
+      "index": 42,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
+      "pdaVersion": "S931BXXSCCZH3",
+      "cscVersion": "S931BOXMCCZH3",
+      "basebandVersion": "S931BXXSCCZH1",
+      "id": "build-1788009919068-43",
+      "index": 43,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X810_EUR_B4_XX",
+      "pdaVersion": "X810XXS6EZH3",
+      "cscVersion": "X810OLE6EZH3",
+      "basebandVersion": "",
+      "id": "build-1788009919068-44",
+      "index": 44,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X400_EUR_B4_XX",
+      "pdaVersion": "X400XXS7CZH6",
+      "cscVersion": "X400OXM7CZH6",
+      "basebandVersion": "",
+      "id": "build-1788009919068-45",
+      "index": 45,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X920_EUR_B4_XX",
+      "pdaVersion": "X920XXSADZH1",
+      "cscVersion": "X920OLEADZH1",
+      "basebandVersion": "",
+      "id": "build-1788009919068-46",
+      "index": 46,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X520_EUR_B4_XX",
+      "pdaVersion": "X520XXSACZH6",
+      "cscVersion": "X520OLMACZH6",
+      "basebandVersion": "",
+      "id": "build-1788009919068-47",
+      "index": 47,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X620_EUR_B4_XX",
+      "pdaVersion": "X620XXSACZH6",
+      "cscVersion": "X620OLMACZH6",
+      "basebandVersion": "",
+      "id": "build-1788009919068-48",
+      "index": 48,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X510_EUR_B4_XX",
+      "pdaVersion": "X510XXSFEZH5",
+      "cscVersion": "X510OLEFEZH5",
+      "basebandVersion": "",
+      "id": "build-1788009919068-49",
+      "index": 49,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A276BE_SEA_XXV",
+      "pdaVersion": "A276BXXU2AZH7",
+      "cscVersion": "A276BOLM2AZH7",
+      "basebandVersion": "A276BXXU2AZH7",
+      "id": "build-1788009919068-50",
+      "index": 50,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F776BE_SEA_DX",
+      "pdaVersion": "F776BXXS2AZH9",
+      "cscVersion": "F776BOXM2AZH9",
+      "basebandVersion": "F776BXXS2AZH9",
+      "id": "build-1788009919068-51",
+      "index": 51,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-M546B_SEA_B4_XME",
+      "pdaVersion": "M546BXXSFFZH3",
+      "cscVersion": "M546BOLMFFZH3",
+      "basebandVersion": "M546BXXSFFZH3",
+      "id": "build-1788009919068-52",
+      "index": 52,
+      "status": "pending"
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
-      "pdaVersion": "A566BXXSDCZHD",
-      "cscVersion": "A566BOLMDCZHD",
-      "basebandVersion": "A566BXXSDCZHD",
-      "id": "build-1788003873428-0",
-      "index": 92,
-      "status": "pending",
-      "progressPercent": 100,
-      "buildId": "114089980"
+      "pdaVersion": "A566BXXSDCZHB",
+      "cscVersion": "A566BOLMDCZHB",
+      "basebandVersion": "A566BXXSDCZHB",
+      "id": "build-1788009919068-53",
+      "index": 53,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A556E_SEA_B4_PHL",
+      "pdaVersion": "A556EXXSHDZH6",
+      "cscVersion": "A556EOLEHDZH6",
+      "basebandVersion": "A556EXXSHDZH6",
+      "id": "build-1788009919068-54",
+      "index": 54,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X616B_SEA_B4_DX",
+      "pdaVersion": "X616BXXSFEZH5",
+      "cscVersion": "X616BOLEFEZH5",
+      "basebandVersion": "X616BXXSFEZH5",
+      "id": "build-1788009919068-55",
+      "index": 55,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X236B_SEA_B4_DX",
+      "pdaVersion": "X236BXXS7BZH2",
+      "cscVersion": "X236BOXM7BZH2",
+      "basebandVersion": "X236BXXS7BZH2",
+      "id": "build-1788009919068-56",
+      "index": 56,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X926B_SEA_B4_DX",
+      "pdaVersion": "X926BXXSADZH1",
+      "cscVersion": "X926BOXMADZH1",
+      "basebandVersion": "X926BXXSADZH1",
+      "id": "build-1788009919068-57",
+      "index": 57,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X826B_SEA_B4_DX",
+      "pdaVersion": "X826BXXSADZH1",
+      "cscVersion": "X826BOXMADZH1",
+      "basebandVersion": "X826BXXSADZH1",
+      "id": "build-1788009919068-58",
+      "index": 58,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X406B_SEA_B4_DX",
+      "pdaVersion": "X406BXXS7CZH6",
+      "cscVersion": "X406BOXM7CZH6",
+      "basebandVersion": "X406BXXS7CZH4",
+      "id": "build-1788009919068-59",
+      "index": 59,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A546E_SEA_B4_TSE",
+      "pdaVersion": "A546EXXSMFZH5",
+      "cscVersion": "A546EOLEMFZH5",
+      "basebandVersion": "A546EXXSMFZH1",
+      "id": "build-1788009919068-60",
+      "index": 60,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X626B_SEA_B4_DX",
+      "pdaVersion": "X626BXXSACZH6",
+      "cscVersion": "X626BOLMACZH6",
+      "basebandVersion": "X626BXXSACZH6",
+      "id": "build-1788009919068-61",
+      "index": 61,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F976BE_SEA_DX",
+      "pdaVersion": "F976BXXU2AZHD",
+      "cscVersion": "F976BOXM2AZHD",
+      "basebandVersion": "F976BXXU2AZHD",
+      "id": "build-1788009919068-62",
+      "index": 62,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-X115_SEA_16_DX",
+      "pdaVersion": "X115XXUBDZH5",
+      "cscVersion": "X115OLEBDZH5",
+      "basebandVersion": "X115XXUBDZH5",
+      "id": "build-1788009919068-63",
+      "index": 63,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
+      "pdaVersion": "A245FXXSEFZH3",
+      "cscVersion": "A245FOLEEFZH3",
+      "basebandVersion": "A245FXXSEFZH3",
+      "id": "build-1788009919068-64",
+      "index": 64,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A336E_SEA_16_XXV",
+      "pdaVersion": "A336EDXSKGZH2",
+      "cscVersion": "A336EOLEKGZH2",
+      "basebandVersion": "A336EDXSKGZH2",
+      "id": "build-1788009919068-65",
+      "index": 65,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F926B_SEA_15_DX",
+      "pdaVersion": "F926BXXSJJZH4",
+      "cscVersion": "F926BOXMJJZH4",
+      "basebandVersion": "F926BXXSJJZH4",
+      "id": "build-1788009919068-66",
+      "index": 66,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S901E_SEA_16_DX",
+      "pdaVersion": "S901EXXSEGZH3",
+      "cscVersion": "S901EOXMEGZH3",
+      "basebandVersion": "S901EXXSEGZH3",
+      "id": "build-1788009919068-67",
+      "index": 67,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-S906E_SEA_16_DX",
+      "pdaVersion": "S906EXXSEGZH4",
+      "cscVersion": "S906EOXMEGZH4",
+      "basebandVersion": "S906EXXSEGZH4",
+      "id": "build-1788009919068-68",
+      "index": 68,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-F926B_SEA_15_DX",
+      "pdaVersion": "F926BXXSJJZH3",
+      "cscVersion": "F926BOLEJJZH3",
+      "basebandVersion": "F926BXXSJJZH3",
+      "id": "build-1788009919068-69",
+      "index": 69,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A256E_SEA_B4_PHL",
+      "pdaVersion": "A256EXXSEEZH9",
+      "cscVersion": "A256EOLEEEZH9",
+      "basebandVersion": "A256EXXSEEZH9",
+      "id": "build-1788009919068-70",
+      "index": 70,
+      "status": "pending"
+    },
+    {
+      "buildFingerprintName": "SM-A376BE_SEA_XME",
+      "pdaVersion": "A376BXXU4BZH1",
+      "cscVersion": "A376BOLM4BZH1",
+      "basebandVersion": "A376BXXU4BZH1",
+      "id": "build-1788009919068-71",
+      "index": 71,
+      "status": "pending"
     }
   ],
   "logs": [
@@ -17082,6 +16667,545 @@
       "level": "success",
       "message": "All 1 builds finished processing on QuickBuild!",
       "index": null
+    },
+    {
+      "id": "s4wr2ni",
+      "timestamp": "6:51:58 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "1u0esqn",
+      "timestamp": "6:52:00 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "f8uezsy",
+      "timestamp": "6:52:04 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "jn4h7gk",
+      "timestamp": "23:52:05",
+      "level": "warn",
+      "message": "Batch execution cancelled by user.",
+      "index": null
+    },
+    {
+      "id": "nsf4iju",
+      "timestamp": "6:52:06 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "i4kf7b2",
+      "timestamp": "6:52:10 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "bm3wno3",
+      "timestamp": "6:52:11 AM",
+      "level": "warn",
+      "message": "SSO Authentication required at https://sts.secsso.net/adfs/ls/?SAMLRequest=hZJJbwIxDIX%2Fyij32VkjQKLQBYkCAtpDLyhkDESacYY40%2BXfNwytSg%2BlV%2Bc9%2B312eiSKvOTDyh5wCccKyHrvRY7E64c%2BqwxyLUgRR1EAcSv5avg45UkQ8dJoq6XO2YXlukMQgbFKI%2FMm4z6bz26n8%2FvJbLNtd6VI47bfarYyv5F0Or6I09iXMm6kEkTU6jaZ9wyGnLfPXCvXgKiCCZIVaF0pSlp%2B1PHTaJ2kvJnwOHph3tjxKBS2dh2sLYmHIVkKCCSRDhBsKLIdhTmFzFt88dwozBTur6NszyLiD%2Bv1wl%2FMV2vmDb%2FxRhqpKsCswLwqCU%2FL6c94gZnRKguO21OKwC2NKtzXUVykDWBWaoWWDXqnffIa0wz%2Bd%2FfCS33vfNiZyz0ZL3Su5Id3p00h7N9YcRDXFZX5u1rKK6QSpNopyBxdnuu3kQFhoc%2BsqYB54eA89fcPGnwC&RelayState=overview%2F28905",
+      "index": null
+    },
+    {
+      "id": "wyflabp",
+      "timestamp": "6:52:11 AM",
+      "level": "info",
+      "message": "Attempting auto-fill SSO credentials for user: endri.s...",
+      "index": null
+    },
+    {
+      "id": "vpg0r3h",
+      "timestamp": "6:52:12 AM",
+      "level": "info",
+      "message": "Filled SSO username: endri.s",
+      "index": null
+    },
+    {
+      "id": "1nexukf",
+      "timestamp": "6:52:12 AM",
+      "level": "info",
+      "message": "Filled SSO password.",
+      "index": null
+    },
+    {
+      "id": "753ql1v",
+      "timestamp": "6:52:12 AM",
+      "level": "info",
+      "message": "Submitting SSO login form...",
+      "index": null
+    },
+    {
+      "id": "vvaazqk",
+      "timestamp": "6:52:13 AM",
+      "level": "info",
+      "message": "Waiting for SSO session to establish and redirect back to QuickBuild portal...",
+      "index": null
+    },
+    {
+      "id": "ju1rm9x",
+      "timestamp": "6:52:20 AM",
+      "level": "success",
+      "message": "SSO Login detected! Saving session state...",
+      "index": null
+    },
+    {
+      "id": "hwsgiqn",
+      "timestamp": "6:52:22 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 72 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "fu50z8u",
+      "timestamp": "6:52:22 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A155F_SEA_B4_THL",
+      "index": null
+    },
+    {
+      "id": "szjt4zi",
+      "timestamp": "6:52:22 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-F776BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "54qoynr",
+      "timestamp": "6:52:23 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-F971BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "vlrg4zs",
+      "timestamp": "6:52:24 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "h9y19sq",
+      "timestamp": "6:52:24 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "3qvz2jb",
+      "timestamp": "6:52:24 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "pw9jvyi",
+      "timestamp": "6:52:24 AM",
+      "level": "warn",
+      "message": "Overview navigation warning: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"https://android.qb.sec.samsung.net/overview/28905\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "index": null
+    },
+    {
+      "id": "srfuth0",
+      "timestamp": "6:52:24 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-F971BE_SEA_DX: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "5nn5xz5",
+      "timestamp": "6:52:24 AM",
+      "level": "warn",
+      "message": "Overview navigation warning: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"https://android.qb.sec.samsung.net/overview/28905\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "index": null
+    },
+    {
+      "id": "fy5ze46",
+      "timestamp": "6:52:24 AM",
+      "level": "warn",
+      "message": "Overview navigation warning: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"https://android.qb.sec.samsung.net/overview/28905\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "index": null
+    },
+    {
+      "id": "fn131fc",
+      "timestamp": "6:52:24 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-F776BE_SEA_DX: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "b329s94",
+      "timestamp": "6:52:24 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-A155F_SEA_B4_THL: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "ybk37tq",
+      "timestamp": "6:52:25 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-F976BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "8xm2tct",
+      "timestamp": "6:52:25 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A185G_SEA_XME",
+      "index": null
+    },
+    {
+      "id": "qyh1247",
+      "timestamp": "6:52:25 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-S931BE_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "gbsgdpe",
+      "timestamp": "6:52:26 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "gi1qaat",
+      "timestamp": "6:52:27 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "78tthzs",
+      "timestamp": "6:52:27 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "l6buoik",
+      "timestamp": "6:52:27 AM",
+      "level": "warn",
+      "message": "Overview navigation warning: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"https://android.qb.sec.samsung.net/overview/28905\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "index": null
+    },
+    {
+      "id": "zkrwtdf",
+      "timestamp": "6:52:27 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-S931BE_SEA_B4_DX: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "ptvw7pb",
+      "timestamp": "6:52:27 AM",
+      "level": "warn",
+      "message": "Overview navigation warning: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"https://android.qb.sec.samsung.net/overview/28905\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "index": null
+    },
+    {
+      "id": "lgrsy5q",
+      "timestamp": "6:52:27 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-A185G_SEA_XME: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "ua9sobr",
+      "timestamp": "6:52:27 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-F976BE_SEA_DX: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "nfxol4o",
+      "timestamp": "6:52:28 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-F776BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "6l7tf65",
+      "timestamp": "6:52:28 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A566BE_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "3m1e70x",
+      "timestamp": "6:52:28 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A276BE_SEA_XXV",
+      "index": null
+    },
+    {
+      "id": "lknw7gv",
+      "timestamp": "6:52:28 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "fonwdeb",
+      "timestamp": "6:52:29 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-A276BE_SEA_XXV: browserContext.newPage: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "itquyxw",
+      "timestamp": "6:52:29 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-A566BE_SEA_B4_XME: browserContext.newPage: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "0bxpfg0",
+      "timestamp": "6:52:29 AM",
+      "level": "warn",
+      "message": "Overview navigation warning: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"https://android.qb.sec.samsung.net/overview/28905\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "index": null
+    },
+    {
+      "id": "l3h15nu",
+      "timestamp": "6:52:29 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-F776BE_SEA_DX: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "ozgel84",
+      "timestamp": "6:52:30 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X910_EUR_C2_XX",
+      "index": null
+    },
+    {
+      "id": "df7gt8w",
+      "timestamp": "6:52:30 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-G525F_SEA_14_XSA",
+      "index": null
+    },
+    {
+      "id": "ses7nsa",
+      "timestamp": "6:52:30 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A075F_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "e2g0vgi",
+      "timestamp": "6:52:30 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "cc00sx7",
+      "timestamp": "6:52:31 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-A075F_SEA_B4_XME: browserContext.newPage: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "3jdw1bm",
+      "timestamp": "6:52:31 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-G525F_SEA_14_XSA: browserContext.newPage: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "mj0cgn2",
+      "timestamp": "6:52:31 AM",
+      "level": "warn",
+      "message": "Overview navigation warning: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"https://android.qb.sec.samsung.net/overview/28905\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "index": null
+    },
+    {
+      "id": "1q0w7dw",
+      "timestamp": "6:52:31 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-X910_EUR_C2_XX: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "jnaxx0v",
+      "timestamp": "6:52:32 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-G990E_SEA_16_XME",
+      "index": null
+    },
+    {
+      "id": "5qm95mt",
+      "timestamp": "6:52:32 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A155F_SEA_B4_THL",
+      "index": null
+    },
+    {
+      "id": "n4ipbmk",
+      "timestamp": "6:52:32 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A245F_SEA_B4_XXV",
+      "index": null
+    },
+    {
+      "id": "van13sp",
+      "timestamp": "6:52:33 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "v2ymqzp",
+      "timestamp": "6:52:34 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "74w3y0a",
+      "timestamp": "6:52:34 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "iex9wf9",
+      "timestamp": "6:52:35 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "1wywk9r",
+      "timestamp": "6:52:35 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "qg68gil",
+      "timestamp": "6:52:36 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "2vcbsdg",
+      "timestamp": "6:52:36 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "h9jdhg3",
+      "timestamp": "6:52:36 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "dnsf9wa",
+      "timestamp": "6:52:36 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "mplnnnk",
+      "timestamp": "6:52:36 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "f0izu5p",
+      "timestamp": "6:52:37 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "4j35rv3",
+      "timestamp": "6:52:37 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "sbvtana",
+      "timestamp": "6:52:37 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "tmcnyoq",
+      "timestamp": "6:52:38 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A245F_SEA_B4_XXV, PDA=A245FXXSEFZH6, CSC=A245FOLEEFZH6, Phone=A245FXXSEFZH6",
+      "index": null
+    },
+    {
+      "id": "0ftnckn",
+      "timestamp": "6:52:38 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "k3d68lr",
+      "timestamp": "6:52:39 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-A245F_SEA_B4_XXV: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "u8fgnqv",
+      "timestamp": "6:52:39 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-G990E_SEA_16_XME: page.fill: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"editor:content:basicProperties:1:property:editor:editor:wrapper:input\"], input[name*=\"basicProperties:1\"], input[name*=\"1:property:editor\"]')\u001b[22m\n",
+      "index": null
+    },
+    {
+      "id": "r8el7fc",
+      "timestamp": "6:52:39 AM",
+      "level": "warn",
+      "message": "Could not find Run button on overview (Attempt 1).",
+      "index": null
+    },
+    {
+      "id": "otd1l0f",
+      "timestamp": "6:52:39 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-A155F_SEA_B4_THL: page.waitForTimeout: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "kduzvqa",
+      "timestamp": "6:52:40 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X930_EUR_XX",
+      "index": null
+    },
+    {
+      "id": "kh4t86x",
+      "timestamp": "6:52:40 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X730_EUR_XX",
+      "index": null
     }
   ],
   "portalConfig": {
@@ -17091,11 +17215,11 @@
     "delayMs": 1000,
     "timeoutMs": 30000,
     "mock": false,
-    "trackProgress": false,
+    "trackProgress": true,
     "concurrency": 3,
     "username": "endri.s",
     "password": "sein2016!"
   },
   "isRunning": false,
-  "lastUpdated": "2026-08-29T11:56:49.090Z"
+  "lastUpdated": "2026-08-29T13:25:19.563Z"
 }

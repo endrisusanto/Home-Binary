@@ -336,6 +336,10 @@ export function App() {
               }
             }
             setIsRunning(false);
+            setItems((prev) =>
+              prev.map((x) => (x.status === 'running' ? { ...x, status: 'pending', message: 'Cancelled' } : x))
+            );
+            addLog('warn', '🛑 [Sync] Cancellation received. Automation process stopped.');
             break;
 
           case 'execute-fetch-ids':
@@ -596,6 +600,14 @@ export function App() {
   // Cancel Batch Execution
   const handleCancelBatch = async () => {
     addLog('warn', 'Sending cancellation request to automation runner...');
+    setIsRunning(false);
+
+    const nextItems = items.map((x) =>
+      x.status === 'running' ? { ...x, status: 'pending' as ItemStatus, message: 'Cancelled' } : x
+    );
+    setItems(nextItems);
+    pushStateToServer(nextItems);
+
     wsService.send('cancel-batch');
 
     const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
@@ -615,10 +627,6 @@ export function App() {
         addLog('error', `Cancellation error: ${err?.message || err}`);
       }
     }
-    setIsRunning(false);
-    setItems((prev) =>
-      prev.map((x) => (x.status === 'running' ? { ...x, status: 'pending', message: 'Cancelled' } : x))
-    );
   };
 
   // Re-check a single failed item
