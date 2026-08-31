@@ -117,12 +117,12 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Main Action Buttons */}
           <button
             onClick={onOpenInputDrawer}
-            className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 rounded-md sm:rounded-lg shadow-xs shadow-blue-500/20 transition-all"
+            className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 rounded-md sm:rounded-lg shadow-xs shadow-blue-500/20 transition-all cursor-pointer"
             title="Paste & Parse raw build specs"
           >
             <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span className="hidden xs:inline">New Batch</span>
-            <span className="xs:hidden">+ New</span>
+            <span className="xs:hidden">New</span>
           </button>
 
           {isRunning ? (

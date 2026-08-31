@@ -68,19 +68,6 @@
       "error": "Build #114090270 is failed on QuickBuild"
     },
     {
-      "buildFingerprintName": "SM-A165F_SEA_B4_XXV",
-      "pdaVersion": "A165FXXSBDZH6",
-      "cscVersion": "A165FOLEBDZH6",
-      "basebandVersion": "A165FXXSBDZH3",
-      "id": "build-1788138342024-5",
-      "index": 5,
-      "status": "running",
-      "message": "Build #114149207 running on server (63%, step: MAKE_HOME_BINARY)...",
-      "progressPercent": 63,
-      "buildId": "114149207",
-      "buildDate": "2026-08-31 10:33:48"
-    },
-    {
       "buildFingerprintName": "SM-A175F_SEA_B4_PHL",
       "pdaVersion": "A175FXXS7CZH6",
       "cscVersion": "A175FOXM7CZH6",
@@ -19416,5 +19403,5 @@
     "password": "sein2016!"
   },
   "isRunning": false,
-  "lastUpdated": "2026-08-31T01:05:44.578Z"
+  "lastUpdated": "2026-08-31T02:25:18.796Z"
 }
