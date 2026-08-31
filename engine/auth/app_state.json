@@ -8,9 +8,11 @@
       "id": "build-1788009919068-0",
       "index": 0,
       "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "message": "Build #114088952 failed on QuickBuild",
+      "error": "Build #114088952 is failed on QuickBuild",
+      "progressPercent": 100,
+      "buildId": "114088952",
+      "buildDate": "2026-08-29 01:23:54"
     },
     {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
@@ -19,10 +21,12 @@
       "basebandVersion": "F776BXXS2AZH7",
       "id": "build-1788009919068-1",
       "index": 1,
-      "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-F776BE_SEA_DX",
       "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114089161",
+      "buildDate": "2026-08-29 01:33:46"
     },
     {
       "buildFingerprintName": "SM-F971BE_SEA_DX",
@@ -31,10 +35,12 @@
       "basebandVersion": "F971BXXU2AZHK",
       "id": "build-1788009919068-2",
       "index": 2,
-      "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-F971BE_SEA_DX",
       "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114088953",
+      "buildDate": "2026-08-29 01:23:57"
     },
     {
       "buildFingerprintName": "SM-F976BE_SEA_DX",
@@ -43,10 +49,12 @@
       "basebandVersion": "F976BXXU2AZHK",
       "id": "build-1788009919068-3",
       "index": 3,
-      "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-F976BE_SEA_DX",
       "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114089247",
+      "buildDate": "2026-08-29 01:41:46"
     },
     {
       "buildFingerprintName": "SM-A185G_SEA_XME",
@@ -55,10 +63,12 @@
       "basebandVersion": "A185GXXU0AZHB",
       "id": "build-1788009919068-4",
       "index": 4,
-      "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-A185G_SEA_XME",
       "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114089359",
+      "buildDate": "2026-08-29 01:51:49"
     },
     {
       "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
@@ -67,10 +77,12 @@
       "basebandVersion": "S931BXXSCCZH1",
       "id": "build-1788009919068-5",
       "index": 5,
-      "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-S931BE_SEA_B4_DX",
       "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114089406",
+      "buildDate": "2026-08-29 01:56:24"
     },
     {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
@@ -79,10 +91,12 @@
       "basebandVersion": "F776BXXU2AZHJ",
       "id": "build-1788009919068-6",
       "index": 6,
-      "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-F776BE_SEA_DX",
       "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114089818",
+      "buildDate": "2026-08-29 02:12:27"
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
@@ -92,9 +106,11 @@
       "id": "build-1788009919068-7",
       "index": 7,
       "status": "failed",
-      "message": "Error: browserContext.newPage: Target page, context or browser has been closed",
-      "error": "browserContext.newPage: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "message": "Build #114089980 failed on QuickBuild",
+      "error": "Build #114089980 is failed on QuickBuild",
+      "progressPercent": 100,
+      "buildId": "114089980",
+      "buildDate": "2026-08-29 02:21:51"
     },
     {
       "buildFingerprintName": "SM-A276BE_SEA_XXV",
@@ -103,10 +119,12 @@
       "basebandVersion": "A276BXXS3AZHA",
       "id": "build-1788009919068-8",
       "index": 8,
-      "status": "failed",
-      "message": "Error: browserContext.newPage: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-A276BE_SEA_XXV",
       "error": "browserContext.newPage: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114089984",
+      "buildDate": "2026-08-29 02:21:55"
     },
     {
       "buildFingerprintName": "SM-X910_EUR_C2_XX",
@@ -116,9 +134,11 @@
       "id": "build-1788009919068-9",
       "index": 9,
       "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "message": "Build #114090039 failed on QuickBuild",
+      "error": "Build #114090039 is failed on QuickBuild",
+      "progressPercent": 100,
+      "buildId": "114090039",
+      "buildDate": "2026-08-29 02:25:27"
     },
     {
       "buildFingerprintName": "SM-G525F_SEA_14_XSA",
@@ -127,10 +147,12 @@
       "basebandVersion": "G525FXXUKEZH1",
       "id": "build-1788009919068-10",
       "index": 10,
-      "status": "failed",
-      "message": "Error: browserContext.newPage: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-G525F_SEA_14_XSA",
       "error": "browserContext.newPage: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114090040",
+      "buildDate": "2026-08-29 02:25:30"
     },
     {
       "buildFingerprintName": "SM-A075F_SEA_B4_XME",
@@ -139,10 +161,12 @@
       "basebandVersion": "A075FXXS7CZH5",
       "id": "build-1788009919068-11",
       "index": 11,
-      "status": "failed",
-      "message": "Error: browserContext.newPage: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-A075F_SEA_B4_XME",
       "error": "browserContext.newPage: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114090083",
+      "buildDate": "2026-08-29 02:27:50"
     },
     {
       "buildFingerprintName": "SM-G990E_SEA_16_XME",
@@ -151,10 +175,12 @@
       "basebandVersion": "G990EXXSOHZH1",
       "id": "build-1788009919068-12",
       "index": 12,
-      "status": "failed",
-      "message": "Error: page.fill: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"editor:content:basicProperties:1:property:editor:editor:wrapper:input\"], input[name*=\"basicProperties:1\"], input[name*=\"1:property:editor\"]')\u001b[22m\n",
+      "status": "success",
+      "message": "Completed: SM-G990E_SEA_16_XME",
       "error": "page.fill: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"editor:content:basicProperties:1:property:editor:editor:wrapper:input\"], input[name*=\"basicProperties:1\"], input[name*=\"1:property:editor\"]')\u001b[22m\n",
-      "progressPercent": 40
+      "progressPercent": 100,
+      "buildId": "114090148",
+      "buildDate": "2026-08-29 02:31:20"
     },
     {
       "buildFingerprintName": "SM-A155F_SEA_B4_THL",
@@ -163,10 +189,12 @@
       "basebandVersion": "A155FXXSCEZH3",
       "id": "build-1788009919068-13",
       "index": 13,
-      "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-A155F_SEA_B4_THL",
       "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 25
+      "progressPercent": 100,
+      "buildId": "114090187",
+      "buildDate": "2026-08-29 02:35:35"
     },
     {
       "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
@@ -175,10 +203,12 @@
       "basebandVersion": "A245FXXSEFZH6",
       "id": "build-1788009919068-14",
       "index": 14,
-      "status": "failed",
-      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed",
+      "status": "success",
+      "message": "Completed: SM-A245F_SEA_B4_XXV",
       "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 75
+      "progressPercent": 100,
+      "buildId": "114090229",
+      "buildDate": "2026-08-29 02:39:10"
     },
     {
       "buildFingerprintName": "SM-X930_EUR_XX",
@@ -187,9 +217,12 @@
       "basebandVersion": "",
       "id": "build-1788009919068-15",
       "index": 15,
-      "status": "running",
-      "message": "Triggering submission: SM-X930_EUR_XX",
-      "progressPercent": 25
+      "status": "failed",
+      "message": "Build #114090269 failed on QuickBuild",
+      "progressPercent": 100,
+      "buildId": "114090269",
+      "buildDate": "2026-08-29 02:42:46",
+      "error": "Build #114090269 is failed on QuickBuild"
     },
     {
       "buildFingerprintName": "SM-X730_EUR_XX",
@@ -198,9 +231,12 @@
       "basebandVersion": "",
       "id": "build-1788009919068-16",
       "index": 16,
-      "status": "running",
-      "message": "Triggering submission: SM-X730_EUR_XX",
-      "progressPercent": 25
+      "status": "failed",
+      "message": "Build #114090270 failed on QuickBuild",
+      "progressPercent": 100,
+      "buildId": "114090270",
+      "buildDate": "2026-08-29 02:42:50",
+      "error": "Build #114090270 is failed on QuickBuild"
     },
     {
       "buildFingerprintName": "SM-X736B_SEA_DX",
@@ -209,9 +245,12 @@
       "basebandVersion": "X736BXXS8BZH4",
       "id": "build-1788009919068-17",
       "index": 17,
-      "status": "running",
-      "message": "Triggering submission: SM-X736B_SEA_DX",
-      "progressPercent": 25
+      "status": "failed",
+      "message": "Build #114090272 failed on QuickBuild",
+      "progressPercent": 100,
+      "buildId": "114090272",
+      "buildDate": "2026-08-29 02:42:53",
+      "error": "Build #114090272 is failed on QuickBuild"
     },
     {
       "buildFingerprintName": "SM-X700_EUR_16_XX",
@@ -220,7 +259,11 @@
       "basebandVersion": "",
       "id": "build-1788009919068-18",
       "index": 18,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114090274",
+      "buildDate": "2026-08-29 02:42:56",
+      "message": "Completed: SM-X700_EUR_16_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A165F_SEA_XXV",
@@ -229,7 +272,12 @@
       "basebandVersion": "A165FXXSBDZH3",
       "id": "build-1788009919068-19",
       "index": 19,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114107329",
+      "buildDate": "2026-08-29 18:28:15",
+      "message": "Build #114107329 failed on QuickBuild",
+      "error": "Build #114107329 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X620_EUR_XX",
@@ -238,7 +286,12 @@
       "basebandVersion": "",
       "id": "build-1788009919068-20",
       "index": 20,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090308",
+      "buildDate": "2026-08-29 02:47:33",
+      "message": "Build #114090308 failed on QuickBuild",
+      "error": "Build #114090308 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X626B_SEA_DX",
@@ -247,7 +300,12 @@
       "basebandVersion": "X626BXXU9DZH1",
       "id": "build-1788009919068-21",
       "index": 21,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090310",
+      "buildDate": "2026-08-29 02:47:36",
+      "message": "Build #114090310 failed on QuickBuild",
+      "error": "Build #114090310 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X930_EUR_C2_XX",
@@ -256,7 +314,12 @@
       "basebandVersion": "",
       "id": "build-1788009919068-22",
       "index": 22,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090311",
+      "buildDate": "2026-08-29 02:47:39",
+      "message": "Build #114090311 failed on QuickBuild",
+      "error": "Build #114090311 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X730_EUR_XX",
@@ -265,7 +328,12 @@
       "basebandVersion": "",
       "id": "build-1788009919068-23",
       "index": 23,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090317",
+      "buildDate": "2026-08-29 02:47:42",
+      "message": "Build #114090317 failed on QuickBuild",
+      "error": "Build #114090317 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X610_EUR_B4_XX",
@@ -274,7 +342,11 @@
       "basebandVersion": "",
       "id": "build-1788009919068-24",
       "index": 24,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114090319",
+      "buildDate": "2026-08-29 02:47:45",
+      "message": "Completed: SM-X610_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X520_EUR_XX",
@@ -283,7 +355,12 @@
       "basebandVersion": "",
       "id": "build-1788009919068-25",
       "index": 25,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090354",
+      "buildDate": "2026-08-29 02:51:52",
+      "message": "Build #114090354 failed on QuickBuild",
+      "error": "Build #114090354 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A175F_SEA_PHL",
@@ -292,7 +369,12 @@
       "basebandVersion": "A175FXXS7CZH6",
       "id": "build-1788009919068-26",
       "index": 26,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090356",
+      "buildDate": "2026-08-29 02:51:55",
+      "message": "Build #114090356 failed on QuickBuild",
+      "error": "Build #114090356 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X936B_SEA_B4_DX",
@@ -301,7 +383,11 @@
       "basebandVersion": "X936BXXS8BZH4",
       "id": "build-1788009919068-27",
       "index": 27,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114090358",
+      "buildDate": "2026-08-29 02:51:58",
+      "message": "Completed: SM-X936B_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-G990E_SEA_16_XME",
@@ -310,7 +396,11 @@
       "basebandVersion": "G990EXXSOHZH1",
       "id": "build-1788009919068-28",
       "index": 28,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114090737",
+      "buildDate": "2026-08-29 03:06:28",
+      "message": "Completed: SM-G990E_SEA_16_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X810_EUR_C2_XX",
@@ -319,7 +409,12 @@
       "basebandVersion": "",
       "id": "build-1788009919068-29",
       "index": 29,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090863",
+      "buildDate": "2026-08-29 03:10:38",
+      "message": "Build #114090863 failed on QuickBuild",
+      "error": "Build #114090863 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-P625_SEA_B4_DX",
@@ -328,7 +423,11 @@
       "basebandVersion": "P625XXSCCZH4",
       "id": "build-1788009919068-30",
       "index": 30,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114090867",
+      "buildDate": "2026-08-29 03:10:42",
+      "message": "Completed: SM-P625_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S928BE_SEA_DX",
@@ -337,7 +436,12 @@
       "basebandVersion": "S928BXXU6EZHC",
       "id": "build-1788009919068-31",
       "index": 31,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090915",
+      "buildDate": "2026-08-29 03:13:55",
+      "message": "Build #114090915 failed on QuickBuild",
+      "error": "Build #114090915 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F966B_EUR_C2_XX",
@@ -346,7 +450,12 @@
       "basebandVersion": "F966BXXUCZZHC",
       "id": "build-1788009919068-32",
       "index": 32,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090916",
+      "buildDate": "2026-08-29 03:13:58",
+      "message": "Build #114090916 failed on QuickBuild",
+      "error": "Build #114090916 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S921BE_SEA_DX",
@@ -355,7 +464,12 @@
       "basebandVersion": "S921BXXUHEZHC",
       "id": "build-1788009919068-33",
       "index": 33,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090919",
+      "buildDate": "2026-08-29 03:14:01",
+      "message": "Build #114090919 failed on QuickBuild",
+      "error": "Build #114090919 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S731B_EUR_C2_XX",
@@ -364,7 +478,12 @@
       "basebandVersion": "S731BXXU9CZH4",
       "id": "build-1788009919068-34",
       "index": 34,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114102406",
+      "buildDate": "2026-08-29 14:03:10",
+      "message": "Build #114102406 failed on QuickBuild",
+      "error": "Build #114102406 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-M556B_SEA_B4_XME",
@@ -373,7 +492,11 @@
       "basebandVersion": "M556BXXS5DZH1",
       "id": "build-1788009919068-35",
       "index": 35,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114090921",
+      "buildDate": "2026-08-29 03:14:08",
+      "message": "Completed: SM-M556B_SEA_B4_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X710_EUR_B4_XX",
@@ -382,7 +505,12 @@
       "basebandVersion": "",
       "id": "build-1788009919068-36",
       "index": 36,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114090974",
+      "buildDate": "2026-08-29 03:18:05",
+      "message": "Build #114090974 failed on QuickBuild",
+      "error": "Build #114090974 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-G525F_SEA_14_XSA",
@@ -391,7 +519,11 @@
       "basebandVersion": "G525FXXUKEZH1",
       "id": "build-1788009919068-37",
       "index": 37,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114090975",
+      "buildDate": "2026-08-29 03:18:08",
+      "message": "Completed: SM-G525F_SEA_14_XSA",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A576BE_SEA_XME",
@@ -400,7 +532,12 @@
       "basebandVersion": "A576BXXU4BZG6",
       "id": "build-1788009919068-38",
       "index": 38,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114091019",
+      "buildDate": "2026-08-29 03:20:23",
+      "message": "Build #114091019 failed on QuickBuild",
+      "error": "Build #114091019 is failed on QuickBuild",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S916BE_SEA_B4_DX",
@@ -409,7 +546,11 @@
       "basebandVersion": "S916BXXSAFZE1",
       "id": "build-1788009919068-39",
       "index": 39,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114091022",
+      "buildDate": "2026-08-29 03:20:26",
+      "message": "Completed: SM-S916BE_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S918BE_SEA_B4_DX",
@@ -418,7 +559,11 @@
       "basebandVersion": "S918BXXSAFZE1",
       "id": "build-1788009919068-40",
       "index": 40,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114091127",
+      "buildDate": "2026-08-29 03:27:47",
+      "message": "Completed: SM-S918BE_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A336E_SEA_16_XXV",
@@ -427,7 +572,11 @@
       "basebandVersion": "A336EDXUJGZH1",
       "id": "build-1788009919068-41",
       "index": 41,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114091249",
+      "buildDate": "2026-08-29 03:35:17",
+      "message": "Completed: SM-A336E_SEA_16_XXV",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X216B_SEA_16_DX",
@@ -436,7 +585,11 @@
       "basebandVersion": "X216BXXUDEZGF",
       "id": "build-1788009919068-42",
       "index": 42,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114085074",
+      "buildDate": "2026-08-28 23:08:38",
+      "message": "Completed: SM-X216B_SEA_16_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
@@ -445,7 +598,11 @@
       "basebandVersion": "S931BXXSCCZH1",
       "id": "build-1788009919068-43",
       "index": 43,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114091296",
+      "buildDate": "2026-08-29 03:38:52",
+      "message": "Completed: SM-S931BE_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X810_EUR_B4_XX",
@@ -454,7 +611,11 @@
       "basebandVersion": "",
       "id": "build-1788009919068-44",
       "index": 44,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114085139",
+      "buildDate": "2026-08-28 23:11:33",
+      "message": "Completed: SM-X810_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X400_EUR_B4_XX",
@@ -463,7 +624,11 @@
       "basebandVersion": "",
       "id": "build-1788009919068-45",
       "index": 45,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114085296",
+      "buildDate": "2026-08-28 23:17:19",
+      "message": "Completed: SM-X400_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X920_EUR_B4_XX",
@@ -472,7 +637,11 @@
       "basebandVersion": "",
       "id": "build-1788009919068-46",
       "index": 46,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114085467",
+      "buildDate": "2026-08-28 23:20:27",
+      "message": "Completed: SM-X920_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X520_EUR_B4_XX",
@@ -481,7 +650,11 @@
       "basebandVersion": "",
       "id": "build-1788009919068-47",
       "index": 47,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114085934",
+      "buildDate": "2026-08-28 23:29:41",
+      "message": "Completed: SM-X520_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X620_EUR_B4_XX",
@@ -490,7 +663,11 @@
       "basebandVersion": "",
       "id": "build-1788009919068-48",
       "index": 48,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114086146",
+      "buildDate": "2026-08-28 23:33:05",
+      "message": "Completed: SM-X620_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X510_EUR_B4_XX",
@@ -499,7 +676,11 @@
       "basebandVersion": "",
       "id": "build-1788009919068-49",
       "index": 49,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114086301",
+      "buildDate": "2026-08-28 23:36:28",
+      "message": "Completed: SM-X510_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A276BE_SEA_XXV",
@@ -508,7 +689,11 @@
       "basebandVersion": "A276BXXU2AZH7",
       "id": "build-1788009919068-50",
       "index": 50,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114086434",
+      "buildDate": "2026-08-28 23:39:52",
+      "message": "Completed: SM-A276BE_SEA_XXV",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
@@ -517,7 +702,11 @@
       "basebandVersion": "F776BXXS2AZH9",
       "id": "build-1788009919068-51",
       "index": 51,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114086676",
+      "buildDate": "2026-08-28 23:46:09",
+      "message": "Completed: SM-F776BE_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-M546B_SEA_B4_XME",
@@ -526,7 +715,11 @@
       "basebandVersion": "M546BXXSFFZH3",
       "id": "build-1788009919068-52",
       "index": 52,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114086573",
+      "buildDate": "2026-08-28 23:43:20",
+      "message": "Completed: SM-M546B_SEA_B4_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
@@ -535,7 +728,11 @@
       "basebandVersion": "A566BXXSDCZHB",
       "id": "build-1788009919068-53",
       "index": 53,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114086799",
+      "buildDate": "2026-08-28 23:52:08",
+      "message": "Completed: SM-A566BE_SEA_B4_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A556E_SEA_B4_PHL",
@@ -544,7 +741,11 @@
       "basebandVersion": "A556EXXSHDZH6",
       "id": "build-1788009919068-54",
       "index": 54,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114086860",
+      "buildDate": "2026-08-28 23:55:58",
+      "message": "Completed: SM-A556E_SEA_B4_PHL",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X616B_SEA_B4_DX",
@@ -553,7 +754,11 @@
       "basebandVersion": "X616BXXSFEZH5",
       "id": "build-1788009919068-55",
       "index": 55,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114086918",
+      "buildDate": "2026-08-28 23:59:31",
+      "message": "Completed: SM-X616B_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X236B_SEA_B4_DX",
@@ -562,7 +767,11 @@
       "basebandVersion": "X236BXXS7BZH2",
       "id": "build-1788009919068-56",
       "index": 56,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114087077",
+      "buildDate": "2026-08-29 00:02:59",
+      "message": "Completed: SM-X236B_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X926B_SEA_B4_DX",
@@ -571,7 +780,11 @@
       "basebandVersion": "X926BXXSADZH1",
       "id": "build-1788009919068-57",
       "index": 57,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114087197",
+      "buildDate": "2026-08-29 00:05:57",
+      "message": "Completed: SM-X926B_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X826B_SEA_B4_DX",
@@ -580,7 +793,11 @@
       "basebandVersion": "X826BXXSADZH1",
       "id": "build-1788009919068-58",
       "index": 58,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114087527",
+      "buildDate": "2026-08-29 00:16:58",
+      "message": "Completed: SM-X826B_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X406B_SEA_B4_DX",
@@ -589,7 +806,11 @@
       "basebandVersion": "X406BXXS7CZH4",
       "id": "build-1788009919068-59",
       "index": 59,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114087859",
+      "buildDate": "2026-08-29 00:29:20",
+      "message": "Completed: SM-X406B_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A546E_SEA_B4_TSE",
@@ -598,7 +819,11 @@
       "basebandVersion": "A546EXXSMFZH1",
       "id": "build-1788009919068-60",
       "index": 60,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114087980",
+      "buildDate": "2026-08-29 00:33:24",
+      "message": "Completed: SM-A546E_SEA_B4_TSE",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X626B_SEA_B4_DX",
@@ -607,7 +832,11 @@
       "basebandVersion": "X626BXXSACZH6",
       "id": "build-1788009919068-61",
       "index": 61,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088044",
+      "buildDate": "2026-08-29 00:36:59",
+      "message": "Completed: SM-X626B_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F976BE_SEA_DX",
@@ -616,7 +845,11 @@
       "basebandVersion": "F976BXXU2AZHD",
       "id": "build-1788009919068-62",
       "index": 62,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088126",
+      "buildDate": "2026-08-29 00:41:38",
+      "message": "Completed: SM-F976BE_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X115_SEA_16_DX",
@@ -625,7 +858,11 @@
       "basebandVersion": "X115XXUBDZH5",
       "id": "build-1788009919068-63",
       "index": 63,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088363",
+      "buildDate": "2026-08-29 00:54:42",
+      "message": "Completed: SM-X115_SEA_16_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
@@ -634,7 +871,11 @@
       "basebandVersion": "A245FXXSEFZH3",
       "id": "build-1788009919068-64",
       "index": 64,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088312",
+      "buildDate": "2026-08-29 00:51:04",
+      "message": "Completed: SM-A245F_SEA_B4_XXV",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A336E_SEA_16_XXV",
@@ -643,7 +884,11 @@
       "basebandVersion": "A336EDXSKGZH2",
       "id": "build-1788009919068-65",
       "index": 65,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088407",
+      "buildDate": "2026-08-29 00:57:50",
+      "message": "Completed: SM-A336E_SEA_16_XXV",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F926B_SEA_15_DX",
@@ -652,7 +897,11 @@
       "basebandVersion": "F926BXXSJJZH4",
       "id": "build-1788009919068-66",
       "index": 66,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088516",
+      "buildDate": "2026-08-29 01:01:29",
+      "message": "Completed: SM-F926B_SEA_15_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S901E_SEA_16_DX",
@@ -661,7 +910,11 @@
       "basebandVersion": "S901EXXSEGZH3",
       "id": "build-1788009919068-67",
       "index": 67,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088631",
+      "buildDate": "2026-08-29 01:06:02",
+      "message": "Completed: SM-S901E_SEA_16_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S906E_SEA_16_DX",
@@ -670,7 +923,11 @@
       "basebandVersion": "S906EXXSEGZH4",
       "id": "build-1788009919068-68",
       "index": 68,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088719",
+      "buildDate": "2026-08-29 01:10:53",
+      "message": "Completed: SM-S906E_SEA_16_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F926B_SEA_15_DX",
@@ -679,7 +936,11 @@
       "basebandVersion": "F926BXXSJJZH3",
       "id": "build-1788009919068-69",
       "index": 69,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088794",
+      "buildDate": "2026-08-29 01:15:30",
+      "message": "Completed: SM-F926B_SEA_15_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A256E_SEA_B4_PHL",
@@ -688,7 +949,11 @@
       "basebandVersion": "A256EXXSEEZH9",
       "id": "build-1788009919068-70",
       "index": 70,
-      "status": "pending"
+      "status": "success",
+      "buildId": "114088886",
+      "buildDate": "2026-08-29 01:19:46",
+      "message": "Completed: SM-A256E_SEA_B4_PHL",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A376BE_SEA_XME",
@@ -697,7 +962,12 @@
       "basebandVersion": "A376BXXU4BZH1",
       "id": "build-1788009919068-71",
       "index": 71,
-      "status": "pending"
+      "status": "failed",
+      "buildId": "114088951",
+      "buildDate": "2026-08-29 01:23:50",
+      "message": "Build #114088951 failed on QuickBuild",
+      "error": "Build #114088951 is failed on QuickBuild",
+      "progressPercent": 100
     }
   ],
   "logs": [
@@ -17205,6 +17475,1364 @@
       "timestamp": "6:52:40 AM",
       "level": "info",
       "message": "[Tab #2] Starting parallel submission: SM-X730_EUR_XX",
+      "index": null
+    },
+    {
+      "id": "6x91cgc",
+      "timestamp": "7:27:24 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "t5onq6l",
+      "timestamp": "7:27:25 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "yljpgid",
+      "timestamp": "7:27:32 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "ahqvniw",
+      "timestamp": "7:27:33 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "3hfj9wo",
+      "timestamp": "7:27:49 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "ers4ysq",
+      "timestamp": "7:27:50 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "1mp2w6u",
+      "timestamp": "7:28:02 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 1 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "wdmrxwv",
+      "timestamp": "7:28:02 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X700_EUR_16_XX",
+      "index": null
+    },
+    {
+      "id": "zq89c06",
+      "timestamp": "7:28:03 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 1 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "fv3cnxr",
+      "timestamp": "7:28:03 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X700_EUR_16_XX",
+      "index": null
+    },
+    {
+      "id": "7ckj9xk",
+      "timestamp": "7:28:08 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "jjp1knz",
+      "timestamp": "7:28:09 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "voju1rr",
+      "timestamp": "7:28:09 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "7q6ub6p",
+      "timestamp": "7:28:10 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "r7wu6kv",
+      "timestamp": "7:28:10 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "z11nx28",
+      "timestamp": "7:28:10 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "df0wbyu",
+      "timestamp": "7:28:11 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X700_EUR_16_XX, PDA=X700XXSBEZH3, CSC=X700OLEBEZH3, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "yi0fjrp",
+      "timestamp": "7:28:11 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "pb62i1h",
+      "timestamp": "7:28:12 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "a0jptnz",
+      "timestamp": "7:28:12 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "s9iyztq",
+      "timestamp": "7:28:12 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "qzntqrc",
+      "timestamp": "7:28:12 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "rfcwe1y",
+      "timestamp": "7:28:12 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "2mf8b1w",
+      "timestamp": "7:28:13 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X700_EUR_16_XX, PDA=X700XXSBEZH3, CSC=X700OLEBEZH3, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "aqzyt6w",
+      "timestamp": "7:28:13 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "plp9uyg",
+      "timestamp": "7:28:15 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "yuafn3p",
+      "timestamp": "7:28:16 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X700_EUR_16_XX!",
+      "index": null
+    },
+    {
+      "id": "qw3hw6x",
+      "timestamp": "7:28:16 AM",
+      "level": "info",
+      "message": "=== [FAST COMPLETE] Progress tracking disabled. All batch submissions complete ===",
+      "index": null
+    },
+    {
+      "id": "it68041",
+      "timestamp": "7:28:17 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X700_EUR_16_XX!",
+      "index": null
+    },
+    {
+      "id": "uq2ocsy",
+      "timestamp": "7:28:17 AM",
+      "level": "info",
+      "message": "=== [FAST COMPLETE] Progress tracking disabled. All batch submissions complete ===",
+      "index": null
+    },
+    {
+      "id": "dmpljad",
+      "timestamp": "7:29:24 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "cf88i5e",
+      "timestamp": "7:29:26 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "8jdrpnw",
+      "timestamp": "7:29:30 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "jwjqs4w",
+      "timestamp": "7:29:33 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "qlwj7cz",
+      "timestamp": "7:29:48 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "w3v8bwn",
+      "timestamp": "7:29:50 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "qx8ixv7",
+      "timestamp": "7:29:52 AM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 72 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "j0j8di3",
+      "timestamp": "7:29:52 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 72 builds...",
+      "index": null
+    },
+    {
+      "id": "lj7kvfv",
+      "timestamp": "7:29:52 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "w2lep63",
+      "timestamp": "7:29:53 AM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 72 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "rigeq58",
+      "timestamp": "7:29:53 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 72 builds...",
+      "index": null
+    },
+    {
+      "id": "4e26hhk",
+      "timestamp": "7:29:53 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "9nh91eq",
+      "timestamp": "7:29:53 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "ngcxmdw",
+      "timestamp": "7:29:54 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "u6r5zbr",
+      "timestamp": "7:30:01 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "cqqxlk0",
+      "timestamp": "7:30:02 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "dm7c4oc",
+      "timestamp": "7:30:07 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "d4c3i9p",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114088952 for SM-A155F_SEA_B4_THL is marked as FAILED on QuickBuild (Checked 2 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "7tsox2k",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089161 for SM-F776BE_SEA_DX! (Duration: 7m:59s)",
+      "index": null
+    },
+    {
+      "id": "yt3p7vo",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088953 for SM-F971BE_SEA_DX! (Duration: 9m:49s)",
+      "index": null
+    },
+    {
+      "id": "21gi4yj",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089247 for SM-F976BE_SEA_DX! (Duration: 10m:2s)",
+      "index": null
+    },
+    {
+      "id": "3808yhm",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089359 for SM-A185G_SEA_XME! (Duration: 4m:34s)",
+      "index": null
+    },
+    {
+      "id": "dvxr2h3",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089406 for SM-S931BE_SEA_B4_DX! (Duration: 16m:2s)",
+      "index": null
+    },
+    {
+      "id": "3yxztrw",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089818 for SM-F776BE_SEA_DX! (Duration: 9m:24s)",
+      "index": null
+    },
+    {
+      "id": "ms4nz9a",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114089980 for SM-A566BE_SEA_B4_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "adtk0nx",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089984 for SM-A276BE_SEA_XXV! (Duration: 3m:31s)",
+      "index": null
+    },
+    {
+      "id": "2mweigu",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090039 for SM-X910_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "w03c825",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090040 for SM-G525F_SEA_14_XSA! (Duration: 2m:20s)",
+      "index": null
+    },
+    {
+      "id": "gl65dnn",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090083 for SM-A075F_SEA_B4_XME! (Duration: 3m:29s)",
+      "index": null
+    },
+    {
+      "id": "77rw1rq",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090148 for SM-G990E_SEA_16_XME! (Duration: 4m:15s)",
+      "index": null
+    },
+    {
+      "id": "fk8ky45",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090187 for SM-A155F_SEA_B4_THL! (Duration: 3m:34s)",
+      "index": null
+    },
+    {
+      "id": "j8cc6ly",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090229 for SM-A245F_SEA_B4_XXV! (Duration: 3m:36s)",
+      "index": null
+    },
+    {
+      "id": "epmgh7b",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090269 for SM-X930_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "adkv05g",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090270 for SM-X730_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "nag7afu",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090272 for SM-X736B_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "e20qkrh",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090274 for SM-X700_EUR_16_XX! (Duration: 4m:33s)",
+      "index": null
+    },
+    {
+      "id": "816ki7k",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114107329 for SM-A165F_SEA_XXV is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "iqe0cjv",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090308 for SM-X620_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "h2aooth",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090310 for SM-X626B_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "d5bllec",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090311 for SM-X930_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "vowm1r9",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090317 for SM-X730_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "k9clqv7",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090319 for SM-X610_EUR_B4_XX! (Duration: 4m:6s)",
+      "index": null
+    },
+    {
+      "id": "h7un29c",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090354 for SM-X520_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "i9kegug",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090356 for SM-A175F_SEA_PHL is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "a6ki5yt",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090358 for SM-X936B_SEA_B4_DX! (Duration: 14m:29s)",
+      "index": null
+    },
+    {
+      "id": "435xoit",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090737 for SM-G990E_SEA_16_XME! (Duration: 4m:10s)",
+      "index": null
+    },
+    {
+      "id": "ke0kaaf",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090863 for SM-X810_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "gnff74n",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090867 for SM-P625_SEA_B4_DX! (Duration: 3m:13s)",
+      "index": null
+    },
+    {
+      "id": "ris9355",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090915 for SM-S928BE_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "4nbdabe",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090916 for SM-F966B_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "hv5lfwi",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090919 for SM-S921BE_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "ys1xw80",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114102406 for SM-S731B_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "waee75e",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090921 for SM-M556B_SEA_B4_XME! (Duration: 3m:57s)",
+      "index": null
+    },
+    {
+      "id": "80rtxww",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090974 for SM-X710_EUR_B4_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "wvd77a7",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090975 for SM-G525F_SEA_14_XSA! (Duration: 2m:14s)",
+      "index": null
+    },
+    {
+      "id": "bzoe3l6",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114091019 for SM-A576BE_SEA_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "hrnd58f",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114091022 for SM-S916BE_SEA_B4_DX! (Duration: 7m:20s)",
+      "index": null
+    },
+    {
+      "id": "zpi4830",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114091127 for SM-S918BE_SEA_B4_DX! (Duration: 7m:29s)",
+      "index": null
+    },
+    {
+      "id": "yrmfmgx",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114091249 for SM-A336E_SEA_16_XXV! (Duration: 3m:34s)",
+      "index": null
+    },
+    {
+      "id": "sqh0vg1",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085074 for SM-X216B_SEA_16_DX! (Duration: 2m:55s)",
+      "index": null
+    },
+    {
+      "id": "r4pzaql",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114091296 for SM-S931BE_SEA_B4_DX! (Duration: 15m:48s)",
+      "index": null
+    },
+    {
+      "id": "nczvn40",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085139 for SM-X810_EUR_B4_XX! (Duration: 5m:45s)",
+      "index": null
+    },
+    {
+      "id": "4mtqwqo",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085296 for SM-X400_EUR_B4_XX! (Duration: 3m:8s)",
+      "index": null
+    },
+    {
+      "id": "qwngjtr",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085467 for SM-X920_EUR_B4_XX! (Duration: 9m:13s)",
+      "index": null
+    },
+    {
+      "id": "35o0ghj",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085934 for SM-X520_EUR_B4_XX! (Duration: 3m:23s)",
+      "index": null
+    },
+    {
+      "id": "pxmf46w",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086146 for SM-X620_EUR_B4_XX! (Duration: 3m:23s)",
+      "index": null
+    },
+    {
+      "id": "o6smo1h",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086301 for SM-X510_EUR_B4_XX! (Duration: 3m:23s)",
+      "index": null
+    },
+    {
+      "id": "fc066bx",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086434 for SM-A276BE_SEA_XXV! (Duration: 3m:27s)",
+      "index": null
+    },
+    {
+      "id": "3w8j5qf",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086676 for SM-F776BE_SEA_DX! (Duration: 5m:59s)",
+      "index": null
+    },
+    {
+      "id": "ob72o4j",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086573 for SM-M546B_SEA_B4_XME! (Duration: 2m:48s)",
+      "index": null
+    },
+    {
+      "id": "pqxxqlc",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086799 for SM-A566BE_SEA_B4_XME! (Duration: 3m:49s)",
+      "index": null
+    },
+    {
+      "id": "c11y9oj",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086860 for SM-A556E_SEA_B4_PHL! (Duration: 3m:32s)",
+      "index": null
+    },
+    {
+      "id": "vqmw0xa",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086918 for SM-X616B_SEA_B4_DX! (Duration: 3m:28s)",
+      "index": null
+    },
+    {
+      "id": "wtrjoxo",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087077 for SM-X236B_SEA_B4_DX! (Duration: 2m:58s)",
+      "index": null
+    },
+    {
+      "id": "v5ecqw5",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087197 for SM-X926B_SEA_B4_DX! (Duration: 11m)",
+      "index": null
+    },
+    {
+      "id": "fruh3a3",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087527 for SM-X826B_SEA_B4_DX! (Duration: 12m:22s)",
+      "index": null
+    },
+    {
+      "id": "mf2jk2t",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087859 for SM-X406B_SEA_B4_DX! (Duration: 4m:3s)",
+      "index": null
+    },
+    {
+      "id": "zf65dav",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087980 for SM-A546E_SEA_B4_TSE! (Duration: 3m:34s)",
+      "index": null
+    },
+    {
+      "id": "nuwyv0y",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088044 for SM-X626B_SEA_B4_DX! (Duration: 4m:38s)",
+      "index": null
+    },
+    {
+      "id": "zxioibs",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088126 for SM-F976BE_SEA_DX! (Duration: 9m:25s)",
+      "index": null
+    },
+    {
+      "id": "egywcqm",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088363 for SM-X115_SEA_16_DX! (Duration: 3m:7s)",
+      "index": null
+    },
+    {
+      "id": "zraud5f",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088312 for SM-A245F_SEA_B4_XXV! (Duration: 3m:38s)",
+      "index": null
+    },
+    {
+      "id": "gswadrj",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088407 for SM-A336E_SEA_16_XXV! (Duration: 3m:38s)",
+      "index": null
+    },
+    {
+      "id": "gx71gta",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088516 for SM-F926B_SEA_15_DX! (Duration: 4m:32s)",
+      "index": null
+    },
+    {
+      "id": "at7m6a7",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088631 for SM-S901E_SEA_16_DX! (Duration: 4m:51s)",
+      "index": null
+    },
+    {
+      "id": "9vy3sdi",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088719 for SM-S906E_SEA_16_DX! (Duration: 4m:37s)",
+      "index": null
+    },
+    {
+      "id": "c0mmuzc",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088794 for SM-F926B_SEA_15_DX! (Duration: 4m:15s)",
+      "index": null
+    },
+    {
+      "id": "khoie2s",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088886 for SM-A256E_SEA_B4_PHL! (Duration: 4m:3s)",
+      "index": null
+    },
+    {
+      "id": "xkoi71o",
+      "timestamp": "7:30:07 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114088951 for SM-A376BE_SEA_XME is marked as FAILED on QuickBuild (Checked 1 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "p2e4eux",
+      "timestamp": "7:30:07 AM",
+      "level": "success",
+      "message": "All 72 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "zyx8cq2",
+      "timestamp": "7:30:09 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "kqquefk",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114088952 for SM-A155F_SEA_B4_THL is marked as FAILED on QuickBuild (Checked 2 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "l3b5612",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089161 for SM-F776BE_SEA_DX! (Duration: 7m:59s)",
+      "index": null
+    },
+    {
+      "id": "gv6ktp5",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088953 for SM-F971BE_SEA_DX! (Duration: 9m:49s)",
+      "index": null
+    },
+    {
+      "id": "4br19h0",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089247 for SM-F976BE_SEA_DX! (Duration: 10m:2s)",
+      "index": null
+    },
+    {
+      "id": "ii2h70u",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089359 for SM-A185G_SEA_XME! (Duration: 4m:34s)",
+      "index": null
+    },
+    {
+      "id": "6gi8765",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089406 for SM-S931BE_SEA_B4_DX! (Duration: 16m:2s)",
+      "index": null
+    },
+    {
+      "id": "7099nmy",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089818 for SM-F776BE_SEA_DX! (Duration: 9m:24s)",
+      "index": null
+    },
+    {
+      "id": "ad20683",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114089980 for SM-A566BE_SEA_B4_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "allo1dg",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114089984 for SM-A276BE_SEA_XXV! (Duration: 3m:31s)",
+      "index": null
+    },
+    {
+      "id": "cpfspxr",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090039 for SM-X910_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "cgxoh98",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090040 for SM-G525F_SEA_14_XSA! (Duration: 2m:20s)",
+      "index": null
+    },
+    {
+      "id": "1i1z0pv",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090083 for SM-A075F_SEA_B4_XME! (Duration: 3m:29s)",
+      "index": null
+    },
+    {
+      "id": "ga7p40v",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090148 for SM-G990E_SEA_16_XME! (Duration: 4m:15s)",
+      "index": null
+    },
+    {
+      "id": "h8cysub",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090187 for SM-A155F_SEA_B4_THL! (Duration: 3m:34s)",
+      "index": null
+    },
+    {
+      "id": "nuqck3t",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090229 for SM-A245F_SEA_B4_XXV! (Duration: 3m:36s)",
+      "index": null
+    },
+    {
+      "id": "g2ldo8g",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090269 for SM-X930_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "218ithk",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090270 for SM-X730_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "qh7up2h",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090272 for SM-X736B_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "7jb7aev",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090274 for SM-X700_EUR_16_XX! (Duration: 4m:33s)",
+      "index": null
+    },
+    {
+      "id": "q4d36z2",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114107329 for SM-A165F_SEA_XXV is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "1v7n5ag",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090308 for SM-X620_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "rndugwi",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090310 for SM-X626B_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "ac1gblx",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090311 for SM-X930_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "hsoca8y",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090317 for SM-X730_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "jufium5",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090319 for SM-X610_EUR_B4_XX! (Duration: 4m:6s)",
+      "index": null
+    },
+    {
+      "id": "oxsbz0x",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090354 for SM-X520_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "ah7uolh",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090356 for SM-A175F_SEA_PHL is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "chxutgf",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090358 for SM-X936B_SEA_B4_DX! (Duration: 14m:29s)",
+      "index": null
+    },
+    {
+      "id": "ih9zrnx",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090737 for SM-G990E_SEA_16_XME! (Duration: 4m:10s)",
+      "index": null
+    },
+    {
+      "id": "pcyw77w",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090863 for SM-X810_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "j43i5du",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090867 for SM-P625_SEA_B4_DX! (Duration: 3m:13s)",
+      "index": null
+    },
+    {
+      "id": "7elmi4b",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090915 for SM-S928BE_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "4f3rpaa",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090916 for SM-F966B_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "l9yydzw",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090919 for SM-S921BE_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "jkgw580",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114102406 for SM-S731B_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "v8gwf5f",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090921 for SM-M556B_SEA_B4_XME! (Duration: 3m:57s)",
+      "index": null
+    },
+    {
+      "id": "fs4q2yv",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090974 for SM-X710_EUR_B4_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "elftt2y",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114090975 for SM-G525F_SEA_14_XSA! (Duration: 2m:14s)",
+      "index": null
+    },
+    {
+      "id": "870j9mf",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114091019 for SM-A576BE_SEA_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "rm337bv",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114091022 for SM-S916BE_SEA_B4_DX! (Duration: 7m:20s)",
+      "index": null
+    },
+    {
+      "id": "87wnw0w",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114091127 for SM-S918BE_SEA_B4_DX! (Duration: 7m:29s)",
+      "index": null
+    },
+    {
+      "id": "08h56to",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114091249 for SM-A336E_SEA_16_XXV! (Duration: 3m:34s)",
+      "index": null
+    },
+    {
+      "id": "r9cxvjq",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085074 for SM-X216B_SEA_16_DX! (Duration: 2m:55s)",
+      "index": null
+    },
+    {
+      "id": "g94dtv8",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114091296 for SM-S931BE_SEA_B4_DX! (Duration: 15m:48s)",
+      "index": null
+    },
+    {
+      "id": "s28kzi2",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085139 for SM-X810_EUR_B4_XX! (Duration: 5m:45s)",
+      "index": null
+    },
+    {
+      "id": "hnvyupg",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085296 for SM-X400_EUR_B4_XX! (Duration: 3m:8s)",
+      "index": null
+    },
+    {
+      "id": "ztmhqgc",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085467 for SM-X920_EUR_B4_XX! (Duration: 9m:13s)",
+      "index": null
+    },
+    {
+      "id": "j9xeqq0",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114085934 for SM-X520_EUR_B4_XX! (Duration: 3m:23s)",
+      "index": null
+    },
+    {
+      "id": "7aac1ng",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086146 for SM-X620_EUR_B4_XX! (Duration: 3m:23s)",
+      "index": null
+    },
+    {
+      "id": "tizwaoo",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086301 for SM-X510_EUR_B4_XX! (Duration: 3m:23s)",
+      "index": null
+    },
+    {
+      "id": "iw683u2",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086434 for SM-A276BE_SEA_XXV! (Duration: 3m:27s)",
+      "index": null
+    },
+    {
+      "id": "kdrgbf9",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086676 for SM-F776BE_SEA_DX! (Duration: 5m:59s)",
+      "index": null
+    },
+    {
+      "id": "bl26olg",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086573 for SM-M546B_SEA_B4_XME! (Duration: 2m:48s)",
+      "index": null
+    },
+    {
+      "id": "s7g1pp0",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086799 for SM-A566BE_SEA_B4_XME! (Duration: 3m:49s)",
+      "index": null
+    },
+    {
+      "id": "sm4i863",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086860 for SM-A556E_SEA_B4_PHL! (Duration: 3m:32s)",
+      "index": null
+    },
+    {
+      "id": "6ijzw46",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114086918 for SM-X616B_SEA_B4_DX! (Duration: 3m:28s)",
+      "index": null
+    },
+    {
+      "id": "v8byiiu",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087077 for SM-X236B_SEA_B4_DX! (Duration: 2m:58s)",
+      "index": null
+    },
+    {
+      "id": "zsvtt5w",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087197 for SM-X926B_SEA_B4_DX! (Duration: 11m)",
+      "index": null
+    },
+    {
+      "id": "xahwu5b",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087527 for SM-X826B_SEA_B4_DX! (Duration: 12m:22s)",
+      "index": null
+    },
+    {
+      "id": "21fzksq",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087859 for SM-X406B_SEA_B4_DX! (Duration: 4m:3s)",
+      "index": null
+    },
+    {
+      "id": "02tjwf2",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114087980 for SM-A546E_SEA_B4_TSE! (Duration: 3m:34s)",
+      "index": null
+    },
+    {
+      "id": "o9ijron",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088044 for SM-X626B_SEA_B4_DX! (Duration: 4m:38s)",
+      "index": null
+    },
+    {
+      "id": "yei60yj",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088126 for SM-F976BE_SEA_DX! (Duration: 9m:25s)",
+      "index": null
+    },
+    {
+      "id": "ylc09wn",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088363 for SM-X115_SEA_16_DX! (Duration: 3m:7s)",
+      "index": null
+    },
+    {
+      "id": "drntcti",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088312 for SM-A245F_SEA_B4_XXV! (Duration: 3m:38s)",
+      "index": null
+    },
+    {
+      "id": "73rcwn6",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088407 for SM-A336E_SEA_16_XXV! (Duration: 3m:38s)",
+      "index": null
+    },
+    {
+      "id": "misor6b",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088516 for SM-F926B_SEA_15_DX! (Duration: 4m:32s)",
+      "index": null
+    },
+    {
+      "id": "2dluu3n",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088631 for SM-S901E_SEA_16_DX! (Duration: 4m:51s)",
+      "index": null
+    },
+    {
+      "id": "dkr7shh",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088719 for SM-S906E_SEA_16_DX! (Duration: 4m:37s)",
+      "index": null
+    },
+    {
+      "id": "aa441ul",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088794 for SM-F926B_SEA_15_DX! (Duration: 4m:15s)",
+      "index": null
+    },
+    {
+      "id": "5q2eex2",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114088886 for SM-A256E_SEA_B4_PHL! (Duration: 4m:3s)",
+      "index": null
+    },
+    {
+      "id": "nkemw7o",
+      "timestamp": "7:30:09 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114088951 for SM-A376BE_SEA_XME is marked as FAILED on QuickBuild (Checked 1 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "dp97sj2",
+      "timestamp": "7:30:09 AM",
+      "level": "success",
+      "message": "All 72 builds finished processing on QuickBuild!",
       "index": null
     }
   ],

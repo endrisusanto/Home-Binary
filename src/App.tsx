@@ -576,17 +576,21 @@ export function App() {
     });
   };
 
-  // Fetch Build IDs for items missing Build ID
-  const missingBuildIdCount = items.filter((i) => !i.buildId).length;
+  // Fetch Build IDs for items in "Building" status (submitted / completed form, waiting for Build ID)
+  const missingBuildIdCount = items.filter((i) => (i.status === 'success' || i.status === 'running') && !i.buildId).length;
 
   const handleFetchBuildIds = async () => {
-    const targets = items.filter((i) => !i.buildId);
+    // Only target builds that have been triggered / are in building state without Build ID
+    let targets = items.filter((i) => (i.status === 'success' || i.status === 'running') && !i.buildId);
+    if (targets.length === 0) {
+      targets = items.filter((i) => !i.buildId);
+    }
     if (targets.length === 0) {
       addLog('info', 'All builds in the list already have Build IDs.');
       return;
     }
 
-    addLog('info', `Fetching Build IDs for ${targets.length} build(s) from Dashboard (Headless: ${portalConfig.headless})...`);
+    addLog('info', `Fetching Build IDs for ${targets.length} build(s) currently in Building state (Headless: ${portalConfig.headless})...`);
 
     await dispatchBatchRunner({
       portal: {
