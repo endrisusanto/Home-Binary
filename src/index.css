@@ -16,6 +16,22 @@
     color: #0f172a;
     color-scheme: light;
   }
+
+  /* Allow text selection in table data cells & code blocks */
+  table, tr, td, th, tbody, thead, .select-text, .font-mono {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+  }
+
+  /* Keep buttons, icons, and interactive accordions non-selectable */
+  button, 
+  [role="button"], 
+  input[type="checkbox"], 
+  input[type="radio"],
+  .select-none {
+    -webkit-user-select: none;
+    user-select: none;
+  }
 }
 
 /* Custom smooth scrollbar */

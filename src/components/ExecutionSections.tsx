@@ -272,7 +272,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
               </div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-[9px] sm:text-xs border-collapse">
+                <table className="w-full text-left text-[9px] sm:text-xs border-collapse select-text">
                   <thead>
                     <tr className="bg-slate-50/50 dark:bg-[#070709] text-slate-400 dark:text-neutral-500 border-b border-slate-100 dark:border-neutral-800/80">
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold w-8 sm:w-12 text-center">#</th>
@@ -285,25 +285,25 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold text-right w-16 sm:w-24">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-neutral-800/60 font-sans">
+                  <tbody className="divide-y divide-slate-100 dark:divide-neutral-800/60 font-sans select-text">
                     {pendingItems.map((item, idx) => (
                       <tr 
                         key={item.id}
-                        className="hover:bg-slate-50/80 dark:hover:bg-[#151518] transition-colors group"
+                        className="hover:bg-slate-50/80 dark:hover:bg-[#151518] transition-colors group select-text"
                       >
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-slate-400 font-mono text-center text-[9px] sm:text-[11px]">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-slate-400 font-mono text-center text-[9px] sm:text-[11px] select-text cursor-text">
                           {idx + 1}
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-medium text-slate-800 dark:text-neutral-200">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-medium text-slate-800 dark:text-neutral-200 select-text cursor-text">
                           {item.buildFingerprintName}
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {item.pdaVersion || '—'}
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {item.cscVersion || '—'}
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {item.basebandVersion || '—'}
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-center whitespace-nowrap">
@@ -484,7 +484,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
               </div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-[9px] sm:text-xs border-collapse">
+                <table className="w-full text-left text-[9px] sm:text-xs border-collapse select-text">
                   <thead>
                     <tr className="bg-slate-50/50 dark:bg-[#070709] text-slate-400 dark:text-neutral-500 border-b border-slate-100 dark:border-neutral-800/80">
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold w-8 sm:w-12 text-center whitespace-nowrap">#</th>
@@ -497,28 +497,28 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold text-right w-20 sm:w-28 whitespace-nowrap">Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-neutral-800/60 font-sans">
+                  <tbody className="divide-y divide-slate-100 dark:divide-neutral-800/60 font-sans select-text">
                     {completedItems.map((item, idx) => (
                       <tr 
                         key={item.id}
-                        className="hover:bg-emerald-50/30 dark:hover:bg-emerald-950/20 transition-colors"
+                        className="hover:bg-emerald-50/30 dark:hover:bg-emerald-950/20 transition-colors select-text"
                       >
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-400 w-8 sm:w-12 text-center text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-400 w-8 sm:w-12 text-center text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {idx + 1}
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 whitespace-nowrap">
                           <BuildIdCell buildId={item.buildId} isCompletedSection={true} />
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-medium text-slate-800 dark:text-neutral-200">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-medium text-slate-800 dark:text-neutral-200 select-text cursor-text">
                           {item.buildFingerprintName}
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {item.pdaVersion}
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {item.cscVersion}
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {item.basebandVersion}
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-center whitespace-nowrap">
@@ -557,7 +557,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
             </span>
           </div>
 
-          <div className="flex items-center gap-1 sm:gap-2" onClick={e => e.stopPropagation()}>
+          <div className="flex items-center gap-1.5 sm:gap-2" onClick={e => e.stopPropagation()}>
             {failedItems.length > 0 && (
               <div className="flex items-center gap-1 sm:gap-1.5">
                 {onRecheckFailedAll && (
@@ -610,7 +610,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
               </div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-[9px] sm:text-xs border-collapse">
+                <table className="w-full text-left text-[9px] sm:text-xs border-collapse select-text">
                   <thead>
                     <tr className="bg-slate-50/50 dark:bg-[#070709] text-slate-400 dark:text-neutral-500 border-b border-slate-100 dark:border-neutral-800/80">
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold w-8 sm:w-12 text-center whitespace-nowrap">#</th>
@@ -623,35 +623,35 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-right w-28 sm:w-44 whitespace-nowrap">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-neutral-800/60 font-sans">
+                  <tbody className="divide-y divide-slate-100 dark:divide-neutral-800/60 font-sans select-text">
                     {failedItems.map((item, idx) => (
                       <tr 
                         key={item.id}
-                        className="hover:bg-rose-50/40 dark:hover:bg-rose-950/20 transition-colors"
+                        className="hover:bg-rose-50/40 dark:hover:bg-rose-950/20 transition-colors select-text"
                       >
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-400 w-8 sm:w-12 text-center text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-400 w-8 sm:w-12 text-center text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {idx + 1}
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 whitespace-nowrap">
                           <BuildIdCell buildId={item.buildId} />
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-medium text-slate-800 dark:text-neutral-200">
-                          <div className="flex flex-col">
-                            <span>{item.buildFingerprintName}</span>
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-medium text-slate-800 dark:text-neutral-200 select-text cursor-text">
+                          <div className="flex flex-col select-text">
+                            <span className="select-text cursor-text">{item.buildFingerprintName}</span>
                             {item.error && (
-                              <span className="text-[8px] sm:text-[11px] text-rose-500 font-mono mt-0.5 whitespace-normal">
+                              <span className="text-[8px] sm:text-[11px] text-rose-500 font-mono mt-0.5 whitespace-normal select-text cursor-text">
                                 &rarr; {item.error}
                               </span>
                             )}
                           </div>
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {item.pdaVersion}
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {item.cscVersion}
                         </td>
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap">
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-500 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
                           {item.basebandVersion}
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-center whitespace-nowrap">

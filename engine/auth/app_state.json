@@ -8,8 +8,10 @@
       "id": "build-1788138342024-0",
       "index": 0,
       "status": "success",
-      "message": "Form submitted: SM-F776BE_SEA_DX",
-      "progressPercent": 100
+      "message": "Completed: SM-F776BE_SEA_DX",
+      "progressPercent": 100,
+      "buildId": "114148518",
+      "buildDate": "2026-08-31 10:12:52"
     },
     {
       "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
@@ -19,8 +21,10 @@
       "id": "build-1788138342024-1",
       "index": 1,
       "status": "success",
-      "message": "Form submitted: SM-S931BE_SEA_B4_DX",
-      "progressPercent": 100
+      "message": "Completed: SM-S931BE_SEA_B4_DX",
+      "progressPercent": 100,
+      "buildId": "114148659",
+      "buildDate": "2026-08-31 10:19:00"
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
@@ -29,9 +33,12 @@
       "basebandVersion": "A566BXXSDCZHD",
       "id": "build-1788138342024-2",
       "index": 2,
-      "status": "success",
-      "message": "Form submitted: SM-A566BE_SEA_B4_XME",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Build #114149102 failed on QuickBuild",
+      "progressPercent": 100,
+      "buildId": "114149102",
+      "buildDate": "2026-08-31 10:30:49",
+      "error": "Build #114149102 is failed on QuickBuild"
     },
     {
       "buildFingerprintName": "SM-A075F_SEA_B4_XME",
@@ -41,8 +48,10 @@
       "id": "build-1788138342024-3",
       "index": 3,
       "status": "success",
-      "message": "Form submitted: SM-A075F_SEA_B4_XME",
-      "progressPercent": 100
+      "message": "Completed: SM-A075F_SEA_B4_XME",
+      "progressPercent": 100,
+      "buildId": "114149112",
+      "buildDate": "2026-08-31 10:30:53"
     },
     {
       "buildFingerprintName": "SM-X730_EUR_B4_XX",
@@ -51,9 +60,12 @@
       "basebandVersion": "",
       "id": "build-1788138342024-4",
       "index": 4,
-      "status": "success",
-      "message": "Form submitted: SM-X730_EUR_B4_XX",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Build #114090270 failed on QuickBuild",
+      "progressPercent": 100,
+      "buildId": "114090270",
+      "buildDate": "2026-08-29 02:42:50",
+      "error": "Build #114090270 is failed on QuickBuild"
     },
     {
       "buildFingerprintName": "SM-A165F_SEA_B4_XXV",
@@ -62,9 +74,11 @@
       "basebandVersion": "A165FXXSBDZH3",
       "id": "build-1788138342024-5",
       "index": 5,
-      "status": "success",
-      "message": "Form submitted: SM-A165F_SEA_B4_XXV",
-      "progressPercent": 100
+      "status": "running",
+      "message": "Build #114149207 running on server (63%, step: MAKE_HOME_BINARY)...",
+      "progressPercent": 63,
+      "buildId": "114149207",
+      "buildDate": "2026-08-31 10:33:48"
     },
     {
       "buildFingerprintName": "SM-A175F_SEA_B4_PHL",
@@ -73,9 +87,12 @@
       "basebandVersion": "A175FXXS7CZH6",
       "id": "build-1788138342024-6",
       "index": 6,
-      "status": "success",
-      "message": "Form submitted: SM-A175F_SEA_B4_PHL",
-      "progressPercent": 100
+      "status": "failed",
+      "message": "Build #114090356 failed on QuickBuild",
+      "progressPercent": 100,
+      "buildId": "114090356",
+      "buildDate": "2026-08-29 02:51:55",
+      "error": "Build #114090356 is failed on QuickBuild"
     }
   ],
   "logs": [
@@ -19145,6 +19162,244 @@
       "timestamp": "8:07:32 AM",
       "level": "info",
       "message": "=== [FAST COMPLETE] Progress tracking disabled. All batch submissions complete ===",
+      "index": null
+    },
+    {
+      "id": "01g40k5",
+      "timestamp": "8:35:05 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "jc6fm5m",
+      "timestamp": "8:35:05 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "2aem6az",
+      "timestamp": "8:35:09 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "lznjl5g",
+      "timestamp": "8:35:11 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "gwvytif",
+      "timestamp": "8:35:14 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "c4kl36s",
+      "timestamp": "8:35:17 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "3lxed21",
+      "timestamp": "8:35:21 AM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 7 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "m5w49kf",
+      "timestamp": "8:35:21 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 7 builds...",
+      "index": null
+    },
+    {
+      "id": "33qnncb",
+      "timestamp": "8:35:21 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "dymd9zy",
+      "timestamp": "8:35:21 AM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 7 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "egy8wkk",
+      "timestamp": "8:35:21 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 7 builds...",
+      "index": null
+    },
+    {
+      "id": "c7eh5gm",
+      "timestamp": "8:35:21 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "jh6z3mg",
+      "timestamp": "8:35:22 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "te6y01a",
+      "timestamp": "8:35:22 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "k74zufa",
+      "timestamp": "8:35:28 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "192pjzi",
+      "timestamp": "8:35:34 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "05bivqf",
+      "timestamp": "8:35:37 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "mfd127o",
+      "timestamp": "8:35:37 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114148518 for SM-F776BE_SEA_DX! (Duration: 6m:8s)",
+      "index": null
+    },
+    {
+      "id": "siph17u",
+      "timestamp": "8:35:37 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114148659 for SM-S931BE_SEA_B4_DX! (Duration: 11m:48s)",
+      "index": null
+    },
+    {
+      "id": "om6952z",
+      "timestamp": "8:35:37 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114149102 for SM-A566BE_SEA_B4_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "kvqi815",
+      "timestamp": "8:35:37 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114149112 for SM-A075F_SEA_B4_XME! (Duration: 2m:54s)",
+      "index": null
+    },
+    {
+      "id": "2iq28w7",
+      "timestamp": "8:35:37 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090270 for SM-X730_EUR_B4_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "aodim3k",
+      "timestamp": "8:35:37 AM",
+      "level": "info",
+      "message": "Build #114149207 (SM-A165F_SEA_B4_XXV) is running (60%, 1m:44s)...",
+      "index": null
+    },
+    {
+      "id": "d2e8sns",
+      "timestamp": "8:35:38 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090356 for SM-A175F_SEA_B4_PHL is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "fwekkvr",
+      "timestamp": "8:35:38 AM",
+      "level": "info",
+      "message": "Build ID for SM-A165F_SEA_B4_XXV is not yet available on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "tkjlh2y",
+      "timestamp": "8:35:45 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "peykfwv",
+      "timestamp": "8:35:45 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114148518 for SM-F776BE_SEA_DX! (Duration: 6m:8s)",
+      "index": null
+    },
+    {
+      "id": "42kxcv5",
+      "timestamp": "8:35:45 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114148659 for SM-S931BE_SEA_B4_DX! (Duration: 11m:48s)",
+      "index": null
+    },
+    {
+      "id": "5dw0bo6",
+      "timestamp": "8:35:45 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114149102 for SM-A566BE_SEA_B4_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "06f1ttj",
+      "timestamp": "8:35:45 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114149112 for SM-A075F_SEA_B4_XME! (Duration: 2m:54s)",
+      "index": null
+    },
+    {
+      "id": "yc1nj0s",
+      "timestamp": "8:35:45 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090270 for SM-X730_EUR_B4_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "826wxwa",
+      "timestamp": "8:35:45 AM",
+      "level": "info",
+      "message": "Build #114149207 (SM-A165F_SEA_B4_XXV) is running (63%, 1m:51s)...",
+      "index": null
+    },
+    {
+      "id": "ljqgzab",
+      "timestamp": "8:35:45 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090356 for SM-A175F_SEA_B4_PHL is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "wwgn7wu",
+      "timestamp": "8:35:45 AM",
+      "level": "info",
+      "message": "Build ID for SM-A165F_SEA_B4_XXV is not yet available on Dashboard.",
       "index": null
     }
   ],
