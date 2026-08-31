@@ -8,14 +8,16 @@ import {
   CheckCircle2, 
   PlusCircle, 
   Trash2, 
-  CornerDownLeft 
+  CornerDownLeft,
+  Search,
+  Zap
 } from 'lucide-react';
 import { BatchItem } from '../types/batch';
 
 interface InputDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  onAddItems: (newItems: Omit<BatchItem, 'id' | 'index' | 'status'>[]) => void;
+  onAddItems: (newItems: Omit<BatchItem, 'id' | 'index' | 'status'>[], autoFetchExisting?: boolean) => void;
 }
 
 const SAMPLE_TEMPLATES = [
@@ -48,6 +50,7 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
 }) => {
   const [rawText, setRawText] = useState('');
   const [parseError, setParseError] = useState<string | null>(null);
+  const [autoFetchExisting, setAutoFetchExisting] = useState(false);
 
   // Single Entry Manual Form State
   const [singleFingerprint, setSingleFingerprint] = useState('');
@@ -226,7 +229,7 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
       return;
     }
 
-    onAddItems(parsedItems);
+    onAddItems(parsedItems, autoFetchExisting);
     setRawText('');
     setParseError(null);
     onClose();
@@ -428,6 +431,51 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
             </div>
           )}
 
+          {/* ========================================================================= */}
+          {/* 3. EXECUTION MODE TOGGLE SWITCH (BUILD vs FETCH EXISTING ID ONLY) */}
+          {/* ========================================================================= */}
+          <div className="p-3 sm:p-3.5 rounded-xl bg-slate-50 dark:bg-[#0c0c0f] border border-slate-200 dark:border-neutral-800 space-y-2.5">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-col">
+                <span className="text-xs font-bold text-slate-800 dark:text-neutral-200 flex items-center gap-1.5">
+                  {autoFetchExisting ? (
+                    <Search className="w-3.5 h-3.5 text-indigo-500" />
+                  ) : (
+                    <Zap className="w-3.5 h-3.5 text-blue-500" />
+                  )}
+                  <span>Scan & Fetch Existing Build IDs First</span>
+                </span>
+                <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-neutral-400 mt-0.5">
+                  {autoFetchExisting 
+                    ? 'Immediately search Samsung QuickBuild Dashboard to find & attach existing Build IDs without triggering new builds' 
+                    : 'Add to queue as pending. You can click Run on the main toolbar to submit triggers'}
+                </span>
+              </div>
+
+              {/* Modern Toggle Switch */}
+              <label className="relative inline-flex items-center cursor-pointer shrink-0">
+                <input
+                  type="checkbox"
+                  checked={autoFetchExisting}
+                  onChange={(e) => setAutoFetchExisting(e.target.checked)}
+                  className="sr-only peer"
+                />
+                <div className="w-10 h-5.5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-neutral-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4.5 after:w-4.5 after:transition-all peer-checked:bg-indigo-600"></div>
+              </label>
+            </div>
+
+            <div className="flex items-center justify-between pt-1 border-t border-slate-200/60 dark:border-neutral-800/60 text-[10px] text-slate-500 dark:text-neutral-400">
+              <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-mono text-[9px] sm:text-[10px] font-bold ${
+                autoFetchExisting 
+                  ? 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800'
+                  : 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
+              }`}>
+                {autoFetchExisting ? '🔍 Action: Add & Scan Dashboard (Pre-Check)' : '⚡ Action: Add to Queue as Pending'}
+              </span>
+            </div>
+          </div>
+
+          {/* Queue Preview Box */}
           {parsedItems.length > 0 && (
             <div className="p-2.5 sm:p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-1.5 sm:space-y-2 shrink-0">
               <div className="flex items-center justify-between text-[10px] sm:text-xs font-semibold text-slate-700 dark:text-slate-200">
@@ -472,10 +520,23 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
             <button
               type="submit"
               disabled={parsedItems.length === 0}
-              className="flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg shadow-xs shadow-blue-500/20 transition-all cursor-pointer"
+              className={`flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-white rounded-lg shadow-xs transition-all cursor-pointer active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
+                autoFetchExisting 
+                  ? 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/20' 
+                  : 'bg-blue-600 hover:bg-blue-700 shadow-blue-500/20'
+              }`}
             >
-              <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              <span>Add {parsedItems.length > 0 ? `(${parsedItems.length})` : ''} to Queue</span>
+              {autoFetchExisting ? (
+                <>
+                  <Search className="w-3.5 h-3.5" />
+                  <span>Add & Fetch Build IDs {parsedItems.length > 0 ? `(${parsedItems.length})` : ''}</span>
+                </>
+              ) : (
+                <>
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add {parsedItems.length > 0 ? `(${parsedItems.length})` : ''} to Queue</span>
+                </>
+              )}
             </button>
           </div>
 

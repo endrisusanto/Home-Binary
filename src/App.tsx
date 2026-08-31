@@ -487,20 +487,35 @@ export function App() {
   }, [items]);
 
   // Queue actions
-  const handleAddItems = (newRawItems: Omit<BatchItem, 'id' | 'index' | 'status'>[]) => {
+  const handleAddItems = async (
+    newRawItems: Omit<BatchItem, 'id' | 'index' | 'status'>[],
+    autoFetchExisting = false
+  ) => {
+    let createdItems: BatchItem[] = [];
     setItems((prev) => {
       const startIndex = prev.length;
-      const created: BatchItem[] = newRawItems.map((item, idx) => ({
+      createdItems = newRawItems.map((item, idx) => ({
         ...item,
         id: `build-${Date.now()}-${idx}`,
         index: startIndex + idx,
         status: 'pending',
       }));
-      const next = [...prev, ...created];
+      const next = [...prev, ...createdItems];
       pushStateToServer(next);
       return next;
     });
     addLog('info', `Added ${newRawItems.length} build(s) to queue.`);
+
+    if (autoFetchExisting && createdItems.length > 0) {
+      addLog('info', `🔍 [Auto-Fetch] Scanning QuickBuild Dashboard to find existing Build IDs for ${createdItems.length} build(s)...`);
+      await dispatchBatchRunner({
+        portal: {
+          ...portalConfig,
+          fetchOnly: true,
+        },
+        items: createdItems,
+      });
+    }
   };
 
   const handleRemoveItem = (id: string) => {
