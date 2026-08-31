@@ -1,972 +1,80 @@
 {
   "items": [
     {
-      "buildFingerprintName": "SM-A155F_SEA_B4_THL",
-      "pdaVersion": "A155FXXSCEZHU",
-      "cscVersion": "A155FOLECEZHU",
-      "basebandVersion": "A155FXXSCEZHU",
-      "id": "build-1788009919068-0",
-      "index": 0,
-      "status": "failed",
-      "message": "Build #114088952 failed on QuickBuild",
-      "error": "Build #114088952 is failed on QuickBuild",
-      "progressPercent": 100,
-      "buildId": "114088952",
-      "buildDate": "2026-08-29 01:23:54"
-    },
-    {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
       "pdaVersion": "F776BXXS2AZH8",
       "cscVersion": "F776BOXM2AZH7",
       "basebandVersion": "F776BXXS2AZH7",
-      "id": "build-1788009919068-1",
-      "index": 1,
+      "id": "build-1788138342024-0",
+      "index": 0,
       "status": "success",
-      "message": "Completed: SM-F776BE_SEA_DX",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114089161",
-      "buildDate": "2026-08-29 01:33:46"
-    },
-    {
-      "buildFingerprintName": "SM-F971BE_SEA_DX",
-      "pdaVersion": "F971BXXU2AZHK",
-      "cscVersion": "F971BOXM2AZHK",
-      "basebandVersion": "F971BXXU2AZHK",
-      "id": "build-1788009919068-2",
-      "index": 2,
-      "status": "success",
-      "message": "Completed: SM-F971BE_SEA_DX",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114088953",
-      "buildDate": "2026-08-29 01:23:57"
-    },
-    {
-      "buildFingerprintName": "SM-F976BE_SEA_DX",
-      "pdaVersion": "F976BXXU2AZHK",
-      "cscVersion": "F976BOXM2AZHK",
-      "basebandVersion": "F976BXXU2AZHK",
-      "id": "build-1788009919068-3",
-      "index": 3,
-      "status": "success",
-      "message": "Completed: SM-F976BE_SEA_DX",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114089247",
-      "buildDate": "2026-08-29 01:41:46"
-    },
-    {
-      "buildFingerprintName": "SM-A185G_SEA_XME",
-      "pdaVersion": "A185GXXU0AZHB",
-      "cscVersion": "A185GOLM0AZHB",
-      "basebandVersion": "A185GXXU0AZHB",
-      "id": "build-1788009919068-4",
-      "index": 4,
-      "status": "success",
-      "message": "Completed: SM-A185G_SEA_XME",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114089359",
-      "buildDate": "2026-08-29 01:51:49"
+      "message": "Form submitted: SM-F776BE_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
       "pdaVersion": "S931BXXSCCZH5",
       "cscVersion": "S931BOXMCCZH5",
       "basebandVersion": "S931BXXSCCZH1",
-      "id": "build-1788009919068-5",
-      "index": 5,
+      "id": "build-1788138342024-1",
+      "index": 1,
       "status": "success",
-      "message": "Completed: SM-S931BE_SEA_B4_DX",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114089406",
-      "buildDate": "2026-08-29 01:56:24"
-    },
-    {
-      "buildFingerprintName": "SM-F776BE_SEA_DX",
-      "pdaVersion": "F776BXXU2AZHJ",
-      "cscVersion": "F776BOXM2AZHJ",
-      "basebandVersion": "F776BXXU2AZHJ",
-      "id": "build-1788009919068-6",
-      "index": 6,
-      "status": "success",
-      "message": "Completed: SM-F776BE_SEA_DX",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114089818",
-      "buildDate": "2026-08-29 02:12:27"
+      "message": "Form submitted: SM-S931BE_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
       "pdaVersion": "A566BXXSDCZHD",
       "cscVersion": "A566BOLMDCZHD",
       "basebandVersion": "A566BXXSDCZHD",
-      "id": "build-1788009919068-7",
-      "index": 7,
-      "status": "failed",
-      "message": "Build #114089980 failed on QuickBuild",
-      "error": "Build #114089980 is failed on QuickBuild",
-      "progressPercent": 100,
-      "buildId": "114089980",
-      "buildDate": "2026-08-29 02:21:51"
-    },
-    {
-      "buildFingerprintName": "SM-A276BE_SEA_XXV",
-      "pdaVersion": "A276BXXS3AZHA",
-      "cscVersion": "A276BOLM3AZHA",
-      "basebandVersion": "A276BXXS3AZHA",
-      "id": "build-1788009919068-8",
-      "index": 8,
+      "id": "build-1788138342024-2",
+      "index": 2,
       "status": "success",
-      "message": "Completed: SM-A276BE_SEA_XXV",
-      "error": "browserContext.newPage: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114089984",
-      "buildDate": "2026-08-29 02:21:55"
-    },
-    {
-      "buildFingerprintName": "SM-X910_EUR_C2_XX",
-      "pdaVersion": "X910XXU6FZHH",
-      "cscVersion": "X910OLE6FZHH",
-      "basebandVersion": "",
-      "id": "build-1788009919068-9",
-      "index": 9,
-      "status": "failed",
-      "message": "Build #114090039 failed on QuickBuild",
-      "error": "Build #114090039 is failed on QuickBuild",
-      "progressPercent": 100,
-      "buildId": "114090039",
-      "buildDate": "2026-08-29 02:25:27"
-    },
-    {
-      "buildFingerprintName": "SM-G525F_SEA_14_XSA",
-      "pdaVersion": "G525FXXUKEZH2",
-      "cscVersion": "G525FOLEKEZH2",
-      "basebandVersion": "G525FXXUKEZH1",
-      "id": "build-1788009919068-10",
-      "index": 10,
-      "status": "success",
-      "message": "Completed: SM-G525F_SEA_14_XSA",
-      "error": "browserContext.newPage: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114090040",
-      "buildDate": "2026-08-29 02:25:30"
+      "message": "Form submitted: SM-A566BE_SEA_B4_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A075F_SEA_B4_XME",
       "pdaVersion": "A075FXXS7CZH5",
       "cscVersion": "A075FOLM7CZH5",
       "basebandVersion": "A075FXXS7CZH5",
-      "id": "build-1788009919068-11",
-      "index": 11,
+      "id": "build-1788138342024-3",
+      "index": 3,
       "status": "success",
-      "message": "Completed: SM-A075F_SEA_B4_XME",
-      "error": "browserContext.newPage: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114090083",
-      "buildDate": "2026-08-29 02:27:50"
+      "message": "Form submitted: SM-A075F_SEA_B4_XME",
+      "progressPercent": 100
     },
     {
-      "buildFingerprintName": "SM-G990E_SEA_16_XME",
-      "pdaVersion": "G990EXXSOHZH4",
-      "cscVersion": "G990EOLEOHZH4",
-      "basebandVersion": "G990EXXSOHZH1",
-      "id": "build-1788009919068-12",
-      "index": 12,
-      "status": "success",
-      "message": "Completed: SM-G990E_SEA_16_XME",
-      "error": "page.fill: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"editor:content:basicProperties:1:property:editor:editor:wrapper:input\"], input[name*=\"basicProperties:1\"], input[name*=\"1:property:editor\"]')\u001b[22m\n",
-      "progressPercent": 100,
-      "buildId": "114090148",
-      "buildDate": "2026-08-29 02:31:20"
-    },
-    {
-      "buildFingerprintName": "SM-A155F_SEA_B4_THL",
-      "pdaVersion": "A155FXXSCEZH3",
-      "cscVersion": "A155FOLECEZH3",
-      "basebandVersion": "A155FXXSCEZH3",
-      "id": "build-1788009919068-13",
-      "index": 13,
-      "status": "success",
-      "message": "Completed: SM-A155F_SEA_B4_THL",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114090187",
-      "buildDate": "2026-08-29 02:35:35"
-    },
-    {
-      "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
-      "pdaVersion": "A245FXXSEFZH6",
-      "cscVersion": "A245FOLEEFZH6",
-      "basebandVersion": "A245FXXSEFZH6",
-      "id": "build-1788009919068-14",
-      "index": 14,
-      "status": "success",
-      "message": "Completed: SM-A245F_SEA_B4_XXV",
-      "error": "page.waitForTimeout: Target page, context or browser has been closed",
-      "progressPercent": 100,
-      "buildId": "114090229",
-      "buildDate": "2026-08-29 02:39:10"
-    },
-    {
-      "buildFingerprintName": "SM-X930_EUR_XX",
-      "pdaVersion": "X930XXS8BZH4",
-      "cscVersion": "X930OLM8BZH4",
-      "basebandVersion": "",
-      "id": "build-1788009919068-15",
-      "index": 15,
-      "status": "failed",
-      "message": "Build #114090269 failed on QuickBuild",
-      "progressPercent": 100,
-      "buildId": "114090269",
-      "buildDate": "2026-08-29 02:42:46",
-      "error": "Build #114090269 is failed on QuickBuild"
-    },
-    {
-      "buildFingerprintName": "SM-X730_EUR_XX",
+      "buildFingerprintName": "SM-X730_EUR_B4_XX",
       "pdaVersion": "X730XXS8BZH4",
       "cscVersion": "X730OXM8BZH4",
       "basebandVersion": "",
-      "id": "build-1788009919068-16",
-      "index": 16,
-      "status": "failed",
-      "message": "Build #114090270 failed on QuickBuild",
-      "progressPercent": 100,
-      "buildId": "114090270",
-      "buildDate": "2026-08-29 02:42:50",
-      "error": "Build #114090270 is failed on QuickBuild"
-    },
-    {
-      "buildFingerprintName": "SM-X736B_SEA_DX",
-      "pdaVersion": "X736BXXS8BZH4",
-      "cscVersion": "X736BOXM8BZH4",
-      "basebandVersion": "X736BXXS8BZH4",
-      "id": "build-1788009919068-17",
-      "index": 17,
-      "status": "failed",
-      "message": "Build #114090272 failed on QuickBuild",
-      "progressPercent": 100,
-      "buildId": "114090272",
-      "buildDate": "2026-08-29 02:42:53",
-      "error": "Build #114090272 is failed on QuickBuild"
-    },
-    {
-      "buildFingerprintName": "SM-X700_EUR_16_XX",
-      "pdaVersion": "X700XXSBEZH3",
-      "cscVersion": "X700OLEBEZH3",
-      "basebandVersion": "",
-      "id": "build-1788009919068-18",
-      "index": 18,
+      "id": "build-1788138342024-4",
+      "index": 4,
       "status": "success",
-      "buildId": "114090274",
-      "buildDate": "2026-08-29 02:42:56",
-      "message": "Completed: SM-X700_EUR_16_XX",
+      "message": "Form submitted: SM-X730_EUR_B4_XX",
       "progressPercent": 100
     },
     {
-      "buildFingerprintName": "SM-A165F_SEA_XXV",
+      "buildFingerprintName": "SM-A165F_SEA_B4_XXV",
       "pdaVersion": "A165FXXSBDZH6",
       "cscVersion": "A165FOLEBDZH6",
       "basebandVersion": "A165FXXSBDZH3",
-      "id": "build-1788009919068-19",
-      "index": 19,
-      "status": "failed",
-      "buildId": "114107329",
-      "buildDate": "2026-08-29 18:28:15",
-      "message": "Build #114107329 failed on QuickBuild",
-      "error": "Build #114107329 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X620_EUR_XX",
-      "pdaVersion": "X620XXU9DZH1",
-      "cscVersion": "X620OLM9DZH1",
-      "basebandVersion": "",
-      "id": "build-1788009919068-20",
-      "index": 20,
-      "status": "failed",
-      "buildId": "114090308",
-      "buildDate": "2026-08-29 02:47:33",
-      "message": "Build #114090308 failed on QuickBuild",
-      "error": "Build #114090308 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X626B_SEA_DX",
-      "pdaVersion": "X626BXXU9DZH1",
-      "cscVersion": "X626BOLM9DZH1",
-      "basebandVersion": "X626BXXU9DZH1",
-      "id": "build-1788009919068-21",
-      "index": 21,
-      "status": "failed",
-      "buildId": "114090310",
-      "buildDate": "2026-08-29 02:47:36",
-      "message": "Build #114090310 failed on QuickBuild",
-      "error": "Build #114090310 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X930_EUR_C2_XX",
-      "pdaVersion": "X930XXU7CZZ7",
-      "cscVersion": "X930OLM7CZZ7",
-      "basebandVersion": "",
-      "id": "build-1788009919068-22",
-      "index": 22,
-      "status": "failed",
-      "buildId": "114090311",
-      "buildDate": "2026-08-29 02:47:39",
-      "message": "Build #114090311 failed on QuickBuild",
-      "error": "Build #114090311 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X730_EUR_XX",
-      "pdaVersion": "X730XXU8CZZ7",
-      "cscVersion": "X730OXM8CZZ7",
-      "basebandVersion": "",
-      "id": "build-1788009919068-23",
-      "index": 23,
-      "status": "failed",
-      "buildId": "114090317",
-      "buildDate": "2026-08-29 02:47:42",
-      "message": "Build #114090317 failed on QuickBuild",
-      "error": "Build #114090317 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X610_EUR_B4_XX",
-      "pdaVersion": "X610XXSFEZH7",
-      "cscVersion": "X610OLEFEZH7",
-      "basebandVersion": "",
-      "id": "build-1788009919068-24",
-      "index": 24,
+      "id": "build-1788138342024-5",
+      "index": 5,
       "status": "success",
-      "buildId": "114090319",
-      "buildDate": "2026-08-29 02:47:45",
-      "message": "Completed: SM-X610_EUR_B4_XX",
+      "message": "Form submitted: SM-A165F_SEA_B4_XXV",
       "progressPercent": 100
     },
     {
-      "buildFingerprintName": "SM-X520_EUR_XX",
-      "pdaVersion": "X520XXU9DZH1",
-      "cscVersion": "X520OLM9DZH1",
-      "basebandVersion": "",
-      "id": "build-1788009919068-25",
-      "index": 25,
-      "status": "failed",
-      "buildId": "114090354",
-      "buildDate": "2026-08-29 02:51:52",
-      "message": "Build #114090354 failed on QuickBuild",
-      "error": "Build #114090354 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A175F_SEA_PHL",
+      "buildFingerprintName": "SM-A175F_SEA_B4_PHL",
       "pdaVersion": "A175FXXS7CZH6",
       "cscVersion": "A175FOXM7CZH6",
       "basebandVersion": "A175FXXS7CZH6",
-      "id": "build-1788009919068-26",
-      "index": 26,
-      "status": "failed",
-      "buildId": "114090356",
-      "buildDate": "2026-08-29 02:51:55",
-      "message": "Build #114090356 failed on QuickBuild",
-      "error": "Build #114090356 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X936B_SEA_B4_DX",
-      "pdaVersion": "X936BXXS8BZH4",
-      "cscVersion": "X936BOXM8BZH4",
-      "basebandVersion": "X936BXXS8BZH4",
-      "id": "build-1788009919068-27",
-      "index": 27,
+      "id": "build-1788138342024-6",
+      "index": 6,
       "status": "success",
-      "buildId": "114090358",
-      "buildDate": "2026-08-29 02:51:58",
-      "message": "Completed: SM-X936B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-G990E_SEA_16_XME",
-      "pdaVersion": "G990EXXSOHZH3",
-      "cscVersion": "G990EOLEOHZH3",
-      "basebandVersion": "G990EXXSOHZH1",
-      "id": "build-1788009919068-28",
-      "index": 28,
-      "status": "success",
-      "buildId": "114090737",
-      "buildDate": "2026-08-29 03:06:28",
-      "message": "Completed: SM-G990E_SEA_16_XME",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X810_EUR_C2_XX",
-      "pdaVersion": "X810XXU6FZHH",
-      "cscVersion": "X810OLE6FZHH",
-      "basebandVersion": "",
-      "id": "build-1788009919068-29",
-      "index": 29,
-      "status": "failed",
-      "buildId": "114090863",
-      "buildDate": "2026-08-29 03:10:38",
-      "message": "Build #114090863 failed on QuickBuild",
-      "error": "Build #114090863 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-P625_SEA_B4_DX",
-      "pdaVersion": "P625XXSCCZH4",
-      "cscVersion": "P625OXMCCZH4",
-      "basebandVersion": "P625XXSCCZH4",
-      "id": "build-1788009919068-30",
-      "index": 30,
-      "status": "success",
-      "buildId": "114090867",
-      "buildDate": "2026-08-29 03:10:42",
-      "message": "Completed: SM-P625_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S928BE_SEA_DX",
-      "pdaVersion": "S928BXXU6EZHD",
-      "cscVersion": "S928BOLE6EZHD",
-      "basebandVersion": "S928BXXU6EZHC",
-      "id": "build-1788009919068-31",
-      "index": 31,
-      "status": "failed",
-      "buildId": "114090915",
-      "buildDate": "2026-08-29 03:13:55",
-      "message": "Build #114090915 failed on QuickBuild",
-      "error": "Build #114090915 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-F966B_EUR_C2_XX",
-      "pdaVersion": "F966BXXUCCZHC",
-      "cscVersion": "F966BOXMCCZHC",
-      "basebandVersion": "F966BXXUCZZHC",
-      "id": "build-1788009919068-32",
-      "index": 32,
-      "status": "failed",
-      "buildId": "114090916",
-      "buildDate": "2026-08-29 03:13:58",
-      "message": "Build #114090916 failed on QuickBuild",
-      "error": "Build #114090916 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S921BE_SEA_DX",
-      "pdaVersion": "S921BXXUHEZHD",
-      "cscVersion": "S921BOLEHEZHD",
-      "basebandVersion": "S921BXXUHEZHC",
-      "id": "build-1788009919068-33",
-      "index": 33,
-      "status": "failed",
-      "buildId": "114090919",
-      "buildDate": "2026-08-29 03:14:01",
-      "message": "Build #114090919 failed on QuickBuild",
-      "error": "Build #114090919 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S731B_EUR_C2_XX",
-      "pdaVersion": "S731BXXU9CZH6",
-      "cscVersion": "S731BOXM9ZZH6",
-      "basebandVersion": "S731BXXU9CZH4",
-      "id": "build-1788009919068-34",
-      "index": 34,
-      "status": "failed",
-      "buildId": "114102406",
-      "buildDate": "2026-08-29 14:03:10",
-      "message": "Build #114102406 failed on QuickBuild",
-      "error": "Build #114102406 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-M556B_SEA_B4_XME",
-      "pdaVersion": "M556BXXS5DZH1",
-      "cscVersion": "M556BOLM5DZH1",
-      "basebandVersion": "M556BXXS5DZH1",
-      "id": "build-1788009919068-35",
-      "index": 35,
-      "status": "success",
-      "buildId": "114090921",
-      "buildDate": "2026-08-29 03:14:08",
-      "message": "Completed: SM-M556B_SEA_B4_XME",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X710_EUR_B4_XX",
-      "pdaVersion": "X710XXU6FZHH",
-      "cscVersion": "X710OLE6FZHH",
-      "basebandVersion": "",
-      "id": "build-1788009919068-36",
-      "index": 36,
-      "status": "failed",
-      "buildId": "114090974",
-      "buildDate": "2026-08-29 03:18:05",
-      "message": "Build #114090974 failed on QuickBuild",
-      "error": "Build #114090974 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-G525F_SEA_14_XSA",
-      "pdaVersion": "G525FXXUKEZH1",
-      "cscVersion": "G525FOLEKEZH1",
-      "basebandVersion": "G525FXXUKEZH1",
-      "id": "build-1788009919068-37",
-      "index": 37,
-      "status": "success",
-      "buildId": "114090975",
-      "buildDate": "2026-08-29 03:18:08",
-      "message": "Completed: SM-G525F_SEA_14_XSA",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A576BE_SEA_XME",
-      "pdaVersion": "A576BXXU4BZZ5",
-      "cscVersion": "A576BOLM4BZZ5",
-      "basebandVersion": "A576BXXU4BZG6",
-      "id": "build-1788009919068-38",
-      "index": 38,
-      "status": "failed",
-      "buildId": "114091019",
-      "buildDate": "2026-08-29 03:20:23",
-      "message": "Build #114091019 failed on QuickBuild",
-      "error": "Build #114091019 is failed on QuickBuild",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S916BE_SEA_B4_DX",
-      "pdaVersion": "S916BXXSAFZH3",
-      "cscVersion": "S916BOLEAFZH3",
-      "basebandVersion": "S916BXXSAFZE1",
-      "id": "build-1788009919068-39",
-      "index": 39,
-      "status": "success",
-      "buildId": "114091022",
-      "buildDate": "2026-08-29 03:20:26",
-      "message": "Completed: SM-S916BE_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S918BE_SEA_B4_DX",
-      "pdaVersion": "S918BXXSAFZH3",
-      "cscVersion": "S918BOLEAFZH3",
-      "basebandVersion": "S918BXXSAFZE1",
-      "id": "build-1788009919068-40",
-      "index": 40,
-      "status": "success",
-      "buildId": "114091127",
-      "buildDate": "2026-08-29 03:27:47",
-      "message": "Completed: SM-S918BE_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A336E_SEA_16_XXV",
-      "pdaVersion": "A336EDXUJGZH1",
-      "cscVersion": "A336EOLEJGZH1",
-      "basebandVersion": "A336EDXUJGZH1",
-      "id": "build-1788009919068-41",
-      "index": 41,
-      "status": "success",
-      "buildId": "114091249",
-      "buildDate": "2026-08-29 03:35:17",
-      "message": "Completed: SM-A336E_SEA_16_XXV",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X216B_SEA_16_DX",
-      "pdaVersion": "X216BXXUDEZGF",
-      "cscVersion": "X216BOLEDEZGF",
-      "basebandVersion": "X216BXXUDEZGF",
-      "id": "build-1788009919068-42",
-      "index": 42,
-      "status": "success",
-      "buildId": "114085074",
-      "buildDate": "2026-08-28 23:08:38",
-      "message": "Completed: SM-X216B_SEA_16_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
-      "pdaVersion": "S931BXXSCCZH3",
-      "cscVersion": "S931BOXMCCZH3",
-      "basebandVersion": "S931BXXSCCZH1",
-      "id": "build-1788009919068-43",
-      "index": 43,
-      "status": "success",
-      "buildId": "114091296",
-      "buildDate": "2026-08-29 03:38:52",
-      "message": "Completed: SM-S931BE_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X810_EUR_B4_XX",
-      "pdaVersion": "X810XXS6EZH3",
-      "cscVersion": "X810OLE6EZH3",
-      "basebandVersion": "",
-      "id": "build-1788009919068-44",
-      "index": 44,
-      "status": "success",
-      "buildId": "114085139",
-      "buildDate": "2026-08-28 23:11:33",
-      "message": "Completed: SM-X810_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X400_EUR_B4_XX",
-      "pdaVersion": "X400XXS7CZH6",
-      "cscVersion": "X400OXM7CZH6",
-      "basebandVersion": "",
-      "id": "build-1788009919068-45",
-      "index": 45,
-      "status": "success",
-      "buildId": "114085296",
-      "buildDate": "2026-08-28 23:17:19",
-      "message": "Completed: SM-X400_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X920_EUR_B4_XX",
-      "pdaVersion": "X920XXSADZH1",
-      "cscVersion": "X920OLEADZH1",
-      "basebandVersion": "",
-      "id": "build-1788009919068-46",
-      "index": 46,
-      "status": "success",
-      "buildId": "114085467",
-      "buildDate": "2026-08-28 23:20:27",
-      "message": "Completed: SM-X920_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X520_EUR_B4_XX",
-      "pdaVersion": "X520XXSACZH6",
-      "cscVersion": "X520OLMACZH6",
-      "basebandVersion": "",
-      "id": "build-1788009919068-47",
-      "index": 47,
-      "status": "success",
-      "buildId": "114085934",
-      "buildDate": "2026-08-28 23:29:41",
-      "message": "Completed: SM-X520_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X620_EUR_B4_XX",
-      "pdaVersion": "X620XXSACZH6",
-      "cscVersion": "X620OLMACZH6",
-      "basebandVersion": "",
-      "id": "build-1788009919068-48",
-      "index": 48,
-      "status": "success",
-      "buildId": "114086146",
-      "buildDate": "2026-08-28 23:33:05",
-      "message": "Completed: SM-X620_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X510_EUR_B4_XX",
-      "pdaVersion": "X510XXSFEZH5",
-      "cscVersion": "X510OLEFEZH5",
-      "basebandVersion": "",
-      "id": "build-1788009919068-49",
-      "index": 49,
-      "status": "success",
-      "buildId": "114086301",
-      "buildDate": "2026-08-28 23:36:28",
-      "message": "Completed: SM-X510_EUR_B4_XX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A276BE_SEA_XXV",
-      "pdaVersion": "A276BXXU2AZH7",
-      "cscVersion": "A276BOLM2AZH7",
-      "basebandVersion": "A276BXXU2AZH7",
-      "id": "build-1788009919068-50",
-      "index": 50,
-      "status": "success",
-      "buildId": "114086434",
-      "buildDate": "2026-08-28 23:39:52",
-      "message": "Completed: SM-A276BE_SEA_XXV",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-F776BE_SEA_DX",
-      "pdaVersion": "F776BXXS2AZH9",
-      "cscVersion": "F776BOXM2AZH9",
-      "basebandVersion": "F776BXXS2AZH9",
-      "id": "build-1788009919068-51",
-      "index": 51,
-      "status": "success",
-      "buildId": "114086676",
-      "buildDate": "2026-08-28 23:46:09",
-      "message": "Completed: SM-F776BE_SEA_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-M546B_SEA_B4_XME",
-      "pdaVersion": "M546BXXSFFZH3",
-      "cscVersion": "M546BOLMFFZH3",
-      "basebandVersion": "M546BXXSFFZH3",
-      "id": "build-1788009919068-52",
-      "index": 52,
-      "status": "success",
-      "buildId": "114086573",
-      "buildDate": "2026-08-28 23:43:20",
-      "message": "Completed: SM-M546B_SEA_B4_XME",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
-      "pdaVersion": "A566BXXSDCZHB",
-      "cscVersion": "A566BOLMDCZHB",
-      "basebandVersion": "A566BXXSDCZHB",
-      "id": "build-1788009919068-53",
-      "index": 53,
-      "status": "success",
-      "buildId": "114086799",
-      "buildDate": "2026-08-28 23:52:08",
-      "message": "Completed: SM-A566BE_SEA_B4_XME",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A556E_SEA_B4_PHL",
-      "pdaVersion": "A556EXXSHDZH6",
-      "cscVersion": "A556EOLEHDZH6",
-      "basebandVersion": "A556EXXSHDZH6",
-      "id": "build-1788009919068-54",
-      "index": 54,
-      "status": "success",
-      "buildId": "114086860",
-      "buildDate": "2026-08-28 23:55:58",
-      "message": "Completed: SM-A556E_SEA_B4_PHL",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X616B_SEA_B4_DX",
-      "pdaVersion": "X616BXXSFEZH5",
-      "cscVersion": "X616BOLEFEZH5",
-      "basebandVersion": "X616BXXSFEZH5",
-      "id": "build-1788009919068-55",
-      "index": 55,
-      "status": "success",
-      "buildId": "114086918",
-      "buildDate": "2026-08-28 23:59:31",
-      "message": "Completed: SM-X616B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X236B_SEA_B4_DX",
-      "pdaVersion": "X236BXXS7BZH2",
-      "cscVersion": "X236BOXM7BZH2",
-      "basebandVersion": "X236BXXS7BZH2",
-      "id": "build-1788009919068-56",
-      "index": 56,
-      "status": "success",
-      "buildId": "114087077",
-      "buildDate": "2026-08-29 00:02:59",
-      "message": "Completed: SM-X236B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X926B_SEA_B4_DX",
-      "pdaVersion": "X926BXXSADZH1",
-      "cscVersion": "X926BOXMADZH1",
-      "basebandVersion": "X926BXXSADZH1",
-      "id": "build-1788009919068-57",
-      "index": 57,
-      "status": "success",
-      "buildId": "114087197",
-      "buildDate": "2026-08-29 00:05:57",
-      "message": "Completed: SM-X926B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X826B_SEA_B4_DX",
-      "pdaVersion": "X826BXXSADZH1",
-      "cscVersion": "X826BOXMADZH1",
-      "basebandVersion": "X826BXXSADZH1",
-      "id": "build-1788009919068-58",
-      "index": 58,
-      "status": "success",
-      "buildId": "114087527",
-      "buildDate": "2026-08-29 00:16:58",
-      "message": "Completed: SM-X826B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X406B_SEA_B4_DX",
-      "pdaVersion": "X406BXXS7CZH6",
-      "cscVersion": "X406BOXM7CZH6",
-      "basebandVersion": "X406BXXS7CZH4",
-      "id": "build-1788009919068-59",
-      "index": 59,
-      "status": "success",
-      "buildId": "114087859",
-      "buildDate": "2026-08-29 00:29:20",
-      "message": "Completed: SM-X406B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A546E_SEA_B4_TSE",
-      "pdaVersion": "A546EXXSMFZH5",
-      "cscVersion": "A546EOLEMFZH5",
-      "basebandVersion": "A546EXXSMFZH1",
-      "id": "build-1788009919068-60",
-      "index": 60,
-      "status": "success",
-      "buildId": "114087980",
-      "buildDate": "2026-08-29 00:33:24",
-      "message": "Completed: SM-A546E_SEA_B4_TSE",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X626B_SEA_B4_DX",
-      "pdaVersion": "X626BXXSACZH6",
-      "cscVersion": "X626BOLMACZH6",
-      "basebandVersion": "X626BXXSACZH6",
-      "id": "build-1788009919068-61",
-      "index": 61,
-      "status": "success",
-      "buildId": "114088044",
-      "buildDate": "2026-08-29 00:36:59",
-      "message": "Completed: SM-X626B_SEA_B4_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-F976BE_SEA_DX",
-      "pdaVersion": "F976BXXU2AZHD",
-      "cscVersion": "F976BOXM2AZHD",
-      "basebandVersion": "F976BXXU2AZHD",
-      "id": "build-1788009919068-62",
-      "index": 62,
-      "status": "success",
-      "buildId": "114088126",
-      "buildDate": "2026-08-29 00:41:38",
-      "message": "Completed: SM-F976BE_SEA_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-X115_SEA_16_DX",
-      "pdaVersion": "X115XXUBDZH5",
-      "cscVersion": "X115OLEBDZH5",
-      "basebandVersion": "X115XXUBDZH5",
-      "id": "build-1788009919068-63",
-      "index": 63,
-      "status": "success",
-      "buildId": "114088363",
-      "buildDate": "2026-08-29 00:54:42",
-      "message": "Completed: SM-X115_SEA_16_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
-      "pdaVersion": "A245FXXSEFZH3",
-      "cscVersion": "A245FOLEEFZH3",
-      "basebandVersion": "A245FXXSEFZH3",
-      "id": "build-1788009919068-64",
-      "index": 64,
-      "status": "success",
-      "buildId": "114088312",
-      "buildDate": "2026-08-29 00:51:04",
-      "message": "Completed: SM-A245F_SEA_B4_XXV",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A336E_SEA_16_XXV",
-      "pdaVersion": "A336EDXSKGZH2",
-      "cscVersion": "A336EOLEKGZH2",
-      "basebandVersion": "A336EDXSKGZH2",
-      "id": "build-1788009919068-65",
-      "index": 65,
-      "status": "success",
-      "buildId": "114088407",
-      "buildDate": "2026-08-29 00:57:50",
-      "message": "Completed: SM-A336E_SEA_16_XXV",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-F926B_SEA_15_DX",
-      "pdaVersion": "F926BXXSJJZH4",
-      "cscVersion": "F926BOXMJJZH4",
-      "basebandVersion": "F926BXXSJJZH4",
-      "id": "build-1788009919068-66",
-      "index": 66,
-      "status": "success",
-      "buildId": "114088516",
-      "buildDate": "2026-08-29 01:01:29",
-      "message": "Completed: SM-F926B_SEA_15_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S901E_SEA_16_DX",
-      "pdaVersion": "S901EXXSEGZH3",
-      "cscVersion": "S901EOXMEGZH3",
-      "basebandVersion": "S901EXXSEGZH3",
-      "id": "build-1788009919068-67",
-      "index": 67,
-      "status": "success",
-      "buildId": "114088631",
-      "buildDate": "2026-08-29 01:06:02",
-      "message": "Completed: SM-S901E_SEA_16_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-S906E_SEA_16_DX",
-      "pdaVersion": "S906EXXSEGZH4",
-      "cscVersion": "S906EOXMEGZH4",
-      "basebandVersion": "S906EXXSEGZH4",
-      "id": "build-1788009919068-68",
-      "index": 68,
-      "status": "success",
-      "buildId": "114088719",
-      "buildDate": "2026-08-29 01:10:53",
-      "message": "Completed: SM-S906E_SEA_16_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-F926B_SEA_15_DX",
-      "pdaVersion": "F926BXXSJJZH3",
-      "cscVersion": "F926BOLEJJZH3",
-      "basebandVersion": "F926BXXSJJZH3",
-      "id": "build-1788009919068-69",
-      "index": 69,
-      "status": "success",
-      "buildId": "114088794",
-      "buildDate": "2026-08-29 01:15:30",
-      "message": "Completed: SM-F926B_SEA_15_DX",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A256E_SEA_B4_PHL",
-      "pdaVersion": "A256EXXSEEZH9",
-      "cscVersion": "A256EOLEEEZH9",
-      "basebandVersion": "A256EXXSEEZH9",
-      "id": "build-1788009919068-70",
-      "index": 70,
-      "status": "success",
-      "buildId": "114088886",
-      "buildDate": "2026-08-29 01:19:46",
-      "message": "Completed: SM-A256E_SEA_B4_PHL",
-      "progressPercent": 100
-    },
-    {
-      "buildFingerprintName": "SM-A376BE_SEA_XME",
-      "pdaVersion": "A376BXXU4BZH1",
-      "cscVersion": "A376BOLM4BZH1",
-      "basebandVersion": "A376BXXU4BZH1",
-      "id": "build-1788009919068-71",
-      "index": 71,
-      "status": "failed",
-      "buildId": "114088951",
-      "buildDate": "2026-08-29 01:23:50",
-      "message": "Build #114088951 failed on QuickBuild",
-      "error": "Build #114088951 is failed on QuickBuild",
+      "message": "Form submitted: SM-A175F_SEA_B4_PHL",
       "progressPercent": 100
     }
   ],
@@ -18834,20 +17942,1224 @@
       "level": "success",
       "message": "All 72 builds finished processing on QuickBuild!",
       "index": null
+    },
+    {
+      "id": "7wc0khh",
+      "timestamp": "7:49:23 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "o6zr1nl",
+      "timestamp": "7:49:23 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "5nr5s3p",
+      "timestamp": "7:49:28 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "zsofe6i",
+      "timestamp": "7:49:31 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "74m32s8",
+      "timestamp": "7:49:35 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "x30n6bg",
+      "timestamp": "7:49:36 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "k55r961",
+      "timestamp": "7:49:39 AM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 1 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "nx0dq3g",
+      "timestamp": "7:49:39 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 1 builds...",
+      "index": null
+    },
+    {
+      "id": "ss0mcwc",
+      "timestamp": "7:49:39 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "xcsuydj",
+      "timestamp": "7:49:39 AM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 1 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "rrbepij",
+      "timestamp": "7:49:39 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "kkc649y",
+      "timestamp": "7:49:39 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 1 builds...",
+      "index": null
+    },
+    {
+      "id": "5v3lvbx",
+      "timestamp": "7:49:39 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "h0oc48t",
+      "timestamp": "7:49:40 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "pje7a87",
+      "timestamp": "7:49:45 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "gykwn6f",
+      "timestamp": "7:49:46 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "30947eu",
+      "timestamp": "7:49:55 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "1x5fcrv",
+      "timestamp": "7:49:55 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090356 for SM-A175F_SEA_PHL is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "0yhqn4s",
+      "timestamp": "7:49:55 AM",
+      "level": "success",
+      "message": "All 1 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "ry0zarx",
+      "timestamp": "7:49:56 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "d0qjaej",
+      "timestamp": "7:49:56 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114090356 for SM-A175F_SEA_PHL is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "xgjr7su",
+      "timestamp": "7:49:56 AM",
+      "level": "success",
+      "message": "All 1 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "qk574gi",
+      "timestamp": "8:05:48 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "umocr64",
+      "timestamp": "8:05:48 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: true, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "8gb6ot7",
+      "timestamp": "8:05:56 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "p7x4lm5",
+      "timestamp": "8:05:58 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "kv4md7e",
+      "timestamp": "8:06:20 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "6vehnjg",
+      "timestamp": "8:06:22 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "dklvyr2",
+      "timestamp": "8:06:26 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 7 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "riak971",
+      "timestamp": "8:06:26 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-F776BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "f1sd3pl",
+      "timestamp": "8:06:26 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-S931BE_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "ta6ymzp",
+      "timestamp": "8:06:26 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 7 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "5l2z1tc",
+      "timestamp": "8:06:26 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-F776BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "9vkivvz",
+      "timestamp": "8:06:26 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A566BE_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "n3dqlws",
+      "timestamp": "8:06:26 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-S931BE_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "ugzq5fg",
+      "timestamp": "8:06:27 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A566BE_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "ezipbci",
+      "timestamp": "8:06:37 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "4n3o673",
+      "timestamp": "8:06:39 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "shxf4nv",
+      "timestamp": "8:06:40 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "97pasis",
+      "timestamp": "8:06:40 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "do2e90n",
+      "timestamp": "8:06:40 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "52vqxdr",
+      "timestamp": "8:06:41 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "mgxz86g",
+      "timestamp": "8:06:41 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "uig7wwc",
+      "timestamp": "8:06:41 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "v8ucj8p",
+      "timestamp": "8:06:41 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "3qsp24f",
+      "timestamp": "8:06:42 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-F776BE_SEA_DX, PDA=F776BXXS2AZH8, CSC=F776BOXM2AZH7, Phone=F776BXXS2AZH7",
+      "index": null
+    },
+    {
+      "id": "v7qi0lu",
+      "timestamp": "8:06:42 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "gzu3vz2",
+      "timestamp": "8:06:42 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "qn7kq2i",
+      "timestamp": "8:06:42 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "jo65m4r",
+      "timestamp": "8:06:42 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "c6o034i",
+      "timestamp": "8:06:43 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "hxe2kgm",
+      "timestamp": "8:06:43 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "gaa5xiv",
+      "timestamp": "8:06:43 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "seymuiv",
+      "timestamp": "8:06:43 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-F776BE_SEA_DX, PDA=F776BXXS2AZH8, CSC=F776BOXM2AZH7, Phone=F776BXXS2AZH7",
+      "index": null
+    },
+    {
+      "id": "fk8z3mf",
+      "timestamp": "8:06:43 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "987szmq",
+      "timestamp": "8:06:44 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "46g5r6b",
+      "timestamp": "8:06:44 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "7p77vii",
+      "timestamp": "8:06:44 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "6ve1mzw",
+      "timestamp": "8:06:44 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "ywpe5ry",
+      "timestamp": "8:06:44 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "5t3wu3y",
+      "timestamp": "8:06:44 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "rnbtbea",
+      "timestamp": "8:06:45 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-S931BE_SEA_B4_DX, PDA=S931BXXSCCZH5, CSC=S931BOXMCCZH5, Phone=S931BXXSCCZH1",
+      "index": null
+    },
+    {
+      "id": "x6sjnwt",
+      "timestamp": "8:06:45 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "z6xuoqv",
+      "timestamp": "8:06:45 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "20wizfb",
+      "timestamp": "8:06:45 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "9yvzjc7",
+      "timestamp": "8:06:46 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "k1n3zz2",
+      "timestamp": "8:06:46 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "j00lb3l",
+      "timestamp": "8:06:46 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "wbdhx80",
+      "timestamp": "8:06:46 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A566BE_SEA_B4_XME, PDA=A566BXXSDCZHD, CSC=A566BOLMDCZHD, Phone=A566BXXSDCZHD",
+      "index": null
+    },
+    {
+      "id": "fu9akrq",
+      "timestamp": "8:06:46 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "im1kmve",
+      "timestamp": "8:06:46 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-F776BE_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "66k93ly",
+      "timestamp": "8:06:46 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "jjpmv4i",
+      "timestamp": "8:06:47 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A075F_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "o2kkwgl",
+      "timestamp": "8:06:47 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "yhz3sp2",
+      "timestamp": "8:06:48 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "j7weqkk",
+      "timestamp": "8:06:48 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "7ev0xq2",
+      "timestamp": "8:06:48 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-F776BE_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "btc2wmp",
+      "timestamp": "8:06:48 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "bdcxeqx",
+      "timestamp": "8:06:48 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "vd7bk68",
+      "timestamp": "8:06:49 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A075F_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "3sxiveu",
+      "timestamp": "8:06:49 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-S931BE_SEA_B4_DX, PDA=S931BXXSCCZH5, CSC=S931BOXMCCZH5, Phone=S931BXXSCCZH1",
+      "index": null
+    },
+    {
+      "id": "3wgnw5t",
+      "timestamp": "8:06:49 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "tkx9e70",
+      "timestamp": "8:06:49 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "h07etev",
+      "timestamp": "8:06:50 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "8t1yyov",
+      "timestamp": "8:06:50 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-S931BE_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "o6tj336",
+      "timestamp": "8:06:50 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A566BE_SEA_B4_XME, PDA=A566BXXSDCZHD, CSC=A566BOLMDCZHD, Phone=A566BXXSDCZHD",
+      "index": null
+    },
+    {
+      "id": "9nmfp4j",
+      "timestamp": "8:06:50 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "4i30a1g",
+      "timestamp": "8:06:51 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "b4hj1c9",
+      "timestamp": "8:06:51 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X730_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "ab11rut",
+      "timestamp": "8:06:51 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-A566BE_SEA_B4_XME!",
+      "index": null
+    },
+    {
+      "id": "27e0uqh",
+      "timestamp": "8:06:52 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "m2jpzem",
+      "timestamp": "8:06:52 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A165F_SEA_B4_XXV",
+      "index": null
+    },
+    {
+      "id": "bna4856",
+      "timestamp": "8:06:54 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-S931BE_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "5vuiufh",
+      "timestamp": "8:06:55 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X730_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "guhwjlh",
+      "timestamp": "8:06:55 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-A566BE_SEA_B4_XME!",
+      "index": null
+    },
+    {
+      "id": "92ysk5s",
+      "timestamp": "8:06:56 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A165F_SEA_B4_XXV",
+      "index": null
+    },
+    {
+      "id": "f6p901q",
+      "timestamp": "8:06:59 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ku437mf",
+      "timestamp": "8:07:01 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "sk3vnlk",
+      "timestamp": "8:07:01 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "af363d0",
+      "timestamp": "8:07:02 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "8wvckou",
+      "timestamp": "8:07:03 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "fch5l86",
+      "timestamp": "8:07:03 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ylekddl",
+      "timestamp": "8:07:04 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A075F_SEA_B4_XME, PDA=A075FXXS7CZH5, CSC=A075FOLM7CZH5, Phone=A075FXXS7CZH5",
+      "index": null
+    },
+    {
+      "id": "spmb50i",
+      "timestamp": "8:07:04 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "a8v09j9",
+      "timestamp": "8:07:05 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "dacy7aq",
+      "timestamp": "8:07:05 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "dqpn87p",
+      "timestamp": "8:07:05 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "xcpsaag",
+      "timestamp": "8:07:05 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "l52bov0",
+      "timestamp": "8:07:06 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "b0quz5o",
+      "timestamp": "8:07:06 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "mdfvlao",
+      "timestamp": "8:07:07 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "u591qxq",
+      "timestamp": "8:07:07 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "zmww0fj",
+      "timestamp": "8:07:07 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "dc1y00w",
+      "timestamp": "8:07:07 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A165F_SEA_B4_XXV, PDA=A165FXXSBDZH6, CSC=A165FOLEBDZH6, Phone=A165FXXSBDZH3",
+      "index": null
+    },
+    {
+      "id": "32cj1hm",
+      "timestamp": "8:07:07 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "4ijz6di",
+      "timestamp": "8:07:08 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "oblrt0c",
+      "timestamp": "8:07:08 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "pa26wsw",
+      "timestamp": "8:07:08 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "hodoowq",
+      "timestamp": "8:07:08 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A075F_SEA_B4_XME!",
+      "index": null
+    },
+    {
+      "id": "7j9dwmk",
+      "timestamp": "8:07:09 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "dfm6c0h",
+      "timestamp": "8:07:09 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A075F_SEA_B4_XME, PDA=A075FXXS7CZH5, CSC=A075FOLM7CZH5, Phone=A075FXXS7CZH5",
+      "index": null
+    },
+    {
+      "id": "cc92f9c",
+      "timestamp": "8:07:09 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "lobmj8t",
+      "timestamp": "8:07:09 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "9v6mowu",
+      "timestamp": "8:07:09 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "gdm5zmm",
+      "timestamp": "8:07:09 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A175F_SEA_B4_PHL",
+      "index": null
+    },
+    {
+      "id": "tn4z8pe",
+      "timestamp": "8:07:10 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "urxakyq",
+      "timestamp": "8:07:11 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "f7ub9vq",
+      "timestamp": "8:07:11 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "dzz3fvn",
+      "timestamp": "8:07:11 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "1mzkfe7",
+      "timestamp": "8:07:11 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "d85au8z",
+      "timestamp": "8:07:12 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A165F_SEA_B4_XXV, PDA=A165FXXSBDZH6, CSC=A165FOLEBDZH6, Phone=A165FXXSBDZH3",
+      "index": null
+    },
+    {
+      "id": "7irro43",
+      "timestamp": "8:07:12 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "clxurze",
+      "timestamp": "8:07:12 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "oiciayg",
+      "timestamp": "8:07:13 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "ssa77lm",
+      "timestamp": "8:07:13 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-A165F_SEA_B4_XXV!",
+      "index": null
+    },
+    {
+      "id": "x4vts2o",
+      "timestamp": "8:07:13 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "0bd3fty",
+      "timestamp": "8:07:13 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "0owt767",
+      "timestamp": "8:07:13 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-X730_EUR_B4_XX, PDA=X730XXS8BZH4, CSC=X730OXM8BZH4, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "23s5kun",
+      "timestamp": "8:07:13 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "dkw6b9r",
+      "timestamp": "8:07:14 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A175F_SEA_B4_PHL",
+      "index": null
+    },
+    {
+      "id": "mzxpkud",
+      "timestamp": "8:07:14 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A075F_SEA_B4_XME!",
+      "index": null
+    },
+    {
+      "id": "so6akdv",
+      "timestamp": "8:07:15 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "t5cge0p",
+      "timestamp": "8:07:15 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "r9wun63",
+      "timestamp": "8:07:15 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "apmvy31",
+      "timestamp": "8:07:16 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "474ntmb",
+      "timestamp": "8:07:16 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-A165F_SEA_B4_XXV!",
+      "index": null
+    },
+    {
+      "id": "xt46tih",
+      "timestamp": "8:07:16 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "eo2u0fz",
+      "timestamp": "8:07:17 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-X730_EUR_B4_XX, PDA=X730XXS8BZH4, CSC=X730OXM8BZH4, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "6tt8uc5",
+      "timestamp": "8:07:17 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "pjkwrgp",
+      "timestamp": "8:07:18 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-X730_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "tjvccvw",
+      "timestamp": "8:07:19 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "tjimwyx",
+      "timestamp": "8:07:19 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "nwcoc0i",
+      "timestamp": "8:07:21 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "bib31e1",
+      "timestamp": "8:07:21 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "5e1j7lx",
+      "timestamp": "8:07:22 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-X730_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "u7z8ged",
+      "timestamp": "8:07:22 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "8r06eva",
+      "timestamp": "8:07:23 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "o6i0ace",
+      "timestamp": "8:07:23 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A175F_SEA_B4_PHL, PDA=A175FXXS7CZH6, CSC=A175FOXM7CZH6, Phone=A175FXXS7CZH6",
+      "index": null
+    },
+    {
+      "id": "lmkcgke",
+      "timestamp": "8:07:23 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "1t5g2z4",
+      "timestamp": "8:07:24 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "h7ek6rp",
+      "timestamp": "8:07:25 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "1rjb624",
+      "timestamp": "8:07:26 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "ri5f2m9",
+      "timestamp": "8:07:26 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "9a4liie",
+      "timestamp": "8:07:27 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "ovi1f1r",
+      "timestamp": "8:07:27 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "hsrcq5l",
+      "timestamp": "8:07:28 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A175F_SEA_B4_PHL!",
+      "index": null
+    },
+    {
+      "id": "mfb64qn",
+      "timestamp": "8:07:28 AM",
+      "level": "info",
+      "message": "=== [FAST COMPLETE] Progress tracking disabled. All batch submissions complete ===",
+      "index": null
+    },
+    {
+      "id": "qpptuau",
+      "timestamp": "8:07:28 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A175F_SEA_B4_PHL, PDA=A175FXXS7CZH6, CSC=A175FOXM7CZH6, Phone=A175FXXS7CZH6",
+      "index": null
+    },
+    {
+      "id": "tqdxsye",
+      "timestamp": "8:07:28 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "ykd8nd8",
+      "timestamp": "8:07:29 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "1n6r5g9",
+      "timestamp": "8:07:32 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A175F_SEA_B4_PHL!",
+      "index": null
+    },
+    {
+      "id": "d62kahl",
+      "timestamp": "8:07:32 AM",
+      "level": "info",
+      "message": "=== [FAST COMPLETE] Progress tracking disabled. All batch submissions complete ===",
+      "index": null
     }
   ],
   "portalConfig": {
     "baseUrl": "https://android.qb.sec.samsung.net/overview/28905",
     "formUrl": "https://android.qb.sec.samsung.net/wicket/page?6",
-    "headless": true,
+    "headless": false,
     "delayMs": 1000,
     "timeoutMs": 30000,
     "mock": false,
-    "trackProgress": true,
+    "trackProgress": false,
     "concurrency": 3,
     "username": "endri.s",
     "password": "sein2016!"
   },
   "isRunning": false,
-  "lastUpdated": "2026-08-29T13:25:19.563Z"
+  "lastUpdated": "2026-08-31T01:05:44.578Z"
 }

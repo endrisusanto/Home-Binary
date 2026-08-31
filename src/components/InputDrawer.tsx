@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { X, Sparkles, Plus, AlertCircle, FileText, CheckCircle2 } from 'lucide-react';
+import { 
+  X, 
+  Sparkles, 
+  Plus, 
+  AlertCircle, 
+  FileText, 
+  CheckCircle2, 
+  PlusCircle, 
+  Trash2, 
+  CornerDownLeft 
+} from 'lucide-react';
 import { BatchItem } from '../types/batch';
 
 interface InputDrawerProps {
@@ -38,6 +48,14 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
 }) => {
   const [rawText, setRawText] = useState('');
   const [parseError, setParseError] = useState<string | null>(null);
+
+  // Single Entry Manual Form State
+  const [singleFingerprint, setSingleFingerprint] = useState('');
+  const [singlePda, setSinglePda] = useState('');
+  const [singleCsc, setSingleCsc] = useState('');
+  const [singleBaseband, setSingleBaseband] = useState('');
+  const [singleBuildId, setSingleBuildId] = useState('');
+  const [singleAddedNotice, setSingleAddedNotice] = useState(false);
 
   if (!isOpen) return null;
 
@@ -158,6 +176,49 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
 
   const parsedItems = parseRawText(rawText);
 
+  // Handle Add Single Entry into Textarea
+  const handleAddSingleEntry = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const fp = singleFingerprint.trim();
+    const pda = singlePda.trim();
+    const csc = singleCsc.trim();
+    const baseband = singleBaseband.trim() || '-';
+    const bid = singleBuildId.trim();
+
+    if (!fp && !pda) {
+      setParseError('Please fill at least the Fingerprint Name or PDA Version.');
+      return;
+    }
+
+    const effectiveFp = fp || pda;
+    const effectivePda = pda || fp;
+    const effectiveCsc = csc || '';
+    const effectiveBb = baseband;
+
+    let newLine = '';
+    if (bid) {
+      newLine = `${bid}\t${effectiveFp}\t${effectivePda}\t${effectiveCsc}\t${effectiveBb}`;
+    } else {
+      newLine = `${effectiveFp}\t${effectivePda}\t${effectiveCsc}\t${effectiveBb}`;
+    }
+
+    setRawText((prev) => {
+      const cleanPrev = prev.trim();
+      return cleanPrev ? `${cleanPrev}\n${newLine}` : newLine;
+    });
+
+    // Reset single fields
+    setSingleFingerprint('');
+    setSinglePda('');
+    setSingleCsc('');
+    setSingleBaseband('');
+    setSingleBuildId('');
+    setParseError(null);
+
+    setSingleAddedNotice(true);
+    setTimeout(() => setSingleAddedNotice(false), 2000);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (parsedItems.length === 0) {
@@ -181,9 +242,9 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
       <div className="w-full sm:max-w-xl md:max-w-2xl bg-white dark:bg-[#09090b] h-full shadow-2xl border-l border-slate-200 dark:border-neutral-800 flex flex-col animate-in slide-in-from-right duration-200">
         
         {/* Drawer Header */}
-        <div className="px-3 py-3 sm:px-6 sm:py-4 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between">
+        <div className="px-3 py-3 sm:px-6 sm:py-4 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2 sm:gap-2.5">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-blue-50 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-blue-50 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-200/80 dark:border-blue-800/80">
               <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
             <div>
@@ -191,7 +252,7 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
                 Add Batch Builds
               </h2>
               <p className="text-[10px] sm:text-xs text-slate-400 dark:text-neutral-500">
-                Paste raw TSV, CSV, or Key-Value build data
+                Single manual entry or paste raw batch specs
               </p>
             </div>
           </div>
@@ -203,34 +264,151 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
           </button>
         </div>
 
-        {/* Drawer Body */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-3 sm:space-y-4 flex flex-col">
+        {/* Drawer Scrollable Body */}
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4 flex flex-col">
           
+          {/* ========================================================================= */}
+          {/* 1. SINGLE ENTRY MANUAL INPUT FORM (Directly Above Textarea) */}
+          {/* ========================================================================= */}
+          <div className="p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-[#0c0c0f] border border-slate-200 dark:border-neutral-800 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] sm:text-xs font-bold text-slate-800 dark:text-neutral-200 flex items-center gap-1.5 uppercase tracking-wider">
+                <PlusCircle className="w-3.5 h-3.5 text-blue-500" />
+                Single Build Manual Entry
+              </span>
+              {singleAddedNotice && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 animate-in fade-in duration-200">
+                  <CheckCircle2 className="w-3 h-3" />
+                  Appended to Textarea!
+                </span>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
+              <div className="space-y-1 sm:col-span-2">
+                <label className="text-[10px] sm:text-[11px] font-medium text-slate-600 dark:text-neutral-400 flex items-center justify-between">
+                  <span>Fingerprint / Build Name *</span>
+                  <span className="text-[9px] text-slate-400">e.g. SM-S928B_OXM_14_BWK2</span>
+                </label>
+                <input
+                  type="text"
+                  value={singleFingerprint}
+                  onChange={(e) => setSingleFingerprint(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddSingleEntry(); } }}
+                  placeholder="SM-S928B_OXM_14_BWK2"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#070709] border border-slate-200 dark:border-neutral-800 rounded-lg focus:border-blue-500 outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] sm:text-[11px] font-medium text-slate-600 dark:text-neutral-400">
+                  PDA Version *
+                </label>
+                <input
+                  type="text"
+                  value={singlePda}
+                  onChange={(e) => setSinglePda(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddSingleEntry(); } }}
+                  placeholder="S928BXXU1BWK2"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#070709] border border-slate-200 dark:border-neutral-800 rounded-lg focus:border-blue-500 outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] sm:text-[11px] font-medium text-slate-600 dark:text-neutral-400">
+                  CSC Version
+                </label>
+                <input
+                  type="text"
+                  value={singleCsc}
+                  onChange={(e) => setSingleCsc(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddSingleEntry(); } }}
+                  placeholder="S928BOXM1BWK2"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#070709] border border-slate-200 dark:border-neutral-800 rounded-lg focus:border-blue-500 outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] sm:text-[11px] font-medium text-slate-600 dark:text-neutral-400">
+                  Baseband / Phone
+                </label>
+                <input
+                  type="text"
+                  value={singleBaseband}
+                  onChange={(e) => setSingleBaseband(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddSingleEntry(); } }}
+                  placeholder="S928BXXU1BWK2 (or -)"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#070709] border border-slate-200 dark:border-neutral-800 rounded-lg focus:border-blue-500 outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] sm:text-[11px] font-medium text-slate-600 dark:text-neutral-400 flex items-center justify-between">
+                  <span>Build ID</span>
+                  <span className="text-[9px] text-slate-400">(Optional)</span>
+                </label>
+                <input
+                  type="text"
+                  value={singleBuildId}
+                  onChange={(e) => setSingleBuildId(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddSingleEntry(); } }}
+                  placeholder="114001506"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#070709] border border-slate-200 dark:border-neutral-800 rounded-lg focus:border-blue-500 outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="pt-1 flex items-center justify-end">
+              <button
+                type="button"
+                onClick={() => handleAddSingleEntry()}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 rounded-lg shadow-xs shadow-blue-500/20 transition-all cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>+ Append to Textarea</span>
+                <CornerDownLeft className="w-3 h-3 opacity-70" />
+              </button>
+            </div>
+          </div>
+
           {/* Sample Template Quick Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
             <span className="text-[10px] sm:text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-amber-500" /> Templates:
+              <Sparkles className="w-3 h-3 text-amber-500" /> Quick Samples:
             </span>
             {SAMPLE_TEMPLATES.map((tmpl, idx) => (
               <button
                 type="button"
                 key={idx}
                 onClick={() => handleLoadSample(tmpl)}
-                className="text-[9px] sm:text-[11px] px-1.5 py-0.5 sm:px-2 sm:py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors font-medium"
+                className="text-[9px] sm:text-[11px] px-1.5 py-0.5 sm:px-2 sm:py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors font-medium cursor-pointer"
               >
                 {tmpl.name.split(':')[0]}
               </button>
             ))}
           </div>
 
-          {/* Main Multi-line Textarea */}
-          <div className="flex-1 flex flex-col space-y-1 sm:space-y-1.5">
-            <label className="text-[10px] sm:text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
-              <span>Paste Build Specifications</span>
-              <span className="text-[9px] sm:text-[11px] font-normal text-slate-400">
-                Fingerprint, PDA, CSC, Baseband
-              </span>
-            </label>
+          {/* ========================================================================= */}
+          {/* 2. MAIN MULTI-LINE TEXTAREA */}
+          {/* ========================================================================= */}
+          <div className="flex-1 flex flex-col space-y-1 sm:space-y-1.5 min-h-[160px]">
+            <div className="flex items-center justify-between text-[10px] sm:text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <label className="flex items-center gap-1.5">
+                <FileText className="w-3.5 h-3.5 text-blue-500" />
+                <span>Batch Raw Textarea (TSV / CSV / Key-Value)</span>
+              </label>
+              {rawText.trim() && (
+                <button
+                  type="button"
+                  onClick={() => setRawText('')}
+                  className="text-[10px] text-rose-500 hover:text-rose-600 flex items-center gap-1 font-medium transition-colors cursor-pointer"
+                  title="Clear Textarea"
+                >
+                  <Trash2 className="w-3 h-3" />
+                  <span>Clear</span>
+                </button>
+              )}
+            </div>
             <textarea
               value={rawText}
               onChange={(e) => {
@@ -238,7 +416,7 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
                 if (parseError) setParseError(null);
               }}
               placeholder={`Example:\nSM-G525F_SEA_14_XSA\tG525FXXU4CVI1\tG525FOLE4CVI1\tG525FXXU4CVI1\nSM-X810_OXM_14_FZHH\tX810XXU6FZHH\tX810OXM6FZHH\tX810XXU6FZF1`}
-              className="w-full flex-1 min-h-[140px] sm:min-h-[220px] p-2.5 sm:p-3 text-[10px] sm:text-xs font-mono bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 outline-none transition-all placeholder:text-slate-400"
+              className="w-full flex-1 min-h-[140px] sm:min-h-[180px] p-2.5 sm:p-3 text-[10px] sm:text-xs font-mono bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 outline-none transition-all placeholder:text-slate-400"
             />
           </div>
 
@@ -251,24 +429,25 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
           )}
 
           {parsedItems.length > 0 && (
-            <div className="p-2.5 sm:p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-1.5 sm:space-y-2">
+            <div className="p-2.5 sm:p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-1.5 sm:space-y-2 shrink-0">
               <div className="flex items-center justify-between text-[10px] sm:text-xs font-semibold text-slate-700 dark:text-slate-200">
                 <span className="flex items-center gap-1 sm:gap-1.5 text-emerald-600 dark:text-emerald-400">
                   <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  {parsedItems.length} Build{parsedItems.length > 1 ? 's' : ''} Detected
+                  {parsedItems.length} Build{parsedItems.length > 1 ? 's' : ''} Ready to Add
                 </span>
                 <span className="text-[9px] sm:text-[11px] font-normal text-slate-400">
-                  Preview:
+                  Queue Preview:
                 </span>
               </div>
-              <div className="space-y-1 max-h-32 sm:max-h-36 overflow-y-auto">
+              <div className="space-y-1 max-h-28 sm:max-h-32 overflow-y-auto">
                 {parsedItems.slice(0, 3).map((item, i) => (
                   <div key={i} className="text-[9px] sm:text-[11px] font-mono bg-white dark:bg-slate-900 p-1.5 sm:p-2 rounded border border-slate-200/60 dark:border-slate-700/60 flex flex-col">
                     <span className="font-semibold text-slate-800 dark:text-slate-200 truncate">
                       {i + 1}. {item.buildFingerprintName}
                     </span>
                     <span className="text-slate-400 text-[8px] sm:text-[10px] truncate">
-                      PDA: {item.pdaVersion} | CSC: {item.cscVersion} | Baseband: {item.basebandVersion}
+                      PDA: {item.pdaVersion} | CSC: {item.cscVersion} | Baseband: {item.basebandVersion || '-'}
+                      {item.buildId ? ` | ID: ${item.buildId}` : ''}
                     </span>
                   </div>
                 ))}
@@ -282,18 +461,18 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
           )}
 
           {/* Drawer Actions */}
-          <div className="pt-2 sm:pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2">
+          <div className="pt-2 sm:pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2 shrink-0">
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              className="px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={parsedItems.length === 0}
-              className="flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg shadow-xs shadow-blue-500/20 transition-all"
+              className="flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg shadow-xs shadow-blue-500/20 transition-all cursor-pointer"
             >
               <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               <span>Add {parsedItems.length > 0 ? `(${parsedItems.length})` : ''} to Queue</span>
