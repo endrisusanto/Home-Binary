@@ -23,8 +23,8 @@
       "status": "success",
       "message": "Completed: SM-S931BE_SEA_B4_DX",
       "progressPercent": 100,
-      "buildId": "114148659",
-      "buildDate": "2026-08-31 10:19:00"
+      "buildId": "114180737",
+      "buildDate": "2026-08-31 20:54:45"
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
@@ -35,10 +35,10 @@
       "index": 2,
       "status": "failed",
       "progressPercent": 100,
-      "buildId": "114149102",
-      "buildDate": "2026-08-31 10:30:49",
-      "message": "Build #114149102 failed on QuickBuild",
-      "error": "Build #114149102 is failed on QuickBuild"
+      "buildId": "114180733",
+      "buildDate": "2026-08-31 20:54:42",
+      "message": "Build #114180733 failed on QuickBuild",
+      "error": "Build #114180733 is failed on QuickBuild"
     },
     {
       "buildFingerprintName": "SM-A075F_SEA_B4_XME",
@@ -50,8 +50,8 @@
       "status": "success",
       "message": "Completed: SM-A075F_SEA_B4_XME",
       "progressPercent": 100,
-      "buildId": "114149112",
-      "buildDate": "2026-08-31 10:30:53"
+      "buildId": "114182108",
+      "buildDate": "2026-08-31 21:16:30"
     },
     {
       "buildFingerprintName": "SM-X730_EUR_B4_XX",
@@ -62,8 +62,8 @@
       "index": 4,
       "status": "success",
       "progressPercent": 100,
-      "buildId": "114149278",
-      "buildDate": "2026-08-31 10:36:38",
+      "buildId": "114182790",
+      "buildDate": "2026-08-31 21:30:23",
       "message": "Completed: SM-X730_EUR_B4_XX"
     },
     {
@@ -75,9 +75,9 @@
       "index": 6,
       "status": "success",
       "progressPercent": 100,
-      "buildId": "114149590",
-      "buildDate": "2026-08-31 10:48:00",
-      "message": "Form submitted: SM-A155F_SEA_B4_THL"
+      "buildId": "114184218",
+      "buildDate": "2026-08-31 22:02:11",
+      "message": "Completed: SM-A175F_SEA_B4_PHL"
     },
     {
       "buildFingerprintName": "SM-A155F_SEA_B4_THL",
@@ -87,7 +87,9 @@
       "id": "build-1788219747504-0",
       "index": 6,
       "status": "success",
-      "message": "Form submitted: SM-A155F_SEA_B4_THL",
+      "message": "Completed: SM-A155F_SEA_B4_THL",
+      "buildId": "114180698",
+      "buildDate": "2026-08-31 20:51:42",
       "progressPercent": 100
     },
     {
@@ -98,7 +100,9 @@
       "id": "build-1788219747504-1",
       "index": 7,
       "status": "success",
-      "message": "Form submitted: SM-F971BE_SEA_DX",
+      "message": "Completed: SM-F971BE_SEA_DX",
+      "buildId": "114180428",
+      "buildDate": "2026-08-31 20:44:32",
       "progressPercent": 100
     },
     {
@@ -109,7 +113,9 @@
       "id": "build-1788219747504-2",
       "index": 8,
       "status": "success",
-      "message": "Form submitted: SM-F976BE_SEA_DX",
+      "message": "Completed: SM-F976BE_SEA_DX",
+      "buildId": "114200321",
+      "buildDate": "2026-09-01 08:57:48",
       "progressPercent": 100
     },
     {
@@ -120,7 +126,9 @@
       "id": "build-1788219747504-3",
       "index": 9,
       "status": "success",
-      "message": "Form submitted: SM-A185G_SEA_XME",
+      "message": "Completed: SM-A185G_SEA_XME",
+      "buildId": "114180258",
+      "buildDate": "2026-08-31 20:40:50",
       "progressPercent": 100
     },
     {
@@ -131,7 +139,9 @@
       "id": "build-1788219747504-4",
       "index": 10,
       "status": "success",
-      "message": "Form submitted: SM-S931BE_SEA_B4_DX",
+      "message": "Completed: SM-S931BE_SEA_B4_DX",
+      "buildId": "114180737",
+      "buildDate": "2026-08-31 20:54:45",
       "progressPercent": 100
     },
     {
@@ -142,7 +152,9 @@
       "id": "build-1788219747504-5",
       "index": 11,
       "status": "success",
-      "message": "Form submitted: SM-F776BE_SEA_DX",
+      "message": "Completed: SM-F776BE_SEA_DX",
+      "buildId": "114181624",
+      "buildDate": "2026-08-31 21:06:20",
       "progressPercent": 100
     },
     {
@@ -152,8 +164,11 @@
       "basebandVersion": "A566BXXSDCZHD",
       "id": "build-1788219747504-6",
       "index": 12,
-      "status": "success",
-      "message": "Form submitted: SM-A566BE_SEA_B4_XME",
+      "status": "failed",
+      "message": "Build #114180733 failed on QuickBuild",
+      "buildId": "114180733",
+      "buildDate": "2026-08-31 20:54:42",
+      "error": "Build #114180733 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -164,7 +179,9 @@
       "id": "build-1788219747504-7",
       "index": 13,
       "status": "success",
-      "message": "Form submitted: SM-A276BE_SEA_XXV",
+      "message": "Completed: SM-A276BE_SEA_XXV",
+      "buildId": "114181991",
+      "buildDate": "2026-08-31 21:13:39",
       "progressPercent": 100
     },
     {
@@ -174,8 +191,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-8",
       "index": 14,
-      "status": "success",
-      "message": "Form submitted: SM-X910_EUR_C2_XX",
+      "status": "failed",
+      "message": "Build #114182321 failed on QuickBuild",
+      "buildId": "114182321",
+      "buildDate": "2026-08-31 21:21:14",
+      "error": "Build #114182321 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -186,7 +206,9 @@
       "id": "build-1788219747504-9",
       "index": 15,
       "status": "success",
-      "message": "Form submitted: SM-G525F_SEA_14_XSA",
+      "message": "Completed: SM-G525F_SEA_14_XSA",
+      "buildId": "114182235",
+      "buildDate": "2026-08-31 21:19:16",
       "progressPercent": 100
     },
     {
@@ -197,7 +219,9 @@
       "id": "build-1788219747504-10",
       "index": 16,
       "status": "success",
-      "message": "Form submitted: SM-A075F_SEA_B4_XME",
+      "message": "Completed: SM-A075F_SEA_B4_XME",
+      "buildId": "114182108",
+      "buildDate": "2026-08-31 21:16:30",
       "progressPercent": 100
     },
     {
@@ -208,7 +232,9 @@
       "id": "build-1788219747504-11",
       "index": 17,
       "status": "success",
-      "message": "Form submitted: SM-G990E_SEA_16_XME",
+      "message": "Completed: SM-G990E_SEA_16_XME",
+      "buildId": "114182322",
+      "buildDate": "2026-08-31 21:21:17",
       "progressPercent": 100
     },
     {
@@ -219,7 +245,9 @@
       "id": "build-1788219747504-12",
       "index": 18,
       "status": "success",
-      "message": "Form submitted: SM-A155F_SEA_B4_THL",
+      "message": "Completed: SM-A155F_SEA_B4_THL",
+      "buildId": "114182462",
+      "buildDate": "2026-08-31 21:24:35",
       "progressPercent": 100
     },
     {
@@ -230,7 +258,9 @@
       "id": "build-1788219747504-13",
       "index": 19,
       "status": "success",
-      "message": "Form submitted: SM-A245F_SEA_B4_XXV",
+      "message": "Completed: SM-A245F_SEA_B4_XXV",
+      "buildId": "114182612",
+      "buildDate": "2026-08-31 21:27:31",
       "progressPercent": 100
     },
     {
@@ -241,7 +271,9 @@
       "id": "build-1788219747504-14",
       "index": 20,
       "status": "success",
-      "message": "Form submitted: SM-X730_EUR_B4_XX",
+      "message": "Completed: SM-X730_EUR_B4_XX",
+      "buildId": "114182790",
+      "buildDate": "2026-08-31 21:30:23",
       "progressPercent": 100
     },
     {
@@ -251,8 +283,11 @@
       "basebandVersion": "X736BXXS8BZH4",
       "id": "build-1788219747504-15",
       "index": 21,
-      "status": "success",
-      "message": "Form submitted: SM-X736B_SEA_DX",
+      "status": "failed",
+      "message": "Build #114183374 failed on QuickBuild",
+      "buildId": "114183374",
+      "buildDate": "2026-08-31 21:44:22",
+      "error": "Build #114183374 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -263,7 +298,9 @@
       "id": "build-1788219747504-16",
       "index": 22,
       "status": "success",
-      "message": "Form submitted: SM-X700_EUR_16_XX",
+      "message": "Completed: SM-X700_EUR_16_XX",
+      "buildId": "114183375",
+      "buildDate": "2026-08-31 21:44:25",
       "progressPercent": 100
     },
     {
@@ -274,7 +311,9 @@
       "id": "build-1788219747504-17",
       "index": 23,
       "status": "success",
-      "message": "Form submitted: SM-A165F_SEA_B4_XXV",
+      "message": "Completed: SM-A165F_SEA_B4_XXV",
+      "buildId": "114183314",
+      "buildDate": "2026-08-31 21:41:25",
       "progressPercent": 100
     },
     {
@@ -284,8 +323,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-18",
       "index": 24,
-      "status": "success",
-      "message": "Form submitted: SM-X620_EUR_XX",
+      "status": "failed",
+      "message": "Build #114183494 failed on QuickBuild",
+      "buildId": "114183494",
+      "buildDate": "2026-08-31 21:48:16",
+      "error": "Build #114183494 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -295,8 +337,11 @@
       "basebandVersion": "X626BXXU9DZH1",
       "id": "build-1788219747504-19",
       "index": 25,
-      "status": "success",
-      "message": "Form submitted: SM-X626B_SEA_DX",
+      "status": "failed",
+      "message": "Build #114183495 failed on QuickBuild",
+      "buildId": "114183495",
+      "buildDate": "2026-08-31 21:48:19",
+      "error": "Build #114183495 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -306,8 +351,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-20",
       "index": 26,
-      "status": "success",
-      "message": "Form submitted: SM-X730_EUR_XX",
+      "status": "failed",
+      "message": "Build #114183653 failed on QuickBuild",
+      "buildId": "114183653",
+      "buildDate": "2026-08-31 21:51:41",
+      "error": "Build #114183653 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -318,7 +366,9 @@
       "id": "build-1788219747504-21",
       "index": 27,
       "status": "success",
-      "message": "Form submitted: SM-X610_EUR_B4_XX",
+      "message": "Completed: SM-X610_EUR_B4_XX",
+      "buildId": "114183496",
+      "buildDate": "2026-08-31 21:48:22",
       "progressPercent": 100
     },
     {
@@ -328,8 +378,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-22",
       "index": 28,
-      "status": "success",
-      "message": "Form submitted: SM-X520_EUR_XX",
+      "status": "failed",
+      "message": "Build #114184216 failed on QuickBuild",
+      "buildId": "114184216",
+      "buildDate": "2026-08-31 22:02:07",
+      "error": "Build #114184216 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -340,7 +393,9 @@
       "id": "build-1788219747504-23",
       "index": 29,
       "status": "success",
-      "message": "Form submitted: SM-A175F_SEA_B4_PHL",
+      "message": "Completed: SM-A175F_SEA_B4_PHL",
+      "buildId": "114184218",
+      "buildDate": "2026-08-31 22:02:11",
       "progressPercent": 100
     },
     {
@@ -351,7 +406,9 @@
       "id": "build-1788219747504-24",
       "index": 30,
       "status": "success",
-      "message": "Form submitted: SM-X936B_SEA_B4_DX",
+      "message": "Completed: SM-X936B_SEA_B4_DX",
+      "buildId": "114183667",
+      "buildDate": "2026-08-31 21:51:44",
       "progressPercent": 100
     },
     {
@@ -362,7 +419,9 @@
       "id": "build-1788219747504-25",
       "index": 31,
       "status": "success",
-      "message": "Form submitted: SM-G990E_SEA_16_XME",
+      "message": "Completed: SM-G990E_SEA_16_XME",
+      "buildId": "114184380",
+      "buildDate": "2026-08-31 22:05:10",
       "progressPercent": 100
     },
     {
@@ -372,8 +431,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-26",
       "index": 32,
-      "status": "success",
-      "message": "Form submitted: SM-X810_EUR_C2_XX",
+      "status": "failed",
+      "message": "Build #114184548 failed on QuickBuild",
+      "buildId": "114184548",
+      "buildDate": "2026-08-31 22:08:28",
+      "error": "Build #114184548 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -384,7 +446,9 @@
       "id": "build-1788219747504-27",
       "index": 33,
       "status": "success",
-      "message": "Form submitted: SM-P625_SEA_B4_DX",
+      "message": "Completed: SM-P625_SEA_B4_DX",
+      "buildId": "114184560",
+      "buildDate": "2026-08-31 22:08:35",
       "progressPercent": 100
     },
     {
@@ -394,8 +458,11 @@
       "basebandVersion": "S928BXXU6EZHC",
       "id": "build-1788219747504-28",
       "index": 34,
-      "status": "success",
-      "message": "Form submitted: SM-S928BE_SEA_DX",
+      "status": "failed",
+      "message": "Build #114184639 failed on QuickBuild",
+      "buildId": "114184639",
+      "buildDate": "2026-08-31 22:11:13",
+      "error": "Build #114184639 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -405,8 +472,11 @@
       "basebandVersion": "F966BXXUCZZHC",
       "id": "build-1788219747504-29",
       "index": 35,
-      "status": "success",
-      "message": "Form submitted: SM-F966B_EUR_C2_XX",
+      "status": "failed",
+      "message": "Build #114184554 failed on QuickBuild",
+      "buildId": "114184554",
+      "buildDate": "2026-08-31 22:08:32",
+      "error": "Build #114184554 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -416,8 +486,11 @@
       "basebandVersion": "S921BXXUHEZHC",
       "id": "build-1788219747504-30",
       "index": 36,
-      "status": "success",
-      "message": "Form submitted: SM-S921BE_SEA_DX",
+      "status": "failed",
+      "message": "Build #114184637 failed on QuickBuild",
+      "buildId": "114184637",
+      "buildDate": "2026-08-31 22:11:10",
+      "error": "Build #114184637 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -427,8 +500,11 @@
       "basebandVersion": "S731BXXU9CZH4",
       "id": "build-1788219747504-31",
       "index": 37,
-      "status": "success",
-      "message": "Form submitted: SM-S731B_EUR_C2_XX",
+      "status": "failed",
+      "message": "Build #114184752 failed on QuickBuild",
+      "buildId": "114184752",
+      "buildDate": "2026-08-31 22:14:24",
+      "error": "Build #114184752 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -439,7 +515,9 @@
       "id": "build-1788219747504-32",
       "index": 38,
       "status": "success",
-      "message": "Form submitted: SM-M556B_SEA_B4_XME",
+      "message": "Completed: SM-M556B_SEA_B4_XME",
+      "buildId": "114184642",
+      "buildDate": "2026-08-31 22:11:19",
       "progressPercent": 100
     },
     {
@@ -449,8 +527,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-33",
       "index": 39,
-      "status": "success",
-      "message": "Form submitted: SM-X710_EUR_B4_XX",
+      "status": "failed",
+      "message": "Build #114184640 failed on QuickBuild",
+      "buildId": "114184640",
+      "buildDate": "2026-08-31 22:11:16",
+      "error": "Build #114184640 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -460,9 +541,11 @@
       "basebandVersion": "G525FXXUKEZH1",
       "id": "build-1788219747504-34",
       "index": 40,
-      "status": "running",
-      "message": "Submitting form...",
-      "progressPercent": 75
+      "status": "success",
+      "message": "Completed: SM-G525F_SEA_14_XSA",
+      "buildId": "114184754",
+      "buildDate": "2026-08-31 22:14:27",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A576BE_SEA_XME",
@@ -471,8 +554,11 @@
       "basebandVersion": "A576BXXU4BZG6",
       "id": "build-1788219747504-35",
       "index": 41,
-      "status": "success",
-      "message": "Form submitted: SM-A576BE_SEA_XME",
+      "status": "failed",
+      "message": "Build #114184806 failed on QuickBuild",
+      "buildId": "114184806",
+      "buildDate": "2026-08-31 22:16:23",
+      "error": "Build #114184806 is failed on QuickBuild",
       "progressPercent": 100
     },
     {
@@ -483,7 +569,9 @@
       "id": "build-1788219747504-36",
       "index": 42,
       "status": "success",
-      "message": "Form submitted: SM-S918BE_SEA_B4_DX",
+      "message": "Completed: SM-S918BE_SEA_B4_DX",
+      "buildId": "114184908",
+      "buildDate": "2026-08-31 22:19:24",
       "progressPercent": 100
     },
     {
@@ -493,9 +581,11 @@
       "basebandVersion": "A336EDXUJGZH1",
       "id": "build-1788219747504-37",
       "index": 43,
-      "status": "running",
-      "message": "Submitting form...",
-      "progressPercent": 75
+      "status": "success",
+      "message": "Completed: SM-A336E_SEA_16_XXV",
+      "buildId": "114184808",
+      "buildDate": "2026-08-31 22:16:26",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X216B_SEA_16_DX",
@@ -504,8 +594,11 @@
       "basebandVersion": "X216BXXUDEZGF",
       "id": "build-1788219747504-38",
       "index": 44,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X216B_SEA_16_DX",
+      "buildId": "114185474",
+      "buildDate": "2026-08-31 22:42:19",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
@@ -514,8 +607,11 @@
       "basebandVersion": "S931BXXSCCZH1",
       "id": "build-1788219747504-39",
       "index": 45,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-S931BE_SEA_B4_DX",
+      "buildId": "114185248",
+      "buildDate": "2026-08-31 22:30:43",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X810_EUR_B4_XX",
@@ -524,8 +620,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-40",
       "index": 46,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X810_EUR_B4_XX",
+      "buildId": "114185048",
+      "buildDate": "2026-08-31 22:25:02",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X400_EUR_B4_XX",
@@ -534,8 +633,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-41",
       "index": 47,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X400_EUR_B4_XX",
+      "buildId": "114185525",
+      "buildDate": "2026-08-31 22:45:10",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X920_EUR_B4_XX",
@@ -544,8 +646,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-42",
       "index": 48,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X920_EUR_B4_XX",
+      "buildId": "114185767",
+      "buildDate": "2026-08-31 22:58:25",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X520_EUR_B4_XX",
@@ -554,8 +659,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-43",
       "index": 49,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X520_EUR_B4_XX",
+      "buildId": "114185625",
+      "buildDate": "2026-08-31 22:51:41",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X620_EUR_B4_XX",
@@ -564,8 +672,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-44",
       "index": 50,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X620_EUR_B4_XX",
+      "buildId": "114185584",
+      "buildDate": "2026-08-31 22:48:23",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X510_EUR_B4_XX",
@@ -574,8 +685,11 @@
       "basebandVersion": "",
       "id": "build-1788219747504-45",
       "index": 51,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X510_EUR_B4_XX",
+      "buildId": "114185679",
+      "buildDate": "2026-08-31 22:55:04",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A276BE_SEA_XXV",
@@ -584,8 +698,11 @@
       "basebandVersion": "A276BXXU2AZH7",
       "id": "build-1788219747504-46",
       "index": 52,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-A276BE_SEA_XXV",
+      "buildId": "114186715",
+      "buildDate": "2026-08-31 23:16:40",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
@@ -594,8 +711,11 @@
       "basebandVersion": "F776BXXS2AZH9",
       "id": "build-1788219747504-47",
       "index": 53,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-F776BE_SEA_DX",
+      "buildId": "114186414",
+      "buildDate": "2026-08-31 23:10:37",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-M546B_SEA_B4_XME",
@@ -604,8 +724,11 @@
       "basebandVersion": "M546BXXSFFZH3",
       "id": "build-1788219747504-48",
       "index": 54,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-M546B_SEA_B4_XME",
+      "buildId": "114186281",
+      "buildDate": "2026-08-31 23:07:41",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
@@ -614,8 +737,11 @@
       "basebandVersion": "A566BXXSDCZHB",
       "id": "build-1788219747504-49",
       "index": 55,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-A566BE_SEA_B4_XME",
+      "buildId": "114186883",
+      "buildDate": "2026-08-31 23:20:12",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A556E_SEA_B4_PHL",
@@ -624,8 +750,11 @@
       "basebandVersion": "A556EXXSHDZH6",
       "id": "build-1788219747504-50",
       "index": 56,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-A556E_SEA_B4_PHL",
+      "buildId": "114187678",
+      "buildDate": "2026-08-31 23:35:48",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X616B_SEA_B4_DX",
@@ -634,8 +763,11 @@
       "basebandVersion": "X616BXXSFEZH5",
       "id": "build-1788219747504-51",
       "index": 57,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X616B_SEA_B4_DX",
+      "buildId": "114188256",
+      "buildDate": "2026-08-31 23:51:26",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X236B_SEA_B4_DX",
@@ -644,8 +776,11 @@
       "basebandVersion": "X236BXXS7BZH2",
       "id": "build-1788219747504-52",
       "index": 58,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X236B_SEA_B4_DX",
+      "buildId": "114187049",
+      "buildDate": "2026-08-31 23:23:58",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X926B_SEA_B4_DX",
@@ -654,8 +789,11 @@
       "basebandVersion": "X926BXXSADZH1",
       "id": "build-1788219747504-53",
       "index": 59,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X926B_SEA_B4_DX",
+      "buildId": "114187211",
+      "buildDate": "2026-08-31 23:26:46",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X826B_SEA_B4_DX",
@@ -664,8 +802,11 @@
       "basebandVersion": "X826BXXSADZH1",
       "id": "build-1788219747504-54",
       "index": 60,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X826B_SEA_B4_DX",
+      "buildId": "114187948",
+      "buildDate": "2026-08-31 23:42:34",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X406B_SEA_B4_DX",
@@ -674,8 +815,11 @@
       "basebandVersion": "X406BXXS7CZH4",
       "id": "build-1788219747504-55",
       "index": 61,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X406B_SEA_B4_DX",
+      "buildId": "114187833",
+      "buildDate": "2026-08-31 23:39:16",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A546E_SEA_B4_TSE",
@@ -684,8 +828,11 @@
       "basebandVersion": "A546EXXSMFZH1",
       "id": "build-1788219747504-56",
       "index": 62,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-A546E_SEA_B4_TSE",
+      "buildId": "114188321",
+      "buildDate": "2026-08-31 23:54:56",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X626B_SEA_B4_DX",
@@ -694,8 +841,11 @@
       "basebandVersion": "X626BXXSACZH6",
       "id": "build-1788219747504-57",
       "index": 63,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X626B_SEA_B4_DX",
+      "buildId": "114188813",
+      "buildDate": "2026-09-01 00:08:33",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F976BE_SEA_DX",
@@ -704,8 +854,11 @@
       "basebandVersion": "F976BXXU2AZHD",
       "id": "build-1788219747504-58",
       "index": 64,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-F976BE_SEA_DX",
+      "buildId": "114188390",
+      "buildDate": "2026-08-31 23:57:57",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X115_SEA_16_DX",
@@ -714,8 +867,11 @@
       "basebandVersion": "X115XXUBDZH5",
       "id": "build-1788219747504-59",
       "index": 65,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-X115_SEA_16_DX",
+      "buildId": "114189092",
+      "buildDate": "2026-09-01 00:16:29",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
@@ -724,8 +880,11 @@
       "basebandVersion": "A245FXXSEFZH3",
       "id": "build-1788219747504-60",
       "index": 66,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-A245F_SEA_B4_XXV",
+      "buildId": "114188683",
+      "buildDate": "2026-09-01 00:05:32",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A336E_SEA_16_XXV",
@@ -734,8 +893,11 @@
       "basebandVersion": "A336EDXSKGZH2",
       "id": "build-1788219747504-61",
       "index": 67,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-A336E_SEA_16_XXV",
+      "buildId": "114188984",
+      "buildDate": "2026-09-01 00:12:58",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F926B_SEA_15_DX",
@@ -744,8 +906,11 @@
       "basebandVersion": "F926BXXSJJZH3",
       "id": "build-1788219747504-62",
       "index": 68,
-      "status": "pending",
-      "message": "Cancelled"
+      "status": "success",
+      "message": "Completed: SM-F926B_SEA_15_DX",
+      "buildId": "114189197",
+      "buildDate": "2026-09-01 00:19:21",
+      "progressPercent": 100
     }
   ],
   "logs": [
@@ -23406,6 +23571,2799 @@
       "timestamp": "7:00:13 AM",
       "level": "success",
       "message": "[Tab #3] Form triggered successfully for SM-A576BE_SEA_XME!",
+      "index": null
+    },
+    {
+      "id": "3pi6pks",
+      "timestamp": "7:00:15 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-X216B_SEA_16_DX",
+      "index": null
+    },
+    {
+      "id": "9wugcdx",
+      "timestamp": "7:00:17 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "qva5oiy",
+      "timestamp": "7:00:19 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "o8ru82a",
+      "timestamp": "7:00:19 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "6pcf885",
+      "timestamp": "7:00:20 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "ngt742v",
+      "timestamp": "7:00:20 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "itp67zr",
+      "timestamp": "7:00:21 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-X216B_SEA_16_DX, PDA=X216BXXUDEZGF, CSC=X216BOLEDEZGF, Phone=X216BXXUDEZGF",
+      "index": null
+    },
+    {
+      "id": "w4xvw1c",
+      "timestamp": "7:00:21 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "agllx5n",
+      "timestamp": "7:00:22 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "iqzup0j",
+      "timestamp": "7:00:23 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-A336E_SEA_16_XXV!",
+      "index": null
+    },
+    {
+      "id": "nox77yv",
+      "timestamp": "7:00:23 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-S931BE_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "pmyp1ks",
+      "timestamp": "7:00:25 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-X216B_SEA_16_DX!",
+      "index": null
+    },
+    {
+      "id": "4v8p7ba",
+      "timestamp": "7:00:26 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-G525F_SEA_14_XSA!",
+      "index": null
+    },
+    {
+      "id": "a71e2zg",
+      "timestamp": "7:00:26 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X810_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "aj5gucb",
+      "timestamp": "7:00:27 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-X400_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "z1rkyep",
+      "timestamp": "7:00:29 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "4kj7m9q",
+      "timestamp": "7:00:29 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "tamvljj",
+      "timestamp": "7:00:31 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "oau5nal",
+      "timestamp": "7:00:31 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "f5f1vd3",
+      "timestamp": "7:00:32 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "2nevfns",
+      "timestamp": "7:00:33 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "u1stu0t",
+      "timestamp": "7:00:33 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "6iigdja",
+      "timestamp": "7:00:34 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-X400_EUR_B4_XX, PDA=X400XXS7CZH6, CSC=X400OXM7CZH6, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "zzj6x58",
+      "timestamp": "7:00:34 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "zr5pwwr",
+      "timestamp": "7:00:34 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "2t56uy3",
+      "timestamp": "7:00:35 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "gstjejw",
+      "timestamp": "7:00:35 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "wnwdr7c",
+      "timestamp": "7:00:37 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "s7kyknq",
+      "timestamp": "7:00:37 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "wwxkt3i",
+      "timestamp": "7:00:38 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-X400_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "3w5tq1b",
+      "timestamp": "7:00:39 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X920_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "fk624z2",
+      "timestamp": "7:00:39 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "hsqme9g",
+      "timestamp": "7:00:39 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "gfg07ke",
+      "timestamp": "7:00:41 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "2lixbt9",
+      "timestamp": "7:00:41 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "q617yxc",
+      "timestamp": "7:00:42 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "g3o439r",
+      "timestamp": "7:00:43 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "9dq7dh7",
+      "timestamp": "7:00:43 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "k53sgfa",
+      "timestamp": "7:00:43 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-S931BE_SEA_B4_DX, PDA=S931BXXSCCZH3, CSC=S931BOXMCCZH3, Phone=S931BXXSCCZH1",
+      "index": null
+    },
+    {
+      "id": "ysypjey",
+      "timestamp": "7:00:43 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "nrn6hd9",
+      "timestamp": "7:00:44 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X920_EUR_B4_XX, PDA=X920XXSADZH1, CSC=X920OLEADZH1, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "un8ej7i",
+      "timestamp": "7:00:44 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "fu8rqp1",
+      "timestamp": "7:00:44 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "gqi4vc6",
+      "timestamp": "7:00:45 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "lv14cjc",
+      "timestamp": "7:00:45 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "2x8g0o8",
+      "timestamp": "7:00:46 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "k3hmqvk",
+      "timestamp": "7:00:48 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X920_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "1v48tr2",
+      "timestamp": "7:00:48 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-X810_EUR_B4_XX, PDA=X810XXS6EZH3, CSC=X810OLE6EZH3, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "wb6q55m",
+      "timestamp": "7:00:48 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "2bml8fu",
+      "timestamp": "7:00:49 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X520_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "mv52vl3",
+      "timestamp": "7:00:49 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ad0og5s",
+      "timestamp": "7:00:50 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "kvxcetk",
+      "timestamp": "7:00:51 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-S931BE_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "n9b20cd",
+      "timestamp": "7:00:51 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "smv6n3z",
+      "timestamp": "7:00:51 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "rgk9r3q",
+      "timestamp": "7:00:52 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-X620_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "9w2o6ev",
+      "timestamp": "7:00:52 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "mk7lglp",
+      "timestamp": "7:00:53 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "hvh8ie2",
+      "timestamp": "7:00:53 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "3hnou0r",
+      "timestamp": "7:00:54 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-X520_EUR_B4_XX, PDA=X520XXSACZH6, CSC=X520OLMACZH6, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "y2hgaym",
+      "timestamp": "7:00:54 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "tz4zuvg",
+      "timestamp": "7:00:55 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "tob1d54",
+      "timestamp": "7:00:55 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "usbrn8d",
+      "timestamp": "7:00:55 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "4yo6lpc",
+      "timestamp": "7:00:55 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-X810_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "jmizn23",
+      "timestamp": "7:00:56 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "nckjwbp",
+      "timestamp": "7:00:56 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "byfy31y",
+      "timestamp": "7:00:56 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X510_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "28cwuyo",
+      "timestamp": "7:00:57 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "qjkpdcw",
+      "timestamp": "7:00:59 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "jv85456",
+      "timestamp": "7:00:59 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "eax3c5u",
+      "timestamp": "7:01:00 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "6yjksov",
+      "timestamp": "7:01:00 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "d8asfgd",
+      "timestamp": "7:01:01 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X510_EUR_B4_XX, PDA=X510XXSFEZH5, CSC=X510OLEFEZH5, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "cuhwaam",
+      "timestamp": "7:01:01 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "b2zy346",
+      "timestamp": "7:01:02 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "hs3oc8d",
+      "timestamp": "7:01:03 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-X620_EUR_B4_XX, PDA=X620XXSACZH6, CSC=X620OLMACZH6, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "dtfns2e",
+      "timestamp": "7:01:03 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "lt01d3q",
+      "timestamp": "7:01:03 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-X520_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "98wt64m",
+      "timestamp": "7:01:04 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "wtvktno",
+      "timestamp": "7:01:04 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A276BE_SEA_XXV",
+      "index": null
+    },
+    {
+      "id": "pq4zzjc",
+      "timestamp": "7:01:05 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "dm972ig",
+      "timestamp": "7:01:07 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "1wtqkrd",
+      "timestamp": "7:01:07 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "utws4oy",
+      "timestamp": "7:01:08 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "3bz44ei",
+      "timestamp": "7:01:08 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "ff79ohn",
+      "timestamp": "7:01:09 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-A276BE_SEA_XXV, PDA=A276BXXU2AZH7, CSC=A276BOLM2AZH7, Phone=A276BXXU2AZH7",
+      "index": null
+    },
+    {
+      "id": "u3uw1gg",
+      "timestamp": "7:01:09 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "wtqy25v",
+      "timestamp": "7:01:10 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "u6b7h3d",
+      "timestamp": "7:01:13 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-A276BE_SEA_XXV!",
+      "index": null
+    },
+    {
+      "id": "gmw6vm7",
+      "timestamp": "7:01:13 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X510_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "yzt8rss",
+      "timestamp": "7:01:14 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-F776BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "8crp6oa",
+      "timestamp": "7:01:14 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-M546B_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "z7k8od9",
+      "timestamp": "7:01:18 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "0gp85w6",
+      "timestamp": "7:01:18 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-X620_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "2lcaf90",
+      "timestamp": "7:01:19 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A566BE_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "42czcly",
+      "timestamp": "7:01:20 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "s6u8kq8",
+      "timestamp": "7:01:20 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "jbb88am",
+      "timestamp": "7:01:21 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "ncot8mw",
+      "timestamp": "7:01:22 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "38rpj2a",
+      "timestamp": "7:01:22 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "4dxwsyf",
+      "timestamp": "7:01:23 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "2tdwtkk",
+      "timestamp": "7:01:23 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "r2k8wki",
+      "timestamp": "7:01:24 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-A566BE_SEA_B4_XME, PDA=A566BXXSDCZHB, CSC=A566BOLMDCZHB, Phone=A566BXXSDCZHB",
+      "index": null
+    },
+    {
+      "id": "n7m4bvr",
+      "timestamp": "7:01:24 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "ivin8y5",
+      "timestamp": "7:01:24 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "pp1vw49",
+      "timestamp": "7:01:25 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "xmmu6yn",
+      "timestamp": "7:01:25 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "o0lpszk",
+      "timestamp": "7:01:26 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "6bnau9d",
+      "timestamp": "7:01:29 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-M546B_SEA_B4_XME, PDA=M546BXXSFFZH3, CSC=M546BOLMFFZH3, Phone=M546BXXSFFZH3",
+      "index": null
+    },
+    {
+      "id": "64hm8bq",
+      "timestamp": "7:01:29 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "ocnorok",
+      "timestamp": "7:01:29 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-A566BE_SEA_B4_XME!",
+      "index": null
+    },
+    {
+      "id": "rjf3u99",
+      "timestamp": "7:01:29 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "cz4g8ws",
+      "timestamp": "7:01:29 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "ryoudkx",
+      "timestamp": "7:01:30 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A556E_SEA_B4_PHL",
+      "index": null
+    },
+    {
+      "id": "ilsnomf",
+      "timestamp": "7:01:30 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "vf27ttg",
+      "timestamp": "7:01:32 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "cr9e468",
+      "timestamp": "7:01:32 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "lwccd7i",
+      "timestamp": "7:01:32 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "hxu5cmz",
+      "timestamp": "7:01:33 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "4uqvkgn",
+      "timestamp": "7:01:33 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "ac6kugm",
+      "timestamp": "7:01:33 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "opceqfc",
+      "timestamp": "7:01:33 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "65rbpn6",
+      "timestamp": "7:01:34 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A556E_SEA_B4_PHL, PDA=A556EXXSHDZH6, CSC=A556EOLEHDZH6, Phone=A556EXXSHDZH6",
+      "index": null
+    },
+    {
+      "id": "k1wj8hj",
+      "timestamp": "7:01:34 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "r79730m",
+      "timestamp": "7:01:35 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-F776BE_SEA_DX, PDA=F776BXXS2AZH9, CSC=F776BOXM2AZH9, Phone=F776BXXS2AZH9",
+      "index": null
+    },
+    {
+      "id": "pdegji1",
+      "timestamp": "7:01:35 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "manunpm",
+      "timestamp": "7:01:36 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "fcw012a",
+      "timestamp": "7:01:36 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "cvfh51h",
+      "timestamp": "7:01:38 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-M546B_SEA_B4_XME!",
+      "index": null
+    },
+    {
+      "id": "ctjn51e",
+      "timestamp": "7:01:39 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-A556E_SEA_B4_PHL!",
+      "index": null
+    },
+    {
+      "id": "rynqf12",
+      "timestamp": "7:01:39 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X616B_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "z3o57zg",
+      "timestamp": "7:01:39 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "0n36snj",
+      "timestamp": "7:01:40 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X236B_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "d31c1x5",
+      "timestamp": "7:01:41 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-F776BE_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "n0u24kq",
+      "timestamp": "7:01:41 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "2kh6yn2",
+      "timestamp": "7:01:41 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "eh65z8m",
+      "timestamp": "7:01:42 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "vvbtssr",
+      "timestamp": "7:01:42 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-X926B_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "fn0wz2j",
+      "timestamp": "7:01:43 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "rrsmvwp",
+      "timestamp": "7:01:43 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "xsto4xc",
+      "timestamp": "7:01:44 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "kr2y5sr",
+      "timestamp": "7:01:44 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "f1pu1u0",
+      "timestamp": "7:01:44 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "2wl427s",
+      "timestamp": "7:01:45 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "gzuik6x",
+      "timestamp": "7:01:45 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X616B_SEA_B4_DX, PDA=X616BXXSFEZH5, CSC=X616BOLEFEZH5, Phone=X616BXXSFEZH5",
+      "index": null
+    },
+    {
+      "id": "gjbclxw",
+      "timestamp": "7:01:45 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "xgzsr2q",
+      "timestamp": "7:01:45 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "j2v515m",
+      "timestamp": "7:01:45 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "5cgpsjj",
+      "timestamp": "7:01:46 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "apicw9s",
+      "timestamp": "7:01:46 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "afu3sn5",
+      "timestamp": "7:01:46 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "2wmfcf1",
+      "timestamp": "7:01:47 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "x4f6qky",
+      "timestamp": "7:01:47 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-X926B_SEA_B4_DX, PDA=X926BXXSADZH1, CSC=X926BOXMADZH1, Phone=X926BXXSADZH1",
+      "index": null
+    },
+    {
+      "id": "38dvpg0",
+      "timestamp": "7:01:47 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "add4aqy",
+      "timestamp": "7:01:48 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-X236B_SEA_B4_DX, PDA=X236BXXS7BZH2, CSC=X236BOXM7BZH2, Phone=X236BXXS7BZH2",
+      "index": null
+    },
+    {
+      "id": "822a2np",
+      "timestamp": "7:01:48 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "9dl0w8c",
+      "timestamp": "7:01:49 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "2j6d5pe",
+      "timestamp": "7:01:49 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "e1wnxt7",
+      "timestamp": "7:01:51 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X616B_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "dqapca6",
+      "timestamp": "7:01:52 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-X926B_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "m60kenr",
+      "timestamp": "7:01:52 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X826B_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "wux9j3l",
+      "timestamp": "7:01:52 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "u4fvhgf",
+      "timestamp": "7:01:53 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X406B_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "64qbnxi",
+      "timestamp": "7:01:53 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "zdnycvn",
+      "timestamp": "7:01:54 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-X236B_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "lzaqite",
+      "timestamp": "7:01:54 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "25lxq47",
+      "timestamp": "7:01:55 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A546E_SEA_B4_TSE",
+      "index": null
+    },
+    {
+      "id": "q2v271g",
+      "timestamp": "7:01:55 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "8b75ggx",
+      "timestamp": "7:01:56 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "dj6hi2h",
+      "timestamp": "7:01:56 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "crtfqa8",
+      "timestamp": "7:01:56 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "me35es2",
+      "timestamp": "7:01:58 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "7g0vkf2",
+      "timestamp": "7:01:58 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "86bbis8",
+      "timestamp": "7:01:58 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "tuzewkt",
+      "timestamp": "7:01:58 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "j992mjn",
+      "timestamp": "7:01:59 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "jphr1rm",
+      "timestamp": "7:01:59 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "xncfn41",
+      "timestamp": "7:01:59 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "87tih77",
+      "timestamp": "7:02:00 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "texxw1c",
+      "timestamp": "7:02:00 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X826B_SEA_B4_DX, PDA=X826BXXSADZH1, CSC=X826BOXMADZH1, Phone=X826BXXSADZH1",
+      "index": null
+    },
+    {
+      "id": "jlqi9pt",
+      "timestamp": "7:02:00 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "zp2orec",
+      "timestamp": "7:02:00 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A546E_SEA_B4_TSE, PDA=A546EXXSMFZH5, CSC=A546EOLEMFZH5, Phone=A546EXXSMFZH1",
+      "index": null
+    },
+    {
+      "id": "m3uh0wf",
+      "timestamp": "7:02:00 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "0l5q6nr",
+      "timestamp": "7:02:01 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-X406B_SEA_B4_DX, PDA=X406BXXS7CZH6, CSC=X406BOXM7CZH6, Phone=X406BXXS7CZH4",
+      "index": null
+    },
+    {
+      "id": "fne9boj",
+      "timestamp": "7:02:01 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "i5vckbo",
+      "timestamp": "7:02:01 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "go7q2iw",
+      "timestamp": "7:02:02 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "zmswin1",
+      "timestamp": "7:02:02 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "ujhuffn",
+      "timestamp": "7:02:05 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-A546E_SEA_B4_TSE!",
+      "index": null
+    },
+    {
+      "id": "pl4urgl",
+      "timestamp": "7:02:06 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X626B_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "e5wwyns",
+      "timestamp": "7:02:06 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "00ibi9k",
+      "timestamp": "7:02:07 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X826B_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "km98yxm",
+      "timestamp": "7:02:08 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-X406B_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "uzmezyn",
+      "timestamp": "7:02:08 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "htsbr78",
+      "timestamp": "7:02:08 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-F976BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "gvue2np",
+      "timestamp": "7:02:09 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "62m7e71",
+      "timestamp": "7:02:09 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-X115_SEA_16_DX",
+      "index": null
+    },
+    {
+      "id": "iprktw3",
+      "timestamp": "7:02:10 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "zv4bqan",
+      "timestamp": "7:02:10 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ori93k9",
+      "timestamp": "7:02:10 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "lgh1wxz",
+      "timestamp": "7:02:12 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "xjrvsjv",
+      "timestamp": "7:02:12 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "64po3fy",
+      "timestamp": "7:02:12 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "u367beu",
+      "timestamp": "7:02:13 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "28d4255",
+      "timestamp": "7:02:13 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "c07oov4",
+      "timestamp": "7:02:13 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "mlt05pi",
+      "timestamp": "7:02:14 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "fk87tm6",
+      "timestamp": "7:02:14 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X626B_SEA_B4_DX, PDA=X626BXXSACZH6, CSC=X626BOLMACZH6, Phone=X626BXXSACZH6",
+      "index": null
+    },
+    {
+      "id": "5pbuprx",
+      "timestamp": "7:02:14 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "hglo39g",
+      "timestamp": "7:02:14 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-X115_SEA_16_DX, PDA=X115XXUBDZH5, CSC=X115OLEBDZH5, Phone=X115XXUBDZH5",
+      "index": null
+    },
+    {
+      "id": "o4jhrre",
+      "timestamp": "7:02:14 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "lhb6mre",
+      "timestamp": "7:02:15 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "rg4cyai",
+      "timestamp": "7:02:15 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "jv3hg0q",
+      "timestamp": "7:02:15 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "tyxun0a",
+      "timestamp": "7:02:16 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "hwmkwey",
+      "timestamp": "7:02:16 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-F976BE_SEA_DX, PDA=F976BXXU2AZHD, CSC=F976BOXM2AZHD, Phone=F976BXXU2AZHD",
+      "index": null
+    },
+    {
+      "id": "p3nkbe4",
+      "timestamp": "7:02:16 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "mkmqbyf",
+      "timestamp": "7:02:18 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "893034f",
+      "timestamp": "7:02:19 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-X115_SEA_16_DX!",
+      "index": null
+    },
+    {
+      "id": "m896k49",
+      "timestamp": "7:02:20 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X626B_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "8jxpfs1",
+      "timestamp": "7:02:20 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A245F_SEA_B4_XXV",
+      "index": null
+    },
+    {
+      "id": "4jssqe2",
+      "timestamp": "7:02:20 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ebeco17",
+      "timestamp": "7:02:21 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A336E_SEA_16_XXV",
+      "index": null
+    },
+    {
+      "id": "phfwu7f",
+      "timestamp": "7:02:22 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "592wdjq",
+      "timestamp": "7:02:23 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "o54927h",
+      "timestamp": "7:02:23 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-F976BE_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "q9mh34d",
+      "timestamp": "7:02:24 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "pz8r058",
+      "timestamp": "7:02:24 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-F926B_SEA_15_DX",
+      "index": null
+    },
+    {
+      "id": "2hizhac",
+      "timestamp": "7:02:25 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ycbs1pc",
+      "timestamp": "7:02:25 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "frg6dga",
+      "timestamp": "7:02:25 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "gwtabf2",
+      "timestamp": "7:02:25 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "mpkpekv",
+      "timestamp": "7:02:27 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "9fomuh7",
+      "timestamp": "7:02:27 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "9021eqx",
+      "timestamp": "7:02:27 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "3kvqt6u",
+      "timestamp": "7:02:28 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "ds8alm9",
+      "timestamp": "7:02:28 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "nrl77b2",
+      "timestamp": "7:02:28 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "3z51eeb",
+      "timestamp": "7:02:28 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "f24xtx1",
+      "timestamp": "7:02:29 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A245F_SEA_B4_XXV, PDA=A245FXXSEFZH3, CSC=A245FOLEEFZH3, Phone=A245FXXSEFZH3",
+      "index": null
+    },
+    {
+      "id": "24lcnhi",
+      "timestamp": "7:02:29 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "1mdf7ne",
+      "timestamp": "7:02:29 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-F926B_SEA_15_DX, PDA=F926BXXSJJZH3, CSC=F926BOLEJJZH3, Phone=F926BXXSJJZH3",
+      "index": null
+    },
+    {
+      "id": "822d1n0",
+      "timestamp": "7:02:29 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "tuum4av",
+      "timestamp": "7:02:29 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-A336E_SEA_16_XXV, PDA=A336EDXSKGZH2, CSC=A336EOLEKGZH2, Phone=A336EDXSKGZH2",
+      "index": null
+    },
+    {
+      "id": "0hzjvnl",
+      "timestamp": "7:02:29 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "y9clunb",
+      "timestamp": "7:02:30 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "rmdc1lm",
+      "timestamp": "7:02:30 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "bep4nge",
+      "timestamp": "7:02:31 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "atx04db",
+      "timestamp": "7:02:34 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-F926B_SEA_15_DX!",
+      "index": null
+    },
+    {
+      "id": "a9n1do5",
+      "timestamp": "7:02:35 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A245F_SEA_B4_XXV!",
+      "index": null
+    },
+    {
+      "id": "whyt5g4",
+      "timestamp": "7:02:35 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-A336E_SEA_16_XXV!",
+      "index": null
+    },
+    {
+      "id": "j7lukkr",
+      "timestamp": "7:02:35 AM",
+      "level": "info",
+      "message": "=== [FAST COMPLETE] Progress tracking disabled. All batch submissions complete ===",
+      "index": null
+    },
+    {
+      "id": "7c38rcw",
+      "timestamp": "7:11:52 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "jvenftq",
+      "timestamp": "7:11:52 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "2k94s7l",
+      "timestamp": "7:11:55 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "6ip8t31",
+      "timestamp": "7:11:56 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "lfosizj",
+      "timestamp": "7:11:59 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "nccpdsm",
+      "timestamp": "7:12:01 AM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 63 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "7wgf79v",
+      "timestamp": "7:12:01 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 63 builds...",
+      "index": null
+    },
+    {
+      "id": "p0232op",
+      "timestamp": "7:12:01 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "nj6re7s",
+      "timestamp": "7:12:02 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "3w27xxf",
+      "timestamp": "7:12:05 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "fe2a955",
+      "timestamp": "7:12:08 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "nr5c61v",
+      "timestamp": "7:12:09 AM",
+      "level": "info",
+      "message": "=== [FETCH BUILD ID ONLY] Querying Dashboard for 63 builds (Headless) ===",
+      "index": null
+    },
+    {
+      "id": "34f2w33",
+      "timestamp": "7:12:09 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 63 builds...",
+      "index": null
+    },
+    {
+      "id": "nbgch3l",
+      "timestamp": "7:12:09 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "4lid8ux",
+      "timestamp": "7:12:09 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "b4f09bi",
+      "timestamp": "7:12:18 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "24qxnrw",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114180698 for SM-A155F_SEA_B4_THL! (Duration: 2m:59s)",
+      "index": null
+    },
+    {
+      "id": "0vlb8et",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114180428 for SM-F971BE_SEA_DX! (Duration: 7m:9s)",
+      "index": null
+    },
+    {
+      "id": "8geslvl",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114200321 for SM-F976BE_SEA_DX! (Duration: 8m:51s)",
+      "index": null
+    },
+    {
+      "id": "chu5tfz",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114180258 for SM-A185G_SEA_XME! (Duration: 3m:42s)",
+      "index": null
+    },
+    {
+      "id": "yunnvsn",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114180737 for SM-S931BE_SEA_B4_DX! (Duration: 11m:34s)",
+      "index": null
+    },
+    {
+      "id": "y9cj3bi",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114181624 for SM-F776BE_SEA_DX! (Duration: 7m:19s)",
+      "index": null
+    },
+    {
+      "id": "pjb8x9k",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114180733 for SM-A566BE_SEA_B4_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "fuvoiil",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114181991 for SM-A276BE_SEA_XXV! (Duration: 2m:50s)",
+      "index": null
+    },
+    {
+      "id": "4gsqm40",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114182321 for SM-X910_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 2 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "5qilxec",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182235 for SM-G525F_SEA_14_XSA! (Duration: 1m:57s)",
+      "index": null
+    },
+    {
+      "id": "lnytmvq",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182108 for SM-A075F_SEA_B4_XME! (Duration: 2m:45s)",
+      "index": null
+    },
+    {
+      "id": "b9xy5lu",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182322 for SM-G990E_SEA_16_XME! (Duration: 3m:18s)",
+      "index": null
+    },
+    {
+      "id": "7dzflg2",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182462 for SM-A155F_SEA_B4_THL! (Duration: 2m:55s)",
+      "index": null
+    },
+    {
+      "id": "3e815jx",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182612 for SM-A245F_SEA_B4_XXV! (Duration: 2m:51s)",
+      "index": null
+    },
+    {
+      "id": "blh8xuh",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182790 for SM-X730_EUR_B4_XX! (Duration: 11m:2s)",
+      "index": null
+    },
+    {
+      "id": "uzrhgkt",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114183374 for SM-X736B_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "rn29dba",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114183375 for SM-X700_EUR_16_XX! (Duration: 3m:50s)",
+      "index": null
+    },
+    {
+      "id": "nnhhdn1",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114183314 for SM-A165F_SEA_B4_XXV! (Duration: 2m:56s)",
+      "index": null
+    },
+    {
+      "id": "ing0unt",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114183494 for SM-X620_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "5z0ew6d",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114183495 for SM-X626B_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "5rkp4h4",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114183653 for SM-X730_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "ho2jgm5",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114183496 for SM-X610_EUR_B4_XX! (Duration: 3m:18s)",
+      "index": null
+    },
+    {
+      "id": "knyq893",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184216 for SM-X520_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "mie4u38",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184218 for SM-A175F_SEA_B4_PHL! (Duration: 2m:59s)",
+      "index": null
+    },
+    {
+      "id": "n4ihmjt",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114183667 for SM-X936B_SEA_B4_DX! (Duration: 10m:23s)",
+      "index": null
+    },
+    {
+      "id": "f9qjuk9",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184380 for SM-G990E_SEA_16_XME! (Duration: 3m:17s)",
+      "index": null
+    },
+    {
+      "id": "jrrcupq",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184548 for SM-X810_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "33dp77n",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184560 for SM-P625_SEA_B4_DX! (Duration: 2m:34s)",
+      "index": null
+    },
+    {
+      "id": "3vafpdi",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184639 for SM-S928BE_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "y5ny8i5",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184554 for SM-F966B_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "qiq4tf1",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184637 for SM-S921BE_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "dexdbki",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184752 for SM-S731B_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "9r1r9nl",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184642 for SM-M556B_SEA_B4_XME! (Duration: 3m:4s)",
+      "index": null
+    },
+    {
+      "id": "63g9f0y",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184640 for SM-X710_EUR_B4_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "aljjqov",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184754 for SM-G525F_SEA_14_XSA! (Duration: 1m:55s)",
+      "index": null
+    },
+    {
+      "id": "3c3bu3l",
+      "timestamp": "7:12:18 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184806 for SM-A576BE_SEA_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "2anco43",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184908 for SM-S918BE_SEA_B4_DX! (Duration: 5m:37s)",
+      "index": null
+    },
+    {
+      "id": "lukvosm",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184808 for SM-A336E_SEA_16_XXV! (Duration: 2m:57s)",
+      "index": null
+    },
+    {
+      "id": "tlr8psz",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185474 for SM-X216B_SEA_16_DX! (Duration: 2m:51s)",
+      "index": null
+    },
+    {
+      "id": "vbsluic",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185248 for SM-S931BE_SEA_B4_DX! (Duration: 11m:35s)",
+      "index": null
+    },
+    {
+      "id": "3fasqmz",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185048 for SM-X810_EUR_B4_XX! (Duration: 5m:40s)",
+      "index": null
+    },
+    {
+      "id": "laymjm6",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185525 for SM-X400_EUR_B4_XX! (Duration: 3m:12s)",
+      "index": null
+    },
+    {
+      "id": "ahqd3h4",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185767 for SM-X920_EUR_B4_XX! (Duration: 9m:15s)",
+      "index": null
+    },
+    {
+      "id": "gyy868g",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185625 for SM-X520_EUR_B4_XX! (Duration: 3m:22s)",
+      "index": null
+    },
+    {
+      "id": "fgg4umw",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185584 for SM-X620_EUR_B4_XX! (Duration: 3m:18s)",
+      "index": null
+    },
+    {
+      "id": "gzjxesd",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185679 for SM-X510_EUR_B4_XX! (Duration: 3m:21s)",
+      "index": null
+    },
+    {
+      "id": "i2sw0hc",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114186715 for SM-A276BE_SEA_XXV! (Duration: 3m:31s)",
+      "index": null
+    },
+    {
+      "id": "a41la7e",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114186414 for SM-F776BE_SEA_DX! (Duration: 6m:3s)",
+      "index": null
+    },
+    {
+      "id": "9139wey",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114186281 for SM-M546B_SEA_B4_XME! (Duration: 2m:56s)",
+      "index": null
+    },
+    {
+      "id": "jem73jy",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114186883 for SM-A566BE_SEA_B4_XME! (Duration: 3m:45s)",
+      "index": null
+    },
+    {
+      "id": "8124wx2",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187678 for SM-A556E_SEA_B4_PHL! (Duration: 3m:28s)",
+      "index": null
+    },
+    {
+      "id": "rp6pb0p",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188256 for SM-X616B_SEA_B4_DX! (Duration: 3m:29s)",
+      "index": null
+    },
+    {
+      "id": "dua2oa2",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187049 for SM-X236B_SEA_B4_DX! (Duration: 2m:47s)",
+      "index": null
+    },
+    {
+      "id": "hhcoigs",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187211 for SM-X926B_SEA_B4_DX! (Duration: 9m:1s)",
+      "index": null
+    },
+    {
+      "id": "1priao8",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187948 for SM-X826B_SEA_B4_DX! (Duration: 8m:51s)",
+      "index": null
+    },
+    {
+      "id": "3fv2c2h",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187833 for SM-X406B_SEA_B4_DX! (Duration: 3m:17s)",
+      "index": null
+    },
+    {
+      "id": "ulgslsz",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188321 for SM-A546E_SEA_B4_TSE! (Duration: 3m:1s)",
+      "index": null
+    },
+    {
+      "id": "e1o8a73",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188813 for SM-X626B_SEA_B4_DX! (Duration: 4m:25s)",
+      "index": null
+    },
+    {
+      "id": "dh63yrn",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188390 for SM-F976BE_SEA_DX! (Duration: 7m:34s)",
+      "index": null
+    },
+    {
+      "id": "e4nfz8o",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114189092 for SM-X115_SEA_16_DX! (Duration: 2m:51s)",
+      "index": null
+    },
+    {
+      "id": "10jzhbf",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188683 for SM-A245F_SEA_B4_XXV! (Duration: 3m)",
+      "index": null
+    },
+    {
+      "id": "zmi4zuk",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188984 for SM-A336E_SEA_16_XXV! (Duration: 3m:31s)",
+      "index": null
+    },
+    {
+      "id": "hq3nmug",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114189197 for SM-F926B_SEA_15_DX! (Duration: 4m:11s)",
+      "index": null
+    },
+    {
+      "id": "4a6qavp",
+      "timestamp": "7:12:18 AM",
+      "level": "success",
+      "message": "All 63 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "bilq9yh",
+      "timestamp": "7:12:18 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "yhnlwqo",
+      "timestamp": "7:12:25 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "3qa7muo",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114180698 for SM-A155F_SEA_B4_THL! (Duration: 2m:59s)",
+      "index": null
+    },
+    {
+      "id": "9dk5r8f",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114180428 for SM-F971BE_SEA_DX! (Duration: 7m:9s)",
+      "index": null
+    },
+    {
+      "id": "cy61tbh",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114200321 for SM-F976BE_SEA_DX! (Duration: 8m:51s)",
+      "index": null
+    },
+    {
+      "id": "4itau6u",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114180258 for SM-A185G_SEA_XME! (Duration: 3m:42s)",
+      "index": null
+    },
+    {
+      "id": "ilkbbcl",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114180737 for SM-S931BE_SEA_B4_DX! (Duration: 11m:34s)",
+      "index": null
+    },
+    {
+      "id": "w9gczcd",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114181624 for SM-F776BE_SEA_DX! (Duration: 7m:19s)",
+      "index": null
+    },
+    {
+      "id": "caamk34",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114180733 for SM-A566BE_SEA_B4_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "eqb8jk7",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114181991 for SM-A276BE_SEA_XXV! (Duration: 2m:50s)",
+      "index": null
+    },
+    {
+      "id": "58alnmh",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114182321 for SM-X910_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 2 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "f2qdraq",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182235 for SM-G525F_SEA_14_XSA! (Duration: 1m:57s)",
+      "index": null
+    },
+    {
+      "id": "oi77pni",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182108 for SM-A075F_SEA_B4_XME! (Duration: 2m:45s)",
+      "index": null
+    },
+    {
+      "id": "fvsjjps",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182322 for SM-G990E_SEA_16_XME! (Duration: 3m:18s)",
+      "index": null
+    },
+    {
+      "id": "fuelppj",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182462 for SM-A155F_SEA_B4_THL! (Duration: 2m:55s)",
+      "index": null
+    },
+    {
+      "id": "kdfbky6",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182612 for SM-A245F_SEA_B4_XXV! (Duration: 2m:51s)",
+      "index": null
+    },
+    {
+      "id": "or8xmit",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114182790 for SM-X730_EUR_B4_XX! (Duration: 11m:2s)",
+      "index": null
+    },
+    {
+      "id": "fv0kxla",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114183374 for SM-X736B_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "nir4052",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114183375 for SM-X700_EUR_16_XX! (Duration: 3m:50s)",
+      "index": null
+    },
+    {
+      "id": "tmfd138",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114183314 for SM-A165F_SEA_B4_XXV! (Duration: 2m:56s)",
+      "index": null
+    },
+    {
+      "id": "y8uym0i",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114183494 for SM-X620_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "pbl8evm",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114183495 for SM-X626B_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "imf4q49",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114183653 for SM-X730_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "o4ahbsp",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114183496 for SM-X610_EUR_B4_XX! (Duration: 3m:18s)",
+      "index": null
+    },
+    {
+      "id": "c5rcs46",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184216 for SM-X520_EUR_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "gbtry8x",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184218 for SM-A175F_SEA_B4_PHL! (Duration: 2m:59s)",
+      "index": null
+    },
+    {
+      "id": "icu8hsf",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114183667 for SM-X936B_SEA_B4_DX! (Duration: 10m:23s)",
+      "index": null
+    },
+    {
+      "id": "6w9p23j",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184380 for SM-G990E_SEA_16_XME! (Duration: 3m:17s)",
+      "index": null
+    },
+    {
+      "id": "kxxo2uu",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184548 for SM-X810_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "vjttbri",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184560 for SM-P625_SEA_B4_DX! (Duration: 2m:34s)",
+      "index": null
+    },
+    {
+      "id": "uvmm19m",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184639 for SM-S928BE_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "s7bjwvv",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184554 for SM-F966B_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "8u4b1g7",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184637 for SM-S921BE_SEA_DX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "fzctbj7",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184752 for SM-S731B_EUR_C2_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "viu15mp",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184642 for SM-M556B_SEA_B4_XME! (Duration: 3m:4s)",
+      "index": null
+    },
+    {
+      "id": "sidn5ph",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184640 for SM-X710_EUR_B4_XX is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "rf9dhlt",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184754 for SM-G525F_SEA_14_XSA! (Duration: 1m:55s)",
+      "index": null
+    },
+    {
+      "id": "shksv9u",
+      "timestamp": "7:12:25 AM",
+      "level": "error",
+      "message": "[FAILED] Build #114184806 for SM-A576BE_SEA_XME is marked as FAILED on QuickBuild (Checked 3 candidate build(s), no successful match found)!",
+      "index": null
+    },
+    {
+      "id": "gd0yamb",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184908 for SM-S918BE_SEA_B4_DX! (Duration: 5m:37s)",
+      "index": null
+    },
+    {
+      "id": "1d1gml0",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114184808 for SM-A336E_SEA_16_XXV! (Duration: 2m:57s)",
+      "index": null
+    },
+    {
+      "id": "zc7axga",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185474 for SM-X216B_SEA_16_DX! (Duration: 2m:51s)",
+      "index": null
+    },
+    {
+      "id": "hxlfnup",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185248 for SM-S931BE_SEA_B4_DX! (Duration: 11m:35s)",
+      "index": null
+    },
+    {
+      "id": "xel34w8",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185048 for SM-X810_EUR_B4_XX! (Duration: 5m:40s)",
+      "index": null
+    },
+    {
+      "id": "u2n76rx",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185525 for SM-X400_EUR_B4_XX! (Duration: 3m:12s)",
+      "index": null
+    },
+    {
+      "id": "zv5qvp1",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185767 for SM-X920_EUR_B4_XX! (Duration: 9m:15s)",
+      "index": null
+    },
+    {
+      "id": "tujj369",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185625 for SM-X520_EUR_B4_XX! (Duration: 3m:22s)",
+      "index": null
+    },
+    {
+      "id": "4i0wug8",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185584 for SM-X620_EUR_B4_XX! (Duration: 3m:18s)",
+      "index": null
+    },
+    {
+      "id": "sme97ir",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114185679 for SM-X510_EUR_B4_XX! (Duration: 3m:21s)",
+      "index": null
+    },
+    {
+      "id": "j1xbish",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114186715 for SM-A276BE_SEA_XXV! (Duration: 3m:31s)",
+      "index": null
+    },
+    {
+      "id": "wdpwwd9",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114186414 for SM-F776BE_SEA_DX! (Duration: 6m:3s)",
+      "index": null
+    },
+    {
+      "id": "o09t39d",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114186281 for SM-M546B_SEA_B4_XME! (Duration: 2m:56s)",
+      "index": null
+    },
+    {
+      "id": "aabs4eo",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114186883 for SM-A566BE_SEA_B4_XME! (Duration: 3m:45s)",
+      "index": null
+    },
+    {
+      "id": "5hk14l5",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187678 for SM-A556E_SEA_B4_PHL! (Duration: 3m:28s)",
+      "index": null
+    },
+    {
+      "id": "te1nq3r",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188256 for SM-X616B_SEA_B4_DX! (Duration: 3m:29s)",
+      "index": null
+    },
+    {
+      "id": "afnmgei",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187049 for SM-X236B_SEA_B4_DX! (Duration: 2m:47s)",
+      "index": null
+    },
+    {
+      "id": "ilqnlor",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187211 for SM-X926B_SEA_B4_DX! (Duration: 9m:1s)",
+      "index": null
+    },
+    {
+      "id": "innnmzt",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187948 for SM-X826B_SEA_B4_DX! (Duration: 8m:51s)",
+      "index": null
+    },
+    {
+      "id": "bw7d6nj",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114187833 for SM-X406B_SEA_B4_DX! (Duration: 3m:17s)",
+      "index": null
+    },
+    {
+      "id": "l9hnsm3",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188321 for SM-A546E_SEA_B4_TSE! (Duration: 3m:1s)",
+      "index": null
+    },
+    {
+      "id": "7dq9m97",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188813 for SM-X626B_SEA_B4_DX! (Duration: 4m:25s)",
+      "index": null
+    },
+    {
+      "id": "nxzh71o",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188390 for SM-F976BE_SEA_DX! (Duration: 7m:34s)",
+      "index": null
+    },
+    {
+      "id": "6zja0hu",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114189092 for SM-X115_SEA_16_DX! (Duration: 2m:51s)",
+      "index": null
+    },
+    {
+      "id": "1brgbw7",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188683 for SM-A245F_SEA_B4_XXV! (Duration: 3m)",
+      "index": null
+    },
+    {
+      "id": "5loufuw",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114188984 for SM-A336E_SEA_16_XXV! (Duration: 3m:31s)",
+      "index": null
+    },
+    {
+      "id": "szpdsea",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114189197 for SM-F926B_SEA_15_DX! (Duration: 4m:11s)",
+      "index": null
+    },
+    {
+      "id": "918rclm",
+      "timestamp": "7:12:25 AM",
+      "level": "success",
+      "message": "All 63 builds finished processing on QuickBuild!",
       "index": null
     }
   ],

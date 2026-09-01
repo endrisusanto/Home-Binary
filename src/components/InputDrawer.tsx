@@ -439,9 +439,9 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-slate-800 dark:text-neutral-200 flex items-center gap-1.5">
                   {autoFetchExisting ? (
-                    <Search className="w-3.5 h-3.5 text-indigo-500" />
+                    <Search className="w-3.5 h-3.5 text-amber-500" />
                   ) : (
-                    <Zap className="w-3.5 h-3.5 text-blue-500" />
+                    <Zap className="w-3.5 h-3.5 text-emerald-500" />
                   )}
                   <span>Scan & Fetch Existing Build IDs First</span>
                 </span>
@@ -460,17 +460,17 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
                   onChange={(e) => setAutoFetchExisting(e.target.checked)}
                   className="sr-only peer"
                 />
-                <div className="w-10 h-5.5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-neutral-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4.5 after:w-4.5 after:transition-all peer-checked:bg-indigo-600"></div>
+                <div className="w-10 h-5.5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-neutral-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4.5 after:w-4.5 after:transition-all peer-checked:bg-amber-600"></div>
               </label>
             </div>
 
             <div className="flex items-center justify-between pt-1 border-t border-slate-200/60 dark:border-neutral-800/60 text-[10px] text-slate-500 dark:text-neutral-400">
               <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-mono text-[9px] sm:text-[10px] font-bold ${
                 autoFetchExisting 
-                  ? 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800'
-                  : 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
+                  ? 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800'
+                  : 'bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
               }`}>
-                {autoFetchExisting ? '🔍 Action: Add & Scan Dashboard (Pre-Check)' : '⚡ Action: Add to Queue as Pending'}
+                {autoFetchExisting ? 'Action: Add & Scan Dashboard (Pre-Check)' : 'Action: Add to Queue as Pending'}
               </span>
             </div>
           </div>
@@ -522,8 +522,8 @@ export const InputDrawer: React.FC<InputDrawerProps> = ({
               disabled={parsedItems.length === 0}
               className={`flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-white rounded-lg shadow-xs transition-all cursor-pointer active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
                 autoFetchExisting 
-                  ? 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/20' 
-                  : 'bg-blue-600 hover:bg-blue-700 shadow-blue-500/20'
+                  ? 'bg-amber-600 hover:bg-amber-700 shadow-amber-500/20' 
+                  : 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-500/20'
               }`}
             >
               {autoFetchExisting ? (

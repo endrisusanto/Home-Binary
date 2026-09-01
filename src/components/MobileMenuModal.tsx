@@ -109,10 +109,10 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
             <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-[#0c0c0f] border border-slate-200 dark:border-neutral-800 space-y-2">
               <div className="flex items-center justify-between text-[11px] font-bold text-slate-700 dark:text-neutral-300">
                 <span className="flex items-center gap-1.5">
-                  {fetchOnlyMode ? <Search className="w-3.5 h-3.5 text-indigo-500" /> : <Zap className="w-3.5 h-3.5 text-blue-500" />}
+                  {fetchOnlyMode ? <Search className="w-3.5 h-3.5 text-amber-500" /> : <Zap className="w-3.5 h-3.5 text-emerald-500" />}
                   Execution Mode
                 </span>
-                <span className="text-[9px] font-mono text-indigo-600 dark:text-indigo-400">
+                <span className={`text-[9px] font-mono font-semibold ${fetchOnlyMode ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                   {fetchOnlyMode ? 'Fetch IDs Only' : 'Submit Builds'}
                 </span>
               </div>
@@ -122,7 +122,7 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                   onClick={() => onToggleFetchOnlyMode(false)}
                   className={`py-1.5 px-2 rounded-md transition-all flex items-center justify-center gap-1 cursor-pointer ${
                     !fetchOnlyMode
-                      ? 'bg-white dark:bg-neutral-800 text-blue-600 dark:text-blue-400 shadow-xs'
+                      ? 'bg-emerald-600 text-white shadow-xs'
                       : 'text-slate-500 dark:text-neutral-400'
                   }`}
                 >
@@ -134,7 +134,7 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                   onClick={() => onToggleFetchOnlyMode(true)}
                   className={`py-1.5 px-2 rounded-md transition-all flex items-center justify-center gap-1 cursor-pointer ${
                     fetchOnlyMode
-                      ? 'bg-indigo-600 text-white shadow-xs'
+                      ? 'bg-amber-600 text-white shadow-xs'
                       : 'text-slate-500 dark:text-neutral-400'
                   }`}
                 >
@@ -196,18 +196,18 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                 className={`p-2.5 rounded-xl border flex flex-col items-start gap-1 transition-all text-left cursor-pointer ${
                   totalItems > 0
                     ? fetchOnlyMode
-                      ? 'bg-indigo-50/80 dark:bg-indigo-950/40 border-indigo-200/80 dark:border-indigo-900/60 hover:bg-indigo-100'
+                      ? 'bg-amber-50/80 dark:bg-amber-950/40 border-amber-200/80 dark:border-amber-900/60 hover:bg-amber-100'
                       : 'bg-emerald-50/80 dark:bg-emerald-950/40 border-emerald-200/80 dark:border-emerald-900/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/50'
                     : 'bg-slate-50 dark:bg-neutral-900 border-slate-200 dark:border-neutral-800 opacity-50 cursor-not-allowed'
                 }`}
               >
-                <div className={`w-7 h-7 rounded-lg text-white flex items-center justify-center shadow-xs ${fetchOnlyMode ? 'bg-indigo-600' : 'bg-emerald-600'}`}>
+                <div className={`w-7 h-7 rounded-lg text-white flex items-center justify-center shadow-xs ${fetchOnlyMode ? 'bg-amber-600' : 'bg-emerald-600'}`}>
                   {fetchOnlyMode ? <Search className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
                 </div>
-                <span className={`text-xs font-bold ${fetchOnlyMode ? 'text-indigo-900 dark:text-indigo-200' : 'text-emerald-900 dark:text-emerald-200'}`}>
+                <span className={`text-xs font-bold ${fetchOnlyMode ? 'text-amber-900 dark:text-amber-200' : 'text-emerald-900 dark:text-emerald-200'}`}>
                   {fetchOnlyMode ? 'Scan IDs' : 'Run Batch'}
                 </span>
-                <span className={`text-[9px] leading-tight ${fetchOnlyMode ? 'text-indigo-700/70 dark:text-indigo-300/70' : 'text-emerald-700/70 dark:text-emerald-300/70'}`}>
+                <span className={`text-[9px] leading-tight ${fetchOnlyMode ? 'text-amber-700/70 dark:text-amber-300/70' : 'text-emerald-700/70 dark:text-emerald-300/70'}`}>
                   {fetchOnlyMode ? 'Scan Dashboard for existing IDs' : 'Submit all queued builds'}
                 </span>
               </button>

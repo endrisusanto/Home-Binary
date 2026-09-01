@@ -55,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({
   totalItems,
   trackProgress,
   onToggleTrackProgress,
-  appVersion = '0.5.13',
+  appVersion = '0.5.14',
   fetchOnlyMode = false,
   onToggleFetchOnlyMode,
 }) => {
@@ -102,18 +102,18 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Right Action Icons & Controls */}
         <div className="flex items-center gap-1 sm:gap-2">
           
-          {/* Mode Selector Toggle: Submit vs Fetch ID */}
+          {/* Mode Selector Toggle: Submit Builds (Green) vs Fetch IDs Only (Amber) */}
           {onToggleFetchOnlyMode && (
             <div className="hidden lg:flex items-center p-0.5 rounded-lg bg-slate-100 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 text-[10px] font-semibold">
               <button
                 type="button"
                 onClick={() => onToggleFetchOnlyMode(false)}
-                className={`flex items-center gap-1 px-2 py-1 rounded-md transition-all cursor-pointer ${
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all cursor-pointer ${
                   !fetchOnlyMode
-                    ? 'bg-white dark:bg-neutral-800 text-blue-600 dark:text-blue-400 shadow-xs'
+                    ? 'bg-emerald-600 text-white shadow-xs'
                     : 'text-slate-500 dark:text-neutral-400 hover:text-slate-800 dark:hover:text-neutral-200'
                 }`}
-                title="Standard Mode: Submits triggers to Samsung QuickBuild"
+                title="Submit Builds: Submit new build requests to Samsung QuickBuild"
               >
                 <Zap className="w-3 h-3" />
                 <span>Submit Builds</span>
@@ -122,12 +122,12 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => onToggleFetchOnlyMode(true)}
-                className={`flex items-center gap-1 px-2 py-1 rounded-md transition-all cursor-pointer ${
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all cursor-pointer ${
                   fetchOnlyMode
-                    ? 'bg-indigo-600 text-white shadow-xs'
+                    ? 'bg-amber-600 text-white shadow-xs'
                     : 'text-slate-500 dark:text-neutral-400 hover:text-slate-800 dark:hover:text-neutral-200'
                 }`}
-                title="Fetch Mode: Searches Samsung QuickBuild Dashboard for existing Build IDs without triggering new builds"
+                title="Fetch IDs Only: Scan QuickBuild Dashboard for existing Build IDs without triggering new builds"
               >
                 <Search className="w-3 h-3" />
                 <span>Fetch IDs Only</span>
@@ -176,7 +176,7 @@ export const Header: React.FC<HeaderProps> = ({
               className={`flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold rounded-md sm:rounded-lg transition-all cursor-pointer ${
                 totalItems > 0
                   ? fetchOnlyMode
-                    ? 'text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-xs shadow-indigo-500/20'
+                    ? 'text-white bg-amber-600 hover:bg-amber-700 active:scale-95 shadow-xs shadow-amber-500/20'
                     : 'text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 shadow-xs shadow-emerald-500/20'
                   : 'text-slate-400 bg-slate-100 dark:bg-slate-800 cursor-not-allowed border border-slate-200 dark:border-slate-700'
               }`}
