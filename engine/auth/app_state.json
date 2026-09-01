@@ -77,7 +77,7 @@
       "progressPercent": 100,
       "buildId": "114149590",
       "buildDate": "2026-08-31 10:48:00",
-      "message": "Completed: SM-A175F_SEA_B4_PHL"
+      "message": "Form submitted: SM-A155F_SEA_B4_THL"
     },
     {
       "buildFingerprintName": "SM-A155F_SEA_B4_THL",
@@ -86,7 +86,9 @@
       "basebandVersion": "A155FXXSCEZHU",
       "id": "build-1788219747504-0",
       "index": 6,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A155F_SEA_B4_THL",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F971BE_SEA_DX",
@@ -95,7 +97,9 @@
       "basebandVersion": "F971BXXU2AZHK",
       "id": "build-1788219747504-1",
       "index": 7,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-F971BE_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F976BE_SEA_DX",
@@ -104,7 +108,9 @@
       "basebandVersion": "F976BXXU2AZHK",
       "id": "build-1788219747504-2",
       "index": 8,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-F976BE_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A185G_SEA_XME",
@@ -113,7 +119,9 @@
       "basebandVersion": "A185GXXU0AZHB",
       "id": "build-1788219747504-3",
       "index": 9,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A185G_SEA_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
@@ -122,7 +130,9 @@
       "basebandVersion": "S931BXXSCCZH1",
       "id": "build-1788219747504-4",
       "index": 10,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-S931BE_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
@@ -131,7 +141,9 @@
       "basebandVersion": "F776BXXU2AZHJ",
       "id": "build-1788219747504-5",
       "index": 11,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-F776BE_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
@@ -140,7 +152,9 @@
       "basebandVersion": "A566BXXSDCZHD",
       "id": "build-1788219747504-6",
       "index": 12,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A566BE_SEA_B4_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A276BE_SEA_XXV",
@@ -149,7 +163,9 @@
       "basebandVersion": "A276BXXS3AZHA",
       "id": "build-1788219747504-7",
       "index": 13,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A276BE_SEA_XXV",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X910_EUR_C2_XX",
@@ -158,7 +174,9 @@
       "basebandVersion": "",
       "id": "build-1788219747504-8",
       "index": 14,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X910_EUR_C2_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-G525F_SEA_14_XSA",
@@ -167,7 +185,9 @@
       "basebandVersion": "G525FXXUKEZH1",
       "id": "build-1788219747504-9",
       "index": 15,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-G525F_SEA_14_XSA",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A075F_SEA_B4_XME",
@@ -176,7 +196,9 @@
       "basebandVersion": "A075FXXS7CZH5",
       "id": "build-1788219747504-10",
       "index": 16,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A075F_SEA_B4_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-G990E_SEA_16_XME",
@@ -185,7 +207,9 @@
       "basebandVersion": "G990EXXSOHZH1",
       "id": "build-1788219747504-11",
       "index": 17,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-G990E_SEA_16_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A155F_SEA_B4_THL",
@@ -194,7 +218,9 @@
       "basebandVersion": "A155FXXSCEZH3",
       "id": "build-1788219747504-12",
       "index": 18,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A155F_SEA_B4_THL",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
@@ -203,7 +229,9 @@
       "basebandVersion": "A245FXXSEFZH6",
       "id": "build-1788219747504-13",
       "index": 19,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A245F_SEA_B4_XXV",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X730_EUR_B4_XX",
@@ -212,7 +240,9 @@
       "basebandVersion": "",
       "id": "build-1788219747504-14",
       "index": 20,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X730_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X736B_SEA_DX",
@@ -221,7 +251,9 @@
       "basebandVersion": "X736BXXS8BZH4",
       "id": "build-1788219747504-15",
       "index": 21,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X736B_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X700_EUR_16_XX",
@@ -230,7 +262,9 @@
       "basebandVersion": "",
       "id": "build-1788219747504-16",
       "index": 22,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X700_EUR_16_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A165F_SEA_B4_XXV",
@@ -239,7 +273,9 @@
       "basebandVersion": "A165FXXSBDZH3",
       "id": "build-1788219747504-17",
       "index": 23,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A165F_SEA_B4_XXV",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X620_EUR_XX",
@@ -248,7 +284,9 @@
       "basebandVersion": "",
       "id": "build-1788219747504-18",
       "index": 24,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X620_EUR_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X626B_SEA_DX",
@@ -257,7 +295,9 @@
       "basebandVersion": "X626BXXU9DZH1",
       "id": "build-1788219747504-19",
       "index": 25,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X626B_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X730_EUR_XX",
@@ -266,7 +306,9 @@
       "basebandVersion": "",
       "id": "build-1788219747504-20",
       "index": 26,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X730_EUR_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X610_EUR_B4_XX",
@@ -275,7 +317,9 @@
       "basebandVersion": "",
       "id": "build-1788219747504-21",
       "index": 27,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X610_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X520_EUR_XX",
@@ -284,7 +328,9 @@
       "basebandVersion": "",
       "id": "build-1788219747504-22",
       "index": 28,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X520_EUR_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A175F_SEA_B4_PHL",
@@ -293,7 +339,9 @@
       "basebandVersion": "A175FXXS7CZH6",
       "id": "build-1788219747504-23",
       "index": 29,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A175F_SEA_B4_PHL",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X936B_SEA_B4_DX",
@@ -302,7 +350,9 @@
       "basebandVersion": "X936BXXS8BZH4",
       "id": "build-1788219747504-24",
       "index": 30,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X936B_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-G990E_SEA_16_XME",
@@ -311,7 +361,9 @@
       "basebandVersion": "G990EXXSOHZH1",
       "id": "build-1788219747504-25",
       "index": 31,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-G990E_SEA_16_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X810_EUR_C2_XX",
@@ -320,7 +372,9 @@
       "basebandVersion": "",
       "id": "build-1788219747504-26",
       "index": 32,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X810_EUR_C2_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-P625_SEA_B4_DX",
@@ -329,7 +383,9 @@
       "basebandVersion": "P625XXSCCZH4",
       "id": "build-1788219747504-27",
       "index": 33,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-P625_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S928BE_SEA_DX",
@@ -338,7 +394,9 @@
       "basebandVersion": "S928BXXU6EZHC",
       "id": "build-1788219747504-28",
       "index": 34,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-S928BE_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-F966B_EUR_C2_XX",
@@ -347,7 +405,9 @@
       "basebandVersion": "F966BXXUCZZHC",
       "id": "build-1788219747504-29",
       "index": 35,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-F966B_EUR_C2_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S921BE_SEA_DX",
@@ -356,7 +416,9 @@
       "basebandVersion": "S921BXXUHEZHC",
       "id": "build-1788219747504-30",
       "index": 36,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-S921BE_SEA_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S731B_EUR_C2_XX",
@@ -365,7 +427,9 @@
       "basebandVersion": "S731BXXU9CZH4",
       "id": "build-1788219747504-31",
       "index": 37,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-S731B_EUR_C2_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-M556B_SEA_B4_XME",
@@ -374,7 +438,9 @@
       "basebandVersion": "M556BXXS5DZH1",
       "id": "build-1788219747504-32",
       "index": 38,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-M556B_SEA_B4_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-X710_EUR_B4_XX",
@@ -383,7 +449,9 @@
       "basebandVersion": "",
       "id": "build-1788219747504-33",
       "index": 39,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-X710_EUR_B4_XX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-G525F_SEA_14_XSA",
@@ -392,7 +460,9 @@
       "basebandVersion": "G525FXXUKEZH1",
       "id": "build-1788219747504-34",
       "index": 40,
-      "status": "pending"
+      "status": "running",
+      "message": "Submitting form...",
+      "progressPercent": 75
     },
     {
       "buildFingerprintName": "SM-A576BE_SEA_XME",
@@ -401,7 +471,9 @@
       "basebandVersion": "A576BXXU4BZG6",
       "id": "build-1788219747504-35",
       "index": 41,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-A576BE_SEA_XME",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-S918BE_SEA_B4_DX",
@@ -410,7 +482,9 @@
       "basebandVersion": "S918BXXSAFZE1",
       "id": "build-1788219747504-36",
       "index": 42,
-      "status": "pending"
+      "status": "success",
+      "message": "Form submitted: SM-S918BE_SEA_B4_DX",
+      "progressPercent": 100
     },
     {
       "buildFingerprintName": "SM-A336E_SEA_16_XXV",
@@ -419,7 +493,9 @@
       "basebandVersion": "A336EDXUJGZH1",
       "id": "build-1788219747504-37",
       "index": 43,
-      "status": "pending"
+      "status": "running",
+      "message": "Submitting form...",
+      "progressPercent": 75
     },
     {
       "buildFingerprintName": "SM-X216B_SEA_16_DX",
@@ -428,7 +504,8 @@
       "basebandVersion": "X216BXXUDEZGF",
       "id": "build-1788219747504-38",
       "index": 44,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-S931BE_SEA_B4_DX",
@@ -437,7 +514,8 @@
       "basebandVersion": "S931BXXSCCZH1",
       "id": "build-1788219747504-39",
       "index": 45,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X810_EUR_B4_XX",
@@ -446,7 +524,8 @@
       "basebandVersion": "",
       "id": "build-1788219747504-40",
       "index": 46,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X400_EUR_B4_XX",
@@ -455,7 +534,8 @@
       "basebandVersion": "",
       "id": "build-1788219747504-41",
       "index": 47,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X920_EUR_B4_XX",
@@ -464,7 +544,8 @@
       "basebandVersion": "",
       "id": "build-1788219747504-42",
       "index": 48,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X520_EUR_B4_XX",
@@ -473,7 +554,8 @@
       "basebandVersion": "",
       "id": "build-1788219747504-43",
       "index": 49,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X620_EUR_B4_XX",
@@ -482,7 +564,8 @@
       "basebandVersion": "",
       "id": "build-1788219747504-44",
       "index": 50,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X510_EUR_B4_XX",
@@ -491,7 +574,8 @@
       "basebandVersion": "",
       "id": "build-1788219747504-45",
       "index": 51,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-A276BE_SEA_XXV",
@@ -500,7 +584,8 @@
       "basebandVersion": "A276BXXU2AZH7",
       "id": "build-1788219747504-46",
       "index": 52,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-F776BE_SEA_DX",
@@ -509,7 +594,8 @@
       "basebandVersion": "F776BXXS2AZH9",
       "id": "build-1788219747504-47",
       "index": 53,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-M546B_SEA_B4_XME",
@@ -518,7 +604,8 @@
       "basebandVersion": "M546BXXSFFZH3",
       "id": "build-1788219747504-48",
       "index": 54,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-A566BE_SEA_B4_XME",
@@ -527,7 +614,8 @@
       "basebandVersion": "A566BXXSDCZHB",
       "id": "build-1788219747504-49",
       "index": 55,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-A556E_SEA_B4_PHL",
@@ -536,7 +624,8 @@
       "basebandVersion": "A556EXXSHDZH6",
       "id": "build-1788219747504-50",
       "index": 56,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X616B_SEA_B4_DX",
@@ -545,7 +634,8 @@
       "basebandVersion": "X616BXXSFEZH5",
       "id": "build-1788219747504-51",
       "index": 57,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X236B_SEA_B4_DX",
@@ -554,7 +644,8 @@
       "basebandVersion": "X236BXXS7BZH2",
       "id": "build-1788219747504-52",
       "index": 58,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X926B_SEA_B4_DX",
@@ -563,7 +654,8 @@
       "basebandVersion": "X926BXXSADZH1",
       "id": "build-1788219747504-53",
       "index": 59,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X826B_SEA_B4_DX",
@@ -572,7 +664,8 @@
       "basebandVersion": "X826BXXSADZH1",
       "id": "build-1788219747504-54",
       "index": 60,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X406B_SEA_B4_DX",
@@ -581,7 +674,8 @@
       "basebandVersion": "X406BXXS7CZH4",
       "id": "build-1788219747504-55",
       "index": 61,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-A546E_SEA_B4_TSE",
@@ -590,7 +684,8 @@
       "basebandVersion": "A546EXXSMFZH1",
       "id": "build-1788219747504-56",
       "index": 62,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X626B_SEA_B4_DX",
@@ -599,7 +694,8 @@
       "basebandVersion": "X626BXXSACZH6",
       "id": "build-1788219747504-57",
       "index": 63,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-F976BE_SEA_DX",
@@ -608,7 +704,8 @@
       "basebandVersion": "F976BXXU2AZHD",
       "id": "build-1788219747504-58",
       "index": 64,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-X115_SEA_16_DX",
@@ -617,7 +714,8 @@
       "basebandVersion": "X115XXUBDZH5",
       "id": "build-1788219747504-59",
       "index": 65,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-A245F_SEA_B4_XXV",
@@ -626,7 +724,8 @@
       "basebandVersion": "A245FXXSEFZH3",
       "id": "build-1788219747504-60",
       "index": 66,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-A336E_SEA_16_XXV",
@@ -635,7 +734,8 @@
       "basebandVersion": "A336EDXSKGZH2",
       "id": "build-1788219747504-61",
       "index": 67,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     },
     {
       "buildFingerprintName": "SM-F926B_SEA_15_DX",
@@ -644,7 +744,8 @@
       "basebandVersion": "F926BXXSJJZH3",
       "id": "build-1788219747504-62",
       "index": 68,
-      "status": "pending"
+      "status": "pending",
+      "message": "Cancelled"
     }
   ],
   "logs": [
@@ -20569,6 +20670,2743 @@
       "level": "success",
       "message": "All 3 builds finished processing on QuickBuild!",
       "index": null
+    },
+    {
+      "id": "lzvn4cz",
+      "timestamp": "6:57:23 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "c30zw1v",
+      "timestamp": "6:57:23 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: false)...",
+      "index": null
+    },
+    {
+      "id": "0dlbmkk",
+      "timestamp": "23:57:25",
+      "level": "warn",
+      "message": "Batch execution cancelled by user. All browser processes terminated.",
+      "index": null
+    },
+    {
+      "id": "3rc7hmy",
+      "timestamp": "6:57:27 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "9tdqmd8",
+      "timestamp": "6:57:28 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "vstwdnh",
+      "timestamp": "6:57:30 AM",
+      "level": "warn",
+      "message": "SSO Authentication required at https://sts.secsso.net/adfs/ls/?SAMLRequest=hZJJb8IwEIX%2FSuR7FsJSsEIkCl2QKERAe%2BgFOckELCXj4HG6%2FPua0KrtofQ6fm%2FmfTOOSFRlzSeNOeAajg2Qcd6qEom3D2PWaORKkCSOogLiJuObycOCh17Aa62MylTJflguOwQRaCMVMmc%2BG7PV8maxupsvd%2BkIikEnLNzeSAzcXn8g3GEwCl0RpMMs7XchhRFznkCT9Y6ZbWUbEDUwRzICjS0F4cANhm63sw27vH%2FFw%2BEzc2aWR6IwretgTE3c98mQR5ARKQ%2FB%2BCIvyC%2FJZ07yyXMtMZe4v4ySnkXE77fbxE1Wmy1zJl94U4XUVKA3oF9kBo%2Frxfd4gblWMveO6SmFZ5dGDe7bKDbSDjCvlUTD4ui0T95i6vh%2Fd%2BT%2F1Efnwy5t7vksUaXM3p1bpSth%2FsbqeJ22InO3aKW8Qaohk4WE3NKVpXqdahAGxszoBpjjx%2Bepv39Q%2FAE%3D&RelayState=overview%2F28905",
+      "index": null
+    },
+    {
+      "id": "0irhr7k",
+      "timestamp": "6:57:30 AM",
+      "level": "info",
+      "message": "Attempting auto-fill SSO credentials for user: endri.s...",
+      "index": null
+    },
+    {
+      "id": "3yn9wpp",
+      "timestamp": "6:57:30 AM",
+      "level": "info",
+      "message": "Filled SSO username: endri.s",
+      "index": null
+    },
+    {
+      "id": "vg72ihv",
+      "timestamp": "6:57:30 AM",
+      "level": "info",
+      "message": "Filled SSO password.",
+      "index": null
+    },
+    {
+      "id": "988lced",
+      "timestamp": "6:57:31 AM",
+      "level": "info",
+      "message": "Submitting SSO login form...",
+      "index": null
+    },
+    {
+      "id": "gq2sgen",
+      "timestamp": "6:57:35 AM",
+      "level": "info",
+      "message": "Waiting for SSO session to establish and redirect back to QuickBuild portal...",
+      "index": null
+    },
+    {
+      "id": "jll6ix4",
+      "timestamp": "6:57:38 AM",
+      "level": "success",
+      "message": "SSO Login detected! Saving session state...",
+      "index": null
+    },
+    {
+      "id": "pfqet7d",
+      "timestamp": "6:57:40 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 63 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "6cuxjlu",
+      "timestamp": "6:57:40 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A155F_SEA_B4_THL",
+      "index": null
+    },
+    {
+      "id": "taxnaa0",
+      "timestamp": "6:57:40 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-F971BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "rndferi",
+      "timestamp": "6:57:41 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-F976BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "7aow0i5",
+      "timestamp": "6:57:42 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "nercjrk",
+      "timestamp": "6:57:44 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "3jb4efs",
+      "timestamp": "6:57:44 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "5viqpbh",
+      "timestamp": "6:57:44 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "fc47inq",
+      "timestamp": "6:57:44 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "v3y6zdo",
+      "timestamp": "6:57:45 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "rgnvnb3",
+      "timestamp": "6:57:45 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "83608ki",
+      "timestamp": "6:57:46 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-F976BE_SEA_DX, PDA=F976BXXU2AZHK, CSC=F976BOXM2AZHK, Phone=F976BXXU2AZHK",
+      "index": null
+    },
+    {
+      "id": "ok83rgp",
+      "timestamp": "6:57:46 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "gidyt6g",
+      "timestamp": "6:57:46 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "er3a1ty",
+      "timestamp": "6:57:46 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "2k7z0jg",
+      "timestamp": "6:57:46 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "uoyivik",
+      "timestamp": "6:57:46 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "xznxwsr",
+      "timestamp": "6:57:47 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "4o8wc8s",
+      "timestamp": "6:57:47 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "plda2j4",
+      "timestamp": "6:57:47 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "talgsbu",
+      "timestamp": "6:57:48 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "s5ouvj0",
+      "timestamp": "6:57:48 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "zyab2qo",
+      "timestamp": "6:57:49 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-F971BE_SEA_DX, PDA=F971BXXU2AZHK, CSC=F971BOXM2AZHK, Phone=F971BXXU2AZHK",
+      "index": null
+    },
+    {
+      "id": "7kdyk46",
+      "timestamp": "6:57:49 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "yha1v1v",
+      "timestamp": "6:57:49 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A155F_SEA_B4_THL, PDA=A155FXXSCEZHU, CSC=A155FOLECEZHU, Phone=A155FXXSCEZHU",
+      "index": null
+    },
+    {
+      "id": "27xut9r",
+      "timestamp": "6:57:49 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "bqcghk2",
+      "timestamp": "6:57:50 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "40c413w",
+      "timestamp": "6:57:50 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "dpyggtw",
+      "timestamp": "6:57:50 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-F976BE_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "yuqm72q",
+      "timestamp": "6:57:51 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A185G_SEA_XME",
+      "index": null
+    },
+    {
+      "id": "l03mteb",
+      "timestamp": "6:57:52 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "8qz8vwm",
+      "timestamp": "6:57:54 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "wq6ffhd",
+      "timestamp": "6:57:54 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "vaorx29",
+      "timestamp": "6:57:54 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "wja423d",
+      "timestamp": "6:57:54 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "05m71yb",
+      "timestamp": "6:57:55 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-F971BE_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "5mqpij5",
+      "timestamp": "6:57:55 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A185G_SEA_XME, PDA=A185GXXU0AZHB, CSC=A185GOLM0AZHB, Phone=A185GXXU0AZHB",
+      "index": null
+    },
+    {
+      "id": "zaz5zj9",
+      "timestamp": "6:57:55 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "8cxvvja",
+      "timestamp": "6:57:55 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A155F_SEA_B4_THL!",
+      "index": null
+    },
+    {
+      "id": "dtyrtfk",
+      "timestamp": "6:57:56 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-S931BE_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "r60tblo",
+      "timestamp": "6:57:56 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "rwvebuk",
+      "timestamp": "6:57:56 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-F776BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "s66xmw7",
+      "timestamp": "6:57:57 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "c7hp34j",
+      "timestamp": "6:57:57 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "i13pu4b",
+      "timestamp": "6:57:58 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "71kituy",
+      "timestamp": "6:57:58 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "vs7qe6h",
+      "timestamp": "6:57:59 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "z60csmt",
+      "timestamp": "6:57:59 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "liz4ayp",
+      "timestamp": "6:57:59 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "8vbtfyb",
+      "timestamp": "6:58:00 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "6jb7woe",
+      "timestamp": "6:58:00 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "j67jgka",
+      "timestamp": "6:58:00 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "wsiyvdh",
+      "timestamp": "6:58:01 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-S931BE_SEA_B4_DX, PDA=S931BXXSCCZH5, CSC=S931BOXMCCZH5, Phone=S931BXXSCCZH1",
+      "index": null
+    },
+    {
+      "id": "0khk860",
+      "timestamp": "6:58:01 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "ksa6a9j",
+      "timestamp": "6:58:01 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-F776BE_SEA_DX, PDA=F776BXXU2AZHJ, CSC=F776BOXM2AZHJ, Phone=F776BXXU2AZHJ",
+      "index": null
+    },
+    {
+      "id": "ucqc4ke",
+      "timestamp": "6:58:01 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "wx7ueht",
+      "timestamp": "6:58:02 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A185G_SEA_XME!",
+      "index": null
+    },
+    {
+      "id": "n3r84dq",
+      "timestamp": "6:58:02 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "0itoks1",
+      "timestamp": "6:58:03 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "ha7ivft",
+      "timestamp": "6:58:03 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A566BE_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "jpta59c",
+      "timestamp": "6:58:03 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "pf727ww",
+      "timestamp": "6:58:05 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "rforbt5",
+      "timestamp": "6:58:05 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "qz8bmrp",
+      "timestamp": "6:58:06 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-F776BE_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "exhgoay",
+      "timestamp": "6:58:06 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "sza3tc1",
+      "timestamp": "6:58:07 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "iffll8l",
+      "timestamp": "6:58:07 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A276BE_SEA_XXV",
+      "index": null
+    },
+    {
+      "id": "wyhl967",
+      "timestamp": "6:58:07 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "x71zy87",
+      "timestamp": "6:58:07 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-S931BE_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "xir6q9l",
+      "timestamp": "6:58:08 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A566BE_SEA_B4_XME, PDA=A566BXXSDCZHD, CSC=A566BOLMDCZHD, Phone=A566BXXSDCZHD",
+      "index": null
+    },
+    {
+      "id": "yfkwbm4",
+      "timestamp": "6:58:08 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "1vcq9rj",
+      "timestamp": "6:58:08 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-X910_EUR_C2_XX",
+      "index": null
+    },
+    {
+      "id": "gojfc5n",
+      "timestamp": "6:58:08 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "jqty8ip",
+      "timestamp": "6:58:09 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "2t5a14a",
+      "timestamp": "6:58:09 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "m1nlwtp",
+      "timestamp": "6:58:09 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "vcy6ohr",
+      "timestamp": "6:58:10 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "v2facv8",
+      "timestamp": "6:58:10 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "p357w37",
+      "timestamp": "6:58:10 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "iypepmo",
+      "timestamp": "6:58:11 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "t84u4pv",
+      "timestamp": "6:58:12 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "6lrbf4d",
+      "timestamp": "6:58:13 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "lbb2vz9",
+      "timestamp": "6:58:13 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-X910_EUR_C2_XX, PDA=X910XXU6FZHH, CSC=X910OLE6FZHH, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "p4t46ze",
+      "timestamp": "6:58:13 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "1ihb2n9",
+      "timestamp": "6:58:13 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A566BE_SEA_B4_XME!",
+      "index": null
+    },
+    {
+      "id": "oafweuj",
+      "timestamp": "6:58:14 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-G525F_SEA_14_XSA",
+      "index": null
+    },
+    {
+      "id": "z8kyzuh",
+      "timestamp": "6:58:14 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "jupq388",
+      "timestamp": "6:58:14 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "6njkm7z",
+      "timestamp": "6:58:16 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-A276BE_SEA_XXV, PDA=A276BXXS3AZHA, CSC=A276BOLM3AZHA, Phone=A276BXXS3AZHA",
+      "index": null
+    },
+    {
+      "id": "cfg71n3",
+      "timestamp": "6:58:16 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "1c4gn5h",
+      "timestamp": "6:58:16 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "folcj3c",
+      "timestamp": "6:58:16 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "riwjrfs",
+      "timestamp": "6:58:17 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "o460mos",
+      "timestamp": "6:58:17 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "rbcuc0w",
+      "timestamp": "6:58:18 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "xr3k9io",
+      "timestamp": "6:58:18 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-G525F_SEA_14_XSA, PDA=G525FXXUKEZH2, CSC=G525FOLEKEZH2, Phone=G525FXXUKEZH1",
+      "index": null
+    },
+    {
+      "id": "15viuu2",
+      "timestamp": "6:58:18 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "5zuzhsv",
+      "timestamp": "6:58:19 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-X910_EUR_C2_XX!",
+      "index": null
+    },
+    {
+      "id": "ef9l2vb",
+      "timestamp": "6:58:19 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "f62v1u9",
+      "timestamp": "6:58:20 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A075F_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "fm95xuo",
+      "timestamp": "6:58:20 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "wonujnc",
+      "timestamp": "6:58:21 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-A276BE_SEA_XXV!",
+      "index": null
+    },
+    {
+      "id": "p6bj19e",
+      "timestamp": "6:58:22 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "tufbfhj",
+      "timestamp": "6:58:22 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "b6hkk5v",
+      "timestamp": "6:58:22 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-G990E_SEA_16_XME",
+      "index": null
+    },
+    {
+      "id": "lejdx5d",
+      "timestamp": "6:58:23 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "1mo64t6",
+      "timestamp": "6:58:23 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-G525F_SEA_14_XSA!",
+      "index": null
+    },
+    {
+      "id": "96and80",
+      "timestamp": "6:58:23 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "zs9tuh3",
+      "timestamp": "6:58:23 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "scnq7w6",
+      "timestamp": "6:58:24 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-A155F_SEA_B4_THL",
+      "index": null
+    },
+    {
+      "id": "6m9oi53",
+      "timestamp": "6:58:24 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ueanm1r",
+      "timestamp": "6:58:25 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "32pr0gr",
+      "timestamp": "6:58:25 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-A075F_SEA_B4_XME, PDA=A075FXXS7CZH5, CSC=A075FOLM7CZH5, Phone=A075FXXS7CZH5",
+      "index": null
+    },
+    {
+      "id": "dy6c6ja",
+      "timestamp": "6:58:25 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "q3gjwnl",
+      "timestamp": "6:58:25 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "2vavd8t",
+      "timestamp": "6:58:26 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "qoc25ti",
+      "timestamp": "6:58:26 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "tzthwed",
+      "timestamp": "6:58:26 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "arlb6kp",
+      "timestamp": "6:58:27 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "1f0q3cl",
+      "timestamp": "6:58:27 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "9oog9xt",
+      "timestamp": "6:58:27 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "w7rkea7",
+      "timestamp": "6:58:28 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "ltyybkz",
+      "timestamp": "6:58:28 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-G990E_SEA_16_XME, PDA=G990EXXSOHZH4, CSC=G990EOLEOHZH4, Phone=G990EXXSOHZH1",
+      "index": null
+    },
+    {
+      "id": "mfac0db",
+      "timestamp": "6:58:28 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "9u3qnl0",
+      "timestamp": "6:58:28 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-A155F_SEA_B4_THL, PDA=A155FXXSCEZH3, CSC=A155FOLECEZH3, Phone=A155FXXSCEZH3",
+      "index": null
+    },
+    {
+      "id": "bgey5cb",
+      "timestamp": "6:58:28 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "6qdbq4k",
+      "timestamp": "6:58:29 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "e8r4xff",
+      "timestamp": "6:58:30 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "pcyoi4r",
+      "timestamp": "6:58:31 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-A075F_SEA_B4_XME!",
+      "index": null
+    },
+    {
+      "id": "4najq2x",
+      "timestamp": "6:58:32 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A245F_SEA_B4_XXV",
+      "index": null
+    },
+    {
+      "id": "x8pwknj",
+      "timestamp": "6:58:32 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "919352w",
+      "timestamp": "6:58:33 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-G990E_SEA_16_XME!",
+      "index": null
+    },
+    {
+      "id": "n19nz6t",
+      "timestamp": "6:58:33 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-A155F_SEA_B4_THL!",
+      "index": null
+    },
+    {
+      "id": "gsnir6h",
+      "timestamp": "6:58:34 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "868zp6r",
+      "timestamp": "6:58:34 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-X730_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "4fmkzvi",
+      "timestamp": "6:58:34 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "04yuovw",
+      "timestamp": "6:58:34 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "ay4szay",
+      "timestamp": "6:58:35 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X736B_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "y0ypig1",
+      "timestamp": "6:58:35 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "521bev5",
+      "timestamp": "6:58:36 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "8gd9afk",
+      "timestamp": "6:58:37 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "pl4p6bi",
+      "timestamp": "6:58:37 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "mcl0i13",
+      "timestamp": "6:58:37 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "y6ab42v",
+      "timestamp": "6:58:37 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "97szn6g",
+      "timestamp": "6:58:37 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "1wh38nx",
+      "timestamp": "6:58:38 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "8f5gf2x",
+      "timestamp": "6:58:38 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "8pp5r22",
+      "timestamp": "6:58:39 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-A245F_SEA_B4_XXV, PDA=A245FXXSEFZH6, CSC=A245FOLEEFZH6, Phone=A245FXXSEFZH6",
+      "index": null
+    },
+    {
+      "id": "cfbz5hp",
+      "timestamp": "6:58:39 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "f5ev216",
+      "timestamp": "6:58:39 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "f0vb9vp",
+      "timestamp": "6:58:39 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "m8clma3",
+      "timestamp": "6:58:39 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X736B_SEA_DX, PDA=X736BXXS8BZH4, CSC=X736BOXM8BZH4, Phone=X736BXXS8BZH4",
+      "index": null
+    },
+    {
+      "id": "olmytz6",
+      "timestamp": "6:58:39 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "z7uj7hh",
+      "timestamp": "6:58:40 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-X730_EUR_B4_XX, PDA=X730XXS8BZH4, CSC=X730OXM8BZH4, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "6fe24hq",
+      "timestamp": "6:58:40 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "97idhur",
+      "timestamp": "6:58:40 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "7gju7vo",
+      "timestamp": "6:58:40 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "zpz090q",
+      "timestamp": "6:58:41 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "bke3kkb",
+      "timestamp": "6:58:44 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X736B_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "nwjxwf6",
+      "timestamp": "6:58:44 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-A245F_SEA_B4_XXV!",
+      "index": null
+    },
+    {
+      "id": "7hq3mju",
+      "timestamp": "6:58:45 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-X730_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "sybqgli",
+      "timestamp": "6:58:45 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X700_EUR_16_XX",
+      "index": null
+    },
+    {
+      "id": "763wfxd",
+      "timestamp": "6:58:45 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "5m8yeha",
+      "timestamp": "6:58:45 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A165F_SEA_B4_XXV",
+      "index": null
+    },
+    {
+      "id": "0tlzana",
+      "timestamp": "6:58:46 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X620_EUR_XX",
+      "index": null
+    },
+    {
+      "id": "n9twsbs",
+      "timestamp": "6:58:46 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "pfgid8p",
+      "timestamp": "6:58:47 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ftrab27",
+      "timestamp": "6:58:47 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "uhnm3hx",
+      "timestamp": "6:58:48 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "ldmxfrj",
+      "timestamp": "6:58:48 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "0w2ij64",
+      "timestamp": "6:58:48 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "jtgjhy8",
+      "timestamp": "6:58:49 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "ezzq3hz",
+      "timestamp": "6:58:49 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "ouwtdv9",
+      "timestamp": "6:58:49 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "rnodflp",
+      "timestamp": "6:58:49 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "dawyoev",
+      "timestamp": "6:58:49 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "zg07njh",
+      "timestamp": "6:58:50 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "epu68jr",
+      "timestamp": "6:58:50 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "itmqsny",
+      "timestamp": "6:58:50 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "3w7qdcc",
+      "timestamp": "6:58:51 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X620_EUR_XX, PDA=X620XXU9DZH1, CSC=X620OLM9DZH1, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "rwklvpk",
+      "timestamp": "6:58:51 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "ut0kvvt",
+      "timestamp": "6:58:51 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A165F_SEA_B4_XXV, PDA=A165FXXSBDZH6, CSC=A165FOLEBDZH6, Phone=A165FXXSBDZH3",
+      "index": null
+    },
+    {
+      "id": "xayh50h",
+      "timestamp": "6:58:51 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "97fzkny",
+      "timestamp": "6:58:52 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-X700_EUR_16_XX, PDA=X700XXSBEZH3, CSC=X700OLEBEZH3, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "4i7l0o3",
+      "timestamp": "6:58:52 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "dby6elg",
+      "timestamp": "6:58:52 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "8ofpcl2",
+      "timestamp": "6:58:52 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "pu3eifa",
+      "timestamp": "6:58:53 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "r24xdql",
+      "timestamp": "6:58:55 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X620_EUR_XX!",
+      "index": null
+    },
+    {
+      "id": "72kirlk",
+      "timestamp": "6:58:56 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X626B_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "4dyh2qy",
+      "timestamp": "6:58:56 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "o9xprc2",
+      "timestamp": "6:58:56 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-A165F_SEA_B4_XXV!",
+      "index": null
+    },
+    {
+      "id": "hv5s33b",
+      "timestamp": "6:58:57 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-X700_EUR_16_XX!",
+      "index": null
+    },
+    {
+      "id": "6oc0i06",
+      "timestamp": "6:58:57 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-X730_EUR_XX",
+      "index": null
+    },
+    {
+      "id": "k1beqqt",
+      "timestamp": "6:58:58 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X610_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "6pyb6iv",
+      "timestamp": "6:58:58 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "6mt0dpe",
+      "timestamp": "6:58:58 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "it5dpnk",
+      "timestamp": "6:58:59 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "6pxkqs2",
+      "timestamp": "6:58:59 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "8ahntpt",
+      "timestamp": "6:58:59 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "ntehmx8",
+      "timestamp": "6:59:00 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "udys526",
+      "timestamp": "6:59:01 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "0djwwgg",
+      "timestamp": "6:59:01 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "4c7ow8d",
+      "timestamp": "6:59:01 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "0vl8soj",
+      "timestamp": "6:59:02 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "wjmytdp",
+      "timestamp": "6:59:03 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "ud4r3rx",
+      "timestamp": "6:59:03 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "ubh9862",
+      "timestamp": "6:59:03 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-X626B_SEA_DX, PDA=X626BXXU9DZH1, CSC=X626BOLM9DZH1, Phone=X626BXXU9DZH1",
+      "index": null
+    },
+    {
+      "id": "ut3h63h",
+      "timestamp": "6:59:03 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "zbv6x07",
+      "timestamp": "6:59:04 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X610_EUR_B4_XX, PDA=X610XXSFEZH7, CSC=X610OLEFEZH7, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "5counyr",
+      "timestamp": "6:59:04 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "m7fwf0s",
+      "timestamp": "6:59:04 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "p3hc1vh",
+      "timestamp": "6:59:05 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "h5lbf3m",
+      "timestamp": "6:59:05 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "z70yvz1",
+      "timestamp": "6:59:06 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "j4thobo",
+      "timestamp": "6:59:07 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-X730_EUR_XX, PDA=X730XXU8CZZ7, CSC=X730OXM8CZZ7, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "57ostgm",
+      "timestamp": "6:59:07 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "fqhmltr",
+      "timestamp": "6:59:08 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X610_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "0cq2utp",
+      "timestamp": "6:59:08 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "s1fd1gi",
+      "timestamp": "6:59:09 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-X520_EUR_XX",
+      "index": null
+    },
+    {
+      "id": "z3kpg8i",
+      "timestamp": "6:59:09 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ucs6qfc",
+      "timestamp": "6:59:10 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-X626B_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "3wcvlup",
+      "timestamp": "6:59:11 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A175F_SEA_B4_PHL",
+      "index": null
+    },
+    {
+      "id": "yoq1qnu",
+      "timestamp": "6:59:11 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "3pox0jc",
+      "timestamp": "6:59:11 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "l48k5no",
+      "timestamp": "6:59:11 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "scnlrxo",
+      "timestamp": "6:59:13 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-X730_EUR_XX!",
+      "index": null
+    },
+    {
+      "id": "jul0w4d",
+      "timestamp": "6:59:13 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "1mq9b3i",
+      "timestamp": "6:59:13 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "qbvolab",
+      "timestamp": "6:59:13 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "vhh9ixy",
+      "timestamp": "6:59:13 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "1dh5t1j",
+      "timestamp": "6:59:14 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X936B_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "crjh186",
+      "timestamp": "6:59:14 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "nu4tcr1",
+      "timestamp": "6:59:14 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "cv3mnq4",
+      "timestamp": "6:59:14 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "q5gem03",
+      "timestamp": "6:59:15 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-X520_EUR_XX, PDA=X520XXU9DZH1, CSC=X520OLM9DZH1, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "uky0j1u",
+      "timestamp": "6:59:15 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "esywgpp",
+      "timestamp": "6:59:15 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A175F_SEA_B4_PHL, PDA=A175FXXS7CZH6, CSC=A175FOXM7CZH6, Phone=A175FXXS7CZH6",
+      "index": null
+    },
+    {
+      "id": "z4aux89",
+      "timestamp": "6:59:15 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "yxmt77u",
+      "timestamp": "6:59:16 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "mhu8aew",
+      "timestamp": "6:59:16 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "h7bqick",
+      "timestamp": "6:59:16 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "tforbac",
+      "timestamp": "6:59:17 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "pidrm9g",
+      "timestamp": "6:59:17 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "xmnrrjr",
+      "timestamp": "6:59:17 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "q19czwh",
+      "timestamp": "6:59:18 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X936B_SEA_B4_DX, PDA=X936BXXS8BZH4, CSC=X936BOXM8BZH4, Phone=X936BXXS8BZH4",
+      "index": null
+    },
+    {
+      "id": "lp6qud0",
+      "timestamp": "6:59:18 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "4q09i8w",
+      "timestamp": "6:59:19 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "x3hgw2d",
+      "timestamp": "6:59:19 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-X520_EUR_XX!",
+      "index": null
+    },
+    {
+      "id": "3d10olj",
+      "timestamp": "6:59:20 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-A175F_SEA_B4_PHL!",
+      "index": null
+    },
+    {
+      "id": "pblsry9",
+      "timestamp": "6:59:20 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-G990E_SEA_16_XME",
+      "index": null
+    },
+    {
+      "id": "w3wa29l",
+      "timestamp": "6:59:20 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "0i1yuu1",
+      "timestamp": "6:59:21 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-X810_EUR_C2_XX",
+      "index": null
+    },
+    {
+      "id": "m4vubom",
+      "timestamp": "6:59:22 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "jcbxv6h",
+      "timestamp": "6:59:22 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X936B_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "nvnuxvv",
+      "timestamp": "6:59:22 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "hs1w218",
+      "timestamp": "6:59:23 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "6xjqjvm",
+      "timestamp": "6:59:23 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-P625_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "v5dv2p7",
+      "timestamp": "6:59:24 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "om7zgv8",
+      "timestamp": "6:59:24 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "0d4fo4i",
+      "timestamp": "6:59:24 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "9xzyoil",
+      "timestamp": "6:59:24 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "m24ys7f",
+      "timestamp": "6:59:24 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "3g171zh",
+      "timestamp": "6:59:25 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-G990E_SEA_16_XME, PDA=G990EXXSOHZH3, CSC=G990EOLEOHZH3, Phone=G990EXXSOHZH1",
+      "index": null
+    },
+    {
+      "id": "p71c32g",
+      "timestamp": "6:59:25 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "tbspsa7",
+      "timestamp": "6:59:26 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "y9xnznw",
+      "timestamp": "6:59:26 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "5v3hdh3",
+      "timestamp": "6:59:26 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "9s559fh",
+      "timestamp": "6:59:26 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "x2aqzyi",
+      "timestamp": "6:59:26 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "i507jx8",
+      "timestamp": "6:59:27 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "ztbrrg7",
+      "timestamp": "6:59:27 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "w1o8oho",
+      "timestamp": "6:59:27 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-X810_EUR_C2_XX, PDA=X810XXU6FZHH, CSC=X810OLE6FZHH, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "pi7aozr",
+      "timestamp": "6:59:27 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "uiphiwa",
+      "timestamp": "6:59:28 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-P625_SEA_B4_DX, PDA=P625XXSCCZH4, CSC=P625OXMCCZH4, Phone=P625XXSCCZH4",
+      "index": null
+    },
+    {
+      "id": "poxz6r8",
+      "timestamp": "6:59:28 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "llt04s6",
+      "timestamp": "6:59:28 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "19u0fc9",
+      "timestamp": "6:59:29 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "4p1gmox",
+      "timestamp": "6:59:30 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-G990E_SEA_16_XME!",
+      "index": null
+    },
+    {
+      "id": "5byl7dt",
+      "timestamp": "6:59:31 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-S928BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "hjigzsx",
+      "timestamp": "6:59:31 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "dqkikke",
+      "timestamp": "6:59:32 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-X810_EUR_C2_XX!",
+      "index": null
+    },
+    {
+      "id": "wrhxwcc",
+      "timestamp": "6:59:33 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-P625_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "5dvqc6z",
+      "timestamp": "6:59:33 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "q4504cl",
+      "timestamp": "6:59:33 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "xhsifgf",
+      "timestamp": "6:59:33 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-F966B_EUR_C2_XX",
+      "index": null
+    },
+    {
+      "id": "xlikj0y",
+      "timestamp": "6:59:34 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "5eshk8q",
+      "timestamp": "6:59:34 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-S921BE_SEA_DX",
+      "index": null
+    },
+    {
+      "id": "89c97xc",
+      "timestamp": "6:59:35 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "ihwb32z",
+      "timestamp": "6:59:35 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "9rjj21h",
+      "timestamp": "6:59:35 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "xh40z7r",
+      "timestamp": "6:59:36 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "ri8qcih",
+      "timestamp": "6:59:36 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "dhw9qke",
+      "timestamp": "6:59:37 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-S928BE_SEA_DX, PDA=S928BXXU6EZHD, CSC=S928BOLE6EZHD, Phone=S928BXXU6EZHC",
+      "index": null
+    },
+    {
+      "id": "udn4273",
+      "timestamp": "6:59:37 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "5l2c870",
+      "timestamp": "6:59:37 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "1w3oqj0",
+      "timestamp": "6:59:37 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "gxfzb0m",
+      "timestamp": "6:59:38 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "uuzcw1z",
+      "timestamp": "6:59:38 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "f1w31y6",
+      "timestamp": "6:59:38 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "kzxzm3t",
+      "timestamp": "6:59:38 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "e9b11ac",
+      "timestamp": "6:59:38 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "2n8szyp",
+      "timestamp": "6:59:39 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-S921BE_SEA_DX, PDA=S921BXXUHEZHD, CSC=S921BOLEHEZHD, Phone=S921BXXUHEZHC",
+      "index": null
+    },
+    {
+      "id": "z3alay6",
+      "timestamp": "6:59:39 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "dlbqrro",
+      "timestamp": "6:59:39 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-F966B_EUR_C2_XX, PDA=F966BXXUCCZHC, CSC=F966BOXMCCZHC, Phone=F966BXXUCZZHC",
+      "index": null
+    },
+    {
+      "id": "jsfgzuf",
+      "timestamp": "6:59:39 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "7i12s5e",
+      "timestamp": "6:59:40 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "6ra3kkz",
+      "timestamp": "6:59:40 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "sd08leh",
+      "timestamp": "6:59:42 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-S928BE_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "13ryxwq",
+      "timestamp": "6:59:43 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-S731B_EUR_C2_XX",
+      "index": null
+    },
+    {
+      "id": "u289chv",
+      "timestamp": "6:59:43 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "qpsid6d",
+      "timestamp": "6:59:43 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-S921BE_SEA_DX!",
+      "index": null
+    },
+    {
+      "id": "az0cfcv",
+      "timestamp": "6:59:44 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-M556B_SEA_B4_XME",
+      "index": null
+    },
+    {
+      "id": "5ccyy1m",
+      "timestamp": "6:59:45 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "vswn90o",
+      "timestamp": "6:59:45 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-F966B_EUR_C2_XX!",
+      "index": null
+    },
+    {
+      "id": "earbrja",
+      "timestamp": "6:59:45 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "43w7i3k",
+      "timestamp": "6:59:46 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "wuijfg2",
+      "timestamp": "6:59:46 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-X710_EUR_B4_XX",
+      "index": null
+    },
+    {
+      "id": "br2cc4k",
+      "timestamp": "6:59:47 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "hjxcnrk",
+      "timestamp": "6:59:47 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "v7yhpk4",
+      "timestamp": "6:59:47 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "b98bbs8",
+      "timestamp": "6:59:48 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "ealseas",
+      "timestamp": "6:59:48 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "zzwm7y2",
+      "timestamp": "6:59:48 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "91j80gb",
+      "timestamp": "6:59:48 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "wyeg2ae",
+      "timestamp": "6:59:49 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "nmwcdtm",
+      "timestamp": "6:59:49 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-S731B_EUR_C2_XX, PDA=S731BXXU9CZH6, CSC=S731BOXM9ZZH6, Phone=S731BXXU9CZH4",
+      "index": null
+    },
+    {
+      "id": "4i5ghxy",
+      "timestamp": "6:59:49 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "srzkzjl",
+      "timestamp": "6:59:49 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "vhdabfv",
+      "timestamp": "6:59:49 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-M556B_SEA_B4_XME, PDA=M556BXXS5DZH1, CSC=M556BOLM5DZH1, Phone=M556BXXS5DZH1",
+      "index": null
+    },
+    {
+      "id": "3cd8y5q",
+      "timestamp": "6:59:49 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "fb6s0l4",
+      "timestamp": "6:59:50 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "tyowov3",
+      "timestamp": "6:59:50 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "c9ffu30",
+      "timestamp": "6:59:50 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "itx24zj",
+      "timestamp": "6:59:50 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "m5j51bi",
+      "timestamp": "6:59:51 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-X710_EUR_B4_XX, PDA=X710XXU6FZHH, CSC=X710OLE6FZHH, Phone=[EMPTY - Wi-Fi Only]",
+      "index": null
+    },
+    {
+      "id": "amqix82",
+      "timestamp": "6:59:51 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "7pnq1cr",
+      "timestamp": "6:59:52 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "pic5bdv",
+      "timestamp": "6:59:54 AM",
+      "level": "success",
+      "message": "[Tab #2] Form triggered successfully for SM-S731B_EUR_C2_XX!",
+      "index": null
+    },
+    {
+      "id": "6ntsapn",
+      "timestamp": "6:59:54 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-M556B_SEA_B4_XME!",
+      "index": null
+    },
+    {
+      "id": "vkxgdlh",
+      "timestamp": "6:59:55 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-G525F_SEA_14_XSA",
+      "index": null
+    },
+    {
+      "id": "86utsig",
+      "timestamp": "6:59:55 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "81h948n",
+      "timestamp": "6:59:55 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-X710_EUR_B4_XX!",
+      "index": null
+    },
+    {
+      "id": "75t0vqq",
+      "timestamp": "6:59:55 AM",
+      "level": "info",
+      "message": "[Tab #3] Starting parallel submission: SM-A576BE_SEA_XME",
+      "index": null
+    },
+    {
+      "id": "o6c44cg",
+      "timestamp": "6:59:56 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-S918BE_SEA_B4_DX",
+      "index": null
+    },
+    {
+      "id": "408ny0q",
+      "timestamp": "6:59:57 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "cywansi",
+      "timestamp": "6:59:57 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "enlpfz7",
+      "timestamp": "6:59:57 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "ijt3hxc",
+      "timestamp": "6:59:57 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "7wcr7pu",
+      "timestamp": "6:59:59 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "608klf5",
+      "timestamp": "6:59:59 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "53wenkt",
+      "timestamp": "6:59:59 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "gq2654k",
+      "timestamp": "6:59:59 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "8dmi6cc",
+      "timestamp": "6:59:59 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "8jl1aki",
+      "timestamp": "6:59:59 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "nmme45f",
+      "timestamp": "7:00:00 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-G525F_SEA_14_XSA, PDA=G525FXXUKEZH1, CSC=G525FOLEKEZH1, Phone=G525FXXUKEZH1",
+      "index": null
+    },
+    {
+      "id": "0pjiule",
+      "timestamp": "7:00:00 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "hl73q3p",
+      "timestamp": "7:00:01 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "qnocjgg",
+      "timestamp": "7:00:01 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "fmclxux",
+      "timestamp": "7:00:01 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "cdkuto4",
+      "timestamp": "7:00:02 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "n63ojo7",
+      "timestamp": "7:00:02 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-S918BE_SEA_B4_DX, PDA=S918BXXSAFZH3, CSC=S918BOLEAFZH3, Phone=S918BXXSAFZE1",
+      "index": null
+    },
+    {
+      "id": "8tom4a4",
+      "timestamp": "7:00:02 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "y028qb4",
+      "timestamp": "7:00:02 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "iabfjhx",
+      "timestamp": "7:00:03 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "elx765s",
+      "timestamp": "7:00:04 AM",
+      "level": "info",
+      "message": "[Tab #3] Populated: Fingerprint=SM-A576BE_SEA_XME, PDA=A576BXXU4BZZ5, CSC=A576BOLM4BZZ5, Phone=A576BXXU4BZG6",
+      "index": null
+    },
+    {
+      "id": "e9v3tvp",
+      "timestamp": "7:00:04 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "1vrn2ii",
+      "timestamp": "7:00:06 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-S918BE_SEA_B4_DX!",
+      "index": null
+    },
+    {
+      "id": "y9h3br1",
+      "timestamp": "7:00:06 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "klxkl6o",
+      "timestamp": "7:00:07 AM",
+      "level": "info",
+      "message": "[Tab #2] Starting parallel submission: SM-A336E_SEA_16_XXV",
+      "index": null
+    },
+    {
+      "id": "gknp3da",
+      "timestamp": "7:00:07 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "yko1zl4",
+      "timestamp": "7:00:10 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "s231iwh",
+      "timestamp": "7:00:10 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "79obwf2",
+      "timestamp": "7:00:11 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "nfd88le",
+      "timestamp": "7:00:11 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "x7v4x9x",
+      "timestamp": "7:00:12 AM",
+      "level": "info",
+      "message": "[Tab #2] Populated: Fingerprint=SM-A336E_SEA_16_XXV, PDA=A336EDXUJGZH1, CSC=A336EOLEJGZH1, Phone=A336EDXUJGZH1",
+      "index": null
+    },
+    {
+      "id": "t50gh4y",
+      "timestamp": "7:00:12 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "4ldgxnq",
+      "timestamp": "7:00:13 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "yi9uace",
+      "timestamp": "7:00:13 AM",
+      "level": "success",
+      "message": "[Tab #3] Form triggered successfully for SM-A576BE_SEA_XME!",
+      "index": null
     }
   ],
   "portalConfig": {
@@ -20584,5 +23422,5 @@
     "password": "sein2016!"
   },
   "isRunning": false,
-  "lastUpdated": "2026-08-31T23:42:28.498Z"
+  "lastUpdated": "2026-08-31T23:57:24.765Z"
 }

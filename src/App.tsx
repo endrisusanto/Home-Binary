@@ -560,6 +560,21 @@ export function App() {
       return;
     }
 
+    if (portalConfig.fetchOnly) {
+      addLog(
+        'info',
+        `🔍 [Scan Mode] Scanning QuickBuild Dashboard to find existing Build IDs for ${queueToRun.length} pending build(s)...`
+      );
+      await dispatchBatchRunner({
+        portal: {
+          ...portalConfig,
+          fetchOnly: true,
+        },
+        items: queueToRun,
+      });
+      return;
+    }
+
     setItems((prev) =>
       prev.map((x) =>
         x.status === 'pending'
@@ -710,6 +725,8 @@ export function App() {
         trackProgress={portalConfig.trackProgress ?? true}
         onToggleTrackProgress={(checked) => setPortalConfig(prev => ({ ...prev, trackProgress: checked }))}
         appVersion={appVersion}
+        fetchOnlyMode={portalConfig.fetchOnly ?? false}
+        onToggleFetchOnlyMode={(checked) => setPortalConfig(prev => ({ ...prev, fetchOnly: checked }))}
       />
 
       {/* Main Body Content (Full Width Compact Layout with Footer Offset) */}
@@ -786,6 +803,8 @@ export function App() {
         trackProgress={portalConfig.trackProgress ?? true}
         onToggleTrackProgress={(checked) => setPortalConfig(prev => ({ ...prev, trackProgress: checked }))}
         appVersion={appVersion}
+        fetchOnlyMode={portalConfig.fetchOnly ?? false}
+        onToggleFetchOnlyMode={(checked) => setPortalConfig(prev => ({ ...prev, fetchOnly: checked }))}
       />
 
       {/* Collapsible Persistent Bottom Footer Log Bar */}
