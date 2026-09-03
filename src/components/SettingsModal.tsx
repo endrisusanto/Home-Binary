@@ -13,9 +13,7 @@ import {
   CheckCircle2, 
   AlertCircle,
   Wifi,
-  WifiOff,
-  ScanFace,
-  KeyRound
+  WifiOff
 } from 'lucide-react';
 import { PortalConfig, ConnectedClient } from '../types/batch';
 
@@ -240,100 +238,38 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             />
           </div>
 
-          {/* 3. SSO AUTHENTICATION & LOGIN METHOD */}
-          <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#070709] border border-slate-200/80 dark:border-neutral-800/80 space-y-3">
+          {/* 3. SSO AUTHENTICATION CREDENTIALS */}
+          <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#070709] border border-slate-200/80 dark:border-neutral-800/80 space-y-2.5">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <ScanFace className="w-4 h-4 text-blue-500" />
-                <span className="text-xs font-bold text-slate-800 dark:text-neutral-200">
-                  SSO Login Method
-                </span>
-              </div>
-              <span className="text-[10px] text-slate-400 font-mono">SecSSO / Knox / ADFS</span>
+              <span className="text-xs font-semibold text-slate-700 dark:text-neutral-200">
+                SSO Auto-Login Credentials
+              </span>
+              <span className="text-[10px] text-slate-400 font-mono">SecSSO / ADFS</span>
             </div>
-
-            {/* Method Choice: Face ID (Main) vs Manual Input (Alternative) */}
-            <div className="grid grid-cols-2 gap-2">
-              {/* Option 1: Face ID (Main Option) */}
-              <button
-                type="button"
-                onClick={() => setFormData({ ...formData, ssoAuthMethod: 'face_id' })}
-                className={`p-2.5 rounded-xl border text-left transition-all flex flex-col gap-1 cursor-pointer ${
-                  (formData.ssoAuthMethod ?? 'face_id') === 'face_id'
-                    ? 'bg-blue-50/90 dark:bg-blue-950/60 border-blue-500/80 shadow-xs text-blue-900 dark:text-blue-200 ring-1 ring-blue-500/30'
-                    : 'bg-white dark:bg-[#0c0c0e] border-slate-200 dark:border-neutral-800 hover:border-slate-300 dark:hover:border-neutral-700 text-slate-600 dark:text-neutral-400'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold flex items-center gap-1">
-                    <ScanFace className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                    Face ID
-                  </span>
-                  <span className="text-[8px] font-bold px-1.5 py-0.2 rounded bg-blue-600 text-white uppercase tracking-wider">
-                    Main
-                  </span>
-                </div>
-                <span className="text-[9px] text-slate-500 dark:text-neutral-400 leading-tight">
-                  Primary option: Camera recognition on Samsung SSO portal
-                </span>
-              </button>
-
-              {/* Option 2: Manual Input (Alternative) */}
-              <button
-                type="button"
-                onClick={() => setFormData({ ...formData, ssoAuthMethod: 'manual' })}
-                className={`p-2.5 rounded-xl border text-left transition-all flex flex-col gap-1 cursor-pointer ${
-                  formData.ssoAuthMethod === 'manual'
-                    ? 'bg-amber-50/90 dark:bg-amber-950/60 border-amber-500/80 shadow-xs text-amber-900 dark:text-amber-200 ring-1 ring-amber-500/30'
-                    : 'bg-white dark:bg-[#0c0c0e] border-slate-200 dark:border-neutral-800 hover:border-slate-300 dark:hover:border-neutral-700 text-slate-600 dark:text-neutral-400'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold flex items-center gap-1">
-                    <KeyRound className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                    Manual Input
-                  </span>
-                  <span className="text-[8px] font-semibold px-1.5 py-0.2 rounded bg-slate-200 dark:bg-neutral-800 text-slate-700 dark:text-neutral-300 uppercase tracking-wider">
-                    Alt
-                  </span>
-                </div>
-                <span className="text-[9px] text-slate-500 dark:text-neutral-400 leading-tight">
-                  Alternative: Auto-fill username and password fields
-                </span>
-              </button>
-            </div>
-
-            {/* Credentials fields for Manual Input or fallback */}
-            <div className="pt-1 space-y-1.5">
-              <div className="text-[10px] font-medium text-slate-500 dark:text-neutral-400 flex items-center justify-between">
-                <span>{formData.ssoAuthMethod === 'manual' ? 'Manual Credentials (Active)' : 'Alternative Fallback Credentials'}</span>
-                <span className="text-[9px] text-slate-400">(Optional)</span>
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="space-y-1">
+                <label className="text-[11px] font-medium text-slate-500 dark:text-neutral-400">
+                  Username / ID
+                </label>
+                <input
+                  type="text"
+                  value={formData.username || ''}
+                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                  className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#0c0c0e] border border-slate-200 dark:border-neutral-800 rounded-lg outline-none focus:border-blue-500"
+                  placeholder="endri.s"
+                />
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="space-y-1">
-                  <label className="text-[10px] text-slate-500 dark:text-neutral-400">
-                    Username / ID
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.username || ''}
-                    onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                    className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#0c0c0e] border border-slate-200 dark:border-neutral-800 rounded-lg outline-none focus:border-blue-500"
-                    placeholder="endri.s"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] text-slate-500 dark:text-neutral-400">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    value={formData.password || ''}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#0c0c0e] border border-slate-200 dark:border-neutral-800 rounded-lg outline-none focus:border-blue-500"
-                    placeholder="••••••••"
-                  />
-                </div>
+              <div className="space-y-1">
+                <label className="text-[11px] font-medium text-slate-500 dark:text-neutral-400">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  value={formData.password || ''}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  className="w-full px-2.5 py-1.5 text-xs font-mono bg-white dark:bg-[#0c0c0e] border border-slate-200 dark:border-neutral-800 rounded-lg outline-none focus:border-blue-500"
+                  placeholder="••••••••"
+                />
               </div>
             </div>
           </div>
