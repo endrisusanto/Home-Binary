@@ -919,8 +919,8 @@
       "basebandVersion": "S947BXXU4BZI2",
       "id": "build-1788405072806-0",
       "index": 69,
-      "status": "running",
-      "message": "Build #114322466 running on server (100%, step: MAKE_HOME_BINARY)...",
+      "status": "success",
+      "message": "Completed: SM-S947BE_SEA_C2_DX",
       "progressPercent": 100,
       "buildId": "114322466",
       "buildDate": "2026-09-03 12:13:14"
@@ -27253,6 +27253,391 @@
       "level": "info",
       "message": "Found 200 build entries on Dashboard.",
       "index": null
+    },
+    {
+      "id": "4rg1wk3",
+      "timestamp": "10:16:16 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (100%, 2m:58s)...",
+      "index": null
+    },
+    {
+      "id": "o2u8s1k",
+      "timestamp": "10:16:36 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "a0pe0hv",
+      "timestamp": "10:16:36 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "klxqlyd",
+      "timestamp": "10:17:15 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "bvfohus",
+      "timestamp": "10:17:17 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "6kq47jr",
+      "timestamp": "10:17:17 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "r230lb1",
+      "timestamp": "10:17:18 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "4x0b3j5",
+      "timestamp": "10:17:22 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "2qxrlwz",
+      "timestamp": "10:17:23 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "36v04kk",
+      "timestamp": "10:17:32 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "xkkwsu1",
+      "timestamp": "10:17:32 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (100%, 4m:15s)...",
+      "index": null
+    },
+    {
+      "id": "kq79few",
+      "timestamp": "10:17:32 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "pdm8f26",
+      "timestamp": "10:17:32 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (100%, 4m:15s)...",
+      "index": null
+    },
+    {
+      "id": "fm28mzn",
+      "timestamp": "10:17:36 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "gzufogw",
+      "timestamp": "10:17:36 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "xgrbfbl",
+      "timestamp": "10:18:32 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "fisolsk",
+      "timestamp": "10:18:32 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "7j3gesm",
+      "timestamp": "10:18:33 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "g8nctux",
+      "timestamp": "10:18:34 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "yxoc4o2",
+      "timestamp": "10:18:36 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "7vqioot",
+      "timestamp": "10:18:36 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "6xik41l",
+      "timestamp": "10:18:37 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "orokqqj",
+      "timestamp": "10:18:39 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "pbtuad9",
+      "timestamp": "10:18:48 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "74vtqjj",
+      "timestamp": "10:18:48 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (100%, 5m:31s)...",
+      "index": null
+    },
+    {
+      "id": "iv9h3jy",
+      "timestamp": "10:18:49 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "i1ycwc0",
+      "timestamp": "10:18:49 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (100%, 5m:33s)...",
+      "index": null
+    },
+    {
+      "id": "kqjz6dj",
+      "timestamp": "10:19:36 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "qi2wxzr",
+      "timestamp": "10:19:36 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "mccsacx",
+      "timestamp": "10:19:48 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "z6b2d7b",
+      "timestamp": "10:19:49 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "knqjqfv",
+      "timestamp": "10:19:49 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "xvck2pz",
+      "timestamp": "10:19:50 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "1w6c53q",
+      "timestamp": "10:19:57 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "cbh5kpg",
+      "timestamp": "10:19:59 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "dd5gimt",
+      "timestamp": "10:20:10 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "pha5rk9",
+      "timestamp": "10:20:10 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (100%, 6m:53s)...",
+      "index": null
+    },
+    {
+      "id": "2qxvmbk",
+      "timestamp": "10:20:14 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "ak9t8o6",
+      "timestamp": "10:20:14 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (100%, 6m:57s)...",
+      "index": null
+    },
+    {
+      "id": "tv6zcnq",
+      "timestamp": "10:20:36 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "bym2zxf",
+      "timestamp": "10:20:36 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "xqetfcg",
+      "timestamp": "10:21:10 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "uawpp4e",
+      "timestamp": "10:21:12 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "x82b34z",
+      "timestamp": "10:21:14 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "7rtou5d",
+      "timestamp": "10:21:15 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "z0ixz3o",
+      "timestamp": "10:21:18 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "b3zarhg",
+      "timestamp": "10:21:20 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "8la9lkw",
+      "timestamp": "10:21:27 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "5taill0",
+      "timestamp": "10:21:27 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114322466 for SM-S947BE_SEA_C2_DX! (Duration: 7m:57s)",
+      "index": null
+    },
+    {
+      "id": "m9gx8mb",
+      "timestamp": "10:21:27 AM",
+      "level": "success",
+      "message": "All 1 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "ed9agcn",
+      "timestamp": "10:21:33 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "fl30gwp",
+      "timestamp": "10:21:33 AM",
+      "level": "success",
+      "message": "[SUCCESS] Matched Build #114322466 for SM-S947BE_SEA_C2_DX! (Duration: 7m:57s)",
+      "index": null
+    },
+    {
+      "id": "bpb7bb8",
+      "timestamp": "10:21:33 AM",
+      "level": "success",
+      "message": "All 1 builds finished processing on QuickBuild!",
+      "index": null
+    },
+    {
+      "id": "cki343y",
+      "timestamp": "10:21:37 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "ej42c14",
+      "timestamp": "10:21:37 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
     }
   ],
   "portalConfig": {
@@ -27268,6 +27653,6 @@
     "password": "K4t4s4ndi!",
     "fetchOnly": true
   },
-  "isRunning": true,
+  "isRunning": false,
   "lastUpdated": "2026-09-03T03:12:34.320Z"
 }

@@ -3,7 +3,6 @@ import {
   Search, 
   Plus, 
   RotateCcw, 
-  Terminal, 
   Settings, 
   Sun, 
   Moon, 
@@ -58,13 +57,8 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-40 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-md border-b border-slate-200 dark:border-neutral-800 transition-colors">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 h-12 sm:h-14 flex items-center justify-between gap-1.5 sm:gap-4">
         
-        {/* Left Branding / Logo */}
+        {/* Left Branding / Title */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-          <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 p-0.5 shadow-md shadow-blue-500/20 flex items-center justify-center">
-            <div className="w-full h-full bg-white dark:bg-[#09090b] rounded-[7px] sm:rounded-[10px] flex items-center justify-center">
-              <Terminal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 dark:text-blue-400" />
-            </div>
-          </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1 sm:gap-1.5">
               <span className="font-bold text-xs sm:text-[17px] tracking-tight bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 dark:from-white dark:via-neutral-100 dark:to-neutral-300 bg-clip-text text-transparent">
