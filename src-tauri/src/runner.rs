@@ -48,6 +48,8 @@ pub struct PortalConfig {
     pub username: Option<String>,
     #[serde(default)]
     pub password: Option<String>,
+    #[serde(default)]
+    pub sso_auth_method: Option<String>,
 }
 
 fn default_base_url() -> String {

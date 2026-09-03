@@ -223,7 +223,7 @@ async function runMockSimulation(items, delayMs = 1200) {
   emitDone(items.length, successCount, failedCount);
 }
 
-async function handleSsoLoginIfNeeded(page, context, username, password, timeoutMs = 120000) {
+async function handleSsoLoginIfNeeded(page, context, username, password, timeoutMs = 120000, ssoAuthMethod = 'face_id') {
   const currentUrl = page.url();
   if (
     currentUrl.includes('login') || 
@@ -234,38 +234,102 @@ async function handleSsoLoginIfNeeded(page, context, username, password, timeout
   ) {
     emitLog('warn', `SSO Authentication required at ${currentUrl}`);
     
-    if (username && password) {
-      emitLog('info', `Attempting auto-fill SSO credentials for user: ${username}...`);
+    // 1. MAIN OPTION: Face ID / Biometric Authentication
+    if (ssoAuthMethod === 'face_id') {
+      emitLog('info', 'Activating Face ID as primary authentication method...');
       try {
-        const userSelector = '#userNameInput, input[name="UserName"], input[name="username"], input[type="text"], input[type="email"], #username, input[name="loginfmt"]';
-        const passSelector = '#passwordInput, input[name="Password"], input[name="password"], input[type="password"], #password';
-        const submitSelector = '#submitButton, input[type="submit"], button[type="submit"], #idSIButton9';
+        const faceSelectors = [
+          'button:has-text("Face")',
+          'a:has-text("Face")',
+          '[id*="face" i]',
+          '[id*="Face" i]',
+          '[class*="face" i]',
+          '[aria-label*="Face" i]',
+          'button:has-text("Biometric")',
+          'button:has-text("FIDO")',
+          'button:has-text("Knox")',
+          '#btnFace',
+          '#faceAuth',
+          '#fidoButton',
+          '[data-auth="face"]',
+          '[data-method="face"]'
+        ];
 
-        await page.waitForSelector(userSelector, { timeout: 10000 }).catch(() => null);
-
-        const userField = page.locator(userSelector).first();
-        if (await userField.count() > 0 && await userField.isVisible()) {
-          await userField.fill(username);
-          emitLog('info', `Filled SSO username: ${username}`);
+        let faceBtnClicked = false;
+        for (const selector of faceSelectors) {
+          const el = page.locator(selector).first();
+          if (await el.count() > 0 && await el.isVisible()) {
+            emitLog('info', `Found Face ID option (${selector}), activating recognition...`);
+            await el.click();
+            faceBtnClicked = true;
+            break;
+          }
         }
 
-        const passField = page.locator(passSelector).first();
-        if (await passField.count() > 0 && await passField.isVisible()) {
-          await passField.fill(password);
-          emitLog('info', `Filled SSO password.`);
-        }
-
-        await page.waitForTimeout(500);
-
-        const submitBtn = page.locator(submitSelector).first();
-        if (await submitBtn.count() > 0 && await submitBtn.isVisible()) {
-          emitLog('info', 'Submitting SSO login form...');
-          await submitBtn.click();
+        if (faceBtnClicked) {
+          emitLog('info', 'Face ID prompt activated. Please look at your camera to complete authentication...');
         } else {
-          await page.keyboard.press('Enter');
+          emitLog('info', 'Face ID option listening on camera or SSO portal...');
         }
       } catch (err) {
-        emitLog('warn', `Auto SSO login attempt warning: ${err.message}`);
+        emitLog('warn', `Face ID activation notice: ${err.message}`);
+      }
+    }
+
+    // 2. ALTERNATIVE OPTION: Manual Username / Password Input
+    if (ssoAuthMethod === 'manual' || (username && password)) {
+      if (ssoAuthMethod === 'manual') {
+        emitLog('info', `Using Manual Input credentials as alternative login method for: ${username || 'user'}...`);
+      }
+      try {
+        // If there is a manual login or password tab/button, click it
+        const manualTabSelectors = [
+          'button:has-text("Password")',
+          'a:has-text("Password")',
+          'button:has-text("Manual")',
+          '#passwordTab',
+          '#btnPassword',
+          '[data-auth="password"]'
+        ];
+        for (const tabSel of manualTabSelectors) {
+          const tab = page.locator(tabSel).first();
+          if (await tab.count() > 0 && await tab.isVisible()) {
+            await tab.click().catch(() => {});
+            break;
+          }
+        }
+
+        if (username && password) {
+          const userSelector = '#userNameInput, input[name="UserName"], input[name="username"], input[type="text"], input[type="email"], #username, input[name="loginfmt"]';
+          const passSelector = '#passwordInput, input[name="Password"], input[name="password"], input[type="password"], #password';
+          const submitSelector = '#submitButton, input[type="submit"], button[type="submit"], #idSIButton9';
+
+          await page.waitForSelector(userSelector, { timeout: 3000 }).catch(() => null);
+
+          const userField = page.locator(userSelector).first();
+          if (await userField.count() > 0 && await userField.isVisible()) {
+            await userField.fill(username);
+            emitLog('info', `Filled SSO username: ${username}`);
+          }
+
+          const passField = page.locator(passSelector).first();
+          if (await passField.count() > 0 && await passField.isVisible()) {
+            await passField.fill(password);
+            emitLog('info', `Filled SSO password.`);
+          }
+
+          await page.waitForTimeout(500);
+
+          const submitBtn = page.locator(submitSelector).first();
+          if (await submitBtn.count() > 0 && await submitBtn.isVisible()) {
+            emitLog('info', 'Submitting SSO login form...');
+            await submitBtn.click();
+          } else {
+            await page.keyboard.press('Enter');
+          }
+        }
+      } catch (err) {
+        emitLog('warn', `Manual SSO login attempt warning: ${err.message}`);
       }
     }
 
@@ -806,7 +870,7 @@ async function main() {
     }
 
     // Check & Handle SSO Login if required
-    await handleSsoLoginIfNeeded(page, context, username, password, timeoutMs);
+    await handleSsoLoginIfNeeded(page, context, username, password, timeoutMs, portal.ssoAuthMethod || 'face_id');
 
     // =========================================================================
     // SPECIAL: FETCH BUILD ID ONLY (HEADLESS DASHBOARD SCRAPE)

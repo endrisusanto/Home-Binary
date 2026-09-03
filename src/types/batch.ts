@@ -28,6 +28,7 @@ export interface PortalConfig {
   concurrency?: number;
   username?: string;
   password?: string;
+  ssoAuthMethod?: 'face_id' | 'manual';
   ssoToken?: string;
   syncServerUrl?: string;
   syncEnabled?: boolean;
