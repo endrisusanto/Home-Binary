@@ -725,8 +725,6 @@ export function App() {
         trackProgress={portalConfig.trackProgress ?? true}
         onToggleTrackProgress={(checked) => setPortalConfig(prev => ({ ...prev, trackProgress: checked }))}
         appVersion={appVersion}
-        fetchOnlyMode={portalConfig.fetchOnly ?? false}
-        onToggleFetchOnlyMode={(checked) => setPortalConfig(prev => ({ ...prev, fetchOnly: checked }))}
       />
 
       {/* Main Body Content (Full Width Compact Layout with Footer Offset) */}

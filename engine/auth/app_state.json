@@ -911,6 +911,19 @@
       "buildId": "114189197",
       "buildDate": "2026-09-01 00:19:21",
       "progressPercent": 100
+    },
+    {
+      "buildFingerprintName": "SM-S947BE_SEA_C2_DX",
+      "pdaVersion": "S947BXXU4BZI2",
+      "cscVersion": "S947BOXM4BZI2",
+      "basebandVersion": "S947BXXU4BZI2",
+      "id": "build-1788405072806-0",
+      "index": 69,
+      "status": "running",
+      "message": "Build #114322466 running on server (100%, step: MAKE_HOME_BINARY)...",
+      "progressPercent": 100,
+      "buildId": "114322466",
+      "buildDate": "2026-09-03 12:13:14"
     }
   ],
   "logs": [
@@ -26365,6 +26378,881 @@
       "level": "success",
       "message": "All 63 builds finished processing on QuickBuild!",
       "index": null
+    },
+    {
+      "id": "p7jecbn",
+      "timestamp": "10:11:31 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: true)...",
+      "index": null
+    },
+    {
+      "id": "y44tyi4",
+      "timestamp": "10:11:31 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: true)...",
+      "index": null
+    },
+    {
+      "id": "dmc6yua",
+      "timestamp": "10:11:41 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "nyd3sae",
+      "timestamp": "10:11:41 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "n1aw3i7",
+      "timestamp": "10:11:44 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "zmbge49",
+      "timestamp": "10:11:46 AM",
+      "level": "warn",
+      "message": "SSO Authentication required at https://sts.secsso.net/adfs/ls/?SAMLRequest=hZJJb8IwEIX%2FSuR7NraClSBR6IJEAUHaQy%2FISSZgKRkHj9Pl39eEVm0PpdfxezPvm3FEoiprPmnMATdwbICM81aVSLx9iFmjkStBkjiKCoibjG8nDwve8QJea2VUpkr2w3LZIYhAG6mQOfNZzFbLm8Xqbr7chWGQD4ajwoXOFbi9fjFyRToM3D5AkQ3TTtobhsx5Ak3WGzPbyjYgamCOZAQaWwo6AzcYuUE3Cbo8DHmv%2F8ycmeWRKEzrOhhTE%2Fd9MuQRZETKQzC%2ByAvyS%2FKZs%2F7kuZaYS9xfRknPIuL3SbJ216ttwpzJF95UITUV6C3oF5nB42bxPV5grpXMvWN6SuHZpVGD%2BzaKjbQDzGsl0bBxdNonbzH1%2BH935P%2FUR%2BfDLm3u%2BWytSpm9O7dKV8L8jRV6YVuRuVu0Ut4g1ZDJQkJu6cpSvU41CAMxM7oB5vjj89TfP2j8AQ%3D%3D&RelayState=overview%2F28905",
+      "index": null
+    },
+    {
+      "id": "4304j5g",
+      "timestamp": "10:11:46 AM",
+      "level": "info",
+      "message": "Attempting auto-fill SSO credentials for user: endri.s...",
+      "index": null
+    },
+    {
+      "id": "3v7ao7x",
+      "timestamp": "10:11:46 AM",
+      "level": "info",
+      "message": "Filled SSO username: endri.s",
+      "index": null
+    },
+    {
+      "id": "huzl63o",
+      "timestamp": "10:11:46 AM",
+      "level": "info",
+      "message": "Filled SSO password.",
+      "index": null
+    },
+    {
+      "id": "1jtma93",
+      "timestamp": "10:11:47 AM",
+      "level": "info",
+      "message": "Submitting SSO login form...",
+      "index": null
+    },
+    {
+      "id": "6xxzlrl",
+      "timestamp": "10:11:47 AM",
+      "level": "info",
+      "message": "Waiting for SSO session to establish and redirect back to QuickBuild portal...",
+      "index": null
+    },
+    {
+      "id": "uolmeg8",
+      "timestamp": "10:11:52 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "ng22n6b",
+      "timestamp": "10:11:55 AM",
+      "level": "warn",
+      "message": "SSO Authentication required at https://sts.secsso.net/adfs/ls/?SAMLRequest=hZJbTwIxEIX%2Fyqbve4MFoQESBC8kCETQB19Itx2gye506XS9%2FHvrolEfxNfpOTPnm%2BmARFlUfFy7A97DsQZywWtZIPHmYchqi9wI0sRRlEDcSb4e3815K0p4ZY0z0hTsh%2BW8QxCBddogC2bTIVsurubLm9li22t38k6WqzBLu3mYtWQe9lSWhulFX3ZkO%2Bu3AFjwCJa8d8h8K9%2BAqIYZkhPofClpdcOkHybtTdLmaco72RMLpp5Ho3CN6%2BBcRTyOyVFEIIlMhOBioXYUFxSzYPXJc6lRadyfR8lPIuK3m80qXC3XGxaMv%2FAmBqkuwa7BPmsJD%2Ffz7%2FEClTVaRcf8I0Xkl0Y17psoPtIWUFVGo2Ojwcc%2BeYNpR%2F%2B7B%2FFP%2FeB02IXPPZuuTKHlW3BtbCnc31hplDYVrcJdI%2BU1UgVS7zQoT1cU5mViQTgYMmdrf5F4dJr6%2BweN3gE%3D&RelayState=overview%2F28905",
+      "index": null
+    },
+    {
+      "id": "y8ihig6",
+      "timestamp": "10:11:55 AM",
+      "level": "info",
+      "message": "Attempting auto-fill SSO credentials for user: endri.s...",
+      "index": null
+    },
+    {
+      "id": "v8w26z9",
+      "timestamp": "10:11:55 AM",
+      "level": "info",
+      "message": "Filled SSO username: endri.s",
+      "index": null
+    },
+    {
+      "id": "hrw4m3m",
+      "timestamp": "10:11:55 AM",
+      "level": "info",
+      "message": "Filled SSO password.",
+      "index": null
+    },
+    {
+      "id": "isicpbe",
+      "timestamp": "10:11:56 AM",
+      "level": "info",
+      "message": "Submitting SSO login form...",
+      "index": null
+    },
+    {
+      "id": "latz6p6",
+      "timestamp": "10:11:57 AM",
+      "level": "info",
+      "message": "Waiting for SSO session to establish and redirect back to QuickBuild portal...",
+      "index": null
+    },
+    {
+      "id": "f9fnmft",
+      "timestamp": "10:12:09 AM",
+      "level": "warn",
+      "message": "SSO redirect timeout / error: page.waitForURL: Target page, context or browser has been closed\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================",
+      "index": null
+    },
+    {
+      "id": "1fujdkk",
+      "timestamp": "10:12:09 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 1 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "fhz7f2v",
+      "timestamp": "10:12:09 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-S947BE_SEA_C2_DX",
+      "index": null
+    },
+    {
+      "id": "aft7643",
+      "timestamp": "10:12:10 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "dri1xyf",
+      "timestamp": "10:12:12 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "rbz4ach",
+      "timestamp": "10:12:12 AM",
+      "level": "warn",
+      "message": "Could not find Run button on overview (Attempt 1).",
+      "index": null
+    },
+    {
+      "id": "12a2a67",
+      "timestamp": "10:12:14 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 2/3)...",
+      "index": null
+    },
+    {
+      "id": "h7oacg5",
+      "timestamp": "10:12:15 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "jxscliy",
+      "timestamp": "10:12:16 AM",
+      "level": "warn",
+      "message": "Could not find Run button on overview (Attempt 2).",
+      "index": null
+    },
+    {
+      "id": "4tc854e",
+      "timestamp": "10:12:17 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 3/3)...",
+      "index": null
+    },
+    {
+      "id": "1degxwy",
+      "timestamp": "10:12:17 AM",
+      "level": "warn",
+      "message": "SSO redirect timeout / error: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================",
+      "index": null
+    },
+    {
+      "id": "lpgofbx",
+      "timestamp": "10:12:17 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 1 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "qto6zhh",
+      "timestamp": "10:12:17 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-S947BE_SEA_C2_DX",
+      "index": null
+    },
+    {
+      "id": "ciio16n",
+      "timestamp": "10:12:18 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "2ifulc8",
+      "timestamp": "10:12:18 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "vrdftzx",
+      "timestamp": "10:12:19 AM",
+      "level": "warn",
+      "message": "Could not find Run button on overview (Attempt 3).",
+      "index": null
+    },
+    {
+      "id": "nvf7411",
+      "timestamp": "10:12:20 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "qowbri0",
+      "timestamp": "10:12:20 AM",
+      "level": "warn",
+      "message": "Could not find Run button on overview (Attempt 1).",
+      "index": null
+    },
+    {
+      "id": "xnfmdt9",
+      "timestamp": "10:12:21 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 2/3)...",
+      "index": null
+    },
+    {
+      "id": "inlhuyf",
+      "timestamp": "10:12:23 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "r9fhbf0",
+      "timestamp": "10:12:23 AM",
+      "level": "warn",
+      "message": "Could not find Run button on overview (Attempt 2).",
+      "index": null
+    },
+    {
+      "id": "kspqdvd",
+      "timestamp": "10:12:25 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 3/3)...",
+      "index": null
+    },
+    {
+      "id": "zobcuvd",
+      "timestamp": "10:12:26 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "zjwpzrv",
+      "timestamp": "10:12:27 AM",
+      "level": "warn",
+      "message": "Could not find Run button on overview (Attempt 3).",
+      "index": null
+    },
+    {
+      "id": "7dyrete",
+      "timestamp": "10:12:32 AM",
+      "level": "error",
+      "message": "Failed submitting form for SM-S947BE_SEA_C2_DX: page.waitForSelector: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"editor:content:basicProperties:0:property:editor:editor:wrapper:input\"], input[name*=\"basicProperties:0\"], input[name*=\"0:property:editor\"]') to be visible\u001b[22m\n",
+      "index": null
+    },
+    {
+      "id": "qxn41or",
+      "timestamp": "10:12:32 AM",
+      "level": "info",
+      "message": "=== [PHASE 2] All forms triggered! Starting Dashboard progress tracking (every 60s) ===",
+      "index": null
+    },
+    {
+      "id": "tb1c1rk",
+      "timestamp": "10:12:32 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 1 builds...",
+      "index": null
+    },
+    {
+      "id": "u89s3oh",
+      "timestamp": "10:12:32 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "35idj8z",
+      "timestamp": "10:12:32 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "qkugjp8",
+      "timestamp": "03:12:37",
+      "level": "warn",
+      "message": "Batch execution cancelled by user. All browser processes terminated.",
+      "index": null
+    },
+    {
+      "id": "jbdc9pf",
+      "timestamp": "10:12:44 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: true)...",
+      "index": null
+    },
+    {
+      "id": "yngsepp",
+      "timestamp": "10:12:44 AM",
+      "level": "info",
+      "message": "Initializing Playwright browser (Headless: false, Track Progress: true)...",
+      "index": null
+    },
+    {
+      "id": "uc7qgba",
+      "timestamp": "10:12:47 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "fk4w10y",
+      "timestamp": "10:12:48 AM",
+      "level": "info",
+      "message": "Loading saved auth session from C:\\Users\\endri.s\\AppData\\Local\\Build HomeBinary\\_up_\\engine\\auth\\auth.json",
+      "index": null
+    },
+    {
+      "id": "qli1lym",
+      "timestamp": "10:12:52 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "kky0b7h",
+      "timestamp": "10:12:53 AM",
+      "level": "warn",
+      "message": "SSO Authentication required at https://sts.secsso.net/adfs/ls/?SAMLRequest=hZLLbsIwEEV%2FJfI%2BD0gIYAEShT6QKCCgXXSDnGQClpJx8Dh9%2FH1NaFW6KN2O7525Z8YDEmVR8XFtDriGYw1knPeyQOLNw5DVGrkSJImjKIG4Sflm%2FDjnbS%2FglVZGpapgF5brDkEE2kiFzJlNh2y5uJ0v72eLXSfPok7UTd24H%2BZuFCWB2wvj1O3HSasLIfQg7jHnGTRZ75DZVrYBUQ0zJCPQ2FLQjt2g7wbhNgh5q8077RfmTC2PRGEa18GYirjvkyGPICVSHoLxRZaTX5DPnNUXz43ETOL%2BOkpyFhF%2F2G5X7mq52TJn%2FI03UUh1CXoD%2BlWm8LSe%2F4wXmGklM%2B%2BYnFJ4dmlU476JYiPtALNKSTRsNDjtkzeYevS%2Fe%2BBf6gfnwy5s7tl0pQqZfjh3SpfC%2FI3V8lpNRWZu3kh5jVRBKnMJmaUrCvU20SAMDJnRNTDHH52n%2Fv5Bo08%3D&RelayState=overview%2F28905",
+      "index": null
+    },
+    {
+      "id": "qmou9b4",
+      "timestamp": "10:12:53 AM",
+      "level": "info",
+      "message": "Attempting auto-fill SSO credentials for user: endri.s...",
+      "index": null
+    },
+    {
+      "id": "w9ox1bf",
+      "timestamp": "10:12:53 AM",
+      "level": "info",
+      "message": "Filled SSO username: endri.s",
+      "index": null
+    },
+    {
+      "id": "swcatah",
+      "timestamp": "10:12:53 AM",
+      "level": "info",
+      "message": "Filled SSO password.",
+      "index": null
+    },
+    {
+      "id": "y1jwe8r",
+      "timestamp": "10:12:54 AM",
+      "level": "info",
+      "message": "Submitting SSO login form...",
+      "index": null
+    },
+    {
+      "id": "1tzb32l",
+      "timestamp": "10:12:55 AM",
+      "level": "info",
+      "message": "Checking connection to overview portal: https://android.qb.sec.samsung.net/overview/28905",
+      "index": null
+    },
+    {
+      "id": "g5scq5d",
+      "timestamp": "10:12:55 AM",
+      "level": "info",
+      "message": "Waiting for SSO session to establish and redirect back to QuickBuild portal...",
+      "index": null
+    },
+    {
+      "id": "3e4vt61",
+      "timestamp": "10:12:56 AM",
+      "level": "warn",
+      "message": "SSO Authentication required at https://sts.secsso.net/adfs/ls/?SAMLRequest=hZLLbsIwEEV%2FJfI%2BT0oEVoJEoQ8kCghoF90gEw9gKRmnHqePv68JrUoXpQtvxvfO3DN2RqIqaz5s7AGX8NIAWe%2B9KpF4e5GzxiDXghRxFBUQtwVfDR%2BmPAkiXhttdaFLdma57BBEYKzSyLzJOGfz2c10fjeZbSSIKHXHjyMp%2Faukn%2FpiF4HfT2K57UMvTXod5j2BIefNmWvlGhA1MEGyAq0rRUnqR30%2F6qyjDo8T3u0%2BM2%2FseBQK27oO1tbEw5AsBQQFkQ4QbCjkjsKSQuYtvniuFUqF%2B8so25OI%2BP16vfAX89WaecNvvJFGaiowKzCvqoDH5fRnvEBptJLBy%2FaYInBLowb3bRQXaQMoa63QskF23CdvMc3gf3cWnuuz08POXO7JeKFLVXx4t9pUwv6NFQdxW1HS37VS3iDVUKidAunoylK%2FjQwICzmzpgHmhYPT1N8%2FaPAJ&RelayState=overview%2F28905",
+      "index": null
+    },
+    {
+      "id": "06hukuj",
+      "timestamp": "10:12:56 AM",
+      "level": "info",
+      "message": "Attempting auto-fill SSO credentials for user: endri.s...",
+      "index": null
+    },
+    {
+      "id": "0tues6w",
+      "timestamp": "10:12:56 AM",
+      "level": "info",
+      "message": "Filled SSO username: endri.s",
+      "index": null
+    },
+    {
+      "id": "l6shy6c",
+      "timestamp": "10:12:56 AM",
+      "level": "info",
+      "message": "Filled SSO password.",
+      "index": null
+    },
+    {
+      "id": "ae1cwui",
+      "timestamp": "10:12:57 AM",
+      "level": "info",
+      "message": "Submitting SSO login form...",
+      "index": null
+    },
+    {
+      "id": "cebppn4",
+      "timestamp": "10:12:58 AM",
+      "level": "info",
+      "message": "Waiting for SSO session to establish and redirect back to QuickBuild portal...",
+      "index": null
+    },
+    {
+      "id": "qvstzyc",
+      "timestamp": "10:13:00 AM",
+      "level": "success",
+      "message": "SSO Login detected! Saving session state...",
+      "index": null
+    },
+    {
+      "id": "z4ho5zg",
+      "timestamp": "10:13:03 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 1 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "b0nhls2",
+      "timestamp": "10:13:03 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-S947BE_SEA_C2_DX",
+      "index": null
+    },
+    {
+      "id": "jubzemn",
+      "timestamp": "10:13:04 AM",
+      "level": "success",
+      "message": "SSO Login detected! Saving session state...",
+      "index": null
+    },
+    {
+      "id": "6vi8dlb",
+      "timestamp": "10:13:06 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "i1eip6k",
+      "timestamp": "10:13:06 AM",
+      "level": "info",
+      "message": "=== [PHASE 1] Triggering form submissions for 1 build(s) (Concurrency: 3 parallel tabs) ===",
+      "index": null
+    },
+    {
+      "id": "hn03k8r",
+      "timestamp": "10:13:06 AM",
+      "level": "info",
+      "message": "[Tab #1] Starting parallel submission: SM-S947BE_SEA_C2_DX",
+      "index": null
+    },
+    {
+      "id": "l301xow",
+      "timestamp": "10:13:08 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "ifhi4cc",
+      "timestamp": "10:13:08 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "utrzjxz",
+      "timestamp": "10:13:09 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "e9qllek",
+      "timestamp": "10:13:09 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "t6trb8g",
+      "timestamp": "10:13:10 AM",
+      "level": "info",
+      "message": "Navigating to overview portal: https://android.qb.sec.samsung.net/overview/28905 (Attempt 1/3)...",
+      "index": null
+    },
+    {
+      "id": "k5t6rmx",
+      "timestamp": "10:13:11 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-S947BE_SEA_C2_DX, PDA=S947BXXU4BZI2, CSC=S947BOXM4BZI2, Phone=S947BXXU4BZI2",
+      "index": null
+    },
+    {
+      "id": "xhamy8t",
+      "timestamp": "10:13:11 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "l0vgqh7",
+      "timestamp": "10:13:12 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "5hin6u0",
+      "timestamp": "10:13:13 AM",
+      "level": "info",
+      "message": "Locating \"Run the configuration\" button on overview...",
+      "index": null
+    },
+    {
+      "id": "10czahe",
+      "timestamp": "10:13:13 AM",
+      "level": "info",
+      "message": "Found Run action button: button[title=\"Run the configuration\"]. Triggering click...",
+      "index": null
+    },
+    {
+      "id": "i959p1z",
+      "timestamp": "10:13:14 AM",
+      "level": "info",
+      "message": "Run button clicked. Waiting for Wicket parameter form inputs to load...",
+      "index": null
+    },
+    {
+      "id": "xmxh4sp",
+      "timestamp": "10:13:14 AM",
+      "level": "success",
+      "message": "Wicket parameter form loaded successfully!",
+      "index": null
+    },
+    {
+      "id": "riutwc7",
+      "timestamp": "10:13:16 AM",
+      "level": "info",
+      "message": "[Tab #1] Populated: Fingerprint=SM-S947BE_SEA_C2_DX, PDA=S947BXXU4BZI2, CSC=S947BOXM4BZI2, Phone=S947BXXU4BZI2",
+      "index": null
+    },
+    {
+      "id": "7p9p42j",
+      "timestamp": "10:13:16 AM",
+      "level": "info",
+      "message": "Waiting 1200ms for Wicket form state to settle...",
+      "index": null
+    },
+    {
+      "id": "hu5f5pu",
+      "timestamp": "10:13:16 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-S947BE_SEA_C2_DX!",
+      "index": null
+    },
+    {
+      "id": "9dt3lbo",
+      "timestamp": "10:13:16 AM",
+      "level": "info",
+      "message": "=== [PHASE 2] All forms triggered! Starting Dashboard progress tracking (every 60s) ===",
+      "index": null
+    },
+    {
+      "id": "1dh65wb",
+      "timestamp": "10:13:16 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 1 builds...",
+      "index": null
+    },
+    {
+      "id": "stfjckh",
+      "timestamp": "10:13:16 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "b1mfq59",
+      "timestamp": "10:13:17 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "lu3rhoa",
+      "timestamp": "10:13:17 AM",
+      "level": "info",
+      "message": "Clicking submit button: [Ok] (.submits button[type=\"submit\"])...",
+      "index": null
+    },
+    {
+      "id": "vtq0z94",
+      "timestamp": "10:13:21 AM",
+      "level": "success",
+      "message": "[Tab #1] Form triggered successfully for SM-S947BE_SEA_C2_DX!",
+      "index": null
+    },
+    {
+      "id": "dkktdzp",
+      "timestamp": "10:13:21 AM",
+      "level": "info",
+      "message": "=== [PHASE 2] All forms triggered! Starting Dashboard progress tracking (every 60s) ===",
+      "index": null
+    },
+    {
+      "id": "2ttxkft",
+      "timestamp": "10:13:21 AM",
+      "level": "info",
+      "message": "Navigating to Dashboard (https://android.qb.sec.samsung.net/dashboard) to track build progress for all 1 builds...",
+      "index": null
+    },
+    {
+      "id": "9zzau0z",
+      "timestamp": "10:13:21 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "s9q1k01",
+      "timestamp": "10:13:22 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "zn3wuh4",
+      "timestamp": "10:13:23 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "tfgn0wi",
+      "timestamp": "10:13:30 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "nxm95mr",
+      "timestamp": "10:13:31 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "ln83sj6",
+      "timestamp": "10:13:31 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (8%, 14s)...",
+      "index": null
+    },
+    {
+      "id": "yteui2g",
+      "timestamp": "10:13:32 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "x9mz4gs",
+      "timestamp": "10:13:32 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "qbjp6jm",
+      "timestamp": "10:13:39 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "zcnnm3u",
+      "timestamp": "10:13:39 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (12%, 21s)...",
+      "index": null
+    },
+    {
+      "id": "y7dx3ck",
+      "timestamp": "10:14:32 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "f8w97qu",
+      "timestamp": "10:14:34 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "nwkgykl",
+      "timestamp": "10:14:34 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "8so2a24",
+      "timestamp": "10:14:35 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "w2mj1f5",
+      "timestamp": "10:14:39 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "j49m4rq",
+      "timestamp": "10:14:40 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "ws48pxj",
+      "timestamp": "10:14:48 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "99g891t",
+      "timestamp": "10:14:52 AM",
+      "level": "info",
+      "message": "Found 0 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "rq9qvx0",
+      "timestamp": "10:14:58 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "9e6hhd3",
+      "timestamp": "10:14:58 AM",
+      "level": "info",
+      "message": "Build #114322466 (SM-S947BE_SEA_C2_DX) is running (58%, 1m:39s)...",
+      "index": null
+    },
+    {
+      "id": "z368m50",
+      "timestamp": "10:15:35 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "l23g5ug",
+      "timestamp": "10:15:35 AM",
+      "level": "warn",
+      "message": "Dashboard progress tracking warning: page.goto: Target page, context or browser has been closed",
+      "index": null
+    },
+    {
+      "id": "uxyfb0z",
+      "timestamp": "10:15:53 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "fk6a7y8",
+      "timestamp": "10:15:54 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "nep4eti",
+      "timestamp": "10:15:59 AM",
+      "level": "info",
+      "message": "Inspecting Dashboard build queue (Checking status of active builds)...",
+      "index": null
+    },
+    {
+      "id": "h251uf8",
+      "timestamp": "10:16:00 AM",
+      "level": "info",
+      "message": "Waiting for My Builds dashboard gadget to render...",
+      "index": null
+    },
+    {
+      "id": "5zxe7we",
+      "timestamp": "10:16:07 AM",
+      "level": "info",
+      "message": "Found \"More\" button. Expanding My Builds rows...",
+      "index": null
+    },
+    {
+      "id": "rm8y1fd",
+      "timestamp": "10:16:15 AM",
+      "level": "info",
+      "message": "Found 0 build entries on Dashboard.",
+      "index": null
+    },
+    {
+      "id": "y3fl0sm",
+      "timestamp": "10:16:16 AM",
+      "level": "info",
+      "message": "Found 200 build entries on Dashboard.",
+      "index": null
     }
   ],
   "portalConfig": {
@@ -26377,8 +27265,9 @@
     "trackProgress": false,
     "concurrency": 3,
     "username": "endri.s",
-    "password": "sein2016!"
+    "password": "K4t4s4ndi!",
+    "fetchOnly": true
   },
-  "isRunning": false,
-  "lastUpdated": "2026-08-31T23:57:24.765Z"
+  "isRunning": true,
+  "lastUpdated": "2026-09-03T03:12:34.320Z"
 }

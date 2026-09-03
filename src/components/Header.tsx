@@ -9,8 +9,7 @@ import {
   Moon, 
   Play, 
   Square,
-  ArrowUpCircle,
-  Zap
+  ArrowUpCircle
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -33,8 +32,6 @@ interface HeaderProps {
   onToggleTrackProgress: (checked: boolean) => void;
   onlineStatus?: string;
   appVersion?: string;
-  fetchOnlyMode?: boolean;
-  onToggleFetchOnlyMode?: (fetchOnly: boolean) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -55,9 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
   totalItems,
   trackProgress,
   onToggleTrackProgress,
-  appVersion = '0.5.14',
-  fetchOnlyMode = false,
-  onToggleFetchOnlyMode,
+  appVersion = '0.5.15',
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-md border-b border-slate-200 dark:border-neutral-800 transition-colors">
@@ -102,39 +97,6 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Right Action Icons & Controls */}
         <div className="flex items-center gap-1 sm:gap-2">
           
-          {/* Mode Selector Toggle: Submit Builds (Green) vs Fetch IDs Only (Amber) */}
-          {onToggleFetchOnlyMode && (
-            <div className="hidden lg:flex items-center p-0.5 rounded-lg bg-slate-100 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 text-[10px] font-semibold">
-              <button
-                type="button"
-                onClick={() => onToggleFetchOnlyMode(false)}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all cursor-pointer ${
-                  !fetchOnlyMode
-                    ? 'bg-emerald-600 text-white shadow-xs'
-                    : 'text-slate-500 dark:text-neutral-400 hover:text-slate-800 dark:hover:text-neutral-200'
-                }`}
-                title="Submit Builds: Submit new build requests to Samsung QuickBuild"
-              >
-                <Zap className="w-3 h-3" />
-                <span>Submit Builds</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => onToggleFetchOnlyMode(true)}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all cursor-pointer ${
-                  fetchOnlyMode
-                    ? 'bg-amber-600 text-white shadow-xs'
-                    : 'text-slate-500 dark:text-neutral-400 hover:text-slate-800 dark:hover:text-neutral-200'
-                }`}
-                title="Fetch IDs Only: Scan QuickBuild Dashboard for existing Build IDs without triggering new builds"
-              >
-                <Search className="w-3 h-3" />
-                <span>Fetch IDs Only</span>
-              </button>
-            </div>
-          )}
-
           {/* Track Build Progress Checkbox Toggle */}
           <label 
             className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg cursor-pointer bg-slate-100 hover:bg-slate-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 border border-slate-200 dark:border-neutral-800 text-slate-700 dark:text-neutral-300 select-none transition-colors"
@@ -163,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({
           {isRunning ? (
             <button
               onClick={onCancelBatch}
-              className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-white bg-rose-600 hover:bg-rose-700 active:scale-95 rounded-md sm:rounded-lg shadow-xs shadow-rose-500/20 transition-all animate-pulse"
+              className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-white bg-rose-600 hover:bg-rose-700 active:scale-95 rounded-md sm:rounded-lg shadow-xs shadow-rose-500/20 transition-all animate-pulse cursor-pointer"
               title="Stop current execution"
             >
               <Square className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
@@ -175,24 +137,13 @@ export const Header: React.FC<HeaderProps> = ({
               disabled={totalItems === 0}
               className={`flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold rounded-md sm:rounded-lg transition-all cursor-pointer ${
                 totalItems > 0
-                  ? fetchOnlyMode
-                    ? 'text-white bg-amber-600 hover:bg-amber-700 active:scale-95 shadow-xs shadow-amber-500/20'
-                    : 'text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 shadow-xs shadow-emerald-500/20'
+                  ? 'text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 shadow-xs shadow-emerald-500/20'
                   : 'text-slate-400 bg-slate-100 dark:bg-slate-800 cursor-not-allowed border border-slate-200 dark:border-slate-700'
               }`}
-              title={totalItems > 0 ? (fetchOnlyMode ? "Scan Dashboard for existing Build IDs" : "Execute batch submission") : "Add items to queue first"}
+              title={totalItems > 0 ? "Execute batch submission" : "Add items to queue first"}
             >
-              {fetchOnlyMode ? (
-                <>
-                  <Search className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                  <span>Scan IDs</span>
-                </>
-              ) : (
-                <>
-                  <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
-                  <span>Run</span>
-                </>
-              )}
+              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
+              <span>Run</span>
             </button>
           )}
 
@@ -226,57 +177,53 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={onResetQueue}
-              className="p-1 sm:p-1.5 text-slate-500 hover:text-slate-700 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-700 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
               title="Reset queue to sample items"
             >
-              <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <RotateCcw className="w-4 h-4" />
             </button>
 
-            {onOpenUpdateModal && (
-              <button
-                onClick={onOpenUpdateModal}
-                className="p-1 sm:p-1.5 text-slate-500 hover:text-blue-600 dark:text-neutral-400 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/60 rounded-lg transition-colors cursor-pointer relative"
-                title="Check for software updates"
-              >
-                <ArrowUpCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </button>
-            )}
-
             <button
-              onClick={onToggleDarkMode}
-              className="p-1 sm:p-1.5 text-slate-500 hover:text-slate-700 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
-              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              onClick={onOpenUpdateModal}
+              className="p-1.5 sm:p-2 text-slate-500 hover:text-blue-600 dark:text-neutral-400 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+              title={`Check for Updates (v${appVersion})`}
             >
-              {isDarkMode ? (
-                <Sun className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
-              ) : (
-                <Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600" />
-              )}
+              <ArrowUpCircle className="w-4 h-4" />
             </button>
 
             <button
               onClick={onOpenSettings}
-              className="p-1 sm:p-1.5 text-slate-500 hover:text-slate-700 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
-              title="Portal Configuration & Browser Settings"
+              className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-700 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+              title="Portal & SSO Configuration"
             >
-              <Settings className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <Settings className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={onToggleDarkMode}
+              className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-700 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4" />}
             </button>
           </div>
 
-          {/* Mobile 3-Dots Menu Trigger Button */}
-          <div className="flex sm:hidden items-center gap-0.5">
-            <button
-              onClick={onOpenMobileMenu}
-              className="p-1 text-slate-600 dark:text-neutral-300 hover:bg-slate-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
-              title="Open Menu Actions"
-            >
-              <div className="w-5 h-5 flex flex-col items-center justify-center gap-0.5">
-                <span className="w-1 h-1 bg-current rounded-full" />
-                <span className="w-1 h-1 bg-current rounded-full" />
-                <span className="w-1 h-1 bg-current rounded-full" />
-              </div>
-            </button>
-          </div>
+          {/* Mobile Grid Menu Trigger Button */}
+          <button
+            onClick={onOpenMobileMenu}
+            className="sm:hidden p-1.5 text-slate-700 dark:text-neutral-200 bg-slate-100 dark:bg-neutral-800 hover:bg-slate-200 dark:hover:bg-neutral-700 rounded-md transition-colors flex items-center justify-center relative"
+            title="Open Quick Actions Menu"
+          >
+            <div className="grid grid-cols-2 gap-0.5 w-3.5 h-3.5">
+              <span className="w-1.5 h-1.5 bg-current rounded-xs" />
+              <span className="w-1.5 h-1.5 bg-current rounded-xs" />
+              <span className="w-1.5 h-1.5 bg-current rounded-xs" />
+              <span className="w-1.5 h-1.5 bg-current rounded-xs" />
+            </div>
+            {completedBuildingCount > 0 && (
+              <span className="w-2 h-2 rounded-full bg-indigo-500 absolute -top-0.5 -right-0.5" />
+            )}
+          </button>
 
         </div>
 
