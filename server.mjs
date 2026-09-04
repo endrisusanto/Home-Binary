@@ -61,6 +61,9 @@ try {
     const raw = fs.readFileSync(STATE_FILE, 'utf8');
     const parsed = JSON.parse(raw);
     appState = { ...appState, ...parsed, isRunning: false };
+    if (appState.portalConfig) {
+      delete appState.portalConfig.fetchOnly;
+    }
     console.log(`[State] Restored ${appState.items.length} items from ${STATE_FILE}`);
   }
 } catch (err) {
@@ -71,6 +74,9 @@ function saveAppState() {
   try {
     const dir = path.dirname(STATE_FILE);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    if (appState.portalConfig) {
+      delete appState.portalConfig.fetchOnly;
+    }
     fs.writeFileSync(STATE_FILE, JSON.stringify(appState, null, 2), 'utf8');
   } catch (err) {
     console.warn('[State] Failed to persist state:', err.message);
@@ -335,7 +341,9 @@ const server = http.createServer(async (req, res) => {
           appState.items = incoming.items;
         }
         if (incoming.portalConfig) {
-          appState.portalConfig = { ...appState.portalConfig, ...incoming.portalConfig };
+          const cfg = { ...incoming.portalConfig };
+          delete cfg.fetchOnly;
+          appState.portalConfig = { ...appState.portalConfig, ...cfg };
         }
         if (incoming.logs && Array.isArray(incoming.logs)) {
           appState.logs = [...appState.logs.slice(-300), ...incoming.logs].slice(-500);
@@ -655,7 +663,9 @@ wss.on('connection', (ws, req) => {
             appState.items = payload.items;
           }
           if (payload?.portalConfig) {
-            appState.portalConfig = { ...appState.portalConfig, ...payload.portalConfig };
+            const cfg = { ...payload.portalConfig };
+            delete cfg.fetchOnly;
+            appState.portalConfig = { ...appState.portalConfig, ...cfg };
           }
           appState.lastUpdated = new Date().toISOString();
           saveAppState();

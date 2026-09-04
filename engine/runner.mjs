@@ -678,7 +678,31 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
             emitLog('info', `Build #${item.buildId} (${item.buildFingerprintName}) is running (${pct}%, ${selectedCandidate.durationText || 'running'})...`);
           }
         } else {
-          emitProgress(item.id, item.index, 'running', `Build triggered, waiting for Dashboard task...`, null, item.buildId, 25);
+          if (isFetchOnly) {
+            // In Fetch Only / Scan mode:
+            // This build does NOT exist on Dashboard yet.
+            // Retain it as 'pending' so it remains in Pending Builds queue ready to be submitted!
+            emitProgress(
+              item.id,
+              item.index,
+              'pending',
+              'Not found on Dashboard (ready to submit)',
+              null,
+              null,
+              0
+            );
+          } else {
+            // Normal build submission: Form was triggered in Phase 1, waiting for server queue
+            emitProgress(
+              item.id,
+              item.index,
+              'running',
+              'Build form submitted, waiting for Dashboard task...',
+              null,
+              item.buildId,
+              25
+            );
+          }
         }
       }
 
@@ -707,7 +731,29 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
   // Any items that were not yet found on dashboard
   for (const item of items) {
     if (!completedMap.has(item.id)) {
-      emitLog('info', `Build ID for ${item.buildFingerprintName} is not yet available on Dashboard.`);
+      if (isFetchOnly) {
+        emitLog('info', `[NOT FOUND] Build for ${item.buildFingerprintName} was not found on Dashboard. Kept as Pending.`);
+        emitProgress(
+          item.id,
+          item.index,
+          'pending',
+          'Not found on Dashboard (ready to submit)',
+          null,
+          null,
+          0
+        );
+      } else {
+        emitLog('info', `Build ID for ${item.buildFingerprintName} is not yet available on Dashboard.`);
+        emitProgress(
+          item.id,
+          item.index,
+          'success',
+          `Form submitted: ${item.buildFingerprintName} (Build ID pending on server)`,
+          null,
+          item.buildId || null,
+          100
+        );
+      }
     }
   }
 }

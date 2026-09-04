@@ -196,6 +196,7 @@ export function App() {
   const activeSyncUrl = portalConfig.syncServerUrl || (isTauri ? 'https://homebinary.endrisusanto.my.id' : (typeof window !== 'undefined' ? window.location.origin : ''));
   const [isDesktopConnected, setIsDesktopConnected] = useState(false);
   const [connectedClients, setConnectedClients] = useState<ConnectedClient[]>([]);
+  const [fetchOnlyMode, setFetchOnlyMode] = useState(false);
 
   // Push local updates to Central Sync Server (via WebSocket & HTTP fallback)
   const pushStateToServer = useCallback(async (newItems?: BatchItem[], newConfig = portalConfig) => {
@@ -449,7 +450,7 @@ export function App() {
   }, [addLog, activeSyncUrl, isTauri, appVersion, handleStatusPayload, handleFinishedPayload]);
 
   // Universal dispatch runner across Tauri & Web API
-  const dispatchBatchRunner = async (payload: { portal: PortalConfig; items: BatchItem[] }) => {
+  const dispatchBatchRunner = async (payload: { portal: PortalConfig & { fetchOnly?: boolean }; items: BatchItem[] }) => {
     setIsRunning(true);
     
     // Broadcast run event over WebSocket
@@ -480,6 +481,58 @@ export function App() {
         console.warn('HTTP fallback start notice:', err);
       }
     }
+  };
+
+  const handleScanExistingIds = async () => {
+    if (isRunning) return;
+    const queueToRun = items.filter((x) => !x.buildId);
+    if (queueToRun.length === 0) {
+      addLog('info', 'All items in queue already have Build IDs.');
+      return;
+    }
+    addLog(
+      'info',
+      `🔍 [Scan Mode] Scanning QuickBuild Dashboard to find existing Build IDs for ${queueToRun.length} build(s)...`
+    );
+    await dispatchBatchRunner({
+      portal: {
+        ...portalConfig,
+        fetchOnly: true,
+      },
+      items: queueToRun,
+    });
+  };
+
+  // Start Batch Execution (BASIC FUNCTION: Always submit all form builds first, then track progress)
+  const handleStartBatch = async () => {
+    if (isRunning) return;
+
+    const queueToRun = items.filter((x) => x.status === 'pending');
+    if (queueToRun.length === 0) {
+      addLog('warn', 'No pending builds in queue. Add items or click Retry.');
+      return;
+    }
+
+    setItems((prev) =>
+      prev.map((x) =>
+        x.status === 'pending'
+          ? { ...x, status: 'running', message: 'Initializing browser session...' }
+          : x
+      )
+    );
+
+    addLog(
+      'info',
+      `Starting batch submission for ${queueToRun.length} items (Headless: ${portalConfig.headless}, Track: ${portalConfig.trackProgress ?? true})...`
+    );
+
+    await dispatchBatchRunner({
+      portal: {
+        ...portalConfig,
+        fetchOnly: false,
+      },
+      items: queueToRun,
+    });
   };
 
   // Summary calculation
@@ -567,50 +620,6 @@ export function App() {
     setItems(INITIAL_ITEMS);
     pushStateToServer(INITIAL_ITEMS);
     addLog('info', 'Queue reset to sample build specifications.');
-  };
-
-  // Start Batch Execution
-  const handleStartBatch = async () => {
-    if (isRunning) return;
-
-    const queueToRun = items.filter((x) => x.status === 'pending');
-    if (queueToRun.length === 0) {
-      addLog('warn', 'No pending builds in queue. Add items or click Retry.');
-      return;
-    }
-
-    if (portalConfig.fetchOnly) {
-      addLog(
-        'info',
-        `🔍 [Scan Mode] Scanning QuickBuild Dashboard to find existing Build IDs for ${queueToRun.length} pending build(s)...`
-      );
-      await dispatchBatchRunner({
-        portal: {
-          ...portalConfig,
-          fetchOnly: true,
-        },
-        items: queueToRun,
-      });
-      return;
-    }
-
-    setItems((prev) =>
-      prev.map((x) =>
-        x.status === 'pending'
-          ? { ...x, status: 'running', message: 'Initializing browser session...' }
-          : x
-      )
-    );
-
-    addLog(
-      'info',
-      `Starting batch execution for ${queueToRun.length} items (Headless: ${portalConfig.headless}, Track: ${portalConfig.trackProgress ?? true})...`
-    );
-
-    await dispatchBatchRunner({
-      portal: portalConfig,
-      items: queueToRun,
-    });
   };
 
   // Run Single Item
@@ -807,7 +816,7 @@ export function App() {
         onOpenSettings={() => setIsSettingsOpen(true)}
         onOpenUpdateModal={() => setIsUpdateModalOpen(true)}
         isRunning={isRunning}
-        onStartBatch={handleStartBatch}
+        onStartBatch={fetchOnlyMode ? handleScanExistingIds : handleStartBatch}
         onCancelBatch={handleCancelBatch}
         onResetQueue={handleResetQueue}
         onFetchBuildIds={handleFetchBuildIds}
@@ -820,8 +829,8 @@ export function App() {
         trackProgress={portalConfig.trackProgress ?? true}
         onToggleTrackProgress={(checked) => setPortalConfig(prev => ({ ...prev, trackProgress: checked }))}
         appVersion={appVersion}
-        fetchOnlyMode={portalConfig.fetchOnly ?? false}
-        onToggleFetchOnlyMode={(checked) => setPortalConfig(prev => ({ ...prev, fetchOnly: checked }))}
+        fetchOnlyMode={fetchOnlyMode}
+        onToggleFetchOnlyMode={setFetchOnlyMode}
       />
 
       {/* Collapsible Persistent Bottom Footer Log Bar */}

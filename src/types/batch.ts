@@ -24,13 +24,17 @@ export interface PortalConfig {
   timeoutMs: number;
   mock: boolean;
   trackProgress?: boolean;
-  fetchOnly?: boolean;
   concurrency?: number;
   username?: string;
   password?: string;
   ssoToken?: string;
   syncServerUrl?: string;
   syncEnabled?: boolean;
+}
+
+export interface BatchRunnerPayload {
+  portal: PortalConfig & { fetchOnly?: boolean };
+  items: BatchItem[];
 }
 
 export interface LogEntry {
