@@ -74,9 +74,11 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
     setIsChecking(true);
     setError(null);
 
-    // Try Tauri updater first if in desktop mode
-    try {
-      if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
+    const isTauri = typeof window !== 'undefined' && Boolean((window as any).__TAURI_INTERNALS__);
+
+    // 1. Primary desktop check via Tauri updater plugin
+    if (isTauri) {
+      try {
         const { check } = await import('@tauri-apps/plugin-updater');
         const update = await check();
         if (update) {
@@ -91,34 +93,20 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
           });
           setIsChecking(false);
           return;
-        }
-      }
-    } catch (e) {
-      console.warn('Tauri updater check fallback to GitHub API:', e);
-    }
+        } else {
+          // Tauri verified against latest.json and confirmed already up to date
+          let activeVer = currentVersion;
+          try {
+            const { getVersion } = await import('@tauri-apps/api/app');
+            const v = await getVersion();
+            if (v) activeVer = v;
+          } catch {}
 
-    // Fallback: Query GitHub Releases API directly
-    try {
-      let activeVer = currentVersion;
-      if (typeof window !== 'undefined' && (window as any).__TAURI_INTERNALS__) {
-        try {
-          const { getVersion } = await import('@tauri-apps/api/app');
-          const v = await getVersion();
-          if (v) activeVer = v;
-        } catch {}
-      }
-
-      const res = await fetch('https://api.github.com/repos/endrisusanto/Home-Binary/releases/latest', {
-        headers: { Accept: 'application/vnd.github.v3+json' },
-      });
-
-      if (!res.ok) {
-        if (res.status === 404) {
           setReleaseInfo({
             version: activeVer,
             tagName: `v${activeVer}`,
             name: `Build HomeBinary v${activeVer}`,
-            body: 'No newer public releases published yet.',
+            body: 'You are running the latest version.',
             publishedAt: new Date().toLocaleDateString(),
             htmlUrl: 'https://github.com/endrisusanto/Home-Binary/releases',
             hasUpdate: false,
@@ -126,20 +114,88 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
           setIsChecking(false);
           return;
         }
-        throw new Error(`GitHub API returned status ${res.status}`);
+      } catch (e) {
+        console.warn('Tauri updater check error, falling back to repository metadata:', e);
+      }
+    }
+
+    // 2. Fallback check (Web mode or if Tauri updater failed)
+    try {
+      let activeVer = currentVersion;
+      if (isTauri) {
+        try {
+          const { getVersion } = await import('@tauri-apps/api/app');
+          const v = await getVersion();
+          if (v) activeVer = v;
+        } catch {}
       }
 
-      const data = await res.json();
-      const latestTag = data.tag_name || data.name || '0.0.0';
+      let latestTag = '';
+      let releaseBody = 'Bug fixes and performance improvements.';
+      let publishedDate = new Date().toLocaleDateString();
+
+      // Attempt A: Query GitHub Releases API (provides full changelog notes)
+      try {
+        const res = await fetch('https://api.github.com/repos/endrisusanto/Home-Binary/releases/latest', {
+          headers: { Accept: 'application/vnd.github.v3+json' },
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          latestTag = (data.tag_name || data.name || '').replace(/^v/, '');
+          if (data.body) releaseBody = data.body;
+          if (data.published_at) publishedDate = new Date(data.published_at).toLocaleDateString();
+        } else if (res.status === 404) {
+          latestTag = activeVer;
+          releaseBody = 'No newer public releases published yet.';
+        } else {
+          console.warn(`GitHub API returned status ${res.status}, falling back to raw package metadata.`);
+        }
+      } catch (apiErr) {
+        console.warn('Direct GitHub API fetch error:', apiErr);
+      }
+
+      // Attempt B: If GitHub API failed or rate limited (403), fetch from raw repository package.json (no rate limits / CORS: *)
+      if (!latestTag) {
+        try {
+          const rawRes = await fetch('https://raw.githubusercontent.com/endrisusanto/Home-Binary/main/package.json', {
+            cache: 'no-store',
+          });
+          if (rawRes.ok) {
+            const rawPkg = await rawRes.json();
+            if (rawPkg.version) {
+              latestTag = rawPkg.version.replace(/^v/, '');
+              releaseBody = `Version v${latestTag} available from repository main branch.`;
+            }
+          }
+        } catch (rawErr) {
+          console.warn('Raw package.json fetch error:', rawErr);
+        }
+      }
+
+      if (!latestTag) {
+        setReleaseInfo({
+          version: activeVer,
+          tagName: `v${activeVer}`,
+          name: `Build HomeBinary v${activeVer}`,
+          body: 'Unable to connect to GitHub update service. You can check releases manually.',
+          publishedAt: new Date().toLocaleDateString(),
+          htmlUrl: 'https://github.com/endrisusanto/Home-Binary/releases',
+          hasUpdate: false,
+        });
+        setIsChecking(false);
+        return;
+      }
+
       const hasUpdate = compareVersions(activeVer, latestTag) > 0;
 
       setReleaseInfo({
-        version: latestTag.replace(/^v/, ''),
-        tagName: latestTag,
-        name: data.name || `Build HomeBinary ${latestTag}`,
-        body: data.body || 'Bug fixes and performance improvements.',
-        publishedAt: new Date(data.published_at || Date.now()).toLocaleDateString(),
-        htmlUrl: data.html_url || 'https://github.com/endrisusanto/Home-Binary/releases',
+        version: latestTag,
+        tagName: `v${latestTag}`,
+        name: `Build HomeBinary v${latestTag}`,
+        body: releaseBody,
+        publishedAt: publishedDate,
+        htmlUrl: 'https://github.com/endrisusanto/Home-Binary/releases',
         hasUpdate,
       });
     } catch (err: any) {
