@@ -634,21 +634,36 @@ export function App() {
     });
   };
 
-  // Fetch Build IDs for items in "Building" status (submitted / completed form, waiting for Build ID)
-  const missingBuildIdCount = items.filter((i) => (i.status === 'success' || i.status === 'running') && !i.buildId).length;
+  // Count builds missing Build ID across all statuses
+  const missingBuildIdCount = items.filter((i) => !i.buildId).length;
+
+  // Fetch Build IDs specifically for all pending queue items
+  const handleFetchPendingAll = async () => {
+    if (isRunning) return;
+    const pendingWithoutId = items.filter((x) => x.status === 'pending' && !x.buildId);
+    if (pendingWithoutId.length === 0) {
+      addLog('info', 'All pending builds already have Build IDs.');
+      return;
+    }
+    addLog('info', `Scanning QuickBuild Dashboard to find existing Build IDs for ${pendingWithoutId.length} pending build(s)...`);
+    await dispatchBatchRunner({
+      portal: {
+        ...portalConfig,
+        fetchOnly: true,
+      },
+      items: pendingWithoutId,
+    });
+  };
 
   const handleFetchBuildIds = async () => {
-    // Only target builds that have been triggered / are in building state without Build ID
-    let targets = items.filter((i) => (i.status === 'success' || i.status === 'running') && !i.buildId);
-    if (targets.length === 0) {
-      targets = items.filter((i) => !i.buildId);
-    }
+    if (isRunning) return;
+    const targets = items.filter((i) => !i.buildId);
     if (targets.length === 0) {
       addLog('info', 'All builds in the list already have Build IDs.');
       return;
     }
 
-    addLog('info', `Fetching Build IDs for ${targets.length} build(s) currently in Building state (Headless: ${portalConfig.headless})...`);
+    addLog('info', `Fetching Build IDs for ${targets.length} build(s) without Build ID (Headless: ${portalConfig.headless})...`);
 
     await dispatchBatchRunner({
       portal: {
@@ -773,6 +788,7 @@ export function App() {
           onRetryItem={handleRetryItem}
           onClearSection={handleClearSection}
           onRunItem={handleRunSingleItem}
+          onFetchPendingAll={handleFetchPendingAll}
           onRecheckItem={handleRecheckSingleItem}
           onRecheckFailedAll={handleRecheckFailedAll}
           onRetryFailedAll={handleRetryFailedAll}

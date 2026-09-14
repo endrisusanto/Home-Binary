@@ -99,7 +99,7 @@ export const TerminalLog: React.FC<TerminalLogProps> = ({
             <span className="hidden xs:inline">Process Logs</span>
             <span className="xs:hidden">Logs</span>
             {isRunning && (
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-ping ml-0.5" />
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 ml-0.5" />
             )}
             {logs.length > 0 && (
               <span className="px-1 py-0.2 rounded-full text-[8px] sm:text-[9px] font-bold bg-blue-100 dark:bg-blue-600/30 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-500/30">

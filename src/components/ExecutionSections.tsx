@@ -23,6 +23,7 @@ interface ExecutionSectionsProps {
   onClearSection: (status: 'pending' | 'completed' | 'failed') => void;
   onRunItem: (item: BatchItem) => void;
   onSelectAllPending?: () => void;
+  onFetchPendingAll?: () => void;
   onRecheckItem?: (item: BatchItem) => void;
   onRecheckFailedAll?: () => void;
   onRetryFailedAll?: () => void;
@@ -51,12 +52,12 @@ const BuildIdCell: React.FC<{ buildId?: string; isCompletedSection?: boolean }> 
           className="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded-md bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 text-[8px] sm:text-[10px] font-bold uppercase tracking-wider select-none shadow-xs whitespace-nowrap"
           title="Build is currently executing on QuickBuild server. Use 'Fetch Build ID' on toolbar to update."
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping" />
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
           Building
         </span>
       );
     }
-    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[9px] sm:text-[11px] whitespace-nowrap">—</span>;
+    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[9px] sm:text-[11px] whitespace-nowrap">-</span>;
   }
 
   const buildUrl = `https://android.qb.sec.samsung.net/build/${buildId}`;
@@ -107,7 +108,7 @@ const ExpiredRemainingCell: React.FC<{ item: BatchItem }> = ({ item }) => {
   const dateStr = item.buildDate;
 
   if (item.status === 'pending') {
-    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[8px] sm:text-[10px] whitespace-nowrap">—</span>;
+    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[8px] sm:text-[10px] whitespace-nowrap">-</span>;
   }
 
   if (item.status === 'running') {
@@ -131,12 +132,12 @@ const ExpiredRemainingCell: React.FC<{ item: BatchItem }> = ({ item }) => {
         </span>
       );
     }
-    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[8px] sm:text-[10px] whitespace-nowrap">—</span>;
+    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[8px] sm:text-[10px] whitespace-nowrap">-</span>;
   }
 
   const buildTimestamp = Date.parse(dateStr.replace(' ', 'T'));
   if (isNaN(buildTimestamp)) {
-    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[8px] sm:text-[10px] whitespace-nowrap">—</span>;
+    return <span className="text-slate-400 dark:text-neutral-600 font-mono text-[8px] sm:text-[10px] whitespace-nowrap">-</span>;
   }
 
   const FOUR_DAYS_MS = 4 * 24 * 60 * 60 * 1000;
@@ -194,6 +195,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
   onRetryItem,
   onClearSection,
   onRunItem,
+  onFetchPendingAll,
   onRecheckItem,
   onRecheckFailedAll,
   onRetryFailedAll,
@@ -249,14 +251,27 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
 
           <div className="flex items-center gap-1.5 sm:gap-2" onClick={e => e.stopPropagation()}>
             {pendingItems.length > 0 && (
-              <button
-                onClick={() => onClearSection('pending')}
-                className="flex items-center gap-1 px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-[11px] font-medium text-slate-500 hover:text-rose-600 dark:text-neutral-400 dark:hover:text-rose-400 rounded-md hover:bg-slate-100 dark:hover:bg-neutral-800 transition-colors"
-                title="Clear pending queue"
-              >
-                <Trash2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                <span>Clear</span>
-              </button>
+              <div className="flex items-center gap-1 sm:gap-1.5">
+                {onFetchPendingAll && (
+                  <button
+                    onClick={onFetchPendingAll}
+                    disabled={isRunning}
+                    className="flex items-center gap-1 px-1.5 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 hover:bg-amber-100 dark:hover:bg-amber-900/60 rounded-md border border-amber-300 dark:border-amber-800 transition-colors disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-amber-500 cursor-pointer"
+                    title="Fetch and check existing Build IDs for pending builds from QuickBuild Dashboard"
+                  >
+                    <RotateCw className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                    <span>Fetch IDs ({pendingItems.filter(i => !i.buildId).length})</span>
+                  </button>
+                )}
+                <button
+                  onClick={() => onClearSection('pending')}
+                  className="flex items-center gap-1 px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-[11px] font-medium text-slate-500 hover:text-rose-600 dark:text-neutral-400 dark:hover:text-rose-400 rounded-md hover:bg-slate-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
+                  title="Clear pending queue"
+                >
+                  <Trash2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                  <span>Clear</span>
+                </button>
+              </div>
             )}
             <span className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[8px] sm:text-[10px] font-bold rounded-full bg-slate-200/80 dark:bg-neutral-800 text-slate-700 dark:text-neutral-300">
               {pendingItems.length}
@@ -295,16 +310,19 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                           {idx + 1}
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-medium text-slate-800 dark:text-neutral-200 select-text cursor-text">
-                          {item.buildFingerprintName}
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span>{item.buildFingerprintName}</span>
+                            {item.buildId && <BuildIdCell buildId={item.buildId} />}
+                          </div>
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
-                          {item.pdaVersion || '—'}
+                          {item.pdaVersion || '-'}
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
-                          {item.cscVersion || '—'}
+                          {item.cscVersion || '-'}
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-600 dark:text-neutral-400 text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
-                          {item.basebandVersion || '—'}
+                          {item.basebandVersion || '-'}
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-center whitespace-nowrap">
                           <ExpiredRemainingCell item={item} />
@@ -317,17 +335,27 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-right">
                           <div className="flex items-center justify-end gap-1 opacity-80 group-hover:opacity-100">
+                            {onRecheckItem && !item.buildId && (
+                              <button
+                                onClick={() => onRecheckItem(item)}
+                                disabled={isRunning}
+                                className="p-0.5 sm:p-1 text-amber-600 hover:text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/60 rounded transition-colors disabled:opacity-30 cursor-pointer focus-visible:outline-2 focus-visible:outline-amber-500"
+                                title="Fetch Build ID for this build from Dashboard"
+                              >
+                                <RotateCw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                              </button>
+                            )}
                             <button
                               onClick={() => onRunItem(item)}
                               disabled={isRunning}
-                              className="p-0.5 sm:p-1 text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 rounded transition-colors disabled:opacity-30"
+                              className="p-0.5 sm:p-1 text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 rounded transition-colors disabled:opacity-30 cursor-pointer focus-visible:outline-2 focus-visible:outline-emerald-500"
                               title="Submit this build only"
                             >
                               <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
                             </button>
                             <button
                               onClick={() => onRemoveItem(item.id)}
-                              className="p-0.5 sm:p-1 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/60 rounded transition-colors"
+                              className="p-0.5 sm:p-1 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/60 rounded transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-rose-500"
                               title="Remove item"
                             >
                               <Trash2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
@@ -364,7 +392,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
           <div className="flex items-center gap-1.5 sm:gap-2" onClick={e => e.stopPropagation()}>
             <span className={`w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[8px] sm:text-[10px] font-bold rounded-full ${
               runningItems.length > 0
-                ? 'bg-emerald-500 text-white animate-pulse'
+                ? 'bg-emerald-600 text-white'
                 : 'bg-slate-200/80 dark:bg-neutral-800 text-slate-700 dark:text-neutral-300'
             }`}>
               {runningItems.length}
@@ -394,11 +422,11 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                             {item.buildId ? (
                               <span className="inline-flex items-center gap-1 text-[8px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-700 font-bold uppercase tracking-wider">
-                                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                                 Build In Progress
                               </span>
                             ) : (
-                              <span className="text-[8px] sm:text-[10px] px-1 sm:px-1.5 py-0.2 sm:py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-200 font-semibold uppercase animate-pulse border border-amber-300 dark:border-amber-800">
+                              <span className="text-[8px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-200 font-semibold uppercase border border-amber-300 dark:border-amber-800">
                                 Submitting Form...
                               </span>
                             )}

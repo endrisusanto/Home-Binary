@@ -144,7 +144,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700'
                     : 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-700'
                 }`}>
-                  <span className={`w-1.5 h-1.5 rounded-full ${desktopClients.length > 0 ? 'bg-emerald-500 animate-ping' : 'bg-amber-500'}`} />
+                  <span className={`w-1.5 h-1.5 rounded-full ${desktopClients.length > 0 ? 'bg-emerald-500' : 'bg-amber-500'}`} />
                   {desktopClients.length > 0 ? `${desktopClients.length} Desktop Active` : '0 Desktop Connected'}
                 </span>
               </div>
@@ -188,7 +188,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     {desktopClients.map((client, idx) => (
                       <tr key={client.id || idx} className="hover:bg-slate-50/80 dark:hover:bg-neutral-900/40 transition-colors">
                         <td className="py-2 px-2.5 font-medium text-slate-800 dark:text-neutral-200 flex items-center gap-1.5 whitespace-nowrap">
-                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                          <span className="w-2 h-2 rounded-full bg-emerald-500" />
                           <span>Windows Desktop #{idx + 1}</span>
                           <span className="text-[9px] font-mono text-slate-400">({client.id})</span>
                         </td>

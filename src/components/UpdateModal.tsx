@@ -506,7 +506,7 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
                 <div className="flex items-center justify-between text-xs font-semibold">
                   <span className="text-slate-500 dark:text-neutral-400">Latest Release:</span>
                   <span className="font-mono bg-blue-50 dark:bg-blue-950/80 text-blue-600 dark:text-blue-300 px-2 py-0.5 rounded border border-blue-200/60 dark:border-blue-800/60">
-                    {isChecking ? 'Checking...' : releaseInfo ? `v${releaseInfo.version}` : '—'}
+                    {isChecking ? 'Checking...' : releaseInfo ? `v${releaseInfo.version}` : '-'}
                   </span>
                 </div>
 

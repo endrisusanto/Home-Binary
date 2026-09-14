@@ -75,7 +75,7 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
         {/* Header */}
         <div className="px-4 py-3 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
+            <div className="w-2.5 h-2.5 rounded-full bg-blue-600" />
             <span className="text-xs font-bold text-slate-800 dark:text-neutral-200 uppercase tracking-wider">
               Control Menu Actions
             </span>
@@ -176,7 +176,7 @@ export const MobileMenuModal: React.FC<MobileMenuModalProps> = ({
                 }}
                 className="p-2.5 rounded-xl bg-rose-50/80 dark:bg-rose-950/40 border border-rose-200/80 dark:border-rose-900/60 hover:bg-rose-100 dark:hover:bg-rose-900/50 flex flex-col items-start gap-1 transition-all text-left cursor-pointer"
               >
-                <div className="w-7 h-7 rounded-lg bg-rose-600 text-white flex items-center justify-center shadow-xs animate-pulse">
+                <div className="w-7 h-7 rounded-lg bg-rose-600 text-white flex items-center justify-center shadow-xs">
                   <Square className="w-4 h-4 fill-current" />
                 </div>
                 <span className="text-xs font-bold text-rose-900 dark:text-rose-200">
