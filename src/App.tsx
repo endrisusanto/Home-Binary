@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Header } from './components/Header';
 import { MetricCards } from './components/MetricCards';
 import { ExecutionSections } from './components/ExecutionSections';
@@ -197,6 +197,7 @@ export function App() {
   const [isDesktopConnected, setIsDesktopConnected] = useState(false);
   const [connectedClients, setConnectedClients] = useState<ConnectedClient[]>([]);
   const [fetchOnlyMode, setFetchOnlyMode] = useState(false);
+  const isStartingRef = useRef(false);
 
   // Push local updates to Central Sync Server (via WebSocket & HTTP fallback)
   const pushStateToServer = useCallback(async (newItems?: BatchItem[], newConfig = portalConfig) => {
@@ -330,6 +331,11 @@ export function App() {
           case 'execute-batch-local':
             // Remote execution command received from Web App!
             if (isTauri) {
+              if (isRunning || isStartingRef.current) {
+                console.warn('[Remote Sync] Batch already running locally. Ignoring duplicate remote trigger.');
+                break;
+              }
+              isStartingRef.current = true;
               addLog('info', '⚡ [Remote Sync] Starting batch execution locally on Windows Desktop (Browser session)...');
               const tauri = await getTauri();
               if (tauri && tauri.core) {
@@ -341,7 +347,11 @@ export function App() {
                   addLog('error', `Local batch run error: ${err?.message || err}`);
                   setIsRunning(false);
                   wsService.send('task-finished', { error: err?.message || String(err) });
+                } finally {
+                  isStartingRef.current = false;
                 }
+              } else {
+                isStartingRef.current = false;
               }
             }
             break;
@@ -451,35 +461,47 @@ export function App() {
 
   // Universal dispatch runner across Tauri & Web API
   const dispatchBatchRunner = async (payload: { portal: PortalConfig & { fetchOnly?: boolean }; items: BatchItem[] }) => {
-    setIsRunning(true);
-    
-    // Broadcast run event over WebSocket
-    wsService.send('trigger-batch', payload);
+    // Re-entrancy guard against rapid clicks or double triggers
+    if (isRunning || isStartingRef.current) {
+      console.warn('[Dispatch] Runner already active. Ignoring duplicate dispatch.');
+      return;
+    }
 
-    if (isTauri) {
-      const tauri = await getTauri();
-      if (tauri && tauri.core) {
-        try {
-          wsService.send('batch-started', { isRunning: true });
-          await tauri.core.invoke('start_batch_runner', { payload });
-        } catch (err: any) {
-          addLog('error', `Tauri execution error: ${err?.message || err}`);
-          setIsRunning(false);
-          wsService.send('task-finished', { error: err?.message || String(err) });
+    isStartingRef.current = true;
+    setIsRunning(true);
+
+    try {
+      if (isTauri) {
+        const tauri = await getTauri();
+        if (tauri && tauri.core) {
+          try {
+            // Notify WebSocket server and Web clients that execution started locally
+            wsService.send('batch-started', { isRunning: true });
+            await tauri.core.invoke('start_batch_runner', { payload });
+          } catch (err: any) {
+            addLog('error', `Tauri execution error: ${err?.message || err}`);
+            setIsRunning(false);
+            wsService.send('task-finished', { error: err?.message || String(err) });
+          }
+        }
+      } else {
+        // In Web mode: dispatch via WebSocket if connected, otherwise fallback to HTTP POST
+        if (wsService.isConnected) {
+          wsService.send('trigger-batch', payload);
+        } else {
+          try {
+            await fetch('/api/batch/start', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+          } catch (err: any) {
+            console.warn('HTTP fallback start notice:', err);
+          }
         }
       }
-    } else {
-      // In Web mode: WebSocket server automatically routes to connected Windows Desktop!
-      // Also send HTTP POST as fallback
-      try {
-        await fetch('/api/batch/start', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-      } catch (err: any) {
-        console.warn('HTTP fallback start notice:', err);
-      }
+    } finally {
+      isStartingRef.current = false;
     }
   };
 

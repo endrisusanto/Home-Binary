@@ -226,6 +226,28 @@ pub async fn execute_batch(
         .stdout(std::process::Stdio::piped())
         .stderr(std::process::Stdio::piped());
 
+    // Ensure any previously running child process is terminated before starting a new one
+    {
+        let mut lock = state.lock().await;
+        if let Some(mut existing_child) = lock.take() {
+            #[cfg(windows)]
+            {
+                if let Some(pid) = existing_child.id() {
+                    use std::os::windows::process::CommandExt;
+                    const CREATE_NO_WINDOW: u32 = 0x08000000;
+                    let _ = std::process::Command::new("taskkill")
+                        .args(&["/F", "/T", "/PID", &pid.to_string()])
+                        .creation_flags(CREATE_NO_WINDOW)
+                        .output();
+                }
+            }
+            #[cfg(not(windows))]
+            {
+                let _ = existing_child.kill().await;
+            }
+        }
+    }
+
     let mut child = cmd
         .spawn()
         .map_err(|e| format!("Failed to spawn node automation engine at {:?}: {}. Ensure Node.js is installed.", script_path, e))?;

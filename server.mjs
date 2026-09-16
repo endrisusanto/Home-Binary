@@ -730,7 +730,14 @@ wss.on('connection', (ws, req) => {
         case 'trigger-batch':
         case 'trigger-batch-runner':
           {
-            const desktopEntries = Array.from(wsClients.entries()).filter(([w, m]) => m.clientType === 'desktop' && w.readyState === WebSocket.OPEN);
+            const senderMeta = wsClients.get(ws);
+            if (senderMeta?.clientType === 'desktop') {
+              // Sender desktop is executing locally; mirror state to other clients
+              broadcastAll('batch-started', { isRunning: true });
+              break;
+            }
+
+            const desktopEntries = Array.from(wsClients.entries()).filter(([w, m]) => m.clientType === 'desktop' && w !== ws && w.readyState === WebSocket.OPEN);
             if (desktopEntries.length > 0) {
               for (const [dWs] of desktopEntries) {
                 dWs.send(JSON.stringify({ type: 'execute-batch-local', payload }));
@@ -762,7 +769,12 @@ wss.on('connection', (ws, req) => {
 
         case 'trigger-fetch-ids':
           {
-            const desktopEntries = Array.from(wsClients.entries()).filter(([w, m]) => m.clientType === 'desktop' && w.readyState === WebSocket.OPEN);
+            const senderMeta = wsClients.get(ws);
+            if (senderMeta?.clientType === 'desktop') {
+              break;
+            }
+
+            const desktopEntries = Array.from(wsClients.entries()).filter(([w, m]) => m.clientType === 'desktop' && w !== ws && w.readyState === WebSocket.OPEN);
             if (desktopEntries.length > 0) {
               for (const [dWs] of desktopEntries) {
                 dWs.send(JSON.stringify({ type: 'execute-fetch-ids', payload }));
