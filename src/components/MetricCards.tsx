@@ -14,7 +14,7 @@ export const MetricCards: React.FC<MetricCardsProps> = ({
   isRunning,
 }) => {
   const { total, running, success, failed, progressPercent } = summary;
-  const targetUrl = portalConfig.baseUrl || 'https://android.qb.sec.samsung.net/overview/28905';
+  const targetUrl = portalConfig.baseUrl || 'https://android.qb.sec.samsung.net/history/28905';
 
   const handleOpenPortal = async (e: React.MouseEvent) => {
     e.stopPropagation();

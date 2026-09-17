@@ -130,7 +130,7 @@ The automation engine automatically maps and fills the following Wicket form sel
 | **Baseband / Phone** | `input[name="editor:content:basicProperties:3:property:editor:editor:wrapper:input"]` |
 
 **Target Endpoints**:
-- Overview: `https://android.qb.sec.samsung.net/overview/28905`
+- History / Dashboard: `https://android.qb.sec.samsung.net/history/28905`
 - Form: `https://android.qb.sec.samsung.net/wicket/page?6`
 
 ---

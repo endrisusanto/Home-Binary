@@ -473,9 +473,9 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
 // --------------------------------------------------------------------------
 // PHASE 2: BATCH PROGRESS POLLING ON DASHBOARD
 // --------------------------------------------------------------------------
-async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, isFetchOnly = false) {
-  const dashboardUrl = 'https://android.qb.sec.samsung.net/dashboard';
-  emitLog('info', `Navigating to Dashboard (${dashboardUrl}) to track build progress for all ${items.length} builds...`);
+async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, isFetchOnly = false, portal = {}) {
+  const dashboardUrl = portal.historyUrl || portal.dashboardUrl || (portal.baseUrl ? portal.baseUrl.replace('/overview/', '/history/') : 'https://android.qb.sec.samsung.net/history/28905');
+  emitLog('info', `Navigating to Dashboard / History (${dashboardUrl}) to track build progress for all ${items.length} builds...`);
 
   const pollIntervalMs = 60000; // 1 minute per cycle
   const startTime = Date.now();
@@ -483,15 +483,15 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
 
   while (Date.now() - startTime < maxWaitMs) {
     try {
-      emitLog('info', `Inspecting Dashboard build queue (Checking status of active builds)...`);
+      emitLog('info', `Inspecting build history table on ${dashboardUrl}...`);
       await page.goto(dashboardUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
       
-      // Wait for Wicket AJAX to populate My Builds gadget
-      emitLog('info', 'Waiting for My Builds dashboard gadget to render...');
-      await page.waitForSelector('table.datatable, .summary table, a[href*="/build/"], a[title="More"]', { timeout: 15000 }).catch(() => {});
+      // Wait for table to render
+      emitLog('info', 'Waiting for build history table to render...');
+      await page.waitForSelector('table.table-sm, table.datatable, table, a[href*="/build/"]', { timeout: 15000 }).catch(() => {});
       await page.waitForTimeout(1000);
 
-      // Expand "My Builds" gadget by clicking "More" link if available
+      // Expand "My Builds" gadget by clicking "More" link if on legacy dashboard
       try {
         const moreLink = page.locator('a[title="More"], a:text-is("More"), a[href*="myBuildsContainer-more"]');
         if (await moreLink.count() > 0 && await moreLink.first().isVisible()) {
@@ -502,7 +502,7 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
               moreLink.first().click({ timeout: 5000 }).catch(() => {}),
             ]);
           } catch {}
-          await page.waitForSelector('table.datatable, .summary table, a[href*="/build/"]', { timeout: 10000 }).catch(() => {});
+          await page.waitForSelector('table.table-sm, table.datatable, .summary table, a[href*="/build/"]', { timeout: 10000 }).catch(() => {});
           await page.waitForTimeout(1500);
         }
       } catch (clickErr) {
@@ -511,31 +511,31 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
 
       // Fast native browser DOM evaluation to extract all build entries directly
       const tableData = await page.evaluate(() => {
-        const buildLinks = Array.from(document.querySelectorAll('a[href*="/build/"]'));
         const results = [];
         const seenIds = new Set();
 
-        for (const link of buildLinks) {
-          const href = link.getAttribute('href') || '';
-          const m = href.match(/\/build\/(\d+)/);
-          if (!m) continue;
-          const idText = m[1];
-          if (seenIds.has(idText)) continue;
+        // 1. Process table rows directly (Supports new table.table-sm from history/28905)
+        const tableRows = Array.from(document.querySelectorAll('table.table-sm tr, table.datatable tr, table tr'));
+        for (const tr of tableRows) {
+          const cells = Array.from(tr.querySelectorAll('td'));
+          if (cells.length < 4) continue;
+
+          // Build ID from cell 0 or link
+          let idText = cells[0].innerText.replace(/[^0-9]/g, '').trim();
+          const buildLink = tr.querySelector('a[href*="/build/"]');
+          if (!idText && buildLink) {
+            const m = (buildLink.getAttribute('href') || '').match(/\/build\/(\d+)/);
+            if (m) idText = m[1];
+          }
+          if (!idText || seenIds.has(idText)) continue;
           seenIds.add(idText);
 
-          const tr = link.closest('tr');
-          const fullRowText = tr ? tr.innerText.trim() : link.innerText.trim();
-          const trHtml = tr ? tr.innerHTML.toLowerCase() : '';
-          const buildInfoText = link.innerText.trim();
+          const buildInfoText = cells[1] ? cells[1].innerText.replace(/\s+/g, ' ').trim() : '';
+          const dateStr = cells[2] ? cells[2].innerText.replace(/\s+/g, ' ').trim() : '';
+          const durationText = cells[3] ? cells[3].innerText.replace(/\s+/g, ' ').trim() : '';
+          const fullRowText = tr.innerText.trim();
+          const trHtml = tr.innerHTML.toLowerCase();
 
-          const stepLink = tr ? tr.querySelector('a[href*="step_status"], a[href*="overview"]') : null;
-          const stepText = stepLink ? stepLink.innerText.trim() : '';
-
-          const durationEl = tr ? tr.querySelector('td:nth-child(4), td.id:nth-child(4)') : null;
-          const durationText = durationEl ? durationEl.innerText.trim() : '';
-
-          const dateMatch = fullRowText.match(/\b(20\d{2}-\d{2}-\d{2}(?:\s+\d{2}:\d{2}:\d{2})?)\b/);
-          const dateStr = dateMatch ? dateMatch[1] : '';
           let isExpired = false;
           if (dateStr) {
             const buildTimestamp = Date.parse(dateStr.replace(' ', 'T'));
@@ -550,47 +550,42 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
           const isFailed = 
             isExpired ||
             trHtml.includes('build is failed') || 
-            trHtml.includes('text-danger') || 
+            trHtml.includes('build-status failed') ||
             trHtml.includes('octicon-x-circle-fill') || 
-            link.classList.contains('failed') || 
+            trHtml.includes('text-danger') || 
             (tr && tr.classList.contains('failed')) || 
-            stepText.toLowerCase().includes('failed') || 
-            fullRowText.toLowerCase().includes('failed') || 
+            (fullRowText.toLowerCase().includes('failed') && !trHtml.includes('build is successful')) || 
             fullRowText.toLowerCase().includes('cancelled');
 
           const isSuccessful = !isFailed && (
-            link.classList.contains('successful') || 
             trHtml.includes('build is successful') || 
-            trHtml.includes('text-success') || 
+            trHtml.includes('build-status successful') || 
             trHtml.includes('octicon-check-circle-fill') || 
+            trHtml.includes('text-success') || 
             (tr && tr.classList.contains('successful')) ||
             fullRowText.toLowerCase().includes('completed')
           );
 
           const isRunning = !isFailed && !isSuccessful && (
-            stepText.includes('MAKE_HOME_BINARY') || 
-            fullRowText.includes('MAKE_HOME_BINARY') ||
-            link.classList.contains('running') || 
             trHtml.includes('build is running') || 
+            trHtml.includes('build-status running') || 
             trHtml.includes('fontawesome-spinner') || 
             trHtml.includes('fa-spin') || 
-            trHtml.includes('running')
+            trHtml.includes('running') ||
+            fullRowText.includes('MAKE_HOME_BINARY')
           );
 
-          // Progress percentage
           let pct = null;
-          if (tr) {
-            const pctEl = tr.querySelector('.progress-percentage');
-            if (pctEl) {
-              const p = parseInt(pctEl.innerText.replace('%', '').trim(), 10);
+          const pctEl = tr.querySelector('.progress-percentage');
+          if (pctEl) {
+            const p = parseInt(pctEl.innerText.replace('%', '').trim(), 10);
+            if (!isNaN(p)) pct = p;
+          }
+          if (pct === null) {
+            const filler = tr.querySelector('.progress-filler');
+            if (filler && filler.style && filler.style.width) {
+              const p = parseInt(filler.style.width.replace('%', '').trim(), 10);
               if (!isNaN(p)) pct = p;
-            }
-            if (pct === null) {
-              const filler = tr.querySelector('.progress-filler');
-              if (filler && filler.style && filler.style.width) {
-                const p = parseInt(filler.style.width.replace('%', '').trim(), 10);
-                if (!isNaN(p)) pct = p;
-              }
             }
           }
 
@@ -601,13 +596,71 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
             buildInfoText,
             fullRowText,
             durationText,
-            stepText,
+            stepText: isRunning ? 'MAKE_HOME_BINARY' : '',
             isSuccessful,
             isFailed,
             isRunning,
             progressPercent: pct ?? (isSuccessful ? 100 : (isRunning ? 50 : 20))
           });
         }
+
+        // 2. Fallback: Process any loose build links not covered by table rows
+        const buildLinks = Array.from(document.querySelectorAll('a[href*="/build/"]'));
+        for (const link of buildLinks) {
+          const href = link.getAttribute('href') || '';
+          const m = href.match(/\/build\/(\d+)/);
+          if (!m) continue;
+          const idText = m[1];
+          if (seenIds.has(idText)) continue;
+          seenIds.add(idText);
+
+          const tr = link.closest('tr');
+          const fullRowText = tr ? tr.innerText.trim() : link.innerText.trim();
+          const trHtml = tr ? tr.innerHTML.toLowerCase() : '';
+          const buildInfoText = link.innerText.trim();
+          const dateMatch = fullRowText.match(/\b(20\d{2}-\d{2}-\d{2}(?:\s+\d{2}:\d{2}:\d{2})?)\b/);
+          const dateStr = dateMatch ? dateMatch[1] : '';
+
+          let isExpired = false;
+          if (dateStr) {
+            const buildTimestamp = Date.parse(dateStr.replace(' ', 'T'));
+            if (!isNaN(buildTimestamp)) {
+              const diffDays = (Date.now() - buildTimestamp) / (1000 * 60 * 60 * 24);
+              if (diffDays > 4) isExpired = true;
+            }
+          }
+
+          const isFailed = 
+            isExpired ||
+            trHtml.includes('build is failed') || 
+            trHtml.includes('build-status failed') || 
+            trHtml.includes('octicon-x-circle-fill') || 
+            link.classList.contains('failed');
+
+          const isSuccessful = !isFailed && (
+            trHtml.includes('build is successful') || 
+            trHtml.includes('build-status successful') || 
+            trHtml.includes('octicon-check-circle-fill') || 
+            link.classList.contains('successful')
+          );
+
+          const isRunning = !isFailed && !isSuccessful;
+
+          results.push({
+            idText,
+            dateStr,
+            isExpired,
+            buildInfoText,
+            fullRowText,
+            durationText: '',
+            stepText: '',
+            isSuccessful,
+            isFailed,
+            isRunning,
+            progressPercent: isSuccessful ? 100 : (isRunning ? 50 : 20)
+          });
+        }
+
         return results;
       });
 
@@ -772,7 +825,7 @@ async function main() {
   }
 
   const { items, portal = {} } = payload;
-  const baseUrl = portal.baseUrl || 'https://android.qb.sec.samsung.net/overview/28905';
+  const baseUrl = portal.baseUrl || 'https://android.qb.sec.samsung.net/history/28905';
   const headless = portal.headless !== false;
   const delayMs = Number(portal.delayMs) || 1000;
   const timeoutMs = Number(portal.timeoutMs) || 30000;
@@ -860,7 +913,7 @@ async function main() {
     if (portal.fetchOnly === true) {
       emitLog('info', `=== [FETCH BUILD ID ONLY] Querying Dashboard for ${items.length} builds (Headless) ===`);
       try {
-        await trackBatchProgressOnDashboard(page, items, 120000, true);
+        await trackBatchProgressOnDashboard(page, items, 120000, true, portal);
       } catch (fetchErr) {
         emitLog('error', `Fetch Build ID error: ${fetchErr.message}`);
       } finally {
@@ -965,7 +1018,7 @@ async function main() {
       emitLog('info', `=== [PHASE 2] All forms triggered! Starting Dashboard progress tracking (every 60s) ===`);
       const validItems = items.filter(x => x.status !== 'failed');
       if (validItems.length > 0) {
-        await trackBatchProgressOnDashboard(page, validItems, 1800000);
+        await trackBatchProgressOnDashboard(page, validItems, 1800000, false, portal);
       }
     } else if (!trackProgress) {
       emitLog('info', `=== [FAST COMPLETE] Progress tracking disabled. All batch submissions complete ===`);

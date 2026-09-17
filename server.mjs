@@ -42,7 +42,7 @@ let appState = {
   items: [],
   logs: [],
   portalConfig: {
-    baseUrl: 'https://android.qb.sec.samsung.net/overview/28905',
+    baseUrl: 'https://android.qb.sec.samsung.net/history/28905',
     formUrl: 'https://android.qb.sec.samsung.net/wicket/page?6',
     headless: true,
     delayMs: 1000,

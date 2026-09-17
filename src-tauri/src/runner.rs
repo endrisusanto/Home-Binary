@@ -51,7 +51,7 @@ pub struct PortalConfig {
 }
 
 fn default_base_url() -> String {
-    "https://android.qb.sec.samsung.net/overview/28905".to_string()
+    "https://android.qb.sec.samsung.net/history/28905".to_string()
 }
 fn default_form_url() -> String {
     "https://android.qb.sec.samsung.net/wicket/page?6".to_string()
