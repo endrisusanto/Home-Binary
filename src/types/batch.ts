@@ -30,6 +30,7 @@ export interface PortalConfig {
   ssoToken?: string;
   syncServerUrl?: string;
   syncEnabled?: boolean;
+  maxBuildScan?: number;
 }
 
 export interface BatchRunnerPayload {

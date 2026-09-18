@@ -50,6 +50,7 @@ let appState = {
     mock: false,
     trackProgress: true,
     concurrency: 3,
+    maxBuildScan: 200,
   },
   isRunning: false,
   lastUpdated: new Date().toISOString(),

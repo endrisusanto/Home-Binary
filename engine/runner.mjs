@@ -509,162 +509,214 @@ async function trackBatchProgressOnDashboard(page, items, maxWaitMs = 1800000, i
         emitLog('warn', `Click "More" notice: ${clickErr.message}`);
       }
 
-      // Fast native browser DOM evaluation to extract all build entries directly
-      const tableData = await page.evaluate(() => {
-        const results = [];
-        const seenIds = new Set();
+      // ponytail: scan QuickBuild history across pages (up to maxBuildScan rows, default 200 / 8 pages) until all items match or limit reached
+      const maxBuildScan = Number(portal.maxBuildScan) || 200;
+      const maxPages = Math.max(1, Math.min(20, Math.ceil(maxBuildScan / 25)));
+      const tableData = [];
+      const seenGlobalIds = new Set();
 
-        // 1. Process table rows directly (Supports new table.table-sm from history/28905)
-        const tableRows = Array.from(document.querySelectorAll('table.table-sm tr, table.datatable tr, table tr'));
-        for (const tr of tableRows) {
-          const cells = Array.from(tr.querySelectorAll('td'));
-          if (cells.length < 4) continue;
+      for (let pageNum = 1; pageNum <= maxPages; pageNum++) {
+        const pageRows = await page.evaluate(() => {
+          const results = [];
+          const seenIds = new Set();
 
-          // Build ID from cell 0 or link
-          let idText = cells[0].innerText.replace(/[^0-9]/g, '').trim();
-          const buildLink = tr.querySelector('a[href*="/build/"]');
-          if (!idText && buildLink) {
-            const m = (buildLink.getAttribute('href') || '').match(/\/build\/(\d+)/);
-            if (m) idText = m[1];
-          }
-          if (!idText || seenIds.has(idText)) continue;
-          seenIds.add(idText);
+          // 1. Process table rows directly (Supports new table.table-sm from history/28905)
+          const tableRows = Array.from(document.querySelectorAll('table.table-sm tr, table.datatable tr, table tr'));
+          for (const tr of tableRows) {
+            const cells = Array.from(tr.querySelectorAll('td'));
+            if (cells.length < 4) continue;
 
-          const buildInfoText = cells[1] ? cells[1].innerText.replace(/\s+/g, ' ').trim() : '';
-          const dateStr = cells[2] ? cells[2].innerText.replace(/\s+/g, ' ').trim() : '';
-          const durationText = cells[3] ? cells[3].innerText.replace(/\s+/g, ' ').trim() : '';
-          const fullRowText = tr.innerText.trim();
-          const trHtml = tr.innerHTML.toLowerCase();
+            // Build ID from cell 0 or link
+            let idText = cells[0].innerText.replace(/[^0-9]/g, '').trim();
+            const buildLink = tr.querySelector('a[href*="/build/"]');
+            if (!idText && buildLink) {
+              const m = (buildLink.getAttribute('href') || '').match(/\/build\/(\d+)/);
+              if (m) idText = m[1];
+            }
+            if (!idText || seenIds.has(idText)) continue;
+            seenIds.add(idText);
 
-          let isExpired = false;
-          if (dateStr) {
-            const buildTimestamp = Date.parse(dateStr.replace(' ', 'T'));
-            if (!isNaN(buildTimestamp)) {
-              const diffDays = (Date.now() - buildTimestamp) / (1000 * 60 * 60 * 24);
-              if (diffDays > 4) {
-                isExpired = true;
+            const buildInfoText = cells[1] ? cells[1].innerText.replace(/\s+/g, ' ').trim() : '';
+            const dateStr = cells[2] ? cells[2].innerText.replace(/\s+/g, ' ').trim() : '';
+            const durationText = cells[3] ? cells[3].innerText.replace(/\s+/g, ' ').trim() : '';
+            const fullRowText = tr.innerText.trim();
+            const trHtml = tr.innerHTML.toLowerCase();
+
+            let isExpired = false;
+            if (dateStr) {
+              const buildTimestamp = Date.parse(dateStr.replace(' ', 'T'));
+              if (!isNaN(buildTimestamp)) {
+                const diffDays = (Date.now() - buildTimestamp) / (1000 * 60 * 60 * 24);
+                if (diffDays > 4) {
+                  isExpired = true;
+                }
               }
             }
-          }
 
-          const isFailed = 
-            isExpired ||
-            trHtml.includes('build is failed') || 
-            trHtml.includes('build-status failed') ||
-            trHtml.includes('octicon-x-circle-fill') || 
-            trHtml.includes('text-danger') || 
-            (tr && tr.classList.contains('failed')) || 
-            (fullRowText.toLowerCase().includes('failed') && !trHtml.includes('build is successful')) || 
-            fullRowText.toLowerCase().includes('cancelled');
+            const isFailed = 
+              isExpired ||
+              trHtml.includes('build is failed') || 
+              trHtml.includes('build-status failed') ||
+              trHtml.includes('octicon-x-circle-fill') || 
+              trHtml.includes('text-danger') || 
+              (tr && tr.classList.contains('failed')) || 
+              (fullRowText.toLowerCase().includes('failed') && !trHtml.includes('build is successful')) || 
+              fullRowText.toLowerCase().includes('cancelled');
 
-          const isSuccessful = !isFailed && (
-            trHtml.includes('build is successful') || 
-            trHtml.includes('build-status successful') || 
-            trHtml.includes('octicon-check-circle-fill') || 
-            trHtml.includes('text-success') || 
-            (tr && tr.classList.contains('successful')) ||
-            fullRowText.toLowerCase().includes('completed')
-          );
+            const isSuccessful = !isFailed && (
+              trHtml.includes('build is successful') || 
+              trHtml.includes('build-status successful') || 
+              trHtml.includes('octicon-check-circle-fill') || 
+              trHtml.includes('text-success') || 
+              (tr && tr.classList.contains('successful')) ||
+              fullRowText.toLowerCase().includes('completed')
+            );
 
-          const isRunning = !isFailed && !isSuccessful && (
-            trHtml.includes('build is running') || 
-            trHtml.includes('build-status running') || 
-            trHtml.includes('fontawesome-spinner') || 
-            trHtml.includes('fa-spin') || 
-            trHtml.includes('running') ||
-            fullRowText.includes('MAKE_HOME_BINARY')
-          );
+            const isRunning = !isFailed && !isSuccessful && (
+              trHtml.includes('build is running') || 
+              trHtml.includes('build-status running') || 
+              trHtml.includes('fontawesome-spinner') || 
+              trHtml.includes('fa-spin') || 
+              trHtml.includes('running') ||
+              fullRowText.includes('MAKE_HOME_BINARY')
+            );
 
-          let pct = null;
-          const pctEl = tr.querySelector('.progress-percentage');
-          if (pctEl) {
-            const p = parseInt(pctEl.innerText.replace('%', '').trim(), 10);
-            if (!isNaN(p)) pct = p;
-          }
-          if (pct === null) {
-            const filler = tr.querySelector('.progress-filler');
-            if (filler && filler.style && filler.style.width) {
-              const p = parseInt(filler.style.width.replace('%', '').trim(), 10);
+            let pct = null;
+            const pctEl = tr.querySelector('.progress-percentage');
+            if (pctEl) {
+              const p = parseInt(pctEl.innerText.replace('%', '').trim(), 10);
               if (!isNaN(p)) pct = p;
             }
-          }
-
-          results.push({
-            idText,
-            dateStr,
-            isExpired,
-            buildInfoText,
-            fullRowText,
-            durationText,
-            stepText: isRunning ? 'MAKE_HOME_BINARY' : '',
-            isSuccessful,
-            isFailed,
-            isRunning,
-            progressPercent: pct ?? (isSuccessful ? 100 : (isRunning ? 50 : 20))
-          });
-        }
-
-        // 2. Fallback: Process any loose build links not covered by table rows
-        const buildLinks = Array.from(document.querySelectorAll('a[href*="/build/"]'));
-        for (const link of buildLinks) {
-          const href = link.getAttribute('href') || '';
-          const m = href.match(/\/build\/(\d+)/);
-          if (!m) continue;
-          const idText = m[1];
-          if (seenIds.has(idText)) continue;
-          seenIds.add(idText);
-
-          const tr = link.closest('tr');
-          const fullRowText = tr ? tr.innerText.trim() : link.innerText.trim();
-          const trHtml = tr ? tr.innerHTML.toLowerCase() : '';
-          const buildInfoText = link.innerText.trim();
-          const dateMatch = fullRowText.match(/\b(20\d{2}-\d{2}-\d{2}(?:\s+\d{2}:\d{2}:\d{2})?)\b/);
-          const dateStr = dateMatch ? dateMatch[1] : '';
-
-          let isExpired = false;
-          if (dateStr) {
-            const buildTimestamp = Date.parse(dateStr.replace(' ', 'T'));
-            if (!isNaN(buildTimestamp)) {
-              const diffDays = (Date.now() - buildTimestamp) / (1000 * 60 * 60 * 24);
-              if (diffDays > 4) isExpired = true;
+            if (pct === null) {
+              const filler = tr.querySelector('.progress-filler');
+              if (filler && filler.style && filler.style.width) {
+                const p = parseInt(filler.style.width.replace('%', '').trim(), 10);
+                if (!isNaN(p)) pct = p;
+              }
             }
+
+            results.push({
+              idText,
+              dateStr,
+              isExpired,
+              buildInfoText,
+              fullRowText,
+              durationText,
+              stepText: isRunning ? 'MAKE_HOME_BINARY' : '',
+              isSuccessful,
+              isFailed,
+              isRunning,
+              progressPercent: pct ?? (isSuccessful ? 100 : (isRunning ? 50 : 20))
+            });
           }
 
-          const isFailed = 
-            isExpired ||
-            trHtml.includes('build is failed') || 
-            trHtml.includes('build-status failed') || 
-            trHtml.includes('octicon-x-circle-fill') || 
-            link.classList.contains('failed');
+          // 2. Fallback: Process any loose build links not covered by table rows
+          const buildLinks = Array.from(document.querySelectorAll('a[href*="/build/"]'));
+          for (const link of buildLinks) {
+            const href = link.getAttribute('href') || '';
+            const m = href.match(/\/build\/(\d+)/);
+            if (!m) continue;
+            const idText = m[1];
+            if (seenIds.has(idText)) continue;
+            seenIds.add(idText);
 
-          const isSuccessful = !isFailed && (
-            trHtml.includes('build is successful') || 
-            trHtml.includes('build-status successful') || 
-            trHtml.includes('octicon-check-circle-fill') || 
-            link.classList.contains('successful')
-          );
+            const tr = link.closest('tr');
+            const fullRowText = tr ? tr.innerText.trim() : link.innerText.trim();
+            const trHtml = tr ? tr.innerHTML.toLowerCase() : '';
+            const buildInfoText = link.innerText.trim();
+            const dateMatch = fullRowText.match(/\b(20\d{2}-\d{2}-\d{2}(?:\s+\d{2}:\d{2}:\d{2})?)\b/);
+            const dateStr = dateMatch ? dateMatch[1] : '';
 
-          const isRunning = !isFailed && !isSuccessful;
+            let isExpired = false;
+            if (dateStr) {
+              const buildTimestamp = Date.parse(dateStr.replace(' ', 'T'));
+              if (!isNaN(buildTimestamp)) {
+                const diffDays = (Date.now() - buildTimestamp) / (1000 * 60 * 60 * 24);
+                if (diffDays > 4) isExpired = true;
+              }
+            }
 
-          results.push({
-            idText,
-            dateStr,
-            isExpired,
-            buildInfoText,
-            fullRowText,
-            durationText: '',
-            stepText: '',
-            isSuccessful,
-            isFailed,
-            isRunning,
-            progressPercent: isSuccessful ? 100 : (isRunning ? 50 : 20)
-          });
+            const isFailed = 
+              isExpired ||
+              trHtml.includes('build is failed') || 
+              trHtml.includes('build-status failed') || 
+              trHtml.includes('octicon-x-circle-fill') || 
+              link.classList.contains('failed');
+
+            const isSuccessful = !isFailed && (
+              trHtml.includes('build is successful') || 
+              trHtml.includes('build-status successful') || 
+              trHtml.includes('octicon-check-circle-fill') || 
+              link.classList.contains('successful')
+            );
+
+            const isRunning = !isFailed && !isSuccessful;
+
+            results.push({
+              idText,
+              dateStr,
+              isExpired,
+              buildInfoText,
+              fullRowText,
+              durationText: '',
+              stepText: '',
+              isSuccessful,
+              isFailed,
+              isRunning,
+              progressPercent: isSuccessful ? 100 : (isRunning ? 50 : 20)
+            });
+          }
+
+          return results;
+        });
+
+        for (const row of pageRows) {
+          if (!seenGlobalIds.has(row.idText)) {
+            seenGlobalIds.add(row.idText);
+            tableData.push(row);
+          }
         }
 
-        return results;
-      });
+        // Early break if all batch items have already found a matching build ID or status
+        const uncompleted = items.filter(it => !completedMap.has(it.id));
+        const allFound = uncompleted.length > 0 && uncompleted.every(item => {
+          return tableData.some(row => {
+            if (item.buildId && row.idText === item.buildId) return true;
+            const matchPda = item.pdaVersion && (row.buildInfoText.includes(item.pdaVersion) || row.fullRowText.includes(item.pdaVersion));
+            const matchCsc = item.cscVersion && (row.buildInfoText.includes(item.cscVersion) || row.fullRowText.includes(item.cscVersion));
+            return matchPda || matchCsc;
+          });
+        });
 
-      emitLog('info', `Found ${tableData.length} build entries on Dashboard.`);
+        if (allFound) {
+          if (pageNum > 1) {
+            emitLog('info', `All target builds found across ${pageNum} page(s) (${tableData.length} builds scanned).`);
+          }
+          break;
+        }
+
+        // If still unmatched items and more pages exist, navigate to next page
+        if (pageNum < maxPages) {
+          const nextBtn = page.locator('a.next, a[title="Go to next page"]').first();
+          if (await nextBtn.count() > 0 && await nextBtn.isVisible()) {
+            emitLog('info', `Scanning page ${pageNum + 1}/${maxPages} (Collected so far: ${tableData.length} builds)...`);
+            try {
+              await Promise.all([
+                page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 8000 }).catch(() => {}),
+                nextBtn.click({ timeout: 4000 }).catch(() => {})
+              ]);
+              await page.waitForTimeout(600);
+            } catch (navErr) {
+              emitLog('warn', `Next page navigation note: ${navErr.message}`);
+              break;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+
+      emitLog('info', `Inspected total of ${tableData.length} build entries on Dashboard / History (Target: up to ${maxBuildScan}).`);
 
       // Match against active items with Smart Alternative Fallback (Up to 3 Candidates evaluated)
       for (const item of items) {

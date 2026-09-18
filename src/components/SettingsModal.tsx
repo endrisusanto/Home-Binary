@@ -35,6 +35,7 @@ const DEFAULT_CONFIG: PortalConfig = {
   delayMs: 1000,
   timeoutMs: 30000,
   mock: false,
+  maxBuildScan: 200,
 };
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({
@@ -336,8 +337,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
           </div>
 
-          {/* 5. DELAYS AND TIMEOUTS */}
-          <div className="grid grid-cols-3 gap-2.5 pt-2">
+          {/* 5. DELAYS, TIMEOUTS & HISTORY SCAN DEPTH */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
             <div className="space-y-1">
               <label className="text-[10px] sm:text-[11px] font-semibold text-slate-600 dark:text-slate-400">
                 Parallel Tabs
@@ -349,12 +350,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 step="1"
                 value={formData.concurrency ?? 3}
                 onChange={(e) => setFormData({ ...formData, concurrency: Math.max(1, Math.min(8, Number(e.target.value) || 1)) })}
-                className="w-full px-3 py-1.5 text-xs font-mono bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg outline-none"
+                className="w-full px-2.5 py-1.5 text-xs font-mono bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg outline-none"
               />
             </div>
             <div className="space-y-1">
               <label className="text-[10px] sm:text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                Delay / Stagger (ms)
+                Delay (ms)
               </label>
               <input
                 type="number"
@@ -362,7 +363,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 step="250"
                 value={formData.delayMs}
                 onChange={(e) => setFormData({ ...formData, delayMs: Number(e.target.value) || 0 })}
-                className="w-full px-3 py-1.5 text-xs font-mono bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg outline-none"
+                className="w-full px-2.5 py-1.5 text-xs font-mono bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg outline-none"
               />
             </div>
             <div className="space-y-1">
@@ -375,7 +376,25 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 step="5000"
                 value={formData.timeoutMs}
                 onChange={(e) => setFormData({ ...formData, timeoutMs: Number(e.target.value) || 30000 })}
-                className="w-full px-3 py-1.5 text-xs font-mono bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg outline-none"
+                className="w-full px-2.5 py-1.5 text-xs font-mono bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg outline-none"
+              />
+            </div>
+            <div className="space-y-1">
+              <label 
+                className="text-[10px] sm:text-[11px] font-semibold text-slate-600 dark:text-slate-400 flex items-center justify-between"
+                title="Max build rows to scan in QuickBuild history (25 rows/page, 200 = 8 pages)"
+              >
+                <span>Scan Depth</span>
+                <span className="text-[9px] text-blue-500 font-normal">Rows</span>
+              </label>
+              <input
+                type="number"
+                min="25"
+                max="500"
+                step="25"
+                value={formData.maxBuildScan ?? 200}
+                onChange={(e) => setFormData({ ...formData, maxBuildScan: Math.max(25, Math.min(500, Number(e.target.value) || 200)) })}
+                className="w-full px-2.5 py-1.5 text-xs font-mono bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg outline-none font-bold text-blue-600 dark:text-blue-400"
               />
             </div>
           </div>

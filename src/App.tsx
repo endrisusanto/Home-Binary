@@ -32,6 +32,7 @@ const INITIAL_PORTAL_CONFIG: PortalConfig = {
   mock: false,
   username: 'endri.s',
   password: 'sein2016!',
+  maxBuildScan: 200,
 };
 
 const INITIAL_ITEMS: BatchItem[] = [];

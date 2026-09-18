@@ -48,6 +48,12 @@ pub struct PortalConfig {
     pub username: Option<String>,
     #[serde(default)]
     pub password: Option<String>,
+    #[serde(default = "default_max_build_scan")]
+    pub max_build_scan: usize,
+}
+
+fn default_max_build_scan() -> usize {
+    200
 }
 
 fn default_base_url() -> String {
