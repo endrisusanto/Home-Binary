@@ -27,6 +27,7 @@ interface ExecutionSectionsProps {
   onRecheckItem?: (item: BatchItem) => void;
   onRecheckFailedAll?: () => void;
   onRetryFailedAll?: () => void;
+  onRunSelectedItems?: (selectedItems: BatchItem[]) => void;
   searchQuery: string;
 }
 
@@ -199,6 +200,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
   onRecheckItem,
   onRecheckFailedAll,
   onRetryFailedAll,
+  onRunSelectedItems,
   searchQuery = '',
 }) => {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
@@ -207,6 +209,47 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
     completed: true,
     failed: true,
   });
+
+  // ponytail: item selection state for batch re-run / execution
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+
+  const toggleSelectItem = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleSelectSection = (sectionItems: BatchItem[], forceSelect?: boolean) => {
+    const allSelected = sectionItems.length > 0 && sectionItems.every((it) => selectedIds.has(it.id));
+    const shouldSelect = forceSelect !== undefined ? forceSelect : !allSelected;
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      sectionItems.forEach((it) => {
+        if (shouldSelect) next.add(it.id);
+        else next.delete(it.id);
+      });
+      return next;
+    });
+  };
+
+  const handleRunSelected = (itemsToRun?: BatchItem[]) => {
+    const targets = itemsToRun || items.filter((it) => selectedIds.has(it.id));
+    if (targets.length === 0 || isRunning) return;
+    if (onRunSelectedItems) {
+      onRunSelectedItems(targets);
+    } else {
+      targets.forEach((it) => onRunItem(it));
+    }
+    // Clear selection for executed targets
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      targets.forEach((it) => next.delete(it.id));
+      return next;
+    });
+  };
 
   const toggleSection = (key: string) => {
     setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -229,8 +272,12 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
   const completedItems = filteredItems.filter((i) => i.status === 'success');
   const failedItems = filteredItems.filter((i) => i.status === 'failed');
 
+  const selectedPending = pendingItems.filter((i) => selectedIds.has(i.id));
+  const selectedCompleted = completedItems.filter((i) => selectedIds.has(i.id));
+  const selectedFailed = failedItems.filter((i) => selectedIds.has(i.id));
+
   return (
-    <div className="space-y-2 sm:space-y-3">
+    <div className="space-y-2 sm:space-y-3 relative">
       
       {/* 1. FETCHED / QUEUED BUILDS */}
       <div className="bg-white dark:bg-[#0c0c0e] rounded-lg sm:rounded-xl border border-slate-200/90 dark:border-neutral-800/90 shadow-xs overflow-hidden transition-all">
@@ -250,6 +297,17 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2" onClick={e => e.stopPropagation()}>
+            {selectedPending.length > 0 && (
+              <button
+                onClick={() => handleRunSelected(selectedPending)}
+                disabled={isRunning}
+                className="flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/80 hover:bg-emerald-100 dark:hover:bg-emerald-900/80 rounded-md border border-emerald-300 dark:border-emerald-700 transition-colors disabled:opacity-40 cursor-pointer shadow-2xs"
+                title="Run selected fetched builds"
+              >
+                <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-current" />
+                <span>Run Selected ({selectedPending.length})</span>
+              </button>
+            )}
             {pendingItems.length > 0 && (
               <div className="flex items-center gap-1 sm:gap-1.5">
                 {onFetchPendingAll && (
@@ -290,7 +348,18 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                 <table className="w-full text-left text-[9px] sm:text-xs border-collapse select-text">
                   <thead>
                     <tr className="bg-slate-50/50 dark:bg-[#070709] text-slate-400 dark:text-neutral-500 border-b border-slate-100 dark:border-neutral-800/80">
-                      <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold w-8 sm:w-12 text-center">#</th>
+                      <th className="py-1.5 px-2 sm:py-2.5 sm:px-3 font-semibold w-12 sm:w-16 text-center whitespace-nowrap">
+                        <div className="flex items-center justify-center gap-1.5">
+                          <span>#</span>
+                          <input
+                            type="checkbox"
+                            checked={pendingItems.length > 0 && pendingItems.every(i => selectedIds.has(i.id))}
+                            onChange={(e) => toggleSelectSection(pendingItems, e.target.checked)}
+                            className="w-3.5 h-3.5 rounded border-slate-300 dark:border-neutral-700 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                            title="Select all fetched builds"
+                          />
+                        </div>
+                      </th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold">Build Fingerprint</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold font-mono">PDA</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold font-mono">CSC</th>
@@ -304,10 +373,25 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                     {pendingItems.map((item, idx) => (
                       <tr 
                         key={item.id}
-                        className="hover:bg-slate-50/80 dark:hover:bg-[#151518] transition-colors group select-text"
+                        className={`transition-colors group select-text ${
+                          selectedIds.has(item.id)
+                            ? 'bg-blue-50/50 dark:bg-blue-950/20'
+                            : 'hover:bg-slate-50/80 dark:hover:bg-[#151518]'
+                        }`}
                       >
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 text-slate-400 font-mono text-center text-[9px] sm:text-[11px] select-text cursor-text">
-                          {idx + 1}
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-3 text-slate-400 font-mono text-center text-[9px] sm:text-[11px] whitespace-nowrap">
+                          <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                            <span className="select-text cursor-text">{idx + 1}</span>
+                            <input
+                              type="checkbox"
+                              checked={selectedIds.has(item.id)}
+                              onChange={(e) => {
+                                e.stopPropagation();
+                                toggleSelectItem(item.id);
+                              }}
+                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded border-slate-300 dark:border-neutral-700 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                            />
+                          </div>
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-medium text-slate-800 dark:text-neutral-200 select-text cursor-text">
                           <div className="flex items-center gap-1.5 flex-wrap">
@@ -488,6 +572,17 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2" onClick={e => e.stopPropagation()}>
+            {selectedCompleted.length > 0 && (
+              <button
+                onClick={() => handleRunSelected(selectedCompleted)}
+                disabled={isRunning}
+                className="flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/80 hover:bg-emerald-100 dark:hover:bg-emerald-900/80 rounded-md border border-emerald-300 dark:border-emerald-700 transition-colors disabled:opacity-40 cursor-pointer shadow-2xs"
+                title="Re-run selected completed builds"
+              >
+                <RotateCcw className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                <span>Re-run Selected ({selectedCompleted.length})</span>
+              </button>
+            )}
             {completedItems.length > 0 && (
               <button
                 onClick={() => onClearSection('completed')}
@@ -515,7 +610,18 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                 <table className="w-full text-left text-[9px] sm:text-xs border-collapse select-text">
                   <thead>
                     <tr className="bg-slate-50/50 dark:bg-[#070709] text-slate-400 dark:text-neutral-500 border-b border-slate-100 dark:border-neutral-800/80">
-                      <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold w-8 sm:w-12 text-center whitespace-nowrap">#</th>
+                      <th className="py-1.5 px-2 sm:py-2.5 sm:px-3 font-semibold w-12 sm:w-16 text-center whitespace-nowrap">
+                        <div className="flex items-center justify-center gap-1.5">
+                          <span>#</span>
+                          <input
+                            type="checkbox"
+                            checked={completedItems.length > 0 && completedItems.every(i => selectedIds.has(i.id))}
+                            onChange={(e) => toggleSelectSection(completedItems, e.target.checked)}
+                            className="w-3.5 h-3.5 rounded border-slate-300 dark:border-neutral-700 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                            title="Select all completed submissions"
+                          />
+                        </div>
+                      </th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold w-24 sm:w-32 whitespace-nowrap">Build ID</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold whitespace-nowrap">Build Fingerprint</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold font-mono whitespace-nowrap">PDA</th>
@@ -529,10 +635,25 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                     {completedItems.map((item, idx) => (
                       <tr 
                         key={item.id}
-                        className="hover:bg-emerald-50/30 dark:hover:bg-emerald-950/20 transition-colors select-text"
+                        className={`transition-colors select-text ${
+                          selectedIds.has(item.id)
+                            ? 'bg-blue-50/50 dark:bg-blue-950/20'
+                            : 'hover:bg-emerald-50/30 dark:hover:bg-emerald-950/20'
+                        }`}
                       >
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-400 w-8 sm:w-12 text-center text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
-                          {idx + 1}
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-3 font-mono text-slate-400 text-center text-[8px] sm:text-[11px] whitespace-nowrap select-text">
+                          <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                            <span className="select-text cursor-text">{idx + 1}</span>
+                            <input
+                              type="checkbox"
+                              checked={selectedIds.has(item.id)}
+                              onChange={(e) => {
+                                e.stopPropagation();
+                                toggleSelectItem(item.id);
+                              }}
+                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded border-slate-300 dark:border-neutral-700 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                            />
+                          </div>
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 whitespace-nowrap">
                           <BuildIdCell buildId={item.buildId} isCompletedSection={true} />
@@ -586,6 +707,17 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2" onClick={e => e.stopPropagation()}>
+            {selectedFailed.length > 0 && (
+              <button
+                onClick={() => handleRunSelected(selectedFailed)}
+                disabled={isRunning}
+                className="flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-bold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/80 hover:bg-amber-100 dark:hover:bg-amber-900/80 rounded-md border border-amber-300 dark:border-amber-700 transition-colors disabled:opacity-40 cursor-pointer shadow-2xs"
+                title="Retry / Re-run selected failed builds"
+              >
+                <RotateCcw className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                <span>Retry Selected ({selectedFailed.length})</span>
+              </button>
+            )}
             {failedItems.length > 0 && (
               <div className="flex items-center gap-1 sm:gap-1.5">
                 {onRecheckFailedAll && (
@@ -641,7 +773,18 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                 <table className="w-full text-left text-[9px] sm:text-xs border-collapse select-text">
                   <thead>
                     <tr className="bg-slate-50/50 dark:bg-[#070709] text-slate-400 dark:text-neutral-500 border-b border-slate-100 dark:border-neutral-800/80">
-                      <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold w-8 sm:w-12 text-center whitespace-nowrap">#</th>
+                      <th className="py-1.5 px-2 sm:py-2.5 sm:px-3 font-semibold w-12 sm:w-16 text-center whitespace-nowrap">
+                        <div className="flex items-center justify-center gap-1.5">
+                          <span>#</span>
+                          <input
+                            type="checkbox"
+                            checked={failedItems.length > 0 && failedItems.every(i => selectedIds.has(i.id))}
+                            onChange={(e) => toggleSelectSection(failedItems, e.target.checked)}
+                            className="w-3.5 h-3.5 rounded border-slate-300 dark:border-neutral-700 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                            title="Select all failed submissions"
+                          />
+                        </div>
+                      </th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold w-24 sm:w-32 whitespace-nowrap">Build ID</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-semibold whitespace-nowrap">Build Fingerprint</th>
                       <th className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono whitespace-nowrap">PDA</th>
@@ -655,10 +798,25 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
                     {failedItems.map((item, idx) => (
                       <tr 
                         key={item.id}
-                        className="hover:bg-rose-50/40 dark:hover:bg-rose-950/20 transition-colors select-text"
+                        className={`transition-colors select-text ${
+                          selectedIds.has(item.id)
+                            ? 'bg-blue-50/50 dark:bg-blue-950/20'
+                            : 'hover:bg-rose-50/40 dark:hover:bg-rose-950/20'
+                        }`}
                       >
-                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 font-mono text-slate-400 w-8 sm:w-12 text-center text-[8px] sm:text-[11px] whitespace-nowrap select-text cursor-text">
-                          {idx + 1}
+                        <td className="py-1.5 px-2 sm:py-2.5 sm:px-3 font-mono text-slate-400 text-center text-[8px] sm:text-[11px] whitespace-nowrap select-text">
+                          <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                            <span className="select-text cursor-text">{idx + 1}</span>
+                            <input
+                              type="checkbox"
+                              checked={selectedIds.has(item.id)}
+                              onChange={(e) => {
+                                e.stopPropagation();
+                                toggleSelectItem(item.id);
+                              }}
+                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded border-slate-300 dark:border-neutral-700 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                            />
+                          </div>
                         </td>
                         <td className="py-1.5 px-2 sm:py-2.5 sm:px-4 whitespace-nowrap">
                           <BuildIdCell buildId={item.buildId} />
@@ -718,6 +876,35 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
           </div>
         )}
       </div>
+
+      {/* Floating Action Bar for Selected Builds */}
+      {selectedIds.size > 0 && (
+        <div className="sticky bottom-2 z-30 flex items-center justify-between gap-3 px-3.5 py-2.5 bg-slate-900/95 dark:bg-[#151518]/95 text-white backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/80 dark:border-neutral-700 animate-in slide-in-from-bottom-2 duration-200">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+            <span className="text-xs font-semibold">
+              {selectedIds.size} build{selectedIds.size > 1 ? 's' : ''} selected
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => handleRunSelected()}
+              disabled={isRunning}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg shadow-sm transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
+              title="Run / Submit build for all selected items"
+            >
+              <Play className="w-3.5 h-3.5 fill-current" />
+              <span>Run Selected Builds ({selectedIds.size})</span>
+            </button>
+            <button
+              onClick={() => setSelectedIds(new Set())}
+              className="px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
+            >
+              Deselect All
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );

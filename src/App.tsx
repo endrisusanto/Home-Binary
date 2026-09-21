@@ -657,6 +657,25 @@ export function App() {
     });
   };
 
+  // Run Multiple Selected Items (ponytail: reusable runner for any selected batch items)
+  const handleRunSelectedItems = async (selectedItems: BatchItem[]) => {
+    if (isRunning || selectedItems.length === 0) return;
+    const targetIds = new Set(selectedItems.map((x) => x.id));
+    setItems((prev) =>
+      prev.map((x) =>
+        targetIds.has(x.id)
+          ? { ...x, status: 'running' as ItemStatus, message: 'Initializing...', error: undefined }
+          : x
+      )
+    );
+    addLog('info', `Starting submission for ${selectedItems.length} selected build(s)...`);
+
+    await dispatchBatchRunner({
+      portal: portalConfig,
+      items: selectedItems.map((item) => ({ ...item, status: 'pending' })),
+    });
+  };
+
   // Count builds missing Build ID across all statuses
   const missingBuildIdCount = items.filter((i) => !i.buildId).length;
 
@@ -811,6 +830,7 @@ export function App() {
           onRetryItem={handleRetryItem}
           onClearSection={handleClearSection}
           onRunItem={handleRunSingleItem}
+          onRunSelectedItems={handleRunSelectedItems}
           onFetchPendingAll={handleFetchPendingAll}
           onRecheckItem={handleRecheckSingleItem}
           onRecheckFailedAll={handleRecheckFailedAll}
