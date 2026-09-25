@@ -836,6 +836,7 @@ export function App() {
           onRecheckFailedAll={handleRecheckFailedAll}
           onRetryFailedAll={handleRetryFailedAll}
           searchQuery={searchQuery}
+          isLogsOpen={isLogsOpen}
         />
 
       </main>

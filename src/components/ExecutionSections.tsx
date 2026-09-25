@@ -29,6 +29,7 @@ interface ExecutionSectionsProps {
   onRetryFailedAll?: () => void;
   onRunSelectedItems?: (selectedItems: BatchItem[]) => void;
   searchQuery: string;
+  isLogsOpen?: boolean;
 }
 
 async function openSystemBrowser(url: string) {
@@ -202,6 +203,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
   onRetryFailedAll,
   onRunSelectedItems,
   searchQuery = '',
+  isLogsOpen = false,
 }) => {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     pending: true,
@@ -877,16 +879,20 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
         )}
       </div>
 
-      {/* Floating Action Bar for Selected Builds */}
+      {/* Floating Action Bar for Selected Builds (ponytail: fixed z-50 floating safely above footer logs) */}
       {selectedIds.size > 0 && (
-        <div className="sticky bottom-2 z-30 flex items-center justify-between gap-3 px-3.5 py-2.5 bg-slate-900/95 dark:bg-[#151518]/95 text-white backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/80 dark:border-neutral-700 animate-in slide-in-from-bottom-2 duration-200">
+        <div 
+          className={`fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] sm:w-auto min-w-[300px] sm:min-w-[380px] max-w-xl flex items-center justify-between gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 bg-slate-900/95 dark:bg-[#10141f]/95 text-white backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/80 dark:border-neutral-700 transition-all duration-200 animate-in slide-in-from-bottom-2 select-none ${
+            isLogsOpen ? 'bottom-52 sm:bottom-68' : 'bottom-11 sm:bottom-12'
+          }`}
+        >
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-            <span className="text-xs font-semibold">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse" />
+            <span className="text-xs font-semibold whitespace-nowrap">
               {selectedIds.size} build{selectedIds.size > 1 ? 's' : ''} selected
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => handleRunSelected()}
               disabled={isRunning}
@@ -894,13 +900,13 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
               title="Run / Submit build for all selected items"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Run Selected Builds ({selectedIds.size})</span>
+              <span>Run Selected ({selectedIds.size})</span>
             </button>
             <button
               onClick={() => setSelectedIds(new Set())}
               className="px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
             >
-              Deselect All
+              Deselect
             </button>
           </div>
         </div>
