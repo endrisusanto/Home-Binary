@@ -1,6 +1,6 @@
 {
   "name": "home-binary",
-  "version": "0.5.29",
+  "version": "0.5.30",
   "type": "module",
   "description": "Build HomeBinary Desktop Automation",
   "main": "index.js",

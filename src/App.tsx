@@ -657,22 +657,42 @@ export function App() {
     });
   };
 
-  // Run Multiple Selected Items (ponytail: reusable runner for any selected batch items)
+  // Run Multiple Selected Items (ponytail: rebuild/submit fresh form for selected items)
   const handleRunSelectedItems = async (selectedItems: BatchItem[]) => {
     if (isRunning || selectedItems.length === 0) return;
     const targetIds = new Set(selectedItems.map((x) => x.id));
     setItems((prev) =>
       prev.map((x) =>
         targetIds.has(x.id)
-          ? { ...x, status: 'running' as ItemStatus, message: 'Initializing...', error: undefined }
+          ? { ...x, status: 'running' as ItemStatus, buildId: undefined, buildDate: undefined, message: 'Initializing rebuild...', error: undefined }
           : x
       )
     );
-    addLog('info', `Starting submission for ${selectedItems.length} selected build(s)...`);
+    addLog('info', `Starting rebuild & fresh form submission for ${selectedItems.length} selected build(s)...`);
 
     await dispatchBatchRunner({
       portal: portalConfig,
-      items: selectedItems.map((item) => ({ ...item, status: 'pending' })),
+      items: selectedItems.map((item) => ({
+        ...item,
+        status: 'pending',
+        buildId: undefined,
+        buildDate: undefined,
+        error: undefined,
+        message: undefined,
+      })),
+    });
+  };
+
+  // Fetch Build IDs specifically for selected items (ponytail: targeted fetch)
+  const handleFetchSelectedItems = async (selectedItems: BatchItem[]) => {
+    if (isRunning || selectedItems.length === 0) return;
+    addLog('info', `Scanning QuickBuild Dashboard to fetch Build IDs for ${selectedItems.length} selected build(s)...`);
+    await dispatchBatchRunner({
+      portal: {
+        ...portalConfig,
+        fetchOnly: true,
+      },
+      items: selectedItems,
     });
   };
 
@@ -831,6 +851,7 @@ export function App() {
           onClearSection={handleClearSection}
           onRunItem={handleRunSingleItem}
           onRunSelectedItems={handleRunSelectedItems}
+          onFetchSelectedItems={handleFetchSelectedItems}
           onFetchPendingAll={handleFetchPendingAll}
           onRecheckItem={handleRecheckSingleItem}
           onRecheckFailedAll={handleRecheckFailedAll}

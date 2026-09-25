@@ -28,6 +28,7 @@ interface ExecutionSectionsProps {
   onRecheckFailedAll?: () => void;
   onRetryFailedAll?: () => void;
   onRunSelectedItems?: (selectedItems: BatchItem[]) => void;
+  onFetchSelectedItems?: (selectedItems: BatchItem[]) => void;
   searchQuery: string;
   isLogsOpen?: boolean;
 }
@@ -202,6 +203,7 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
   onRecheckFailedAll,
   onRetryFailedAll,
   onRunSelectedItems,
+  onFetchSelectedItems,
   searchQuery = '',
   isLogsOpen = false,
 }) => {
@@ -246,6 +248,20 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
       targets.forEach((it) => onRunItem(it));
     }
     // Clear selection for executed targets
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      targets.forEach((it) => next.delete(it.id));
+      return next;
+    });
+  };
+
+  const handleFetchSelected = (itemsToFetch?: BatchItem[]) => {
+    const targets = itemsToFetch || items.filter((it) => selectedIds.has(it.id));
+    if (targets.length === 0 || isRunning) return;
+    if (onFetchSelectedItems) {
+      onFetchSelectedItems(targets);
+    }
+    // Clear selection for fetched targets
     setSelectedIds((prev) => {
       const next = new Set(prev);
       targets.forEach((it) => next.delete(it.id));
@@ -300,17 +316,28 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
 
           <div className="flex items-center gap-1.5 sm:gap-2" onClick={e => e.stopPropagation()}>
             {selectedPending.length > 0 && (
-              <button
-                onClick={() => handleRunSelected(selectedPending)}
-                disabled={isRunning}
-                className="flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/80 hover:bg-emerald-100 dark:hover:bg-emerald-900/80 rounded-md border border-emerald-300 dark:border-emerald-700 transition-colors disabled:opacity-40 cursor-pointer shadow-2xs"
-                title="Run selected fetched builds"
-              >
-                <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-current" />
-                <span>Run Selected ({selectedPending.length})</span>
-              </button>
+              <div className="flex items-center gap-1 sm:gap-1.5">
+                <button
+                  onClick={() => handleRunSelected(selectedPending)}
+                  disabled={isRunning}
+                  className="flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/80 hover:bg-emerald-100 dark:hover:bg-emerald-900/80 rounded-md border border-emerald-300 dark:border-emerald-700 transition-colors disabled:opacity-40 cursor-pointer shadow-2xs"
+                  title="Submit fresh build forms for selected pending builds"
+                >
+                  <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-current" />
+                  <span>Run Selected ({selectedPending.length})</span>
+                </button>
+                <button
+                  onClick={() => handleFetchSelected(selectedPending)}
+                  disabled={isRunning}
+                  className="flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-bold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/80 hover:bg-amber-100 dark:hover:bg-amber-900/80 rounded-md border border-amber-300 dark:border-amber-800 transition-colors disabled:opacity-40 cursor-pointer shadow-2xs"
+                  title="Fetch and check Build IDs from Dashboard for selected pending builds"
+                >
+                  <RotateCw className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                  <span>Fetch IDs Selected ({selectedPending.length})</span>
+                </button>
+              </div>
             )}
-            {pendingItems.length > 0 && (
+            {pendingItems.length > 0 && selectedPending.length === 0 && (
               <div className="flex items-center gap-1 sm:gap-1.5">
                 {onFetchPendingAll && (
                   <button
@@ -882,29 +909,38 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
       {/* Floating Action Bar for Selected Builds (ponytail: fixed z-50 floating safely above footer logs) */}
       {selectedIds.size > 0 && (
         <div 
-          className={`fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] sm:w-auto min-w-[300px] sm:min-w-[380px] max-w-xl flex items-center justify-between gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 bg-slate-900/95 dark:bg-[#10141f]/95 text-white backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/80 dark:border-neutral-700 transition-all duration-200 animate-in slide-in-from-bottom-2 select-none ${
+          className={`fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] sm:w-auto min-w-[300px] sm:min-w-[440px] max-w-xl flex items-center justify-between gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 bg-slate-900/95 dark:bg-[#10141f]/95 text-white backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/80 dark:border-neutral-700 transition-all duration-200 animate-in slide-in-from-bottom-2 select-none ${
             isLogsOpen ? 'bottom-52 sm:bottom-68' : 'bottom-11 sm:bottom-12'
           }`}
         >
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse" />
             <span className="text-xs font-semibold whitespace-nowrap">
-              {selectedIds.size} build{selectedIds.size > 1 ? 's' : ''} selected
+              {selectedIds.size} selected
             </span>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               onClick={() => handleRunSelected()}
               disabled={isRunning}
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg shadow-sm transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
-              title="Run / Submit build for all selected items"
+              title="Submit fresh build forms / re-run for all selected items"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Run Selected ({selectedIds.size})</span>
+              <span>{selectedCompleted.length > 0 && selectedPending.length === 0 ? 'Rebuild Selected' : 'Run Selected'} ({selectedIds.size})</span>
+            </button>
+            <button
+              onClick={() => handleFetchSelected()}
+              disabled={isRunning}
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold bg-amber-600/90 hover:bg-amber-500 text-white rounded-lg shadow-sm transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
+              title="Query and fetch Build IDs from Dashboard for selected items"
+            >
+              <RotateCw className="w-3.5 h-3.5" />
+              <span>Fetch IDs ({selectedIds.size})</span>
             </button>
             <button
               onClick={() => setSelectedIds(new Set())}
-              className="px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
+              className="px-2 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
             >
               Deselect
             </button>
