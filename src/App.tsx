@@ -48,6 +48,7 @@ export function App() {
     const saved = localStorage.getItem('hb_portal_config');
     if (saved) {
       const parsed = JSON.parse(saved);
+      delete parsed.fetchOnly;
       return {
         ...INITIAL_PORTAL_CONFIG,
         ...parsed,
@@ -113,9 +114,11 @@ export function App() {
     localStorage.setItem('hb_items', JSON.stringify(items));
   }, [items]);
 
-  // Persist config
+  // Persist config (ponytail: ensure fetchOnly never leaks into persistent storage)
   useEffect(() => {
-    localStorage.setItem('hb_portal_config', JSON.stringify(portalConfig));
+    const toSave = { ...portalConfig };
+    delete (toSave as any).fetchOnly;
+    localStorage.setItem('hb_portal_config', JSON.stringify(toSave));
   }, [portalConfig]);
 
   const addLog = useCallback((level: LogEntry['level'], message: string, index?: number) => {
@@ -262,7 +265,9 @@ export function App() {
     setItems((prev) =>
       prev.map((item) =>
         item.status === 'running'
-          ? { ...item, status: 'success', progressPercent: 100, message: item.message || 'Submission complete' }
+          ? item.buildId
+            ? { ...item, status: 'success', progressPercent: 100, message: item.message || 'Submission complete' }
+            : { ...item, status: 'pending', progressPercent: 0, message: item.message || 'Queued in QuickBuild (pending Build ID)' }
           : item
       )
     );
@@ -285,7 +290,9 @@ export function App() {
               setItems(payload.items);
             }
             if (payload?.portalConfig) {
-              setPortalConfig((prev) => ({ ...prev, ...payload.portalConfig }));
+              const clean = { ...payload.portalConfig };
+              delete clean.fetchOnly;
+              setPortalConfig((prev) => ({ ...prev, ...clean }));
             }
             if (payload?.logs && Array.isArray(payload.logs)) {
               setLogs(payload.logs.slice(-100));
@@ -471,6 +478,15 @@ export function App() {
     isStartingRef.current = true;
     setIsRunning(true);
 
+    // ponytail: strictly ensure fetchOnly is only true when explicitly specified
+    const cleanPayload = {
+      ...payload,
+      portal: {
+        ...payload.portal,
+        fetchOnly: payload.portal?.fetchOnly === true,
+      },
+    };
+
     try {
       if (isTauri) {
         const tauri = await getTauri();
@@ -478,7 +494,7 @@ export function App() {
           try {
             // Notify WebSocket server and Web clients that execution started locally
             wsService.send('batch-started', { isRunning: true });
-            await tauri.core.invoke('start_batch_runner', { payload });
+            await tauri.core.invoke('start_batch_runner', { payload: cleanPayload });
           } catch (err: any) {
             addLog('error', `Tauri execution error: ${err?.message || err}`);
             setIsRunning(false);
@@ -488,13 +504,13 @@ export function App() {
       } else {
         // In Web mode: dispatch via WebSocket if connected, otherwise fallback to HTTP POST
         if (wsService.isConnected) {
-          wsService.send('trigger-batch', payload);
+          wsService.send('trigger-batch', cleanPayload);
         } else {
           try {
             await fetch('/api/batch/start', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload),
+              body: JSON.stringify(cleanPayload),
             });
           } catch (err: any) {
             console.warn('HTTP fallback start notice:', err);
@@ -645,15 +661,25 @@ export function App() {
     addLog('info', 'Queue reset to sample build specifications.');
   };
 
-  // Run Single Item
+  // Run Single Item (ponytail: rebuild/submit fresh form for single item)
   const handleRunSingleItem = async (item: BatchItem) => {
     if (isRunning) return;
-    setItems((prev) => prev.map((x) => (x.id === item.id ? { ...x, status: 'running', message: 'Initializing...' } : x)));
+    const updated = items.map((x) =>
+      x.id === item.id
+        ? { ...x, status: 'running' as ItemStatus, buildId: undefined, buildDate: undefined, message: 'Submitting fresh form...', error: undefined }
+        : x
+    );
+    setItems(updated);
+    pushStateToServer(updated);
+
     addLog('info', `Starting single submission: ${item.buildFingerprintName}`);
 
     await dispatchBatchRunner({
-      portal: portalConfig,
-      items: [{ ...item, status: 'pending' }],
+      portal: {
+        ...portalConfig,
+        fetchOnly: false, // ponytail: strictly disable fetchOnly for form submission
+      },
+      items: [{ ...item, status: 'pending', buildId: undefined, buildDate: undefined, error: undefined, message: undefined }],
     });
   };
 
@@ -661,17 +687,28 @@ export function App() {
   const handleRunSelectedItems = async (selectedItems: BatchItem[]) => {
     if (isRunning || selectedItems.length === 0) return;
     const targetIds = new Set(selectedItems.map((x) => x.id));
-    setItems((prev) =>
-      prev.map((x) =>
-        targetIds.has(x.id)
-          ? { ...x, status: 'running' as ItemStatus, buildId: undefined, buildDate: undefined, message: 'Initializing rebuild...', error: undefined }
-          : x
-      )
+    const updated = items.map((x) =>
+      targetIds.has(x.id)
+        ? {
+            ...x,
+            status: 'running' as ItemStatus,
+            buildId: undefined,
+            buildDate: undefined,
+            message: 'Submitting fresh form...',
+            error: undefined,
+          }
+        : x
     );
+    setItems(updated);
+    pushStateToServer(updated);
+
     addLog('info', `Starting rebuild & fresh form submission for ${selectedItems.length} selected build(s)...`);
 
     await dispatchBatchRunner({
-      portal: portalConfig,
+      portal: {
+        ...portalConfig,
+        fetchOnly: false, // ponytail: strictly disable fetchOnly for rebuilds
+      },
       items: selectedItems.map((item) => ({
         ...item,
         status: 'pending',

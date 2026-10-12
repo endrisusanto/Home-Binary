@@ -186,7 +186,16 @@ function startServerRunner(payload) {
 
   activeChild = child;
 
-  child.stdin.write(JSON.stringify(payload));
+  // ponytail: ensure payload.portal.fetchOnly is strictly boolean
+  const cleanPayload = {
+    ...payload,
+    portal: {
+      ...payload.portal,
+      fetchOnly: payload.portal?.fetchOnly === true,
+    },
+  };
+
+  child.stdin.write(JSON.stringify(cleanPayload));
   child.stdin.end();
 
   let buffer = '';

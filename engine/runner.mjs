@@ -1030,7 +1030,15 @@ async function main() {
 
         emitLog('success', `[Tab #${(i % concurrency) + 1}] Form triggered successfully for ${item.buildFingerprintName}!`);
         successCount++;
-        emitProgress(item.id, itemIndex, 'success', `Form submitted: ${item.buildFingerprintName}`, null, item.buildId || null, 100);
+        emitProgress(
+          item.id,
+          itemIndex,
+          trackProgress ? 'running' : 'pending',
+          `Form submitted: ${item.buildFingerprintName} (Queued in QuickBuild)`,
+          null,
+          item.buildId || null,
+          trackProgress ? 60 : 0
+        );
 
       } catch (itemErr) {
         failedCount++;
