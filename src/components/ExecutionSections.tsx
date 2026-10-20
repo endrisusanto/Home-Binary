@@ -602,15 +602,26 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
 
           <div className="flex items-center gap-1.5 sm:gap-2" onClick={e => e.stopPropagation()}>
             {selectedCompleted.length > 0 && (
-              <button
-                onClick={() => handleRunSelected(selectedCompleted)}
-                disabled={isRunning}
-                className="flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/80 hover:bg-emerald-100 dark:hover:bg-emerald-900/80 rounded-md border border-emerald-300 dark:border-emerald-700 transition-colors disabled:opacity-40 cursor-pointer shadow-2xs"
-                title="Rebuild & resubmit fresh build forms for selected completed builds"
-              >
-                <RotateCcw className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                <span>Rebuild Selected ({selectedCompleted.length})</span>
-              </button>
+              <>
+                <button
+                  onClick={() => handleRunSelected(selectedCompleted)}
+                  disabled={isRunning}
+                  className="flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/80 hover:bg-emerald-100 dark:hover:bg-emerald-900/80 rounded-md border border-emerald-300 dark:border-emerald-700 transition-colors disabled:opacity-40 cursor-pointer shadow-2xs"
+                  title="Rebuild & resubmit fresh build forms for selected completed builds"
+                >
+                  <RotateCcw className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                  <span>Rebuild Selected ({selectedCompleted.length})</span>
+                </button>
+                <button
+                  onClick={() => handleFetchSelected(selectedCompleted)}
+                  disabled={isRunning}
+                  className="flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-bold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/80 hover:bg-amber-100 dark:hover:bg-amber-900/80 rounded-md border border-amber-300 dark:border-amber-700 transition-colors disabled:opacity-40 cursor-pointer shadow-2xs"
+                  title="Query and fetch Build IDs from Dashboard for selected completed items"
+                >
+                  <RotateCw className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                  <span>Fetch Ulang ({selectedCompleted.length})</span>
+                </button>
+              </>
             )}
             {completedItems.length > 0 && (
               <button
@@ -929,17 +940,15 @@ export const ExecutionSections: React.FC<ExecutionSectionsProps> = ({
               <Play className="w-3.5 h-3.5 fill-current" />
               <span>{selectedCompleted.length > 0 && selectedPending.length === 0 ? 'Rebuild Selected' : 'Run Selected'} ({selectedIds.size})</span>
             </button>
-            {selectedPending.length > 0 && (
-              <button
-                onClick={() => handleFetchSelected(selectedPending)}
-                disabled={isRunning}
-                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold bg-amber-600/90 hover:bg-amber-500 text-white rounded-lg shadow-sm transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
-                title="Query and fetch Build IDs from Dashboard for selected pending items"
-              >
-                <RotateCw className="w-3.5 h-3.5" />
-                <span>Fetch IDs ({selectedPending.length})</span>
-              </button>
-            )}
+            <button
+              onClick={() => handleFetchSelected()}
+              disabled={isRunning}
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold bg-amber-600/90 hover:bg-amber-500 text-white rounded-lg shadow-sm transition-all active:scale-95 disabled:opacity-40 cursor-pointer"
+              title="Query and fetch Build IDs from Dashboard for all selected items"
+            >
+              <RotateCw className="w-3.5 h-3.5" />
+              <span>Fetch Ulang ({selectedIds.size})</span>
+            </button>
             <button
               onClick={() => setSelectedIds(new Set())}
               className="px-2 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
