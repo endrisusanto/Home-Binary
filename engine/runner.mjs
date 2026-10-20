@@ -287,6 +287,13 @@ async function handleSsoLoginIfNeeded(page, context, username, password, timeout
 }
 
 async function findAndClickRunButton(page) {
+  // Check if form is already open
+  const selFingerprint = 'input[name="editor:content:basicProperties:0:property:editor:editor:wrapper:input"], input[name*="basicProperties:0"]';
+  if (await page.locator(selFingerprint).count() > 0 && await page.locator(selFingerprint).first().isVisible()) {
+    emitLog('info', 'Wicket parameter form inputs already visible on page.');
+    return true;
+  }
+
   const runSelectors = [
     'button[title="Run the configuration"]',
     'button[title*="Run the configuration" i]',
@@ -317,10 +324,12 @@ async function findAndClickRunButton(page) {
         await loc.scrollIntoViewIfNeeded().catch(() => null);
         
         await loc.click({ timeout: 4000 }).catch(async () => {
-          await page.evaluate((sel) => {
-            const el = document.querySelector(sel);
-            if (el) el.click();
-          }, selector);
+          await loc.click({ force: true, timeout: 2000 }).catch(async () => {
+            await page.evaluate((sel) => {
+              const el = document.querySelector(sel);
+              if (el) el.click();
+            }, selector);
+          });
         });
 
         return true;
@@ -347,22 +356,50 @@ async function findAndClickRunButton(page) {
   return false;
 }
 
+// Helper to fill input fields and trigger Wicket AJAX events in both headed and headless modes
+async function fillWicketField(page, selector, value) {
+  const loc = page.locator(selector).first();
+  await loc.scrollIntoViewIfNeeded().catch(() => null);
+  await loc.click({ force: true }).catch(() => null);
+  await loc.fill(value || '');
+  await page.evaluate((sel) => {
+    const el = document.querySelector(sel);
+    if (el) {
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+      el.dispatchEvent(new Event('blur', { bubbles: true }));
+    }
+  }, selector).catch(() => null);
+  await page.waitForTimeout(100);
+}
+
 async function navigateAndLocateForm(page, baseUrl, timeoutMs = 30000) {
   const selFingerprint = 'input[name="editor:content:basicProperties:0:property:editor:editor:wrapper:input"], input[name*="basicProperties:0"], input[name*="0:property:editor"]';
   const selPda = 'input[name="editor:content:basicProperties:1:property:editor:editor:wrapper:input"], input[name*="basicProperties:1"], input[name*="1:property:editor"]';
   const selCsc = 'input[name="editor:content:basicProperties:2:property:editor:editor:wrapper:input"], input[name*="basicProperties:2"], input[name*="2:property:editor"]';
   const selBaseband = 'input[name="editor:content:basicProperties:3:property:editor:editor:wrapper:input"], input[name*="basicProperties:3"], input[name*="3:property:editor"]';
 
+  // Ensure overview portal is used for launching forms (history URL does not contain Run button)
+  const targetOverviewUrl = (baseUrl && baseUrl.includes('/history/'))
+    ? baseUrl.replace('/history/', '/overview/')
+    : (baseUrl || 'https://android.qb.sec.samsung.net/overview/28905');
+
   const maxAttempts = 3;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    emitLog('info', `Navigating to overview portal: ${baseUrl} (Attempt ${attempt}/${maxAttempts})...`);
+    emitLog('info', `Navigating to overview portal: ${targetOverviewUrl} (Attempt ${attempt}/${maxAttempts})...`);
     try {
-      await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
+      await page.goto(targetOverviewUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
     } catch (e) {
       emitLog('warn', `Overview navigation warning: ${e.message}`);
     }
 
     await page.waitForTimeout(1000);
+
+    // Check if form is already loaded directly
+    if (await page.locator(selFingerprint).count() > 0 && await page.locator(selFingerprint).first().isVisible()) {
+      emitLog('success', 'Wicket parameter form inputs already visible on page!');
+      return { selFingerprint, selPda, selCsc, selBaseband };
+    }
 
     // Click the QuickBuild "Run the configuration" button to launch the parameter form
     emitLog('info', 'Locating "Run the configuration" button on overview...');
@@ -429,10 +466,12 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
         await page.waitForTimeout(200);
         
         await btn.click({ timeout: 4000 }).catch(async () => {
-          await page.evaluate((sel) => {
-            const b = document.querySelector(sel);
-            if (b) b.click();
-          }, selector);
+          await btn.click({ force: true, timeout: 2000 }).catch(async () => {
+            await page.evaluate((sel) => {
+              const b = document.querySelector(sel);
+              if (b) b.click();
+            }, selector);
+          });
         });
 
         submitted = true;
@@ -465,9 +504,12 @@ async function triggerFormSubmission(page, selBaseband, delayMs = 1000) {
     await page.press(selBaseband, 'Enter');
   }
 
-  // Wait for submission request to dispatch
-  const postSubmitWait = Math.max(delayMs * 1.5, 2000);
-  await page.waitForTimeout(postSubmitWait);
+  // Wait for submission request to dispatch and Wicket AJAX to process
+  await Promise.race([
+    page.waitForSelector(selBaseband, { state: 'hidden', timeout: 6000 }).catch(() => null),
+    page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 6000 }).catch(() => null),
+    page.waitForTimeout(Math.max(delayMs * 1.5, 2500)),
+  ]);
 }
 
 // --------------------------------------------------------------------------
@@ -896,7 +938,14 @@ async function main() {
   try {
     browser = await chromium.launch({
       headless,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--start-maximized']
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-blink-features=AutomationControlled',
+        '--window-size=1920,1080',
+        '--start-maximized'
+      ]
     });
   } catch (err) {
     emitLog('warn', `Failed to launch standard Chromium: ${err.message}. Falling back to simulation mode.`);
@@ -906,15 +955,27 @@ async function main() {
 
   let context;
   try {
+    const contextOptions = {
+      viewport: { width: 1920, height: 1080 },
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+      deviceScaleFactor: 1,
+      locale: 'en-US',
+    };
     if (fs.existsSync(AUTH_FILE)) {
       emitLog('info', `Loading saved auth session from ${AUTH_FILE}`);
-      context = await browser.newContext({ storageState: AUTH_FILE, viewport: null });
-    } else {
-      context = await browser.newContext({ viewport: null });
+      contextOptions.storageState = AUTH_FILE;
     }
+    context = await browser.newContext(contextOptions);
+
+    // Evade webdriver detection in headless mode so enterprise portals don't block AJAX
+    await context.addInitScript(() => {
+      Object.defineProperty(navigator, 'webdriver', {
+        get: () => undefined,
+      });
+    });
   } catch (err) {
-    emitLog('warn', `Could not load storage state: ${err.message}. Creating fresh context.`);
-    context = await browser.newContext({ viewport: null });
+    emitLog('warn', `Could not create context: ${err.message}. Creating fallback context.`);
+    context = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
   }
 
   // Inject AI Agent Glow outline effect on visible pages
@@ -996,24 +1057,18 @@ async function main() {
 
         const { selFingerprint, selPda, selCsc, selBaseband } = await navigateAndLocateForm(itemPage, baseUrl, timeoutMs);
 
-        // Fill all 4 input fields with deliberate entry
+        // Fill all 4 input fields with deliberate entry and Wicket AJAX events
         emitProgress(item.id, itemIndex, 'running', `Populating form fields...`, null, null, 40);
-        await itemPage.fill(selFingerprint, item.buildFingerprintName || '');
-        await itemPage.waitForTimeout(150);
-
-        await itemPage.fill(selPda, item.pdaVersion || '');
-        await itemPage.waitForTimeout(150);
-
-        await itemPage.fill(selCsc, item.cscVersion || '');
-        await itemPage.waitForTimeout(150);
+        await fillWicketField(itemPage, selFingerprint, item.buildFingerprintName || '');
+        await fillWicketField(itemPage, selPda, item.pdaVersion || '');
+        await fillWicketField(itemPage, selCsc, item.cscVersion || '');
 
         // Clean Baseband: Empty string if model is Wi-Fi only / dash value
         const rawBaseband = (item.basebandVersion || '').trim();
         const isNoBaseband = !rawBaseband || rawBaseband === '-' || rawBaseband === '—' || rawBaseband.toLowerCase() === 'none' || rawBaseband.toLowerCase() === 'n/a';
         const cleanBaseband = isNoBaseband ? '' : rawBaseband;
 
-        await itemPage.fill(selBaseband, cleanBaseband);
-        await itemPage.waitForTimeout(200);
+        await fillWicketField(itemPage, selBaseband, cleanBaseband);
 
         emitLog('info', `[Tab #${(i % concurrency) + 1}] Populated: Fingerprint=${item.buildFingerprintName}, PDA=${item.pdaVersion}, CSC=${item.cscVersion}, Phone=${cleanBaseband || '[EMPTY - Wi-Fi Only]'}`);
 
@@ -1047,6 +1102,8 @@ async function main() {
       } finally {
         if (itemPage) {
           try {
+            // Safety wait to ensure Wicket server finished processing HTTP socket before tab is destroyed
+            await itemPage.waitForTimeout(1000);
             await itemPage.close();
           } catch {}
         }
